@@ -44,7 +44,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 })
 
 const addVisit = asyncHandler(async (req, res) => {
-    const admin = await admins.findOne({ email: "mail.eazzystore@gmail.com" })
+    const admin = await admins.findOne({ email: "mail.eazzysite@gmail.com" })
     admin.visits = Number(admin.visits) + 1;
     admin.save()
 
