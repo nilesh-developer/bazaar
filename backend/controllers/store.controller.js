@@ -551,7 +551,7 @@ const getNumbersOfThirtyDays = asyncHandler(async (req, res) => {
             statusCode: 200,
             data: {
                 noOfOrders,
-                totalRevenueOfLastThirtyDays: totalRevenue[0].lastThirtyDays
+                totalRevenueOfLastThirtyDays: totalRevenue[0]?.lastThirtyDays
             },
             message: "Data Fetched"
         })
