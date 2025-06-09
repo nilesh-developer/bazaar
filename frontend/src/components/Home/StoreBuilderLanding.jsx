@@ -97,7 +97,7 @@ const StoreBuilderLanding = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-32 pb-12">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-10 pb-12">
         <div className="max-w-5xl mx-auto text-center z-10">
           <div className="mb-8">
             <span className="inline-block px-4 py-2 bg-gradient-to-r from-black/10 to-gray-700/10 rounded-full text-sm border border-black/20 backdrop-blur-sm text-black font-semibold">🚀 Launch your store in seconds, not hours</span>
@@ -178,7 +178,7 @@ const StoreBuilderLanding = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold mb-6"><span className="bg-gradient-to-r from-black to-gray-600 bg-clip-text text-transparent">Simple Pricing</span></h2>
-            <p className="text-xl text-gray-600">No monthly fees. No hidden costs. Just 5% on successful online payments.</p>
+            <p className="text-xl text-gray-600">No monthly fees. No hidden costs. Just 3% on successful online payments.</p>
           </div>
           <div className="bg-gradient-to-b from-black/5 to-white/80 backdrop-blur-sm rounded-3xl p-8 border border-black/10 hover:border-black/30 transition-all duration-500 shadow-md">
             <div className="text-center mb-8">
@@ -186,7 +186,7 @@ const StoreBuilderLanding = () => {
               <h3 className="text-3xl font-bold mb-2 text-black">Pay As You Grow</h3>
               <div className="flex items-center justify-center mb-4">
                 <span className="text-5xl font-bold bg-gradient-to-r from-gray-700 to-black bg-clip-text text-transparent">3%</span>
-                <span className="text-gray-600 ml-2">per successful transaction</span>
+                <span className="text-gray-600 ml-2">per successful online payment</span>
               </div>
               <p className="text-gray-700">Everything you need to start selling online</p>
             </div>
