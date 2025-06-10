@@ -97,7 +97,7 @@ const StoreBuilderLanding = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-10 pb-12">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 lg:pt-10 pb-12">
         <div className="max-w-5xl mx-auto text-center z-10">
           <div className="mb-8">
             <span className="inline-block px-4 py-2 bg-gradient-to-r from-black/10 to-gray-700/10 rounded-full text-sm border border-black/20 backdrop-blur-sm text-black font-semibold">🚀 Launch your store in seconds, not hours</span>
