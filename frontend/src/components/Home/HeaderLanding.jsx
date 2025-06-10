@@ -9,7 +9,7 @@ const HeaderLanding = () => {
    const { token } = useAuth()
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 bg-zinc-100 backdrop-blur-lg border-b border-zinc-950/20 shadow-sm`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 bg-zinc-50 backdrop-blur-lg border-b border-zinc-950/20 shadow-sm`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center">
