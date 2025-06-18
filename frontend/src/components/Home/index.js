@@ -1,6 +1,8 @@
+import Header from "./Header";
 import Footer from "./Footer";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import Home from "./Home";
 import Logout from "./Logout";
 import Pricing from "./Pricing";
 import TermsAndConditions from "../../pages/Home/TermsAndConditions";
@@ -14,4 +16,4 @@ import ShippingPolicy from "../../pages/Home/ShippingPolicy";
 import Checkout from "./Checkout";
 
 
-export {Footer, Login, SignUp, Pricing, Checkout, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}
+export {Header, Footer, Login, SignUp, Home, Pricing, Checkout, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}

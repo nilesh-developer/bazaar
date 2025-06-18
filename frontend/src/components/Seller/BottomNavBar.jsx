@@ -5,19 +5,19 @@ import { Link, NavLink } from 'react-router-dom'
 function BottomNavBar() {
     return (
         <div data-theme="light" className="btm-nav lg:hidden bottom-0">
-            <NavLink to="dashboard" className={({ isActive }) => `${isActive ? "active text-zinc-950 font-bold" : ""}`}>
+            <NavLink to="dashboard" className={({ isActive }) => `${isActive ? "active text-orange-600 font-bold" : ""}`}>
                 <Grid2X2 className='w-5 h-5 text-[fill-current]'/>
                 <span className="btm-nav-label text-xs lg:text-sm">Home</span>
             </NavLink>
-            <NavLink to="products" className={({ isActive }) => `${isActive ? "active text-zinc-950 font-bold" : ""}`}>
+            <NavLink to="products" className={({ isActive }) => `${isActive ? "active text-orange-600 font-bold" : ""}`}>
                 <Box className='w-5 h-5 text-[fill-current]'/>
                 <span className="btm-nav-label text-xs lg:text-sm">Products</span>
             </NavLink>
-            <NavLink to="edit-store" className={({ isActive }) => `${isActive ? "active text-zinc-950 font-bold" : ""}`}>
+            <NavLink to="edit-store" className={({ isActive }) => `${isActive ? "active text-orange-600 font-bold" : ""}`}>
                   <Store className='w-5 h-5 text-[fill-current]'/>
                 <span className="btm-nav-label text-xs lg:text-sm">Store</span>
             </NavLink>
-            <NavLink to="orders" className={({ isActive }) => `${isActive ? "active text-zinc-950 font-bold" : ""}`}>
+            <NavLink to="orders" className={({ isActive }) => `${isActive ? "active text-orange-600 font-bold" : ""}`}>
                 <ShoppingBasket className='w-5 h-5 text-[fill-current]'/>
                 <span className="btm-nav-label text-xs lg:text-sm">Orders</span>
             </NavLink>

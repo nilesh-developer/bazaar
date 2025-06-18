@@ -33,31 +33,31 @@ function Sidebar() {
             <div className="divide-y divide-gray-300 bg-white">
                 <ul className="pt-2 pb-4 space-y-1 text-sm">
                     <li>
-                        <NavLink to="dashboard" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="dashboard" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Grid2X2 className='w-5 h-5 text-[fill-current]'/>
                             <span>Dashboard</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="products" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="products" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Box className='w-5 h-5 text-[fill-current]'/>
                             <span>Products</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="orders" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="orders" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <ShoppingBasket className='w-5 h-5 text-[fill-current]'/>
                             <span>Orders</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="categories" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="categories" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Menu className='w-5 h-5 text-[fill-current]'/>
                             <span>Category</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="customers" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="customers" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Users className='w-5 h-5 text-[fill-current]'/>
                             <span>Customers</span>
                         </NavLink>
@@ -69,37 +69,37 @@ function Sidebar() {
                         </NavLink>
                     </li> */}
                     <li>
-                        <NavLink to="coupon" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="coupon" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Ticket className='w-5 h-5 text-[fill-current]'/>
                             <span>Coupon</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="payouts" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="payouts" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                         <ArrowLeftRight className='w-5 h-5 text-[fill-current]'/>
                         <span>Payouts</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="payments" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="payments" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Landmark className='w-5 h-5 text-[fill-current]'/>
                             <span>Payments</span>
                         </NavLink>
                     </li>
                     {/* <li>
-                        <NavLink to="transactions" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="transactions" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 fill-current" viewBox="0 0 122.883 85.208" ><path fill-rule="evenodd" clip-rule="evenodd" d="M122.883,28.086L93.668,0l-0.004,18.078h-26.66h-0.506H41.932v20.019H66.5l0,0 h27.164l0.004,18.08L122.883,28.086L122.883,28.086z M0,57.118l29.215-28.087l0.002,18.078h26.661h0.506h24.567v20.019H56.382l0,0 H29.217l-0.002,18.08L0,57.118L0,57.118z"/></svg>
                         <span>Transactions</span>
                         </NavLink>
                     </li> */}
                     <li>
-                        <NavLink to="subscriptions" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="subscriptions" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                         <Calendar className='w-5 h-5 text-[fill-current]'/>
                         <span>Subscription</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="edit-store" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="edit-store" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Store className='w-5 h-5 text-[fill-current]'/>
                             <span>Store Settings</span>
                         </NavLink>
@@ -107,13 +107,13 @@ function Sidebar() {
                 </ul>
                 <ul className="pt-4 pb-2 space-y-1 text-sm">
                     <li>
-                        <NavLink to="settings" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="settings" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <Settings className='w-5 h-5 text-[fill-current]'/>
                             <span>Settings</span>
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/logout" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-zinc-950 font-bold rounded-lg" : ""}`}>
+                        <NavLink to="/logout" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                             <LogOut className='w-5 h-5 text-[fill-current]'/>
                             <span>Logout</span>
                         </NavLink>

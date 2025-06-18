@@ -253,7 +253,7 @@ function CustomizeStore() {
               />
             </div>
 
-            <button className="bg-zinc-950 text-white py-2 rounded-lg hover:bg-zinc-800 text-lg mt-6 mb-20 w-28">Save</button>
+            <button className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 text-lg mt-6 mb-20 w-28">Save</button>
           </form>
         </div>
       </div>

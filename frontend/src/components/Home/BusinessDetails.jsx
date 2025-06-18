@@ -92,7 +92,7 @@ const BusinessDetails = () => {
               name="businessName"
               value={formData.businessName}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
               placeholder="Enter your business name"
               required
             />
@@ -108,7 +108,7 @@ const BusinessDetails = () => {
               name="category"
               value={formData.category}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+              className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
               required
             >
               <option value="" disabled>Select category</option>
@@ -129,7 +129,7 @@ const BusinessDetails = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
               placeholder="Enter your address"
               required
             />
@@ -146,7 +146,7 @@ const BusinessDetails = () => {
               name="mobileNo"
               value={formData.mobileNo}
               onChange={handleChange}
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-black focus:border-black sm:text-sm"
+              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
               placeholder="Enter your mobile number"
               pattern="[0-9]{10}"
               required
@@ -157,7 +157,7 @@ const BusinessDetails = () => {
           <div>
             <button
               type="submit"
-              className="w-full bg-black text-lg font-bold text-white py-4 px-4 rounded-md hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+              className="w-full bg-orange-500 text-lg font-bold text-white py-4 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
             >
               Submit
             </button>

@@ -56,7 +56,7 @@ function Category() {
           <div className="container p-2 mx-auto sm:p-4 text-gray-800">
             <div className='flex justify-between lg:justify-start lg:gap-5'>
               <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Category</h2>
-              <Link to="../add-category"><h2 className='text-md font-semibold bg-zinc-950 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Category</h2></Link>
+              <Link to="../add-category"><h2 className='text-md font-semibold bg-orange-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Category</h2></Link>
             </div>
 
             {categories.length === 0 ?
@@ -103,7 +103,7 @@ function Category() {
                         </td>
                         <td className="p-3 text-base tracking-tight">
                           <Link to={"../edit-category/"+category._id}>
-                            <button className="px-4 py-1 font-semibold rounded-md bg-zinc-950 text-gray-50">
+                            <button className="px-4 py-1 font-semibold rounded-md bg-orange-600 text-gray-50">
                               Edit
                             </button>
                           </Link>

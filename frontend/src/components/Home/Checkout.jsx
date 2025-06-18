@@ -180,7 +180,7 @@ const Checkout = () => {
                 {/* Pay Button */}
                 <button
                     onClick={handlePayment}
-                    className="w-full bg-black text-white text-lg px-6 py-3 rounded-lg hover:bg-black transition duration-300 mb-4"
+                    className="w-full bg-orange-600 text-white text-lg px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300 mb-4"
                 >
                     Proceed to Pay
                 </button>

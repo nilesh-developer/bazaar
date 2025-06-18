@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 const dbConnect = async () => {
     try {
-        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/eazzy-site`) // use eazzy-site when new payment gateway is used
+        const connectionInstance = await mongoose.connect(`${process.env.MONGODB_URI}/eazzy`)
         console.log("MONGODB Connected Successfully. DB HOST:", connectionInstance.connection.host)
     } catch (error) {
         console.log("MONGODB Connection Failed. Error: ", error)

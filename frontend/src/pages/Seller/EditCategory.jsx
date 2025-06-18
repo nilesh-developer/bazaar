@@ -122,7 +122,7 @@ const EditCategory = () => {
                     }
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 font-bold text-white bg-zinc-950 rounded-md hover:bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue-200"
+                        className="w-full px-4 py-2 font-bold text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-blue-200"
                     >
                         Update Category
                     </button>

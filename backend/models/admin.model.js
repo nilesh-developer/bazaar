@@ -15,8 +15,7 @@ const AdminSchema = new mongoose.Schema({
     },
     visits: {
         type: Number,
-        default: 0,
-        required: true
+        default: 0
     }
 }, {timestamps: true})
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
-import { Footer } from '../../components/Home/index'
+import { Header, Footer } from '../../components/Home/index'
 import HeaderLanding from '../../components/Home/HeaderLanding'
 function Layout() {
 

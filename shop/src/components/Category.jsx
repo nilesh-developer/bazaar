@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom'
 
 function Category({ categories }) {
     return (
-        <>
-            <div className='mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4'>
-                <h2 className='text-xl lg:text-2xl font-bold tracking-tight text-gray-900'>Categories</h2>
-                <div className="mt-6 flex overflow-x-auto space-x-5">
-
+        <section className="py-4 bg-white pb-10">
+            <div className="max-w-7xl mx-auto px-4 sm:px-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 lg:mb-6 text-center">Categories</h2>
+                <div className="mt-4 flex overflow-x-auto space-x-5">
                     {categories?.map((category, index) => {
                         const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -20,7 +19,7 @@ function Category({ categories }) {
                                         >
                                         </div>
                                     )}
-                                    <div className={`${!imageLoaded ? 'hidden' : '' } w-28 h-28 flex justify-center items-center bg-gray-200 group-hover:opacity-75 lg:w-56 lg:h-52`}>
+                                    <div className={`${!imageLoaded ? 'hidden' : ''} w-28 h-28 flex justify-center items-center bg-gray-200 group-hover:opacity-75 lg:w-56 lg:h-52`}>
                                         <img
                                             src={category?.image}
                                             alt="category"
@@ -41,8 +40,7 @@ function Category({ categories }) {
                     })}
                 </div>
             </div>
-
-        </>
+        </section>
     )
 }
 

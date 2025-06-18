@@ -3,7 +3,6 @@ import { useCart } from "../store/CartContext";
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
 import { Helmet } from 'react-helmet';
-import ProductImageScroller from '../components/ProductImageScroller';
 
 function Product() {
   const { id } = useParams();
@@ -149,6 +148,86 @@ function Product() {
     }
   }
 
+  // --- ProductImageViewer component for both desktop and mobile, like latest.jsx ---
+  const ProductImageViewer = ({ product, defaultImage, setDefaultImage }) => {
+    const images = Object.values(product?.images || {}).filter(Boolean);
+    const [current, setCurrent] = useState(0);
+
+    useEffect(() => {
+      if (images.length > 0 && !defaultImage) {
+        setDefaultImage(images[0]);
+      }
+    }, [images, defaultImage, setDefaultImage]);
+
+    // For mobile: swipeable carousel
+    // For desktop: main image + thumbnails
+    return (
+      <>
+        {/* Desktop */}
+        <div className="hidden md:block w-full">
+          <div className="w-full flex justify-center">
+            <img className="md:h-[500px] lg:h-[600px] w-full object-cover rounded-xl" src={defaultImage || images[0]} alt={product?.name} />
+          </div>
+          <div className="flex mt-5 justify-center gap-2">
+            {images.map((img, idx) => (
+              <img
+                key={idx}
+                onClick={() => { setDefaultImage(img); setCurrent(idx); }}
+                className={`h-24 w-auto rounded-lg cursor-pointer border-2 transition-all duration-200 ${defaultImage === img ? 'border-black' : 'border-gray-200'}`}
+                src={img}
+                alt={product.name}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </div>
+        {/* Mobile */}
+        <div className="md:hidden w-full p-2 relative">
+          <div className="relative w-full overflow-hidden">
+            <div className="flex transition-transform duration-500">
+              {images.map((img, idx) => (
+                <div
+                  key={idx}
+                  className={`flex-shrink-0 w-full ${idx === current ? 'block' : 'hidden'}`}
+                >
+                  <img
+                    src={img}
+                    className="h-[420px] sm:h-[550px] w-full object-cover rounded-xl shadow-lg transition-transform duration-300"
+                    alt={product?.name}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Left Button */}
+          <button
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-zinc-100 text-black p-2 rounded-full shadow-lg hover:bg-zinc-200 transition-all"
+            onClick={() => setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1))}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-left" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          {/* Right Button */}
+          <button
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-zinc-100 text-black p-2 rounded-full shadow-lg hover:bg-zinc-200 transition-all"
+            onClick={() => setCurrent((prev) => (prev === images.length - 1 ? 0 : prev + 1))}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-right" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+          {/* Dots */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`w-2 h-2 rounded-full ${idx === current ? 'bg-black' : 'bg-gray-300'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <Helmet>
@@ -164,26 +243,10 @@ function Product() {
           </ul>
         </div>
         <div className='grid grid-flow-row lg:grid-cols-2 h-full w-full'>
-          <div className='w-full md:block lg:pb-9 pl-10 hidden'>
-            <div className='w-full flex justify-center'>
-              <img className='md:h-[500px] lg:h-[600px] w-full' src={defaultImage} alt={product?.name} />
-            </div>
-            <div className='md:flex mt-5 justify-center'>
-              {Object.values(product?.images).map((image, idx) => (
-                image ? <img key={idx} onClick={() => handleImage(image)} className={`h-24 w-auto ml-3 ${defaultImage === image ? 'border-2 border-black' : ''}`} src={image} alt={product.name} loading='lazy' /> : null
-              ))}
-            </div>
-          </div>
-
-          {/* <div className="md:hidden carousel carousel-center max-w-fit p-2 gap-2 bg-white rounded-box">
-            {Object.values(product?.images).map((image, idx) => (
-              image ? <div key={idx} className="carousel-item"><img src={image} className="h-[420px] sm:h-[550px] rounded-box" alt={product?.name} /></div> : null
-            ))}
-          </div> */}
 
           {/* Image scroller for mobile */}
 
-          <ProductImageScroller product={product} />
+          <ProductImageViewer product={product} defaultImage={defaultImage} setDefaultImage={setDefaultImage} />
 
           {/* Mobile image scroller end */}
 

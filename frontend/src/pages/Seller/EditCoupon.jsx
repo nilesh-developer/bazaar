@@ -306,7 +306,7 @@ const EditCoupon = () => {
                             checked={status}
                         />
                     </div>
-                    <button type="submit" className="w-full py-2 px-4 bg-zinc-950 text-white font-bold rounded-md hover:bg-zinc-900">Update Coupon</button>
+                    <button type="submit" className="w-full py-2 px-4 bg-orange-500 text-white font-bold rounded-md hover:bg-orange-600">Update Coupon</button>
                 </form>
             </div>
         </div>

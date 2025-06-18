@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BottomNavbar, Footer, Header } from '../components'
+import { BottomNavbar, Footer, Navbar } from '../components'
 import { Outlet, useNavigate } from 'react-router-dom';
 import changeFavicon from '../Hooks/changeFavicon';
 import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useCustomerAuth } from '../store/customerAuth';
+import { Search, X } from 'lucide-react';
 
 export default function StoreLayout() {
   const [store, setStore] = useState({});
@@ -13,6 +14,7 @@ export default function StoreLayout() {
   const [loading, setLoading] = useState(true);
   const [openSearch, setOpenSearch] = useState(false);
   const [query, setQuery] = useState('');
+  const [cartOpen, setCartOpen] = useState(false);
   const navigate = useNavigate();
 
   const subdomain = window.location.hostname;
@@ -53,9 +55,16 @@ export default function StoreLayout() {
 
   return (
     <div>
-      <Header store={store} color1={color1} color2={color2} openSearch={openSearch} setOpenSearch={setOpenSearch} />
-
-      {/* Pass store, products, and colors to child components via Outlet */}
+      <div className='h-16 lg:h-16'>
+        <Navbar
+          setCartOpen={setCartOpen}
+          color1={color1}
+          color2={color2}
+          store={store}
+          openSearch={openSearch}
+          setOpenSearch={setOpenSearch}
+        />
+      </div>
       <main>
         {/* Mobile search bar */}
         {openSearch ?
@@ -65,20 +74,24 @@ export default function StoreLayout() {
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleSearch()
+                }
+              }}
               placeholder="Search for products"
             />
-            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""}  px-6 py-auto rounded-full`}>
+            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""} px-6 py-auto rounded-full`} style={{backgroundColor: color1, color: color2}}>
               {query ?
-                <img className='h-7 w-8' src="/search-icon.png" alt="search" />
+                <Search className='h-7 w-7'/>
                 :
-                <img className='h-3
-                 w-4' src="/remove.png" alt="search" />
+                <X className='h-7 w-7' />
               }
             </button>
           </div>
           : null}
 
-        <Outlet context={{ store, color1, color2, products: store.products, openSearch: openSearch, setOpenSearch: setOpenSearch }} />
+        <Outlet context={{ store, color1, color2, products: store.products, openSearch: openSearch, setOpenSearch: setOpenSearch, cartOpen: cartOpen, setCartOpen: setCartOpen }} />
       </main>
       <BottomNavbar color1={color1} />
       <Footer store={store} color1={color1} color2={color2} />

@@ -17,7 +17,6 @@ import {
   CustomerLogin,
   CustomerSignUp,
   Error,
-  Homepage,
   Order,
   OrderPage,
   PaymentResponsePage,
@@ -40,6 +39,8 @@ import Category from './pages/Category.jsx'
 import PaymentSuccess from './pages/PaymentSuccess.jsx'
 import PaymentFailed from './pages/PaymentFailed.jsx'
 import OrderSuccess from './pages/OrderSuccess.jsx'
+import LandingPage from './pages/LandingPage.jsx';
+import LatestWithProvider from './pages/Latest.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,7 +52,8 @@ const router = createBrowserRouter(
           </CartProvider>
         </SubdomainExist>
       } >
-        <Route path='' element={<Homepage />} />
+        <Route path='' element={<LandingPage />} />
+        {/* <Route path='test' element={<LatestWithProvider />} /> */}
         <Route path='signup' element={<CustomerSignUp />} />
         <Route path='login' element={<CustomerLogin />} />
         <Route path='shop' element={<Shop />} />

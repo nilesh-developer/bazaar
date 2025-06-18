@@ -47,7 +47,7 @@ const CustomerPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-6 space-y-6 mb-14 lg:mb-0">
+      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-xl p-6 space-y-6">
         <h1 className="text-2xl font-bold text-gray-800">👤 Customer Profile</h1>
 
         {/* Basic Info */}

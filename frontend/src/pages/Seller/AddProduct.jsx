@@ -157,7 +157,7 @@ function AddProduct() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full px-4 py-2 font-bold text-white bg-zinc-900 rounded-md hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            className="w-full px-4 py-2 font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
           >
             {uploading ? <span className="loading loading-spinner loading-md"></span> : "Publish"}
           </button>
@@ -178,7 +178,7 @@ function AddProduct() {
                   name="name"
                   type="text"
                   required
-                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   value={product.name}
                   onChange={handleChange}
                 />
@@ -189,7 +189,7 @@ function AddProduct() {
                   id="shortDescription"
                   name="shortDescription"
                   required
-                  className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                  className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   value={product.shortDescription}
                   onChange={handleChange}
                 />
@@ -237,7 +237,7 @@ function AddProduct() {
                     name="originalPrice"
                     type="number"
                     required
-                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     value={product.originalPrice}
                     onChange={handleChange}
                   />
@@ -249,7 +249,7 @@ function AddProduct() {
                     name="salePrice"
                     type="number"
                     required
-                    className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                    className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     value={product.salePrice}
                     onChange={handleChange}
                   />
@@ -259,7 +259,7 @@ function AddProduct() {
               <div>
                 <div className='flex justify-between'>
                   <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
-                  <Link className='text-sm font-semibold text-zinc-900' to="../add-category">Add new category</Link>
+                  <Link className='text-sm font-semibold text-orange-500' to="../add-category">Add new category</Link>
                 </div>
                 <select
                   onChange={handleChange}
@@ -281,7 +281,7 @@ function AddProduct() {
                   name="stockQty"
                   type="number"
                   required
-                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                  className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                   value={product.stockQty}
                   onChange={handleChange}
                 />
@@ -305,7 +305,7 @@ function AddProduct() {
                 id="returnDetails"
                 name="returnDetails"
                 required
-                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                 value={product.returnDetails}
                 onChange={handleChange}
               />
@@ -316,7 +316,7 @@ function AddProduct() {
                 id="deliveryDetails"
                 name="deliveryDetails"
                 required
-                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-zinc-950 focus:border-zinc-950"
+                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                 value={product.deliveryDetails}
                 onChange={handleChange}
               />

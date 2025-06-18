@@ -14,7 +14,7 @@ function Error() {
                     </h2>
                     <p className="text-xl font-semibold lg:text-3xl">Sorry, we couldn't find this page.</p>
                     <p className="mt-4 mb-8 text-gray-600">But don't worry, you can find plenty of other things on our homepage.</p>
-                    <a rel="noopener noreferrer" href="/" className="px-4 py-2 lg:px-8 lg:py-3 font-semibold text-sm rounded bg-zinc-900 text-gray-50">Back to homepage</a>
+                    <a rel="noopener noreferrer" href="/" className="px-4 py-2 lg:px-8 lg:py-3 font-semibold text-sm rounded bg-slate-900 text-gray-50">Back to homepage</a>
                 </div>
             </div>
         </section>

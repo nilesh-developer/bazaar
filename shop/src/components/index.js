@@ -1,13 +1,11 @@
-import Header from'./Header'
+import Navbar from'./Navbar'
 import Footer from './Footer'
 import Banner from './Banner'
-import Homepage from '../pages/Homepage'
 import Category from './Category'
 import Cart from '../pages/Cart'
 import Order from './Order'
 import CustomerSignUp from '../pages/CustomerSignUp'
 import CustomerLogin from '../pages/CustomerLogin'
-import ProductCard from './ProductCard'
 import Checkout from '../pages/Checkout'
 import UpdatePassword from '../pages/UpdatePassword'
 import Account from '../pages/Account'
@@ -23,4 +21,4 @@ import AboutUs from '../pages/AboutUs'
 import QuickCheckout from '../pages/QuickCheckout'
 import PaymentResponsePage from '../pages/PaymentResponsePage'
 
-export { Header, Footer, Banner, Homepage, Shop, QuickCheckout, PaymentResponsePage, BottomNavbar, ProductCard, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
+export { Navbar, Footer, Banner, Shop, QuickCheckout, PaymentResponsePage, BottomNavbar, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }

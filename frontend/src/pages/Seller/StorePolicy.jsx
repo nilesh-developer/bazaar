@@ -149,7 +149,7 @@ function StorePolicy() {
                   />
                 </div>
 
-              <button type="submit" className='bg-zinc-950 hover:bg-zinc-900 text-lg font-semibold w-full lg:w-40 text-white px-5 py-2 rounded-lg' style={{ marginTop: '20px' }}>Save</button>
+              <button type="submit" className='bg-orange-600 hover:bg-orange-700 text-lg font-semibold w-full lg:w-40 text-white px-5 py-2 rounded-lg' style={{ marginTop: '20px' }}>Save</button>
 
               {/* Content preview */}
               {/* <div>

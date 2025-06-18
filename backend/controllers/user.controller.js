@@ -140,7 +140,7 @@ const sendotp = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #000000;
+            border-bottom: 4px solid #ff8c00;
         }
         .header img {
             width: 120px;
@@ -158,7 +158,7 @@ const sendotp = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #000000;
+            border: 2px dashed #ff9100;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -177,7 +177,7 @@ const sendotp = asyncHandler(async (req, res) => {
             margin-bottom: 20px;
         }
         .support a {
-            background-color: #000000;
+            background-color: #ee7401;
             color: white;
             padding: 12px 24px;
             text-decoration: none;
@@ -189,7 +189,7 @@ const sendotp = asyncHandler(async (req, res) => {
             transition: background-color 0.3s;
         }
         .support a:hover {
-            background-color: #000000;
+            background-color: #fd6900;
         }
         .footer {
             background-color: #f9f9f9;
@@ -211,9 +211,9 @@ const sendotp = asyncHandler(async (req, res) => {
 <body>
     <div class="container">
         <!-- Header with logo and background -->
-        <!-- <div class="header">
-            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
-        </div> -->
+        <div class="header">
+            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+        </div>
 
         <!-- Main Content -->
         <div class="content">
@@ -234,7 +234,7 @@ const sendotp = asyncHandler(async (req, res) => {
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.site/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
@@ -505,7 +505,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #000000;
+            border-bottom: 4px solid #ff8c00;
         }
         .header img {
             width: 120px;
@@ -523,7 +523,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #000000;
+            border: 2px dashed #ff9100;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -542,7 +542,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             margin-bottom: 20px;
         }
         .support a {
-            background-color: #000000;
+            background-color: #ee7401;
             color: white;
             padding: 12px 24px;
             text-decoration: none;
@@ -568,7 +568,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             text-align: left;
         }
         .support a:hover {
-            background-color: #000000;
+            background-color: #fd6900;
         }
         .footer {
             background-color: #f9f9f9;
@@ -590,9 +590,9 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
 <body>
     <div class="container">
         <!-- Header with logo and background -->
-        <!-- <div class="header">
-            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
-        </div> -->
+        <div class="header">
+            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+        </div>
 
         <!-- Main Content -->
         <div class="content">
@@ -630,7 +630,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.site/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
@@ -683,7 +683,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #000000;
+            border-bottom: 4px solid #ff8c00;
         }
         .header img {
             width: 120px;
@@ -701,7 +701,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #000000;
+            border: 2px dashed #ff9100;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -720,7 +720,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             margin-bottom: 20px;
         }
         .support a {
-            background-color: #000000;
+            background-color: #ee7401;
             color: white;
             padding: 12px 24px;
             text-decoration: none;
@@ -746,7 +746,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             text-align: left;
         }
         .support a:hover {
-            background-color: #000000;
+            background-color: #fd6900;
         }
         .footer {
             background-color: #f9f9f9;
@@ -768,9 +768,9 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
 <body>
     <div class="container">
         <!-- Header with logo and background -->
-        <!-- <div class="header">
+        <div class="header">
             <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
-        </div> -->
+        </div>
 
         <!-- Main Content -->
         <div class="content">
@@ -808,7 +808,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.site/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->

@@ -99,7 +99,7 @@ function Subscriptions() {
                     <div className="container p-2 mx-auto sm:p-4 text-gray-800">
                         <div className='flex justify-between lg:justify-start lg:gap-5'>
                             <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Subscriptions</h2>
-                            <button onClick={generatePDF} className="px-3 py-2 text-sm text-white font-bold rounded-lg bg-black">Download PDF</button>
+                            <button onClick={generatePDF} className="px-3 py-2 text-sm text-white font-bold rounded-lg bg-[#198c36]">Download PDF</button>
                         </div>
 
                         {transactions?.length === 0 ?

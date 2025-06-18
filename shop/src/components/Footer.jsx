@@ -15,23 +15,6 @@ export default function Footer({ store, color1, color2 }) {
           </p>
         </div>
         <div className="grid grid-cols-1 text-lg gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-3">
-          {/* <div className="space-y-3">
-            <h3 className="tracking-tight uppercase font-bold" style={{color: color1}}>Product</h3>
-            <ul className="space-y-1 tracking-tight text-base" style={{color: color1}}>
-              <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">Features</a>
-              </li>
-              <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">Integrations</a>
-              </li>
-              <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">Pricing</a>
-              </li>
-              <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="#">FAQ</a>
-              </li>
-            </ul>
-          </div> */}
           <div className="space-y-3">
             <h3 className="tracking-tight uppercase text-base font-bold" style={{ color: color1 }}>Company</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{ color: color1 }}>
@@ -44,9 +27,6 @@ export default function Footer({ store, color1, color2 }) {
               <li className="hover:brightness-150">
                 <Link to="/about">About Us</Link>
               </li>
-              {/* <li className="hover:brightness-150">
-                <a rel="noopener noreferrer" href="/term-condition">Terms & condition</a>
-              </li> */}
             </ul>
           </div>
           <div className="space-y-3">
@@ -74,7 +54,7 @@ export default function Footer({ store, color1, color2 }) {
           </div>
         </div>
       </div>
-      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by <a href='https://eazzy.store'>Eazzy</a>. ©2024 All rights reserved.</div>
+      <div className="py-6 text-sm text-center dark:text-gray-600">Powered by <a href='https://eazzy.site'>Eazzy</a>. ©2025 All rights reserved.</div>
     </footer>
   );
 }
