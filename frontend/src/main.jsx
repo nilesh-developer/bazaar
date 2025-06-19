@@ -54,6 +54,7 @@ import {
   SinglePayoutPage,
   Store,
   StoreAboutPage,
+  StoreBannerUpload,
   Subscriptions,
   UserProfile
 } from './components/Seller/index.js'
@@ -126,7 +127,7 @@ const router = createBrowserRouter(
         <Route path='edit-store' element={<Store />} />
         <Route path='settings' element={<Settings />} />
         <Route path='customize-store' element={<CustomizeStore />} />
-        <Route path='customize-banner' element={<CustomizeBanner />} />
+        <Route path='customize-banner' element={<StoreBannerUpload />} />
         <Route path='store-policies' element={<StorePolicy />} />
         <Route path='about-page' element={<StoreAboutPage />} />
         <Route path='customize-footer' element={<CustomizeFooter />} />

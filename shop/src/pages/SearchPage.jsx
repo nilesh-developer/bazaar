@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Link, useOutletContext, useSearchParams } from 'react-router-dom';
 
 function SearchPage() {
-    const { color1, color2 } = useOutletContext();
+    const { color1, color2, setCartOpen } = useOutletContext();
     const [searchParams] = useSearchParams();
     const query = searchParams.get('q') || '';
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true)
     const [imageLoaded, setImageLoaded] = useState(false);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        setCartOpen(false)
+    }, [])
 
     useEffect(() => {
         const fetchProducts = async () => {

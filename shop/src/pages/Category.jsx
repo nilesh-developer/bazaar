@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useOutletContext, useParams } from 'react-router-dom';
 
 function Category() {
     const { id } = useParams();
+    const { setCartOpen } = useOutletContext();
     const [category, setCategory] = useState({})
     const [products, setProducts] = useState([])
     const [color1, setColor1] = useState("")
@@ -41,6 +42,7 @@ function Category() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setCartOpen(false)
         getCategoryProducts()
     }, [])
 

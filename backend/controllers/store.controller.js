@@ -447,21 +447,49 @@ const deleteUpiId = asyncHandler(async (req, res) => {
 })
 
 const uploadStoreImage = asyncHandler(async (req, res) => {
-    const store = await stores.findById(req.body.storeId)
+    const files = req.files;
+    const uploadedUrls = {};
+
+    const store = await stores.findById(req.body.storeId);
+
+    // Upload single files
+    for (let key of ['logo', 'favicon', 'desktopBanner', 'mobileBanner']) {
+        if (files[key]) {
+            const result = await uploadOnCloudinary(files[key][0].path);
+            uploadedUrls[key] = result;
+        }
+    }
+
+    // Upload multiple slider images
+    const sliderImages = [];
+    if (files.sliderImages) {
+        for (let file of files.sliderImages) {
+            const result = await uploadOnCloudinary(file.path);
+            sliderImages.push(result);
+        }
+    }
 
     const uploadImages = await stores.findOneAndUpdate({ _id: req.body.storeId }, {
-        logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : store.logo,
-        favicon: req.files.favicon ? await uploadOnCloudinary(req.files.favicon[0].path) : store.favicon,
-        banner: req.files.banner ? await uploadOnCloudinary(req.files.banner[0].path) : store.banner,
-        mobileBanner: req.files.mobileBanner ? await uploadOnCloudinary(req.files.mobileBanner[0].path) : store.mobileBanner
+        logo: uploadedUrls.logo ? uploadedUrls.logo : store.logo,
+        favicon: uploadedUrls.favicon ? uploadedUrls.favicon : store.favicon,
+        sliderImages: sliderImages ? sliderImages : store.sliderImages,
+        desktopBanner: uploadedUrls.desktopBanner ? uploadedUrls.desktopBanner : store.desktopBanner,
+        mobileBanner: uploadedUrls.mobileBanner ? uploadedUrls.mobileBanner : store.mobileBanner
+    }, { new: true })
 
-    })
-
+    if (!uploadImages) {
+        return res.status(400)
+            .json({
+                statusCode: 400,
+                message: "Something went wrong",
+            })
+    }
 
     return res.status(200)
-        .json(
-            new ApiResponse(200, { store: uploadImages }, "Images uploaded successfully")
-        )
+        .json({
+            statusCode: 200,
+            message: "Images uploaded successfully",
+        })
 
 })
 

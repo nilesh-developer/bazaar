@@ -75,7 +75,11 @@ router.route("/upload/images").post(
             maxCount: 1
         },
         {
-            name: "banner",
+            name: "sliderImages",
+            maxCount: 5
+        },
+        {
+            name: "desktopBanner",
             maxCount: 1
         },
         {

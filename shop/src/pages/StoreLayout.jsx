@@ -15,6 +15,7 @@ export default function StoreLayout() {
   const [openSearch, setOpenSearch] = useState(false);
   const [query, setQuery] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const subdomain = window.location.hostname;
@@ -63,6 +64,8 @@ export default function StoreLayout() {
           store={store}
           openSearch={openSearch}
           setOpenSearch={setOpenSearch}
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
         />
       </div>
       <main>
@@ -99,7 +102,18 @@ export default function StoreLayout() {
           color2={color2}
         />
 
-        <Outlet context={{ store, color1, color2, products: store.products, openSearch: openSearch, setOpenSearch: setOpenSearch, cartOpen: cartOpen, setCartOpen: setCartOpen }} />
+        <Outlet context={{ 
+          store, 
+          color1, 
+          color2, 
+          products: store.products, 
+          openSearch: openSearch, 
+          setOpenSearch: setOpenSearch, 
+          cartOpen: cartOpen, 
+          setCartOpen: setCartOpen,
+          isMenuOpen: isMenuOpen,
+          setIsMenuOpen: setIsMenuOpen
+          }} />
       </main>
       <BottomNavbar color1={color1} />
       <Footer store={store} color1={color1} color2={color2} />

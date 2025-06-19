@@ -2,10 +2,11 @@ import React, { useEffect } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 function AboutUs() {
-    const { store, color1, color2 } = useOutletContext();
+    const { store, color1, color2, setIsMenuOpen } = useOutletContext();
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setIsMenuOpen(false)
     },[])
     
     return (

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://*.eazzy.store/sitemap.xml
-Sitemap: https://veelo.in/sitemap.xml
+Sitemap: https://*.eazzy.site/sitemap.xml

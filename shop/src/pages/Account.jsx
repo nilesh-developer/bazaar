@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, useOutletContext } from 'react-router-dom'
 import { useCustomerAuth } from '../store/customerAuth'
 import { Helmet } from 'react-helmet'
 import {Box, LogOut, Pen, User} from "lucide-react"
 
 function Account() {
+    const {setIsMenuOpen} = useOutletContext();
     const { customerData, loading } = useCustomerAuth()
     const [store, setStore] = useState({})
     const [isLoading, setIsLoading] = useState(true)
@@ -28,6 +29,7 @@ function Account() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setIsMenuOpen(false)
         getStoreData()
     }, [])
 

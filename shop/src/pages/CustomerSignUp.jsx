@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useCustomerAuth } from '../store/customerAuth'
 
 function CustomerSignUp() {
-    const { store, color1, color2 } = useOutletContext();
+    const { store, color1, color2, setIsMenuOpen } = useOutletContext();
     const { customerTokenInLS } = useCustomerAuth()
     const [loadingBtn, setLoadingBtn] = useState(false)
 
@@ -17,6 +17,7 @@ function CustomerSignUp() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setIsMenuOpen(false)
     },[])
 
     const handleInput = (e) => {

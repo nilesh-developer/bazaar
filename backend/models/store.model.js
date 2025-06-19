@@ -39,8 +39,11 @@ const StoreSchema = new mongoose.Schema({
     favicon: {
         type: String
     },
-    banner: {
-        type: String,
+    sliderImages: {
+        type: Object,
+    },
+    desktopBanner: {
+        type: String
     },
     mobileBanner: {
         type: String

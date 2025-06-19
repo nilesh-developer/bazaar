@@ -1,12 +1,18 @@
 import { Heart } from 'lucide-react';
 import React, { useEffect, useState } from 'react'
 import { Link, useOutletContext } from 'react-router-dom';
+import { useCart } from '../store/CartContext';
 
 function Shop() {
-  const { store, color1, color2, products } = useOutletContext();
+  const { store, color1, color2, products, setCartOpen, setIsMenuOpen } = useOutletContext();
+  const { addToCart } = useCart()
+
   useEffect(() => {
+    setCartOpen(false)
+    setIsMenuOpen(false)
     window.scrollTo(0, 0);
   }, [])
+  
   return (
     <div className="bg-white">
       <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4">

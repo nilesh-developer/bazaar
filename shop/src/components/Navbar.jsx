@@ -4,8 +4,7 @@ import { useCustomerAuth } from "../store/customerAuth";
 import { useState } from "react";
 import { Menu, Search, ShoppingBag, ShoppingCart, X } from "lucide-react";
 
-const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch }) => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch, isMenuOpen, setIsMenuOpen }) => {
     const [query, setQuery] = useState('');
     const { cart } = useCart()
     const { customerToken } = useCustomerAuth()
@@ -58,8 +57,8 @@ const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch 
                 <div className="items-center gap-8 hidden">
                     <Link to="#" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Home</Link>
                     <Link to="/shop" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Shop</Link>
-                    <Link to="#about" className="hidden md:block text-gray-700 hover:text-black font-medium transition">About</Link>
-                    <Link to="#contact" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Contact</Link>
+                    <Link to="/about" className="hidden md:block text-gray-700 hover:text-black font-medium transition">About</Link>
+                    <Link to="/contact-us" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Contact</Link>
                 </div>
 
                 <div className='flex gap-4'>

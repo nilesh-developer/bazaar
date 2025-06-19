@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useCart } from '../store/CartContext';
 import toast from 'react-hot-toast';
 import { useCustomerAuth } from '../store/customerAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import axios from "axios"
@@ -10,6 +10,7 @@ import { load } from '@cashfreepayments/cashfree-js'
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
+    const { setCartOpen } = useOutletContext();
     const [store, setStore] = useState({})
     const navigate = useNavigate()
     const { cart, removeAllProductsFromCart, calculateTotal } = useCart();
@@ -151,6 +152,7 @@ function Checkout() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setCartOpen(false)
         getStoreData()
     }, [])
 

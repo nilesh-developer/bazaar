@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useCart } from '../store/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { ShoppingBag } from 'lucide-react';
 
 function Cart() {
+    const { setCartOpen } = useOutletContext();
     const { cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
     const [store, setStore] = useState({})
     const [color1, setColor1] = useState("")
@@ -32,6 +32,7 @@ function Cart() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setCartOpen(false)
         getStoreData()
     }, [])
 
