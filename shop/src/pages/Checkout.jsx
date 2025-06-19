@@ -234,6 +234,17 @@ function Checkout() {
         }
     }
 
+    const redirectToPaymentPage = async (sessionId, orderId) => {
+        try {
+            window.location.replace(`https://checkout.eazzy.store/?sessionid=${sessionId}&orderid=${orderId}`);
+        } catch (error) {
+            console.log(error)
+            toast.error("Failed to redirect to payment page");
+            setLoadingBtn(false);
+            return false
+        }
+    }
+
     const handleCheckout = async (e) => {
         e.preventDefault()
         try {
@@ -253,20 +264,23 @@ function Checkout() {
                 if (!sessionInfo) return;
 
                 const { sessionId, orderId } = sessionInfo;
-                const cashfree = await load({ mode: "production" }); // or "sandbox"
 
-                let checkoutOptions = {
-                    paymentSessionId: sessionId,
-                    redirectTarget: "_self",
-                }; // _modal
+                await redirectToPaymentPage(sessionId, orderId)
 
-                await cashfree.checkout(checkoutOptions)
-                    .then(async (res) => {
-                        await verifyPayment(orderId); // now using correct orderId
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                // const cashfree = await load({ mode: "production" }); // or "sandbox"
+
+                // let checkoutOptions = {
+                //     paymentSessionId: sessionId,
+                //     redirectTarget: "_modal",
+                // }; // _self
+
+                // await cashfree.checkout(checkoutOptions)
+                //     .then(async (res) => {
+                //         await verifyPayment(orderId); // now using correct orderId
+                //     })
+                //     .catch((error) => {
+                //         console.log(error);
+                //     });
             }
 
             //End CashFree PG
