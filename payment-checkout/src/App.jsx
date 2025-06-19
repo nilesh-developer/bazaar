@@ -28,11 +28,11 @@ function App() {
       if (response.ok) {
         const responseData = await response.json()
         toast.success(responseData?.message)
-        window.location.replace(`https://${subdomain+"."+import.meta.env.VITE_HOSTNAME}/payment-response?order_id=${id}`)
+        window.location.replace(`https://${subdomain}/payment-response?order_id=${id}`)
       } else {
         const responseData = await response.json()
         toast.error(responseData?.message)
-        window.location.replace(`https://${subdomain+"."+import.meta.env.VITE_HOSTNAME}/payment-response?order_id=${id}`)
+        window.location.replace(`https://${subdomain}/payment-response?order_id=${id}`)
       }
     } catch (error) {
       console.log(error)
