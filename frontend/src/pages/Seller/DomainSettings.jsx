@@ -170,7 +170,7 @@ function DomainSettings() {
             </div>
 
             <button
-              className="bg-orange-600 text-white px-4 py-2 rounded mt-10"
+              className="bg-green-600 text-white px-4 py-2 rounded mt-10"
               onClick={togglePopup}
             >
               ADD CUSTOM DOMAIN
@@ -197,11 +197,11 @@ function DomainSettings() {
                             type="text"
                             value={domain}
                             onChange={(e) => setDomain(e.target.value)}
-                            className="border border-orange-500 w-full px-3 py-2 rounded bg-transparent focus:outline-none focus:ring-2 focus:ring-orange-500"
+                            className="border border-green-500 w-full px-3 py-2 rounded bg-transparent focus:outline-none focus:ring-2 focus:ring-green-500"
                             placeholder="Ex: example.com"
                           />
                           {!isValidDomain(domain) && domain && (
-                            <p className="text-orange-500 mt-2">
+                            <p className="text-green-500 mt-2">
                               Domain name must be valid
                             </p>
                           )}
@@ -217,7 +217,7 @@ function DomainSettings() {
                           <button
                             type="submit"
                             className={`px-4 py-2 rounded ${isValidDomain(domain)
-                              ? "bg-orange-500 text-white"
+                              ? "bg-green-500 text-white"
                               : "bg-gray-300 text-gray-500 cursor-not-allowed"
                               }`}
                             disabled={!isValidDomain(domain)}
@@ -236,22 +236,22 @@ function DomainSettings() {
                       <div className="mb-6 border-t border-gray-200 pt-4">
                         <h3 className="text-lg font-bold mb-2">Instructions</h3>
                         <p className="text-sm">
-                          <span className='bg-orange-200 px-2 rounded-full'>1</span> Login to your domain provider (GoDaddy, Hostinger, NameCheap, etc.)
+                          <span className='bg-green-200 px-2 rounded-full'>1</span> Login to your domain provider (GoDaddy, Hostinger, NameCheap, etc.)
                           <br /><br />
-                          <span className='bg-orange-200 px-2 rounded-full'>2</span> Locate the page for updating your domain's DNS records. The page might be called something like DNS Management, Name Server Management, or Advanced Settings.
+                          <span className='bg-green-200 px-2 rounded-full'>2</span> Locate the page for updating your domain's DNS records. The page might be called something like DNS Management, Name Server Management, or Advanced Settings.
                           <br /><br />
-                          <span className='bg-orange-200 px-2 rounded-full'>3</span>
+                          <span className='bg-green-200 px-2 rounded-full'>3</span>
                           Create a new record with:<br />
                           type: <b>A record</b><br />
                           host, name, or alias, field: <b>@ or leave blank for exact domain name</b><br />
                           target or points to field: <b>76.76.21.21</b>
                           <br /><br />
-                          <span className='bg-orange-200 px-2 rounded-full'>4</span>
+                          <span className='bg-green-200 px-2 rounded-full'>4</span>
                           Add one more record if you are not using subdomain (i.e using apex domain, eg: yourdomain.com)<br />
                           type: <b>A record</b><br />
                           host, name, or alias, field: <b>www</b><br />
                           target or points to field: <b>76.76.21.21</b><br /><br />
-                          For specific domain providers refer to <a href="https://knowledge.hubspot.com/domains-and-urls/update-your-dns-records" className="text-orange-600" target="_blank" rel="noopener noreferrer">this guide</a>.
+                          For specific domain providers refer to <a href="https://knowledge.hubspot.com/domains-and-urls/update-your-dns-records" className="text-green-600" target="_blank" rel="noopener noreferrer">this guide</a>.
                         </p>
                       </div>
                       <div className="flex justify-between">
@@ -264,7 +264,7 @@ function DomainSettings() {
                         </button>
                         <button
                           type="button"
-                          className="bg-orange-500 text-white px-4 py-2 rounded"
+                          className="bg-green-500 text-white px-4 py-2 rounded"
                           onClick={handleDomainSubmit}
                         >
                           Finish

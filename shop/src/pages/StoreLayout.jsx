@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BottomNavbar, Footer, Navbar } from '../components'
+import { BottomNavbar, CartSidebar, Footer, Navbar } from '../components'
 import { Outlet, useNavigate } from 'react-router-dom';
 import changeFavicon from '../Hooks/changeFavicon';
 import LazyLoadingPage from '../components/LazyLoadingPage';
@@ -81,15 +81,23 @@ export default function StoreLayout() {
               }}
               placeholder="Search for products"
             />
-            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""} px-6 py-auto rounded-full`} style={{backgroundColor: color1, color: color2}}>
+            <button onClick={handleSearch} className={`${query ? "bg-zinc-800" : ""} px-6 py-auto rounded-full`} style={{ backgroundColor: color1, color: color2 }}>
               {query ?
-                <Search className='h-7 w-7'/>
+                <Search className='h-7 w-7' />
                 :
                 <X className='h-7 w-7' />
               }
             </button>
           </div>
           : null}
+
+        <CartSidebar
+          open={cartOpen}
+          onClose={() => setCartOpen(false)}
+          store={store}
+          color1={color1}
+          color2={color2}
+        />
 
         <Outlet context={{ store, color1, color2, products: store.products, openSearch: openSearch, setOpenSearch: setOpenSearch, cartOpen: cartOpen, setCartOpen: setCartOpen }} />
       </main>

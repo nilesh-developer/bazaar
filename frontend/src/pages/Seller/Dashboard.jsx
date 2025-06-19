@@ -127,12 +127,12 @@ function Dashboard() {
               <h2 className='text-center text-xl font-bold tracking-tighter'>{user?.store?.name}</h2>
               <p className='text-center'>{user?.store?.products?.length} Products</p>
               <Link to="../edit-store">
-                <h2 className='text-center mt-7 font-bold bg-transparent py-4 rounded-xl hover:bg-orange-100'>
+                <h2 className='text-center mt-7 font-bold bg-transparent py-4 rounded-xl hover:bg-green-100'>
                   Edit Store
                 </h2>
               </Link>
               <a href={`https://${user?.store?.subdomain}`}>
-                <h2 className='text-center mt-2 text-bold bg-orange-600 py-4 rounded-xl font-bold text-white hover:bg-orange-500'>
+                <h2 className='text-center mt-2 text-bold bg-green-600 py-4 rounded-xl font-bold text-white hover:bg-green-500'>
                   View Store
                 </h2>
               </a>

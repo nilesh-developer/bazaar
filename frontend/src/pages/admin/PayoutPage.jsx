@@ -95,7 +95,7 @@ const PayoutPage = () => {
                         <p><span className="font-medium">Name:</span> {store?.name}</p>
                         <p><span className="font-medium">URL:</span> {store?.subdomain}</p>
                         <p><span className="font-medium">Phone Number:</span> {store?.phoneNo}</p>
-                        <Link to={`/admin/store/${store?._id}`}><p><span className="font-medium">Store ID:</span> <span className="hover:font-bold text-orange-500">{store?._id}</span></p></Link>
+                        <Link to={`/admin/store/${store?._id}`}><p><span className="font-medium">Store ID:</span> <span className="hover:font-bold text-green-500">{store?._id}</span></p></Link>
                     </div>
                 </div>
 
@@ -154,7 +154,7 @@ const PayoutPage = () => {
                     <button
                         onClick={handleSave}
                         disabled={saving}
-                        className={`bg-orange-600 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded ${saving && "opacity-50 cursor-not-allowed"}`}
+                        className={`bg-green-600 hover:bg-green-500 text-white font-bold py-2 px-4 rounded ${saving && "opacity-50 cursor-not-allowed"}`}
                     >
                         {saving ? "Saving..." : "Save"}
                     </button>

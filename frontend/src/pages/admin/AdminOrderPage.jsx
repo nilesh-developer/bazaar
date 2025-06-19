@@ -168,7 +168,7 @@ function AdminOrderPage() {
                                             <option value="shipped">Shipped</option>
                                             <option value="delivered">Delivered</option>
                                         </select>
-                                        <button onClick={changeOrderStatus} type='button' className='px-3 py-2 bg-orange-600 text-white rounded-md mt-2'>Update Status</button>
+                                        <button onClick={changeOrderStatus} type='button' className='px-3 py-2 bg-green-600 text-white rounded-md mt-2'>Update Status</button>
                                     </>
                                 }
                             </>

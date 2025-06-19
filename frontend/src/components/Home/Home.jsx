@@ -24,13 +24,13 @@ export default function Home() {
 
                             {token ?
                                 <Link
-                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-orange-600 shadow-sm shadow-orange-200 rounded-lg hover:opacity-75"
+                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-green-600 shadow-sm shadow-green-200 rounded-lg hover:opacity-75"
                                     to="/seller/dashboard"
                                 > Get started for free
                                 </Link>
                                 :
                                 <Link
-                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-orange-600 shadow-sm shadow-orange-200 rounded-lg hover:opacity-75"
+                                    className="inline-flex text-white items-center px-6 py-3 font-bold bg-green-600 shadow-sm shadow-green-200 rounded-lg hover:opacity-75"
                                     to="/signup"
                                 > Get started for free
                                 </Link>

@@ -163,7 +163,7 @@ function CustomizeFooter() {
                             />
                         </label>
 
-                        <button className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 text-lg mt-6 w-28 mb-12">Save</button>
+                        <button className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 text-lg mt-6 w-28 mb-12">Save</button>
                     </form>
                 </div>
             </div>

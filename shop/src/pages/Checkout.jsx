@@ -91,8 +91,6 @@ function Checkout() {
                 }
             });
 
-            console.log(res)
-
             if (res.data && res.data.payment_session_id) {
                 setOrderId(res.data.order_id); // still update state if needed elsewhere
                 return {
@@ -259,8 +257,8 @@ function Checkout() {
 
                 let checkoutOptions = {
                     paymentSessionId: sessionId,
-                    redirectTarget: "_modal",
-                }; // _self
+                    redirectTarget: "_self",
+                }; // _modal
 
                 await cashfree.checkout(checkoutOptions)
                     .then(async (res) => {

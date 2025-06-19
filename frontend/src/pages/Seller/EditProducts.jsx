@@ -180,7 +180,7 @@ function EditProduct() {
                     <button
                         type="submit"
                         onClick={handleSubmit}
-                        className="w-full px-4 py-2 font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+                        className="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
                         Update
                     </button>
@@ -201,7 +201,7 @@ function EditProduct() {
                                     name="name"
                                     type="text"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                     value={product.name}
                                     onChange={handleChange}
                                 />
@@ -212,7 +212,7 @@ function EditProduct() {
                                     id="shortDescription"
                                     name="shortDescription"
                                     required
-                                    className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                    className="w-full h-[150px] px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                     value={product.shortDescription}
                                     onChange={handleChange}
                                 />
@@ -260,7 +260,7 @@ function EditProduct() {
                                         name="originalPrice"
                                         type="number"
                                         required
-                                        className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                        className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                         value={product.originalPrice}
                                         onChange={handleChange}
                                     />
@@ -272,7 +272,7 @@ function EditProduct() {
                                         name="salePrice"
                                         type="number"
                                         required
-                                        className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                        className="grow w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                         value={product.salePrice}
                                         onChange={handleChange}
                                     />
@@ -300,7 +300,7 @@ function EditProduct() {
                                     name="stockQty"
                                     type="number"
                                     required
-                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                    className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                     value={product.stockQty}
                                     onChange={handleChange}
                                 />
@@ -324,7 +324,7 @@ function EditProduct() {
                                 id="returnDetails"
                                 name="returnDetails"
                                 required
-                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                 value={product.returnDetails}
                                 onChange={handleChange}
                             />
@@ -335,7 +335,7 @@ function EditProduct() {
                                 id="deliveryDetails"
                                 name="deliveryDetails"
                                 required
-                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
+                                className="w-full px-3 py-2 mt-1 text-gray-900 bg-transparent border border-gray-300 rounded-md focus:ring-green-500 focus:border-green-500"
                                 value={product.deliveryDetails}
                                 onChange={handleChange}
                             />

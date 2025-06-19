@@ -26,7 +26,7 @@ const ShippingPolicy = () => {
         </div>
 
         <Link to="/" className="text-center block">
-          <button className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition duration-300">Back to Home</button>
+          <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-300">Back to Home</button>
         </Link>
       </section>
     </div>

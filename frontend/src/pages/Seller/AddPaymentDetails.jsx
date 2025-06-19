@@ -173,7 +173,7 @@ function AddPaymentDetails() {
                 <div>
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-md shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FFB500]"
+                        className="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                     >
                         Save
                     </button>

@@ -175,7 +175,7 @@ function UserProfile() {
                                 placeholder="New Password"
                                 className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
                             />
-                            <button className="bg-orange-600 text-white py-2 rounded-lg tracking-tight hover:bg-orange-700 mt-6 mb-10 w-44">Update Password</button>
+                            <button className="bg-green-600 text-white py-2 rounded-lg tracking-tight hover:bg-green-700 mt-6 mb-10 w-44">Update Password</button>
                         </form>
                     </div>
                 </div>

@@ -79,7 +79,7 @@ function Settings() {
             <h2 className='text-center text-xl tracking-tight font-semibold'>Change your personal information</h2>
             <div className='flex flex-wrap justify-center mt-5'>
               <Link to="../edit-profile">
-                <button className="bg-orange-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">EDIT PROFILE</button>
+                <button className="bg-green-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">EDIT PROFILE</button>
               </Link>
             </div>
           </div>
@@ -91,7 +91,7 @@ function Settings() {
             <h2 className='text-center text-xl tracking-tight font-semibold'>Make change in payment method</h2>
             <div className='flex flex-wrap justify-center mt-5'>
               <Link to="../add-payment-details">
-                <button className="bg-orange-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">UPDATE PAYMENT</button>
+                <button className="bg-green-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">UPDATE PAYMENT</button>
               </Link>
             </div>
           </div>
@@ -102,7 +102,7 @@ function Settings() {
             </div>
             <h2 className='text-center text-xl tracking-tight font-semibold'>Change your personal information</h2>
             <div className='flex flex-wrap justify-center mt-5'>
-                <button onClick={handleShare} className="bg-orange-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">SHARE</button>
+                <button onClick={handleShare} className="bg-green-600 text-sm font-semibold px-4 py-3 rounded-lg text-gray-50">SHARE</button>
               {/* <Link to="/">
               </Link> */}
             </div>

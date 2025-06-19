@@ -135,7 +135,7 @@ function SignUp() {
             <div className='flex flex-wrap justify-center items-center h-auto py-10 mt-10'>
                 <div className="w-96 mx-auto bg-white p-8 rounded-2xl shadow-none lg:shadow-md">
                     <h1 className="text-3xl text-black font-bold mb-6 flex flex-wrap justify-center">Sign Up</h1>
-                    <h3 className="text-gray-700">Already registered? <Link className='font-bold text-orange-600' to="/login">Login</Link></h3>
+                    <h3 className="text-gray-700">Already registered? <Link className='font-bold text-green-600' to="/login">Login</Link></h3>
                     <form>
                         <div className="form-input mt-5 mb-6">
                             <label htmlFor="email">Email</label><br />
@@ -155,10 +155,10 @@ function SignUp() {
                         }
                         {otpsend ?
                             <button onClick={verifyOtp}
-                                className="bg-orange-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-orange-700 transition duration-200">{!loadingBtn ? "Verify" : <span className="loading loading-spinner loading-md"></span>}</button>
+                                className="bg-green-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-green-700 transition duration-200">{!loadingBtn ? "Verify" : <span className="loading loading-spinner loading-md"></span>}</button>
                             :
                             <button onClick={sendOTP}
-                                className="bg-orange-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-orange-700 transition duration-200">{!loadingBtn ? "Send OTP" : <span className="loading loading-spinner loading-md"></span>}</button>
+                                className="bg-green-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-green-700 transition duration-200">{!loadingBtn ? "Send OTP" : <span className="loading loading-spinner loading-md"></span>}</button>
                         }
                     </form>
                 </div>

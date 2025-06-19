@@ -161,7 +161,7 @@ function CustomizeBanner() {
               </>
               : ""} */}
 
-            <button onClick={handleSubmit} className="bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}</button>
+            <button onClick={handleSubmit} className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 text-lg mt-6 w-28">{uploading ? <span className="loading loading-spinner loading-sm"></span> : "Save"}</button>
           </form>
         </div>
       </div>

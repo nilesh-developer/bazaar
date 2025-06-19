@@ -58,7 +58,7 @@ const AdminPayoutPage = () => {
             case 'accepted':
                 return 'bg-blue-100 text-blue-800';
             case 'processing':
-                return 'bg-orange-100 text-orange-800';
+                return 'bg-green-100 text-green-800';
             case 'completed':
                 return 'bg-green-100 text-green-800';
             default:
@@ -437,10 +437,10 @@ const AdminPayoutPage = () => {
                         </div>
                         <div className="bg-white rounded-lg shadow-sm p-6">
                             <div className="flex items-center">
-                                <AlertCircle className="w-8 h-8 text-orange-600 mr-4" />
+                                <AlertCircle className="w-8 h-8 text-green-600 mr-4" />
                                 <div>
                                     <p className="text-sm text-gray-600">Processing</p>
-                                    <p className="text-2xl font-bold text-orange-600">{stats.processing || 0}</p>
+                                    <p className="text-2xl font-bold text-green-600">{stats.processing || 0}</p>
                                 </div>
                             </div>
                         </div>

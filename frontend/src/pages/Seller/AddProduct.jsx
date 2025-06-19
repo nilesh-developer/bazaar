@@ -157,7 +157,7 @@ function AddProduct() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full px-4 py-2 font-bold text-white bg-orange-600 rounded-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
+            className="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             {uploading ? <span className="loading loading-spinner loading-md"></span> : "Publish"}
           </button>
@@ -259,7 +259,7 @@ function AddProduct() {
               <div>
                 <div className='flex justify-between'>
                   <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
-                  <Link className='text-sm font-semibold text-orange-500' to="../add-category">Add new category</Link>
+                  <Link className='text-sm font-semibold text-green-500' to="../add-category">Add new category</Link>
                 </div>
                 <select
                   onChange={handleChange}

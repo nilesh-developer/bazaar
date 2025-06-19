@@ -92,7 +92,7 @@ function AdminChangePassword() {
                                 placeholder="Confirm New Password"
                                 className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
                             />
-                            <button className="bg-orange-600 text-white py-2 rounded-lg tracking-tight hover:bg-orange-700 mt-6 mb-10 w-44">{!loading ? "Update Password" : <span className="loading loading-spinner loading-md"></span>}</button>
+                            <button className="bg-green-600 text-white py-2 rounded-lg tracking-tight hover:bg-green-700 mt-6 mb-10 w-44">{!loading ? "Update Password" : <span className="loading loading-spinner loading-md"></span>}</button>
                         </form>
                     </div>
                 </div>
