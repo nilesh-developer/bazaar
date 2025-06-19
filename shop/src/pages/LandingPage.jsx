@@ -434,7 +434,7 @@ const LandingPage = () => {
           color2={color2}
           navigate={navigate}
         /> */}
-        {/* <BannerCarousel store={store} banners={store?.sliderImages} /> */}
+        <BannerCarousel store={store} banners={store?.sliderImages} />
         {/* <HeroSection /> */}
         {store.hideCategory ? <></> : <Category categories={store?.categories} />}
         {/* <CategoriesSection /> */}

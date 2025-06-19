@@ -40,7 +40,7 @@ const StoreSchema = new mongoose.Schema({
         type: String
     },
     sliderImages: {
-        type: Object,
+        type: Array,
     },
     desktopBanner: {
         type: String
