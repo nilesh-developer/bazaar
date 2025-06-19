@@ -8,13 +8,14 @@ function App() {
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get("sessionid")
   const orderId = searchParams.get("orderid")
+  const subdomain = searchParams.get("subdomain")
 
   console.log(sessionId, orderId)
 
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const verifyPayment = async (id) => {
+  const verifyPayment = async (orderId, subdomain) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/verify-payment`, {
         method: "POST",
@@ -22,18 +23,18 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          orderId: id
+          orderId: orderId
         })
       })
 
       if (response.ok) {
         const responseData = await response.json()
         toast.success(responseData?.message)
-        window.location.replace(`${import.meta.env.VITE_DOMAIN_NAME}/payment-response?order_id=${id}`)
+        window.location.replace(`https://${subdomain+"."+import.meta.env.VITE_HOSTNAME}/payment-response?order_id=${id}`)
       } else {
         const responseData = await response.json()
         toast.error(responseData?.message)
-        window.location.replace(`${import.meta.env.VITE_DOMAIN_NAME}/payment-response?order_id=${id}`)
+        window.location.replace(`https://${subdomain+"."+import.meta.env.VITE_HOSTNAME}/payment-response?order_id=${id}`)
       }
     } catch (error) {
       console.log(error)
@@ -56,7 +57,7 @@ function App() {
 
       await cashfree.checkout(checkoutOptions)
         .then(async (res) => {
-          await verifyPayment(orderId); // now using correct orderId
+          await verifyPayment(orderId, subdomain); // now using correct orderId
         })
         .catch((error) => {
           console.log(error);
