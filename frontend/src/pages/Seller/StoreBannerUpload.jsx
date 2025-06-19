@@ -27,7 +27,7 @@ export default function StoreBannerUpload() {
             setPreviousUploads({
                 logo: user.store.logo || null,
                 favicon: user.store.favicon || null,
-                desktopBanner: user.store.banner || null,
+                desktopBanner: user.store.desktopBanner || null,
                 mobileBanner: user.store.mobileBanner || null,
                 sliderImages: user.store.sliderImages || []
             });

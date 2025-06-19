@@ -80,67 +80,72 @@ const HeroSection = () => (
 );
 
 // --- SCROLLABLE BANNER ---
-const BannerCarousel = ({ banners }) => {
+const BannerCarousel = ({ store, banners }) => {
 
-  // const banners = [
-  //   {
-  //     image: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=1200&h=400&fit=crop",
-  //     text: "Summer Sale: Up to 50% Off! Shop Now"
-  //   },
-  //   {
-  //     image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=1200&h=400&fit=crop",
-  //     text: "New Arrivals: Discover the Latest Trends"
-  //   },
-  //   {
-  //     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&h=400&fit=crop",
-  //     text: "Eco-Friendly Essentials for Every Day"
-  //   }
-  // ];
   const [current, setCurrent] = useState(0);
   const [imagesLoading, setImagesLoading] = useState(true)
 
   // Simple auto-scroll
-  React.useEffect(() => {
-    const interval = setInterval(() => setCurrent((c) => (c + 1) % banners.length), 4000);
-    return () => clearInterval(interval);
-  }, [banners.length]);
+  useEffect(() => {
+    if (banners?.length) {
+      const interval = setInterval(() => setCurrent((c) => (c + 1) % banners.length), 4000);
+      return () => clearInterval(interval);
+    }
+  }, [banners?.length]);
+
+  if (!store) {
+    return (
+      <div
+        data-theme="light"
+        className="flex justify-center skeleton rounded-none items-center text-4xl w-full h-96 font-bold"
+      >
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full overflow-hidden h-64 md:h-64 lg:h-96 mb-4"> {/* Increased height for mobile */}
-      {banners.map((banner, i) => {
-        if (imagesLoading) {
-          return (
-            <div
-              data-theme="light"
-              className="flex justify-center skeleton rounded-none items-center text-4xl w-full h-96 font-bold"
-            >
-            </div>
-          )
-        }
+      {banners?.length > 0 ?
+        <>
+          {banners.map((banner, i) => (
+            <>
+              {imagesLoading && (
+                <div
+                  data-theme="light"
+                  className="flex justify-center skeleton rounded-none items-center text-4xl w-full h-96 font-bold"
+                >
+                </div>
+              )}
 
-        return (
-          <div
-            key={i}
-            className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          >
-            <img
-              src={banner.image}
-              alt="banner"
-              className="w-full h-full object-cover object-center"
-              onLoad={() => setImagesLoading(false)}
-            />
-            {/* <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-            <span className="text-white text-lg md:text-2xl font-bold drop-shadow-lg bg-black/40 px-4 py-2 rounded-full">{banner.text}</span>
-          </div> */}
-          </div>
-        )
-      })}
+              <div
+                key={i}
+                className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              >
+                <img
+                  src={banner.image}
+                  alt="banner"
+                  className="w-full h-full object-cover object-center"
+                  onLoad={() => setImagesLoading(false)}
+                />
+              </div>
+            </>
+          ))}
+        </>
+        :
+        <div
+          className="flex justify-center items-center text-4xl w-full h-96 font-bold"
+          style={{ backgroundColor: store.themeColorOne, color: store.themeColorTwo }}
+        >
+          Sample Banner Text
+        </div>
+      }
 
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
         {banners.map((_, i) => (
           <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full ${i === current ? 'bg-white' : 'bg-white/50'}`}></button>
         ))}
       </div>
-    </div>
+    </div >
   );
 };
 
@@ -429,7 +434,7 @@ const LandingPage = () => {
           color2={color2}
           navigate={navigate}
         /> */}
-        <BannerCarousel banners={store?.sliderImages} />
+        <BannerCarousel store={store} banners={store?.sliderImages} />
         {/* <HeroSection /> */}
         {store.hideCategory ? <></> : <Category categories={store?.categories} />}
         {/* <CategoriesSection /> */}
