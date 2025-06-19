@@ -122,7 +122,7 @@ const BannerCarousel = ({ store, banners }) => {
                 className={`absolute inset-0 transition-opacity duration-700 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
               >
                 <img
-                  src={banner.image}
+                  src={banner}
                   alt="banner"
                   className="w-full h-full object-cover object-center"
                   onLoad={() => setImagesLoading(false)}
