@@ -63,7 +63,7 @@ function Shop() {
                     color: color2,
                     backgroundColor: color1,
                   }}
-                  className="mt-auto w-full py-2 rounded-full font-semibold hover:opacity-75 transition">Add to Cart</button>
+                  className="mt-auto w-full py-2 rounded-full font-semibold transition">Add to Cart</button>
               </div>
             )
           })}

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useOutletContext, useParams } from 'react-router-dom';
+import { useCart } from '../store/CartContext';
 
 function Category() {
     const { id } = useParams();
+    const { addToCart } = useCart()
     const { setCartOpen } = useOutletContext();
     const [category, setCategory] = useState({})
     const [products, setProducts] = useState([])
@@ -86,7 +88,7 @@ function Category() {
                                     color: color2,
                                     backgroundColor: color1,
                                 }}
-                                className="mt-auto w-full py-2 rounded-full font-semibold hover:opacity-75 transition">Add to Cart</button>
+                                className="mt-auto w-full py-2 rounded-full font-semibold transition">Add to Cart</button>
                         </div>
                     ))}
                 </div>
