@@ -8,14 +8,12 @@ function App() {
   const [searchParams] = useSearchParams()
   const sessionId = searchParams.get("sessionid")
   const orderId = searchParams.get("orderid")
-  const subdomain = searchParams.get("subdomain")
-
-  console.log(sessionId, orderId)
+  const subdomain = searchParams.get("storename")
 
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const verifyPayment = async (orderId, subdomain) => {
+  const verifyPayment = async (id, subdomain) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/verify-payment`, {
         method: "POST",
@@ -23,7 +21,7 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          orderId: orderId
+          orderId: id
         })
       })
 

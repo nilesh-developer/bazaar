@@ -236,7 +236,7 @@ function Checkout() {
 
     const redirectToPaymentPage = async (sessionId, orderId) => {
         try {
-            window.location.replace(`https://checkout.eazzy.store/?storename=${window.location.hostname.split(".")[0]}&sessionid=${sessionId}&orderid=${orderId}`);
+            window.location.replace(`https://checkout.eazzy.store/?storename=${store.subdomain}&sessionid=${sessionId}&orderid=${orderId}`);
         } catch (error) {
             console.log(error)
             toast.error("Failed to redirect to payment page");
