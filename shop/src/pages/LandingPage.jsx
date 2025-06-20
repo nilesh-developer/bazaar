@@ -3,7 +3,7 @@ import { ShoppingCart, X, Star, Heart, Truck, Shield, RefreshCw, Instagram, Twit
 import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useCart } from '../store/CartContext';
-import { Category, ProductCard } from '../components';
+import { Banner, Category, ProductCard } from '../components';
 import { Helmet } from 'react-helmet';
 import ShuffledProducts from '../components/ShuffledProducts';
 
@@ -171,29 +171,8 @@ const CategoriesSection = () => (
 );
 
 // --- FEATURED PRODUCTS ---
-const FeaturedProductsSection = ({ store, setLoadingRecommendedProducts, color1, color2 }) => {
+const FeaturedProductsSection = ({ recommendedProducts, color1, color2 }) => {
   // const featuredProducts = products.slice(0, 8);
-  const [recommendedProducts, setRecommendedPorducts] = useState([])
-
-  const getRecommendedProducts = async () => {
-    try {
-      setLoadingRecommendedProducts(true);
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/product/get-recommended/${store._id}`);
-      if (!response.ok) throw new Error('Failed to fetch products data');
-      const data = await response.json();
-      setRecommendedPorducts(data.data);
-    } catch (error) {
-      console.error('Error fetching recommended product data:', error);
-    } finally {
-      setLoadingRecommendedProducts(false);
-    }
-  };
-
-  useEffect(() => {
-    if (store?._id) {
-      getRecommendedProducts()
-    }
-  }, [store])
 
   if (recommendedProducts.length !== 0) {
     return (
@@ -384,7 +363,7 @@ const ProductPage = () => {
 
 // --- MAIN LANDING PAGE ---
 const LandingPage = () => {
-  const { store, color1, color2, products, cartOpen, setCartOpen, setLoadingRecommendedProducts } = useOutletContext();
+  const { store, color1, color2, products, cartOpen, setCartOpen, recommendedProducts } = useOutletContext();
   const { addToCart, cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
   const navigate = useNavigate()
 
@@ -418,11 +397,14 @@ const LandingPage = () => {
           color2={color2}
           navigate={navigate}
         /> */}
-        <BannerCarousel store={store} banners={store?.sliderImages} />
+
+        {/* <BannerCarousel store={store} banners={store?.sliderImages} /> */}
+        <Banner store={store} color1={color1} color2={color2} />
+
         {/* <HeroSection /> */}
         {store.hideCategory ? <></> : <Category categories={store?.categories} color1={color1} color2={color2} />}
         {/* <CategoriesSection /> */}
-        <FeaturedProductsSection store={store} setLoadingRecommendedProducts={setLoadingRecommendedProducts} color1={color1} color2={color2} />
+        <FeaturedProductsSection recommendedProducts={recommendedProducts} color1={color1} color2={color2} />
         <ShuffledProducts products={products} color1={color1} color2={color2} />
         {/* <FeatureSection /> */}
         {/* <TestimonialsSection /> */}

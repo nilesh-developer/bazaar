@@ -76,7 +76,9 @@ const ProductSchema = new mongoose.Schema({
         type: String
     },
     affiliateProduct: {
-        type: Boolean
+        type: Boolean,
+        default: false,
+        required: true
     },
     affiliatePlatformName: {
         type: String

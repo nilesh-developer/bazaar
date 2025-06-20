@@ -38,7 +38,7 @@ function Banner({ store, color1, color2 }) {
             >
               <img
                 className="h-full w-full"
-                src={store.banner}
+                src={store.desktopBanner}
                 alt="store banner"
                 onLoad={() => setDesktopImageLoaded(true)}
               />

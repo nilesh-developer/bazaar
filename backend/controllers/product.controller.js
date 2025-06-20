@@ -177,7 +177,7 @@ const updateProduct = asyncHandler(async (req, res) => {
                 image4: await uploadOnCloudinary(images?.image4?.[0]?.path) || existingProduct.images.image4,
             },
             sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null,
-            affiliateProduct,
+            affiliateProduct: affiliateProduct,
             affiliatePlatformName,
             affiliateLink
         },

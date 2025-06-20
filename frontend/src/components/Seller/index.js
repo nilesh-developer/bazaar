@@ -14,7 +14,6 @@ import Payment from "../../pages/Seller/Payment";
 import Store from "../../pages/Seller/Store";
 import Analytics from "../../pages/Seller/Analytics";
 import CustomizeStore from "../../pages/Seller/CustomizeStore";
-import CustomizeBanner from "../../pages/Seller/CustomizeBanner";
 import StoreBannerUpload from "../../pages/Seller/StoreBannerUpload";
 import CustomizeFooter from "../../pages/Seller/CustomizeFooter";
 import DialogBox from "./DialogBox";
@@ -50,7 +49,6 @@ export {
     RequestPayoutModal,
     SinglePayoutPage,
     CustomizeStore,
-    CustomizeBanner,
     StoreBannerUpload,
     CustomizeFooter,
     DomainSettings,

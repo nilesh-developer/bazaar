@@ -16,6 +16,7 @@ export default function StoreLayout() {
   const [query, setQuery] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [recommendedProducts, setRecommendedProducts] = useState([])
   const [loadingRecommendedProducts, setLoadingRecommendedProducts] = useState(true)
   const navigate = useNavigate();
 
@@ -38,6 +39,26 @@ export default function StoreLayout() {
     }
   };
 
+  const getRecommendedProducts = async () => {
+    try {
+      setLoadingRecommendedProducts(true);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/product/get-recommended/${store._id}`);
+      if (!response.ok) throw new Error('Failed to fetch products data');
+      const data = await response.json();
+      setRecommendedProducts(data.data);
+    } catch (error) {
+      console.error('Error fetching recommended product data:', error);
+    } finally {
+      setLoadingRecommendedProducts(false);
+    }
+  };
+
+  useEffect(() => {
+    if (store?._id) {
+      getRecommendedProducts()
+    }
+  }, [store])
+
   useEffect(() => {
     getThemeColor();
   }, []);
@@ -51,8 +72,8 @@ export default function StoreLayout() {
     }
   };
 
-  if (loading ) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-
+  if (loading || loadingRecommendedProducts) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+  
   // if (loading) return <LazyLoadingPage />;
 
   return (
@@ -103,19 +124,19 @@ export default function StoreLayout() {
           color2={color2}
         />
 
-        <Outlet context={{ 
-          store, 
-          color1, 
-          color2, 
-          products: store.products, 
-          openSearch: openSearch, 
-          setOpenSearch: setOpenSearch, 
-          cartOpen: cartOpen, 
+        <Outlet context={{
+          store,
+          color1,
+          color2,
+          products: store.products,
+          openSearch: openSearch,
+          setOpenSearch: setOpenSearch,
+          cartOpen: cartOpen,
           setCartOpen: setCartOpen,
           isMenuOpen: isMenuOpen,
           setIsMenuOpen: setIsMenuOpen,
-          setLoadingRecommendedProducts: setLoadingRecommendedProducts
-          }} />
+          recommendedProducts: recommendedProducts
+        }} />
       </main>
       <BottomNavbar color1={color1} />
       <Footer store={store} color1={color1} color2={color2} />

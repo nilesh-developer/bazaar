@@ -101,7 +101,7 @@ const allPayouts = asyncHandler(async (req, res) => {
 
 const getStoreData = asyncHandler(async (req, res) => {
 
-    const {id} = req.params
+    const { id } = req.params
     const store = await stores.findById(id)
 
     return res.status(200)
@@ -114,7 +114,7 @@ const getStoreData = asyncHandler(async (req, res) => {
 
 const getCustomerData = asyncHandler(async (req, res) => {
 
-    const {id} = req.params
+    const { id } = req.params
     const customer = await customers.findById(id).populate("store")
 
     return res.status(200)
@@ -127,7 +127,7 @@ const getCustomerData = asyncHandler(async (req, res) => {
 
 const getPayoutDetails = asyncHandler(async (req, res) => {
 
-    const {id} = req.params
+    const { id } = req.params
     const payout = await payouts.findById(id).populate("store")
 
     return res.status(200)
@@ -136,6 +136,16 @@ const getPayoutDetails = asyncHandler(async (req, res) => {
             data: payout,
             message: "Data fetched"
         })
+})
+
+const getCurrentAdmin = asyncHandler(async (req, res) => {
+
+    const user = await admins.findById(req.user._id).select("-password")
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, user, "current admin fetched successfully")
+        )
 })
 
 const noOfAllData = asyncHandler(async (req, res) => {
@@ -160,7 +170,7 @@ const noOfAllData = asyncHandler(async (req, res) => {
 const changeAdminPassword = asyncHandler(async (req, res) => {
     const { oldPassword, newPassword } = req.body;
 
-    const admin = await admins.findOne({email: "mail.eazzystore@gmail.com"})
+    const admin = await admins.findOne({ email: "mail.eazzystore@gmail.com" })
     const result = await admin.isPasswordCorrect(oldPassword)
 
     if (!result) {
@@ -179,6 +189,7 @@ const changeAdminPassword = asyncHandler(async (req, res) => {
 
 export {
     loginAdmin,
+    getCurrentAdmin,
     addVisit,
     noOfAllData,
     allOrders,

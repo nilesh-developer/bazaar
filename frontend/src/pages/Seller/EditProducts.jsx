@@ -110,7 +110,7 @@ function EditProduct() {
                 });
                 setTags(responseData.data.tags);
                 setStatus(responseData.data.status);
-                setEnableAffiliate(responseData.data.affiliateProduct)
+                setEnableAffiliate(responseData.data?.affiliateProduct)
                 setRecommended(responseData.data.recommended)
                 setVariants(responseData.data.variants);
             }

@@ -246,7 +246,7 @@ export default function StoreBannerUpload() {
                 </div>
 
                 {/* Slider Images Section */}
-                <div className="mb-8">
+                {/* <div className="mb-8">
                     <FileUploadCard
                         title="Banner Slider Images (Upto 5 images)"
                         description="Multiple images for your promotional slider"
@@ -256,10 +256,10 @@ export default function StoreBannerUpload() {
                         maxSize="5MB each"
                         isMultiple={true}
                     />
-                </div>
+                </div> */}
 
                 {/* Guidelines */}
-                <div className="bg-white rounded-xl shadow-lg border border-green-100 p-6 mb-8">
+                {/* <div className="bg-white rounded-xl shadow-lg border border-green-100 p-6 mb-8">
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Upload Guidelines</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
@@ -283,7 +283,7 @@ export default function StoreBannerUpload() {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
                 {   /* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -308,7 +308,7 @@ export default function StoreBannerUpload() {
                 </div>
 
                 {/* Progress Indicator */}
-                <div className="mt-8 bg-white rounded-xl shadow-lg border border-green-100 p-6">
+                {/* <div className="mt-8 bg-white rounded-xl shadow-lg border border-green-100 p-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Upload Progress</h3>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                         {[
@@ -329,7 +329,7 @@ export default function StoreBannerUpload() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

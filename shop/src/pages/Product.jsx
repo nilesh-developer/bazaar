@@ -84,14 +84,14 @@ function Product() {
             id: 'description',
             title: 'Product Description',
             content: (
-              <p dangerouslySetInnerHTML={{ __html: product?.description }} />
+              <p dangerouslySetInnerHTML={{ __html: responseData.data?.description }} />
             )
           },
           {
             id: 'delivery',
             title: 'Delivery',
             content: (
-              <p className='text-justify'>{product?.deliveryDetails}</p>
+              <p className='text-justify'>{responseData.data?.deliveryDetails}</p>
             )
           },
           {
@@ -100,7 +100,7 @@ function Product() {
             content: (
               <div className="space-y-4">
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <p className=' text-green-800 text-justify'>{product?.returnDetails}</p>
+                  <p className=' text-green-800 text-justify'>{responseData.data?.returnDetails}</p>
                 </div>
 
                 <div className="mt-4 p-3 bg-gray-50 rounded-lg">
@@ -482,27 +482,6 @@ function Product() {
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="lg:hidden mt-8">
-              <div tabIndex={0} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Product description</div>
-                <div className="collapse-content">
-                  <p dangerouslySetInnerHTML={{ __html: product?.description }} />
-                </div>
-              </div>
-              <div tabIndex={1} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Delivery</div>
-                <div className="collapse-content">
-                  <p className='text-justify'>{product?.deliveryDetails}</p>
-                </div>
-              </div>
-              <div tabIndex={2} className="collapse collapse-plus border-b border-gray-200">
-                <div className="collapse-title text-lg font-bold text-black">Returns</div>
-                <div className="collapse-content">
-                  <p className='text-justify'>{product?.returnDetails}</p>
-                </div>
-              </div>
             </div>
 
           </div>

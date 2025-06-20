@@ -1,10 +1,12 @@
 import { Router } from "express";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
-import { addVisit, allCustomers, allOrders, allPayouts, allStores, changeAdminPassword, getCustomerData, getPayoutDetails, getStoreData, loginAdmin, noOfAllData } from "../controllers/admin.controller.js";
+import { addVisit, allCustomers, allOrders, allPayouts, allStores, changeAdminPassword, getCurrentAdmin, getCustomerData, getPayoutDetails, getStoreData, loginAdmin, noOfAllData } from "../controllers/admin.controller.js";
 
 const router = Router()
 
 router.route("/login").post(loginAdmin)
+
+router.route("/current-user").get(verifyJwt,getCurrentAdmin)
 
 router.route("/add-visit").get(addVisit)
 
