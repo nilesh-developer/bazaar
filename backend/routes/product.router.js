@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
-import { addProduct, deleteProduct, getProductData, getProducts, searchProducts, updateProduct } from "../controllers/product.controller.js";
+import { addProduct, deleteProduct, getProductData, getProducts, getRecommendedProducts, searchProducts, updateProduct } from "../controllers/product.controller.js";
 
 const router = Router()
 
@@ -34,6 +34,8 @@ router.route("/add-product").post(
     addProduct)
 
 router.route("/data/:id").get(getProductData)
+
+router.route("/get-recommended/:storeId").get(getRecommendedProducts)
 
 router.route("/get-data/:id").get(getProducts)
 

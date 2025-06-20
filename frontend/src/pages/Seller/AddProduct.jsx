@@ -35,6 +35,7 @@ function AddProduct() {
   const [description, setDescription] = useState('')
   const [tags, setTags] = useState([]);
   const [status, setStatus] = useState(true);
+  const [recommended, setRecommeded] = useState(true)
   const [enableAffiliate, setEnableAffiliate] = useState(false)
   const { token } = useAuth();
   const [store, setStore] = useState({});
@@ -96,6 +97,7 @@ function AddProduct() {
       formData.append("storeId", store._id);
       formData.append("status", status);
       formData.append("affiliateProduct", enableAffiliate);
+      formData.append("recommended", recommended);
       formData.append("tags", JSON.stringify(tags));
       formData.append("variants", JSON.stringify(variants));
 
@@ -296,6 +298,18 @@ function AddProduct() {
                   className="toggle toggle-success text-red-600"
                   onChange={() => setStatus(!status)}
                   checked={status}
+                />
+              </div>
+              <div className="flex items-center">
+                <label htmlFor="recommended" className="block text-sm font-medium text-gray-700 mr-3">Recommended</label>
+                <input
+                  data-theme='light'
+                  id='recommended'
+                  name='recommended'
+                  type="checkbox"
+                  className="toggle toggle-success text-red-600"
+                  onChange={() => setRecommeded(!recommended)}
+                  checked={recommended}
                 />
               </div>
             </form>

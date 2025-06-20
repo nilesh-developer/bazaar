@@ -11,8 +11,8 @@ const CartSidebar = ({ open, onClose, store, color1, color2}) => {
             <div className={`fixed inset-0 bg-black/40 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`} onClick={onClose} />
             <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}>
                 <div className="flex items-center justify-between p-4 border-b">
-                    <span className="text-lg font-bold">Your Cart</span>
-                    <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 transition"><X className="h-6 w-6" /></button>
+                    <span className="text-lg font-bold" style={{color: color1}}>Your Cart</span>
+                    <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 transition"><X className="h-6 w-6" color={color1} /></button>
                 </div>
                 <div className="flex-1 overflow-y-auto px-2 py-4 flex flex-col gap-4">
                     {cart.length === 0 ? (

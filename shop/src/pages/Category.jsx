@@ -54,7 +54,7 @@ function Category() {
 
     return (
         <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4 mb-10">
-            <h2 className="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">{category?.name}</h2>
+            <h2 className="text-xl lg:text-3xl font-bold tracking-tight" style={{color: color1}}>{category?.name}</h2>
             {products ?
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
                     {products.map(product => (

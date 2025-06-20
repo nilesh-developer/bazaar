@@ -16,6 +16,7 @@ export default function StoreLayout() {
   const [query, setQuery] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [loadingRecommendedProducts, setLoadingRecommendedProducts] = useState(true)
   const navigate = useNavigate();
 
   const subdomain = window.location.hostname;
@@ -50,7 +51,7 @@ export default function StoreLayout() {
     }
   };
 
-  if (loading) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+  if (loading ) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
 
   // if (loading) return <LazyLoadingPage />;
 
@@ -112,7 +113,8 @@ export default function StoreLayout() {
           cartOpen: cartOpen, 
           setCartOpen: setCartOpen,
           isMenuOpen: isMenuOpen,
-          setIsMenuOpen: setIsMenuOpen
+          setIsMenuOpen: setIsMenuOpen,
+          setLoadingRecommendedProducts: setLoadingRecommendedProducts
           }} />
       </main>
       <BottomNavbar color1={color1} />

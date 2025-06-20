@@ -11,6 +11,7 @@ import MakeAffilateProduct from '../../components/Seller/MakeAffilateProduct';
 function EditProduct() {
     const { id } = useParams();
     const { token } = useAuth();
+    const [updating, setUpdating] = useState(false)
     const [images, setImages] = useState({
         featuredImage: null,
         image1: null,
@@ -38,6 +39,7 @@ function EditProduct() {
     const [tags, setTags] = useState([]);
     const [status, setStatus] = useState(true);
     const [enableAffiliate, setEnableAffiliate] = useState(false)
+    const [recommended, setRecommended] = useState(false)
     const [store, setStore] = useState({});
     const [categories, setCategories] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -109,6 +111,7 @@ function EditProduct() {
                 setTags(responseData.data.tags);
                 setStatus(responseData.data.status);
                 setEnableAffiliate(responseData.data.affiliateProduct)
+                setRecommended(responseData.data.recommended)
                 setVariants(responseData.data.variants);
             }
 
@@ -142,10 +145,12 @@ function EditProduct() {
         formData.append("storeId", store._id);
         formData.append("status", status);
         formData.append("affiliateProduct", enableAffiliate);
+        formData.append("recommended", recommended);
         formData.append("tags", JSON.stringify(tags));
         formData.append("variants", JSON.stringify(variants));
 
         try {
+            setUpdating(true)
             const response = await axios.patch(`${import.meta.env.VITE_API_URL}/api/product/update-product/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -155,6 +160,8 @@ function EditProduct() {
             navigate("../products");
         } catch (error) {
             console.log(error);
+        } finally {
+            setUpdating(false)
         }
     };
 
@@ -182,7 +189,7 @@ function EditProduct() {
                         onClick={handleSubmit}
                         className="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
-                        Update
+                        {updating ? <span className="loading loading-spinner loading-md"></span> : "Update"}
                     </button>
                 </div>
             </div>
@@ -315,6 +322,18 @@ function EditProduct() {
                                     className="toggle toggle-success text-red-600"
                                     onChange={() => setStatus(!status)}
                                     checked={status}
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <label htmlFor="recommended" className="block text-sm font-medium text-gray-700 mr-3">Recommended</label>
+                                <input
+                                    data-theme='light'
+                                    id='recommended'
+                                    name='recommended'
+                                    type="checkbox"
+                                    className="toggle toggle-success text-red-600"
+                                    onChange={() => setRecommended(!recommended)}
+                                    checked={recommended}
                                 />
                             </div>
                         </form>

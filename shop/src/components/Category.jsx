@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function Category({ categories }) {
+function Category({ categories, color1, color2 }) {
     return (
         <section className="py-4 bg-white pb-10">
             <div className="max-w-7xl mx-auto px-4 sm:px-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2 lg:mb-6 text-center">Categories</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-2 lg:mb-6 text-center" style={{color: color1}}>Categories</h2>
                 <div className="mt-4 flex overflow-x-auto space-x-5">
                     {categories?.map((category, index) => {
                         const [imageLoaded, setImageLoaded] = useState(false);
@@ -29,7 +29,7 @@ function Category({ categories }) {
                                     </div>
                                     <div className="w-full hidden bg-white lg:flex items-center justify-center py-4">
                                         <div>
-                                            <h3 className="text-base font-bold text-gray-700">
+                                            <h3 className="text-base font-bold" style={{color: color1}}>
                                                 {category?.name}
                                             </h3>
                                         </div>

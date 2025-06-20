@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useCart } from '../store/CartContext';
 import { Link, useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import {ShoppingCart} from 'lucide-react'
 
 function Cart() {
     const { setCartOpen } = useOutletContext();
@@ -163,7 +164,8 @@ function Cart() {
                     :
                     <div className='flex justify-center items-center h-[20rem] lg:h-auto lg:mt-10'>
                         <div className=''>
-                            <img className='h-32 ml-5 lg:ml-0 lg:h-52 hidden lg:block' src="./shopping-cart.png" alt="Cart Image" />
+                            {/* <img className='h-32 ml-5 lg:ml-0 lg:h-52 hidden lg:block' src="./shopping-cart.png" alt="Cart Image" /> */}
+                            <ShoppingCart className="h-52 w-52 hidden lg:block mx-auto mb-4 text-zinc-200" />
                             <p className='text-center text-2xl font-semibold'>Your cart is empty</p>
                             <Link to="/">
                                 <button data-theme="light" style={{ backgroundColor: color1, color: color2 }} type='button' className='btn mt-5 w-full'>

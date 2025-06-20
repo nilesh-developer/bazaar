@@ -16,6 +16,23 @@ export default function Footer({ store, color1, color2 }) {
         </div>
         <div className="grid grid-cols-1 text-lg gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-3">
           <div className="space-y-3">
+            <h3 className="tracking-tight uppercase text-base font-bold" style={{ color: color1 }}>Pages</h3>
+            <ul className="space-y-1 tracking-tight text-base" style={{ color: color1 }}>
+              <li className="hover:brightness-150">
+                <Link to="/">Home</Link>
+              </li>
+              <li className="hover:brightness-150">
+                <Link to="/shop">Shop</Link>
+              </li>
+              <li className="hover:brightness-150">
+                <Link to="/cart">Cart</Link>
+              </li>
+              <li className="hover:brightness-150">
+                <Link to="/about">About Us</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="space-y-3">
             <h3 className="tracking-tight uppercase text-base font-bold" style={{ color: color1 }}>Company</h3>
             <ul className="space-y-1 tracking-tight text-base" style={{ color: color1 }}>
               <li className="hover:brightness-150">

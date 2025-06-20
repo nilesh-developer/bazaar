@@ -20,7 +20,7 @@ const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch,
             <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between h-16 lg:h-16">
                 <div className="flex items-center md:hidden gap-8">
                     <button className="p-2" onClick={() => setIsMenuOpen(true)}>
-                        <Menu className="h-6 w-6" />
+                        <Menu className="h-6 w-6" color={color1} />
                     </button>
                 </div>
 

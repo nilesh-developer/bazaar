@@ -3,7 +3,7 @@ import { ShoppingCart, X, Star, Heart, Truck, Shield, RefreshCw, Instagram, Twit
 import { Link, useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useCart } from '../store/CartContext';
-import { Category } from '../components';
+import { Category, ProductCard } from '../components';
 import { Helmet } from 'react-helmet';
 import ShuffledProducts from '../components/ShuffledProducts';
 
@@ -171,66 +171,50 @@ const CategoriesSection = () => (
 );
 
 // --- FEATURED PRODUCTS ---
-const FeaturedProductsSection = ({ products, addToCart, color1, color2 }) => {
-  const featuredProducts = products.slice(0, 8);
-  return (
-    <section id="products" className="pb-8 lg:py-8 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Featured Products</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-          {featuredProducts.map(product => {
-            const [imageLoaded, setImageLoaded] = useState(false);
+const FeaturedProductsSection = ({ store, setLoadingRecommendedProducts, color1, color2 }) => {
+  // const featuredProducts = products.slice(0, 8);
+  const [recommendedProducts, setRecommendedPorducts] = useState([])
 
-            return (
-              <div key={product._id} className="bg-white rounded-2xl shadow-sm hover:shadow-md transition group p-3 md:p-4 flex flex-col">
-                <Link to={`/product/${product._id}`} >
-                  <div className="relative aspect-square w-full mb-3 md:mb-4 overflow-hidden rounded-xl">
-                    {!imageLoaded && (
-                      <div
-                        className="w-full h-full object-cover rounded-sm skeleton flex items-center justify-center"
-                      >
-                      </div>
-                    )}
-                    <img
-                      src={product.images.featuredImage}
-                      alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition"
-                      onLoad={() => setImageLoaded(true)}
-                    />
-                    {product.originalPrice && (
-                      <span className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-semibold shadow" style={{ color: color2, backgroundColor: color1 }}>{Math.round(((product.originalPrice - product.salePrice) / product.originalPrice) * 100)}% OFF</span>
-                    )}
-                    {/* <button className="absolute top-3 right-3 p-2 rounded-full bg-white/90 shadow hover:shadow-md transition">
-                      <Heart className="h-5 w-5 text-gray-400 group-hover:text-red-500 transition" />
-                    </button> */}
-                  </div>
-                  <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 group-hover:text-black transition">{product.name}</h3>
-                  <p className="text-xs text-gray-500 mb-2">{product.brand}</p>
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="text-base md:text-lg font-bold text-gray-900">&#8377;{product.salePrice}</span>
-                    {product.originalPrice && <span className="text-xs text-gray-400 line-through">&#8377;{product.originalPrice}</span>}
-                  </div>
-                </Link>
-                {/* <div className="flex items-center gap-1 mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className={`h-4 w-4 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} />
-                ))}
-                <span className="text-xs text-gray-500 ml-1">({product.reviews})</span>
-              </div> */}
-                <button
-                  onClick={() => addToCart({ ...product, quantity: 1 })}
-                  style={{
-                    color: color2,
-                    backgroundColor: color1,
-                  }}
-                  className="mt-auto w-full py-2 rounded-full font-semibold transition">Add to Cart</button>
-              </div>
-            )
-          })}
+  const getRecommendedProducts = async () => {
+    try {
+      setLoadingRecommendedProducts(true);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/product/get-recommended/${store._id}`);
+      if (!response.ok) throw new Error('Failed to fetch products data');
+      const data = await response.json();
+      setRecommendedPorducts(data.data);
+    } catch (error) {
+      console.error('Error fetching recommended product data:', error);
+    } finally {
+      setLoadingRecommendedProducts(false);
+    }
+  };
+
+  useEffect(() => {
+    if (store?._id) {
+      getRecommendedProducts()
+    }
+  }, [store])
+
+  if (recommendedProducts.length !== 0) {
+    return (
+      <section id="products" className="pb-8 lg:py-8 bg-white">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center" style={{ color: color1 }}>Featured Products</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-4">
+            {recommendedProducts.map(product => {
+              if (product.recommended) {
+                return <ProductCard product={product} color1={color1} color2={color2} />
+              } else {
+                return null
+              }
+            })}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
+
+  return null
 };
 
 // --- TESTIMONIALS ---
@@ -338,8 +322,8 @@ const ShopPage = () => {
             <h3 className="text-base font-bold text-gray-900 mb-1 group-hover:text-black transition">{product.name}</h3>
             <p className="text-xs text-gray-500 mb-2">{product.brand}</p>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-base font-bold text-gray-900">${product.price}</span>
-              {product.originalPrice && <span className="text-xs text-gray-400 line-through">${product.originalPrice}</span>}
+              <span className="text-base font-bold text-gray-900">&#8377;{product.price}</span>
+              {product.originalPrice && <span className="text-xs text-gray-400 line-through">&#8377;{product.originalPrice}</span>}
             </div>
             <div className="flex items-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
@@ -400,7 +384,7 @@ const ProductPage = () => {
 
 // --- MAIN LANDING PAGE ---
 const LandingPage = () => {
-  const { store, color1, color2, products, cartOpen, setCartOpen } = useOutletContext();
+  const { store, color1, color2, products, cartOpen, setCartOpen, setLoadingRecommendedProducts } = useOutletContext();
   const { addToCart, cart, removeFromCart, updateQuantity, calculateTotal } = useCart();
   const navigate = useNavigate()
 
@@ -436,12 +420,12 @@ const LandingPage = () => {
         /> */}
         <BannerCarousel store={store} banners={store?.sliderImages} />
         {/* <HeroSection /> */}
-        {store.hideCategory ? <></> : <Category categories={store?.categories} />}
+        {store.hideCategory ? <></> : <Category categories={store?.categories} color1={color1} color2={color2} />}
         {/* <CategoriesSection /> */}
-        <FeaturedProductsSection products={products} addToCart={addToCart} color1={color1} color2={color2} />
+        <FeaturedProductsSection store={store} setLoadingRecommendedProducts={setLoadingRecommendedProducts} color1={color1} color2={color2} />
         <ShuffledProducts products={products} color1={color1} color2={color2} />
-        <FeatureSection />
-        <TestimonialsSection />
+        {/* <FeatureSection /> */}
+        {/* <TestimonialsSection /> */}
         {/* <Footer /> */}
       </div>
     </>

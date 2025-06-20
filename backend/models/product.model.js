@@ -36,6 +36,11 @@ const ProductSchema = new mongoose.Schema({
     variants: [{
         type: Object
     }],
+    recommended:{
+        type: Boolean,
+        default: true,
+        required: true
+    },
     sizeChartImage: {
         type: String
     },

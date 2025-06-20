@@ -16,7 +16,7 @@ function createSlug(name) {
 }
 
 const addProduct = asyncHandler(async (req, res) => {
-    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, recommended, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -50,6 +50,7 @@ const addProduct = asyncHandler(async (req, res) => {
         metaDescription: metaDescription ? metaDescription : description,
         stockQty,
         stockStatus,
+        recommended,
         tags: parsedTags,
         variants: parsedVariants,
         store: storeId,
@@ -109,9 +110,23 @@ const getProductData = asyncHandler(async (req, res) => {
         )
 })
 
+const getRecommendedProducts = asyncHandler(async (req, res) => {
+    const { storeId } = req.params;
+
+    const recommendedProduct = await products.find({
+        store: storeId,
+        recommended: true
+    }).populate("category")
+    
+    return res.status(200)
+        .json(
+            new ApiResponse(200, recommendedProduct, "Product data fetched")
+        )
+})
+
 const updateProduct = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
+    const { name, shortDescription, description, originalPrice, salePrice, category, returnDetails, deliveryDetails, metaTitle, metaDescription, stockQty, stockStatus, recommended, tags, variants, storeId, status, affiliateProduct, affiliatePlatformName, affiliateLink } = req.body;
     const images = req.files;
 
     // Process tags and variants
@@ -150,6 +165,7 @@ const updateProduct = asyncHandler(async (req, res) => {
             metaDescription: metaDescription ? metaDescription : description,
             stockQty,
             stockStatus,
+            recommended,
             tags: parsedTags,
             variants: parsedVariants,
             status,
@@ -203,6 +219,7 @@ export {
     addProduct,
     getProducts,
     getProductData,
+    getRecommendedProducts,
     searchProducts,
     updateProduct,
     deleteProduct

@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useCart } from "../store/CartContext";
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
 function Product() {
@@ -16,6 +17,15 @@ function Product() {
   const [color1, setColor1] = useState("");
   const [color2, setColor2] = useState("");
   const [sizeChartImage, setSizeChartImage] = useState("")
+  const [sections, setSections] = useState([])
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSection = (sectionName) => {
+    setOpenSections(prev => ({
+      ...prev,
+      [sectionName]: !prev[sectionName]
+    }));
+  };
 
   //variants type
   const [typeSize, setTypeSize] = useState(false);
@@ -69,6 +79,40 @@ function Product() {
 
         setSelectedOriginalPrice(responseData.data.originalPrice)
         setSelectedPrice(responseData.data.salePrice);
+        setSections([
+          {
+            id: 'description',
+            title: 'Product Description',
+            content: (
+              <p dangerouslySetInnerHTML={{ __html: product?.description }} />
+            )
+          },
+          {
+            id: 'delivery',
+            title: 'Delivery',
+            content: (
+              <p className='text-justify'>{product?.deliveryDetails}</p>
+            )
+          },
+          {
+            id: 'returns',
+            title: 'Returns',
+            content: (
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className=' text-green-800 text-justify'>{product?.returnDetails}</p>
+                </div>
+
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-700">
+                    <strong>Refund Processing:</strong> Refunds are processed within 5-7 business days
+                    after we receive your returned item.
+                  </p>
+                </div>
+              </div>
+            )
+          }
+        ])
       }
 
       setIsLoading(false);
@@ -173,9 +217,10 @@ function Product() {
               <img
                 key={idx}
                 onClick={() => { setDefaultImage(img); setCurrent(idx); }}
-                className={`h-24 w-auto rounded-lg cursor-pointer border-2 transition-all duration-200 ${defaultImage === img ? 'border-black' : 'border-gray-200'}`}
+                className={`h-24 w-auto rounded-lg cursor-pointer border-2 transition-all duration-200`}
                 src={img}
                 alt={product.name}
+                style={defaultImage === img ? { borderWidth: 2, borderColor: color1 } : { borderWidth: 1, borderColor: 'gray' }}
                 loading="lazy"
               />
             ))}
@@ -285,7 +330,8 @@ function Product() {
                             {variant?.status === true ?
                               <div
                                 key={index}
-                                className={`border px-5 py-1 ${selectSize === variant.name ? 'bg-black text-white' : 'border-gray-400'}`}
+                                className={`border px-5 py-1`}
+                                style={selectSize === variant.name ? { color: color2, backgroundColor: color1 } : { borderWidth: 1, borderColor: 'grey' }}
                                 onClick={() => {
                                   setSelectSize(variant.name)
                                   setSelectColor("")
@@ -316,8 +362,8 @@ function Product() {
                             {variant?.status === true ?
                               <div
                                 key={index}
-                                className={`h-10 w-10 rounded-full cursor-pointer ${selectColor === variant.name ? 'border-2 border-yellow-600' : ''}`}
-                                style={{ backgroundColor: variant.color }}
+                                className={`h-10 w-10 rounded-full cursor-pointer`}
+                                style={selectColor === variant.name ? { backgroundColor: variant.color, borderWidth: 3, borderColor: color1 } : { backgroundColor: variant.color }}
                                 onClick={() => {
                                   setSelectColor(variant.name)
                                   setSelectSize("")
@@ -402,32 +448,40 @@ function Product() {
               }
             </div>
 
-            <div className="hidden lg:collapse collapse-plus bg-white mt-8">
-              <input type="radio" name="my-accordion-3" defaultChecked />
-              <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                PRODUCT DESCRIPTION
-              </div>
-              <div className="collapse-content">
-                <p dangerouslySetInnerHTML={{ __html: product?.description }} />
-              </div>
-            </div>
-            <div className="hidden lg:collapse collapse-plus bg-white">
-              <input type="radio" name="my-accordion-3" defaultChecked />
-              <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                DELIVERY
-              </div>
-              <div className="collapse-content">
-                <p className='text-justify'>{product?.deliveryDetails}</p>
-              </div>
-            </div>
-            <div className="hidden lg:collapse collapse-plus bg-white">
-              <input type="radio" name="my-accordion-3" defaultChecked />
-              <div className="collapse-title uppercase tracking-tight text-lg font-bold">
-                RETURNS
-              </div>
-              <div className="collapse-content">
-                <p className='text-justify'>{product?.returnDetails}</p>
-              </div>
+            <div className="space-y-4 mt-5">
+              {sections.map((section) => (
+                <div
+                  key={section.id}
+                  className="border border-gray-200 rounded-lg overflow-hidden transition-shadow duration-200"
+                >
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors duration-200 outline-none"
+                  >
+                    <h3 className="text-lg font-semibold text-gray-900 text-left">
+                      {section.title}
+                    </h3>
+                    <div className="flex-shrink-0 ml-4">
+                      {openSections[section.id] ? (
+                        <ChevronUp className="w-5 h-5 text-gray-600" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-gray-600" />
+                      )}
+                    </div>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${openSections[section.id]
+                      ? 'max-h-screen opacity-100'
+                      : 'max-h-0 opacity-0'
+                      }`}
+                  >
+                    <div className="px-6 py-6 bg-white border-t border-gray-100">
+                      {section.content}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <div className="lg:hidden mt-8">
