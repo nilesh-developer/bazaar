@@ -4,7 +4,7 @@ import app from "./app.js";
 
 configDotenv({
     path: "./.env"
-})
+});
 
 dbConnect()
 .then(() => {
