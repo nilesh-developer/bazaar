@@ -55,7 +55,7 @@ const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch,
                 </div>
 
                 <div className="items-center gap-8 hidden">
-                    <Link to="#" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Home</Link>
+                    <Link to="/" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Home</Link>
                     <Link to="/shop" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Shop</Link>
                     <Link to="/about" className="hidden md:block text-gray-700 hover:text-black font-medium transition">About</Link>
                     <Link to="/contact-us" className="hidden md:block text-gray-700 hover:text-black font-medium transition">Contact</Link>
@@ -100,11 +100,11 @@ const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch,
                     }
 
                     <div className="flex items-center gap-4">
-                        {!openSearch ?
+                        {/* {!openSearch ?
                             <button onClick={(e) => setOpenSearch(true)} style={{ color: color1 }} className='lg:hidden'>
                                 <Search className='w-6 h-6 lg:w-7 lg:h-7' />
                             </button>
-                            : null}
+                            : null} */}
                         <button className="relative p-2 rounded-full" onClick={() => setCartOpen(true)}>
                             <ShoppingBag className="w-6 h-6 lg:w-7 lg:h-7" style={{ color: color1 }} />
                             <span style={{ backgroundColor: color1, color: color2 }} className="absolute -top-0 -right-0 text-white text-xs rounded-full px-1.5 py-0.5 font-bold">{cart?.length}</span>

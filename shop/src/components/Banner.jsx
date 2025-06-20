@@ -23,7 +23,7 @@ function Banner({ store, color1, color2 }) {
     <>
       {/* Desktop Banner */}
       <div className="hidden md:flex">
-        {store.banner ? (
+        {store.desktopBanner ? (
           <>
             {!desktopImageLoaded && (
               <div

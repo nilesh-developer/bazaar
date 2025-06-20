@@ -32,7 +32,7 @@ function ShuffledProducts({ products, color1, color2 }) {
 
     return (
         <section data-theme="light" className='bg-white'>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center" style={{color: color1}}>All Products</h2>
+            <h2 className="text-3xl md:text-4xl font-bold ml-3 lg:ml-0 mb-8 mt-6 lg:text-center" style={{color: color1}}>All Products</h2>
             <div className="max-w-7xl mx-auto px-2 sm:px-6 md:px-8 mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-5">
                 {shuffledProducts.map((product, index) => {
                     if (product?.status === true && product?.stockStatus === true) {

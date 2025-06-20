@@ -73,7 +73,7 @@ export default function StoreLayout() {
   };
 
   if (loading || loadingRecommendedProducts) return <div className='flex min-h-dvh h-full w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-  
+
   // if (loading) return <LazyLoadingPage />;
 
   return (
@@ -138,7 +138,12 @@ export default function StoreLayout() {
           recommendedProducts: recommendedProducts
         }} />
       </main>
-      <BottomNavbar color1={color1} />
+      <BottomNavbar
+        color1={color1}
+        color2={color2}
+        openSearch={openSearch}
+        setOpenSearch={setOpenSearch}
+      />
       <Footer store={store} color1={color1} color2={color2} />
     </div>
   );
