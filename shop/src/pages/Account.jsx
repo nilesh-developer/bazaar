@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useOutletContext } from 'react-router-dom'
+import { Link, useOutletContext, Outlet } from 'react-router-dom'
 import { useCustomerAuth } from '../store/customerAuth'
 import { Helmet } from 'react-helmet'
 import {Box, LogOut, Pen, User} from "lucide-react"
