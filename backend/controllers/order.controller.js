@@ -66,6 +66,8 @@ const initiatePayment = asyncHandler(async (req, res) => {
             country: orderData?.country,
             pinCode: orderData?.pinCode,
             paymentMethod: orderData?.paymentMethod,
+            deliveryCharge: orderData?.deliveryCharge,
+            productTotals: orderData?.productTotals,
             totalPrice: orderData?.totalPrice,
             isCouponApplied: orderData?.isCouponApplied,
             discountValue: orderData?.discountValue,
@@ -324,6 +326,9 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
         </div>
         
         <div class="order-summary">
+            <p><strong>Subtotal: </strong> &#8377;${matchedOrders?.productTotals}</p>
+            <p><strong>Discount: </strong> &#8377;${matchedOrders?.discountValue}</p>
+            <p><strong>Delivery: </strong> &#8377;${matchedOrders?.deliveryCharge}</p>
             <p><strong>Total Amount: </strong> &#8377;${matchedOrders?.totalPrice}</p>
         </div>
 
@@ -464,11 +469,14 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
                 ${matchedOrders?.pinCode}</p>
         </div>
         <div class="order-summary">
-            <p><strong>Total Amount: </strong>&#8377;${matchedOrders?.totalPrice}</p>
+            <p><strong>Subtotal: </strong> &#8377;${matchedOrders?.productTotals}</p>
+            <p><strong>Discount: </strong> &#8377;${matchedOrders?.discountValue}</p>
+            <p><strong>Delivery: </strong> &#8377;${matchedOrders?.deliveryCharge}</p>
+            <p><strong>Total Amount: </strong> &#8377;${matchedOrders?.totalPrice}</p>
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
-            <a href="https://eazzy.store/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
+            <a href="https://eazzy.site/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
         </div>
         <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
     </div>
@@ -625,6 +633,9 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
                 </div>
                 
                 <div class="order-summary">
+                    <p><strong>Subtotal: </strong> &#8377;${matchedOrders?.productTotals}</p>
+                    <p><strong>Discount: </strong> &#8377;${matchedOrders?.discountValue}</p>
+                    <p><strong>Delivery: </strong> &#8377;${matchedOrders?.deliveryCharge}</p>
                     <p><strong>Total Amount: </strong> &#8377;${matchedOrders?.totalPrice}</p>
                 </div>
         
@@ -769,7 +780,7 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
                 </div>
                 <p>To view the order details, please log in to your seller dashboard.</p>
                 <div class="button-container">
-                    <a href="https://eazzy.store/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
+                    <a href="https://eazzy.site/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
                 </div>
                 <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
             </div>
@@ -1193,7 +1204,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
 });
 
 const codOrderPlaced = asyncHandler(async (req, res) => {
-    const { storeId, custId, email, name, phoneNo, address1, address2, state, country, pinCode, paymentMethod, isCouponApplied, discountValue, coupon, totalPrice, cart } = req.body;
+    const { storeId, custId, email, name, phoneNo, address1, address2, state, country, pinCode, paymentMethod, isCouponApplied, productTotals, deliveryCharge, discountValue, coupon, totalPrice, cart } = req.body;
 
     if (email === "" || name === "" || address1 === "" || address2 === "" || state === "" || country === "" || pinCode === "") {
         return res.status(404).json(new ApiResponse(404, "", "All fields are required"));
@@ -1225,6 +1236,8 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
         country,
         pinCode,
         paymentMethod,
+        productTotals,
+        deliveryCharge,
         totalPrice,
         isCouponApplied,
         discountValue,
@@ -1374,6 +1387,9 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
         </div>
         
         <div class="order-summary">
+            <p><strong>Subtotal: </strong> &#8377;${ordered?.productTotals}</p>
+            <p><strong>Discount: </strong> &#8377;${ordered?.discountValue}</p>
+            <p><strong>Delivery: </strong> &#8377;${ordered?.deliveryCharge}</p>
             <p><strong>Total Amount: </strong> &#8377;${ordered?.totalPrice}</p>
         </div>
 
@@ -1514,11 +1530,14 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
                 ${ordered.pinCode}</p>
         </div>
         <div class="order-summary">
-            <p><strong>Total Amount: </strong>&#8377;${ordered.totalPrice}</p>
+            <p><strong>Subtotal: </strong> &#8377;${ordered?.productTotals}</p>
+            <p><strong>Discount: </strong> &#8377;${ordered?.discountValue}</p>
+            <p><strong>Delivery: </strong> &#8377;${ordered?.deliveryCharge}</p>
+            <p><strong>Final Amount: </strong> &#8377;${ordered?.totalPrice}</p>
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
-            <a href="https://eazzy.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
+            <a href="https://eazzy.site/seller/orders/${ordered._id}" target="_blank">View Order</a>
         </div>
         <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
     </div>

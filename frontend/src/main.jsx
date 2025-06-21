@@ -49,6 +49,7 @@ import {
   Products,
   SellerOrderPage,
   SellerPayoutPage,
+  SetDeliveryCharges,
   Settings,
   SinglePayoutPage,
   Store,
@@ -131,6 +132,7 @@ const router = createBrowserRouter(
         <Route path='store-policies' element={<StorePolicy />} />
         <Route path='about-page' element={<StoreAboutPage />} />
         <Route path='customize-footer' element={<CustomizeFooter />} />
+        <Route path='set-delivery-charges' element={<SetDeliveryCharges />} />
         <Route path='domain-settings' element={<DomainSettings />} />
         <Route path='edit-profile' element={<UserProfile />} />
         <Route path='dialogbox' element={<DialogBox />} />

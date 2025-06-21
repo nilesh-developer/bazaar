@@ -21,6 +21,12 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    deliveryCharge: {
+        type: Number
+    },
+    productTotals: {
+        type: Number
+    },
     totalPrice: {
         type: Number
     },

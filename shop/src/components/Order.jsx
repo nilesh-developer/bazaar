@@ -103,8 +103,6 @@ function Order() {
         }
     }
 
-    console.log(orders[0])
-
     if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>;
     }
@@ -127,7 +125,7 @@ function Order() {
 
                 {orders?.length > 0 ?
                     <div className='grid grid-flow-row gap-3 mt-3'>
-                        {orders?.reverse()?.map((order, idx) => (
+                        {orders?.map((order, idx) => (
                             <div key={idx} className='bg-white rounded-xl border-[1px] border-gray-400 h-full w-full'>
                                 <div className='px-5 lg:px-10 py-5 border-b-[1px] border-gray-300 grid grid-cols-2 lg:grid-cols-4'>
                                     <div>

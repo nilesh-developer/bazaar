@@ -12,7 +12,7 @@ const StoreSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "users"
     },
-    email:{
+    email: {
         type: String,
     },
     businessName: {
@@ -141,6 +141,19 @@ const StoreSchema = new mongoose.Schema({
             default: 0
         }
     },
+    deliveryChargesTiers: [
+        {
+            min: {
+                type: String
+            },
+            max: {
+                type: String
+            },
+            charge: {
+                type: String
+            }
+        }
+    ],
     metaTitle: {
         type: String
     },

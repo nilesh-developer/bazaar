@@ -34,8 +34,11 @@ const CartSidebar = ({ open, onClose, store, color1, color2}) => {
                                 </div>
                             ))}
                             <div className="border-t px-2 py-4 bottom-0">
+                                <div className="flex justify-between items-center">
+                                    <span className="text-sm text-zinc-700 font-semibold">Delivery: &#8377;{(calculateTotal().deliveryCharge)}</span>
+                                </div>
                                 <div className="flex justify-between items-center mb-4">
-                                    <span className="text-lg font-semibold">Total: &#8377;{(calculateTotal() + 0.00).toFixed(2)}</span>
+                                    <span className="text-lg font-semibold">Total: &#8377;{(calculateTotal().finalTotal).toFixed(2)}</span>
                                 </div>
                                 <button onClick={() => navigate("/checkout")} style={{ backgroundColor: color1, color: color2 }} className="w-full py-3 rounded-full font-semibold hover:opacity-75 transition">Checkout</button>
                                 <button onClick={() => navigate("/cart")} style={{ color: color1, backgroundColor: color2 }} className="w-full py-3 mt-3 rounded-full font-semibold hover:opacity-75 transition">View Cart</button>

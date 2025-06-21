@@ -25,6 +25,7 @@ import Tags from "./Tags";
 import AddCategory from "../../pages/Seller/AddCategory";
 import EditCategory from "../../pages/Seller/EditCategory";
 import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
+import SetDeliveryCharges from "../../pages/Seller/SetDeliveryCharges";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
 import AddPaymentDetails from "../../pages/Seller/AddPaymentDetails";
@@ -40,6 +41,7 @@ export {
     BottomNavBar,
     StoreAboutPage,
     Orders,
+    SetDeliveryCharges,
     Store,
     Products,
     Customer,

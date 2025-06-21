@@ -135,13 +135,13 @@ function Cart() {
                                         <p className="text-lg font-semibold text-gray-900">&#8377;{calculateSubtotal().toFixed(2)}</p>
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <p className="text-sm text-gray-400">Shipping</p>
-                                        <p className="text-lg font-semibold text-gray-900">Free <span className='text-gray-500'>(&#8377;0.00)</span></p>
+                                        <p className="text-sm text-gray-400">Delivery</p>
+                                        <p className="text-lg font-semibold text-gray-900">&#8377;{calculateTotal().deliveryCharge.toFixed(2)}</p>
                                     </div>
                                 </div>
                                 <div className="mt-6 flex items-center justify-between">
                                     <p className="text-sm font-medium text-gray-900">Total</p>
-                                    <p className="text-2xl font-semibold text-gray-900"><span className="text-xs font-normal text-gray-400">INR</span> &#8377;{(calculateTotal() + 0.00).toFixed(2)}</p>
+                                    <p className="text-2xl font-semibold text-gray-900"><span className="text-xs font-normal text-gray-400">INR</span> &#8377;{(calculateTotal().finalTotal).toFixed(2)}</p>
                                 </div>
 
                                 <div className="mt-6 text-center">

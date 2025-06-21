@@ -13,10 +13,9 @@ function Checkout() {
     const { setCartOpen } = useOutletContext();
     const [store, setStore] = useState({})
     const navigate = useNavigate()
-    const { cart, removeAllProductsFromCart, calculateTotal } = useCart();
+    const { cart, removeAllProductsFromCart, discountValue, setDiscountValue, calculateTotal } = useCart();
     const [coupon, setCoupon] = useState("")
     const [isCouponApplied, setIsCouponApplied] = useState(false)
-    const [discountValue, setDiscountValue] = useState(0)
     const [billingDetails, setBillingDetails] = useState({
         email: "",
         name: "",
@@ -88,12 +87,15 @@ function Checkout() {
                     isCouponApplied,
                     coupon,
                     discountValue,
-                    totalPrice: (calculateTotal() - discountValue),
+                    deliveryCharge: calculateTotal().deliveryCharge,
+                    productTotals: calculateTotal().productTotals,
+                    totalPrice: calculateTotal().finalTotal,
                 }
             });
 
             if (res.data && res.data.payment_session_id) {
                 setOrderId(res.data.order_id); // still update state if needed elsewhere
+                setDiscountValue(0)
                 return {
                     sessionId: res.data.payment_session_id,
                     orderId: res.data.order_id
@@ -301,7 +303,9 @@ function Checkout() {
                         isCouponApplied,
                         coupon,
                         discountValue,
-                        totalPrice: (calculateTotal() - discountValue),
+                        deliveryCharge: calculateTotal().deliveryCharge,
+                        productTotals: calculateTotal().productTotals,
+                        totalPrice: calculateTotal().finalTotal,
                     })
                 })
 
@@ -321,6 +325,7 @@ function Checkout() {
                         pinCode: "",
                         paymentMethod: ""
                     })
+                    setDiscountValue(0)
                     navigate("/order-success")
                 } else {
                     toast.error(responseData.message)
@@ -557,8 +562,8 @@ function Checkout() {
                                 <p className="font-semibold text-zinc-900">&#8377;{calculateSubtotal().toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
-                                <p className="text-base font-medium text-zinc-900">Shipping</p>
-                                <p className="font-semibold text-zinc-900">&#8377;0.00</p>
+                                <p className="text-base font-medium text-zinc-900">Delivery</p>
+                                <p className="font-semibold text-zinc-900">&#8377;{calculateTotal().deliveryCharge.toFixed(2)}</p>
                             </div>
                             <div className="flex items-center justify-between">
                                 <p className="text-base font-medium text-zinc-900">Coupon</p>
@@ -567,7 +572,7 @@ function Checkout() {
                         </div>
                         <div className="mt-6 flex items-center justify-between">
                             <p className="text-base font-medium text-zinc-900">Total</p>
-                            <p className="text-2xl font-semibold text-zinc-900">&#8377;{(calculateTotal() - discountValue).toFixed(2)}</p>
+                            <p className="text-2xl font-semibold text-zinc-900">&#8377;{(calculateTotal().finalTotal).toFixed(2)}</p>
                         </div>
                         <button
                             onClick={handleCheckout}

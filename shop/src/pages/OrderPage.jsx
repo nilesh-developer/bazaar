@@ -158,15 +158,13 @@ function OrderPage() {
             <div className='border border-gray-400 rounded-lg p-4 flex mt-2'>
                 <div className='w-2/3'>
                     <p>Items:</p>
-                    <p>Packing:</p>
-                    <p>Shipping:</p>
+                    <p>Delivery:</p>
                     <p>Coupon discount:</p>
                     <b>Order Total:</b>
                 </div>
                 <div className='w-1/3'>
-                    <p>Rs. {order?.totalPrice?.toFixed(2)}</p>
-                    <p>Rs. 0.00</p>
-                    <p>Rs. 0.00</p>
+                    <p>Rs. {order?.productTotals?.toFixed(2)}</p>
+                    <p>Rs. {order?.deliveryCharge?.toFixed(2)}</p>
                     <p>{Number(order?.discountValue) === 0 ? "Free" : `Rs. -${Number(order?.discountValue)}`}</p>
                     <b className='text-green-800'>Rs. {order?.totalPrice?.toFixed(2)}</b>
                 </div>

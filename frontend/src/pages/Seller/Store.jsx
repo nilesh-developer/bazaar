@@ -1,4 +1,4 @@
-import { Columns3Cog, FileStack, FileText, Grid2X2, Info, Paintbrush, Settings } from 'lucide-react';
+import { Columns3Cog, FileStack, FileText, Grid2X2, Info, Paintbrush, Settings, Truck } from 'lucide-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -50,6 +50,18 @@ function Store() {
                 <div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Add Store About Page</h3>
                   <p className='text-sm text-gray-500'>Write about you and your store</p>
+                </div>
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/seller/set-delivery-charges">
+            <div className='bg-gray-50 p-5'>
+              <div className='flex'>
+                 <Truck className='text-black h-8 w-8 mt-3'/>
+                <div className='ml-4'>
+                  <h3 className='font-bold text-gray-800 text-xl'>Set Delivery Charges</h3>
+                  <p className='text-sm text-gray-500'>Set standard delivery charges based on cart size</p>
                 </div>
               </div>
             </div>

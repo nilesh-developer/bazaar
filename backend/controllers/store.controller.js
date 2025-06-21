@@ -512,6 +512,42 @@ const getCustomerData = asyncHandler(async (req, res) => {
 
 })
 
+const setDeliveryCharges = asyncHandler(async (req, res) => {
+    const { tiers, userId } = req.body;
+    console.log(tiers)
+    const saveDeliveryTiers = await stores.findOneAndUpdate({owner: userId},{
+        deliveryChargesTiers: tiers
+    }, { new: true })
+
+    if (!saveDeliveryTiers) {
+        return res.status(400)
+            .json(
+                new ApiResponse(400, "", "Something went wrong")
+            )
+    }
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, saveDeliveryTiers, "Saved Delivery Charges")
+        )
+})
+
+const getDeliveryCharges = asyncHandler(async (req, res) => {
+    const { userId } = req.params;
+    const store = await stores.findOne({owner: userId});
+    if (!store) {
+        return res.status(404).json({
+            statusCode: 404,
+            message: "Store not found"
+        });
+    }
+    return res.status(200).json({
+        statusCode: 200,
+        data: store.deliveryChargesTiers,
+        message: "Delivery charges fetched successfully"
+    });
+});
+
 const setStorePaymentDetails = asyncHandler(async (req, res) => {
     const { storeId, type, bankName, ifsc, accountNo, accountHolderName, upiId } = req.body;
 
@@ -672,6 +708,8 @@ export {
     updateSocial,
     updatePolicies,
     updateAboutPage,
+    setDeliveryCharges,
+    getDeliveryCharges,
     changeStoreStatus,
     deleteStore,
     storeData,
