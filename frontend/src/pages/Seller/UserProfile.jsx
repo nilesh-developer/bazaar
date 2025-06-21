@@ -55,7 +55,6 @@ function UserProfile() {
     }
 
     const handleSubmit = async (e) => {
-        console.log(userDetails)
         e.preventDefault();
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/update-password/${userDetails._id}`, {

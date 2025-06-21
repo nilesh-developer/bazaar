@@ -24,7 +24,8 @@ import {
   RefundPolicy,
   CookiePolicy,
   ShippingPolicy,
-  Checkout
+  Checkout,
+  ForgotPassword
 } from "./components/Home/index.js"
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './store/auth.jsx'
@@ -91,6 +92,7 @@ const router = createBrowserRouter(
         <Route path='' element={<StoreBuilderLanding />} />
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
+        <Route path='forgot-password' element={<ForgotPassword />} />
         {/* <Route path='pricing' element={<Pricing />} /> */}
         <Route path='checkout' element={<Checkout />} />
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />

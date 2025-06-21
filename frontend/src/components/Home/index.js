@@ -13,7 +13,8 @@ import PrivacyPolicy from "../../pages/Home/PrivacyPolicy";
 import CookiePolicy from "../../pages/Home/CookiePolicy";
 import RefundPolicy from "../../pages/Home/RefundPolicy";
 import ShippingPolicy from "../../pages/Home/ShippingPolicy";
+import ForgotPassword from "../../pages/Home/ForgetPassword";
 import Checkout from "./Checkout";
 
 
-export {Header, Footer, Login, SignUp, Home, Pricing, Checkout, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}
+export {Header, Footer, Login, SignUp, Home, Pricing, Checkout, ForgotPassword, TermsAndConditions,CookiePolicy, RefundPolicy, ShippingPolicy, PrivacyPolicy, StorePolicy, ContactForm, AboutUs, Logout}

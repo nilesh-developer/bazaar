@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser, checkStorenameUnique, verifyCode, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, subscriptionPayment } from "../controllers/user.controller.js";
+import { registerUser, checkStorenameUnique, verifyCode, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, subscriptionPayment, resetPassword } from "../controllers/user.controller.js";
 import { validate } from "../middlewares/validate.middleware.js";
 import { registerSchema, loginSchema } from "../schemas/signUpSchema.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
@@ -19,6 +19,8 @@ router.route("/register").post(validate(registerSchema),registerUser)
 router.route("/login").post(loginUser)
 
 router.route("/update-password/:id").patch(verifyJwt,updatePassword)
+
+router.route("/reset-password").patch(resetPassword)
 
 router.route("/delete").delete(verifyJwt,deleteAccount)
 

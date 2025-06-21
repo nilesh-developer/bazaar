@@ -66,7 +66,7 @@ function SignUp() {
     const verifyOtp = async (e) => {
         e.preventDefault()
         if (!user.email || !user.password) {
-            toast.error("All feilds are required")
+            toast.error("All fields are required")
             return
         }
 
@@ -139,17 +139,24 @@ function SignUp() {
                     <form>
                         <div className="form-input mt-5 mb-6">
                             <label htmlFor="email">Email</label><br />
-                            <input onChange={handleInput} value={user.email} className='w-full bg-gray-50 rounded-md px-3 py-3' type="email" name='email' id="email" placeholder=" " />
+                            <input onChange={handleInput} value={user.email} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="email" name='email' id="email" placeholder=" " />
                         </div>
                         <div className="form-input mb-6">
                             <label htmlFor="password">Password</label><br />
-                            <input onChange={handleInput} value={user.password} className='w-full bg-gray-50 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
+                            <input onChange={handleInput} value={user.password} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
                         </div>
                         {otpsend ?
-                            <div className="form-input mb-6">
-                                <label htmlFor="otp">Enter the OTP sent on your email</label><br />
-                                <input onChange={(e) => setOtp(e.target.value)} value={otp} className='w-full bg-gray-50 rounded-md px-3 py-3' type="text" name="otp" id="otp" placeholder=" " />
-                            </div>
+                            <>
+                                <div className="form-input">
+                                    <label htmlFor="otp">Enter the OTP sent on your email</label><br />
+                                    <input onChange={(e) => setOtp(e.target.value)} value={otp} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="text" name="otp" id="otp" placeholder=" " />
+                                </div>
+                                <div className='text-right'>
+                                    <button
+                                        onClick={sendOTP}
+                                        className='mb-6 text-xs text-green-800 font-semibold mt-1'>Resend OTP</button>
+                                </div>
+                            </>
                             :
                             null
                         }

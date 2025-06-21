@@ -140,7 +140,7 @@ const sendotp = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #ff8c00;
+            border-bottom: 4px solid #058026;
         }
         .header img {
             width: 120px;
@@ -158,7 +158,7 @@ const sendotp = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #ff9100;
+            border: 2px dashed #058026;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -177,7 +177,7 @@ const sendotp = asyncHandler(async (req, res) => {
             margin-bottom: 20px;
         }
         .support a {
-            background-color: #ee7401;
+            background-color: #058026;
             color: white;
             padding: 12px 24px;
             text-decoration: none;
@@ -189,7 +189,7 @@ const sendotp = asyncHandler(async (req, res) => {
             transition: background-color 0.3s;
         }
         .support a:hover {
-            background-color: #fd6900;
+            background-color: #058026;
         }
         .footer {
             background-color: #f9f9f9;
@@ -234,7 +234,7 @@ const sendotp = asyncHandler(async (req, res) => {
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://eazzy.site/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
@@ -304,7 +304,7 @@ const registerUser = asyncHandler(async (req, res) => {
         }
     })
 
-    const userFree = await users.findOneAndUpdate({_id: user._id},{
+    const userFree = await users.findOneAndUpdate({ _id: user._id }, {
         transactionId: created._id,
         subcription: true
     })
@@ -403,6 +403,27 @@ const updatePassword = asyncHandler(async (req, res) => {
         )
 })
 
+const resetPassword = asyncHandler(async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    const user = await users.findOne({ email })
+
+    if (!user) {
+        return res.status(400).json({
+            statusCode: 400,
+            message: "Seller not registered"
+        })
+    }
+
+    const updatedPassword = await users.findOneAndUpdate({ email }, { password: newPassword })
+
+    return res.status(200)
+        .json({
+            statusCode: 200,
+            message: "Password reset successfully"
+        })
+})
+
 const deleteAccount = asyncHandler(async (req, res) => {
     const user = await users.findByIdAndDelete(req.user._id)
     const store = await stores.findByIdAndDelete(user.store)
@@ -419,8 +440,8 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
     const currentDate = new Date();
 
-    if(user?.transactionId?.expiresOn < currentDate){
-        const userUpdated = await users.findOneAndUpdate({_id: user._id},{
+    if (user?.transactionId?.expiresOn < currentDate) {
+        const userUpdated = await users.findOneAndUpdate({ _id: user._id }, {
             transactionId: null,
             subcription: false
         })
@@ -449,17 +470,17 @@ const getUserData = asyncHandler(async (req, res) => {
 
 const subscriptionPayment = asyncHandler(async (req, res) => {
 
-    const {userId,
+    const { userId,
         tId,
         subcription,
-        upiId} = req.body;
+        upiId } = req.body;
 
-    const user = await users.findOneAndUpdate({_id: userId},{
+    const user = await users.findOneAndUpdate({ _id: userId }, {
         transactionId: tId,
         subcription: subcription
     })
 
-    const transaction = await subscriptions.findOneAndUpdate({_id: tId},{
+    const transaction = await subscriptions.findOneAndUpdate({ _id: tId }, {
         upiId,
         failed: false
     })
@@ -505,7 +526,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #ff8c00;
+            border-bottom: 4px solid #058026;
         }
         .header img {
             width: 120px;
@@ -523,7 +544,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #ff9100;
+            border: 2px dashed #058026;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -542,7 +563,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             margin-bottom: 20px;
         }
         .support a {
-            background-color: #ee7401;
+            background-color: #058026;
             color: white;
             padding: 12px 24px;
             text-decoration: none;
@@ -591,7 +612,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
     <div class="container">
         <!-- Header with logo and background -->
         <div class="header">
-            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
         </div>
 
         <!-- Main Content -->
@@ -683,7 +704,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             background: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 4px solid #ff8c00;
+            border-bottom: 4px solid #058026;
         }
         .header img {
             width: 120px;
@@ -701,7 +722,7 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             padding: 15px;
             margin: 20px 0;
             text-align: center;
-            border: 2px dashed #ff9100;
+            border: 2px dashed #058026;
             border-radius: 8px;
         }
         .otp-box .otp {
@@ -844,6 +865,7 @@ export {
     verifyCode,
     sendotp,
     verifyOtp,
+    resetPassword,
     loginUser,
     updatePassword,
     deleteAccount,
