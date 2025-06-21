@@ -2,5 +2,4 @@ User-agent: *
 Disallow: /seller
 Allow: /
 
-Sitemap: https://eazzy.store/sitemap.xml
-Sitemap: https://www.eazzy.site/sitemap.xml
+Sitemap: https://eazzy.site/sitemap.xml
