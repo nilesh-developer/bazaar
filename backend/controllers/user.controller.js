@@ -98,7 +98,7 @@ const verifyCode = async (req, res) => {
 
 const sendotp = asyncHandler(async (req, res) => {
     const { email } = req.body;
-    const OTP = Math.floor(1 + Math.random() * 9000);
+    const OTP = Math.floor(1000 + Math.random() * 9000);
 
     const emailProvider = nodeMailer.createTransport({
         service: "gmail",
