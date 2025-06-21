@@ -31,10 +31,10 @@ const HeaderLanding = () => {
               <li><Link to="/cookie-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Cookie Policy</Link></li>
             </ul>
           </div>
-          {/* <Link to="/contact-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">Contact Us</Link>
-          <Link to="/about-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">About Us</Link> */}
-          <a href="/contact-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">Contact Us</a>
-          <a href="/about-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">About Us</a>
+          <Link to="/contact-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">Contact Us</Link>
+          <Link to="/about-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">About Us</Link>
+          {/* <a href="/contact-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">Contact Us</a>
+          <a href="/about-us" className="text-sm font-semibold leading-6 hover:text-green-600 transition-colors">About Us</a> */}
           {token ?
             <Link to="/seller/dashboard" className="text-sm font-semibold leading-6 text-green-600">Account <span aria-hidden="true">&rarr;</span></Link>
             :
