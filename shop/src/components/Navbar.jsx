@@ -19,7 +19,7 @@ const Navbar = ({ setCartOpen, store, color1, color2, openSearch, setOpenSearch,
         <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-lg shadow-sm border-b border-gray-100">
             <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between h-16 lg:h-16">
                 <div className="flex items-center md:hidden gap-8">
-                    <button className="p-2" onClick={() => setIsMenuOpen(true)}>
+                    <button className="p-2" aria-label="Menu" onClick={() => setIsMenuOpen(true)}>
                         <Menu className="h-6 w-6" color={color1} />
                     </button>
                 </div>

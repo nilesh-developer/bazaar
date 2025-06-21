@@ -182,7 +182,9 @@ const FeaturedProductsSection = ({ recommendedProducts, color1, color2 }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-4">
             {recommendedProducts.map(product => {
               if (product.recommended) {
-                return <ProductCard product={product} color1={color1} color2={color2} />
+                return <div key={product._id}>
+                  <ProductCard product={product} color1={color1} color2={color2} />
+                </div>
               } else {
                 return null
               }

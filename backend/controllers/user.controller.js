@@ -212,7 +212,7 @@ const sendotp = asyncHandler(async (req, res) => {
     <div class="container">
         <!-- Header with logo and background -->
         <div class="header">
-            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
         </div>
 
         <!-- Main Content -->
