@@ -98,11 +98,11 @@ const Home = () => {
             </div>
 
             {/* Hero Section */}
-            <section className="relative z-10 pb-20 pt-48 sm:pb-32">
+            <section className="relative z-10 pb-20 pt-40 lg:pt-48 sm:pb-32">
                 <div className="max-w-3xl sm:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center">
                         <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                            <div className="mb-4 sm:mb-6 flex flex-col items-center w-full">
+                            <div className="mb-4 md:mb-6 flex flex-col items-center w-full">
                                 <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold leading-tight tracking-tight mb-4 sm:mb-4">
                                     <span className="block bg-gradient-to-r from-green-700 via-emerald-500 to-teal-500 bg-clip-text text-transparent animate-gradient-flow animate-hero-text-fadein" style={{ animationDelay: '0.1s', animationDuration: '1.2s', animationFillMode: 'both' }}>
                                         Build Your
