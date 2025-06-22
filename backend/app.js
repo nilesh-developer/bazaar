@@ -19,11 +19,11 @@ const app = express();
 // };
 
 // app.use(cors(corsOptions));
-app.use(cors())
-app.use(cookieParser())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.static("public"))
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
     res.send("Hello World");
