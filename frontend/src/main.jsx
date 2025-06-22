@@ -89,8 +89,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<ControlRoute><Layout /></ControlRoute>} >
-        {/* <Route path='' element={<Home />} /> */}
-        <Route path='' element={<StoreBuilderLanding />} />
+        <Route path='' element={<Home />} />
+        {/* <Route path='' element={<StoreBuilderLanding />} /> */}
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
         <Route path='forgot-password' element={<ForgotPassword />} />
