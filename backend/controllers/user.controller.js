@@ -112,7 +112,7 @@ const sendotp = asyncHandler(async (req, res) => {
     })
 
     const receiver = {
-        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+        from: `Growo <${process.env.OTP_EMAIL_ID}>`,
         to: email,
         subject: "OTP Verification",
         html: `<!DOCTYPE html>
@@ -212,7 +212,7 @@ const sendotp = asyncHandler(async (req, res) => {
     <div class="container">
         <!-- Header with logo and background -->
         <div class="header">
-            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
+            <img src="https://growo.store/growo.png" alt="Growo Logo">
         </div>
 
         <!-- Main Content -->
@@ -229,17 +229,17 @@ const sendotp = asyncHandler(async (req, res) => {
             <p>This password will expire in ten minutes if not used.</p>
             <p>If you did not request this, please contact our customer support immediately to secure your account.</p>
 
-            <p>Thank You,<br><strong>Eazzy Team</strong></p>
+            <p>Thank You,<br><strong>Growo Team</strong></p>
         </div>
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.site/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://growo.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
         <div class="footer">
-            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Growo.</p>
             <p>Sharing these details can lead to unauthorized access to your account.</p>
             <p>This is an automatically generated email, please do not reply.</p>
         </div>
@@ -290,7 +290,7 @@ const registerUser = asyncHandler(async (req, res) => {
         period: 120, //no. of month free subscription
         price: 0,
         planType: "Free",
-        upiId: "Eazzy Free Trial",
+        upiId: "Growo Free Trial",
         failed: false,
         status: true
     })
@@ -324,9 +324,9 @@ const registerUser = asyncHandler(async (req, res) => {
         })
 
         const receiver = {
-            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            from: `Growo <${process.env.OTP_EMAIL_ID}>`,
             to: process.env.ADMIN_EMAIL_ID,
-            subject: "New user registered on eazzy",
+            subject: "New user registered on Growo",
             text: `User Email: ${user.email}`,
         }
 
@@ -498,9 +498,9 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
     })
 
     const receiver = {
-        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+        from: `Growo <${process.env.OTP_EMAIL_ID}>`,
         to: user.email,
-        subject: "Payment Confirmation for Your Eazzy Store Subscription",
+        subject: "Payment Confirmation for Your Growo Store Subscription",
         html: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -612,14 +612,14 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
     <div class="container">
         <!-- Header with logo and background -->
         <div class="header">
-            <img src="https://eazzy.site/eazzy.png" alt="Eazzy Logo">
+            <img src="https://growo.store/growo.png" alt="Growo Logo">
         </div>
 
         <!-- Main Content -->
         <div class="content">
-            <h2>Payment Confirmation for Your Eazzy Store Subscription</h2>
+            <h2>Payment Confirmation for Your Growo Store Subscription</h2>
             <p>Hi user,</p>
-            <p>We are pleased to confirm that your payment for the Eazzy Store subscription has been successfully processed. Below are the details of your transaction:</p>
+            <p>We are pleased to confirm that your payment for the Growo Store subscription has been successfully processed. Below are the details of your transaction:</p>
             <div class="order-details">
             <h2>Transaction Details</h2>
             <table>
@@ -643,20 +643,20 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
         </div>
         <p>Your subscription payment verification is under review. It will take 5 to 8 hours to be verified.</p>
 
-            <p>Thank you for trusting Eazzy Store. We're excited to support your journey!</p>
+            <p>Thank you for trusting Growo Store. We're excited to support your journey!</p>
             <p>If you did not made this payment, please contact our customer support immediately to secure your account.</p>
 
-            <p>Best regards,<br><strong>Eazzy Team</strong></p>
+            <p>Best regards,<br><strong>Growo Team</strong></p>
         </div>
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://growo.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
         <div class="footer">
-            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Growo.</p>
             <p>Sharing these details can lead to unauthorized access to your account.</p>
             <p>This is an automatically generated email, please do not reply.</p>
         </div>
@@ -676,9 +676,9 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
 
 
     const receiverAdmin = {
-        from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+        from: `Growo <${process.env.OTP_EMAIL_ID}>`,
         to: process.env.ADMIN_EMAIL_ID,
-        subject: "Eazzy Store Subscribtion Payment Request",
+        subject: "Growo Store Subscribtion Payment Request",
         html: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -790,14 +790,14 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
     <div class="container">
         <!-- Header with logo and background -->
         <div class="header">
-            <img src="https://eazzy.store/eazzy.png" alt="Eazzy Logo">
+            <img src="https://growo.store/growo.png" alt="Growo Logo">
         </div>
 
         <!-- Main Content -->
         <div class="content">
-            <h2>Eazzy Store Subscribtion Payment Request</h2>
+            <h2>Growo Store Subscribtion Payment Request</h2>
             <p>Hi Admin,</p>
-            <p>Eazzy store received a subscription request. Below are the details of the transaction:</p>
+            <p>Growo store received a subscription request. Below are the details of the transaction:</p>
             <div class="order-details">
             <h2>Transaction Details</h2>
             <table>
@@ -824,17 +824,17 @@ const subscriptionPayment = asyncHandler(async (req, res) => {
             </table>
         </div>
 
-        <p>Best regards,<br><strong>Eazzy Store</strong></p>
+        <p>Best regards,<br><strong>Growo Store</strong></p>
         </div>
 
         <!-- Support Button -->
         <div class="support">
-            <a href="https://eazzy.store/contact-us">Contact 24x7 Help & Support</a>
+            <a href="https://growo.store/contact-us">Contact 24x7 Help & Support</a>
         </div>
 
         <!-- Footer with security warning -->
         <div class="footer">
-            <p>Never share your OTP with anyone. Even if the caller claims to be from Eazzy.</p>
+            <p>Never share your OTP with anyone. Even if the caller claims to be from Growo.</p>
             <p>Sharing these details can lead to unauthorized access to your account.</p>
             <p>This is an automatically generated email, please do not reply.</p>
         </div>

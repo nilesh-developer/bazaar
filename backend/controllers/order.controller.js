@@ -356,7 +356,7 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
             })
 
             const sellerReceiver = {
-                from: `Eazzy < ${process.env.OTP_EMAIL_ID}> `,
+                from: `Growo <${process.env.OTP_EMAIL_ID}> `,
                 to: store.owner.email,
                 subject: `Order received from your store ${store.name} !`,
                 html: `<!DOCTYPE html>
@@ -476,7 +476,7 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
-            <a href="https://eazzy.site/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
+            <a href="https://growo.store/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
         </div>
         <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
     </div>
@@ -663,7 +663,7 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
             })
 
             const sellerReceiver = {
-                from: `Eazzy < ${process.env.OTP_EMAIL_ID}> `,
+                from: `Growo < ${process.env.OTP_EMAIL_ID}> `,
                 to: store.owner.email,
                 subject: `Order received from your store ${store.name} !`,
                 html: `<!DOCTYPE html>
@@ -780,7 +780,7 @@ const cashfreePaymentDetails = asyncHandler(async (req, res) => {
                 </div>
                 <p>To view the order details, please log in to your seller dashboard.</p>
                 <div class="button-container">
-                    <a href="https://eazzy.site/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
+                    <a href="https://growo.store/seller/orders/${matchedOrders?._id}" target="_blank">View Order</a>
                 </div>
                 <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
             </div>
@@ -1049,7 +1049,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
     })
 
     const sellerReceiver = {
-        from: `Eazzy < ${process.env.OTP_EMAIL_ID}> `,
+        from: `Growo < ${process.env.OTP_EMAIL_ID}> `,
         to: store.owner.email,
         subject: `Order received from your store ${store.name} !`,
         html: `<!DOCTYPE html>
@@ -1173,7 +1173,7 @@ const orderPlaced = asyncHandler(async (req, res) => {
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
-            <a href="https://eazzy.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
+            <a href="https://Growo.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
         </div>
         <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
     </div>
@@ -1417,7 +1417,7 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
     })
 
     const sellerReceiver = {
-        from: `Eazzy < ${process.env.OTP_EMAIL_ID}> `,
+        from: `Growo < ${process.env.OTP_EMAIL_ID}> `,
         to: store.owner.email,
         subject: `Order received from your store ${store.name} !`,
         html: `<!DOCTYPE html>
@@ -1537,7 +1537,7 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
         </div>
         <p>To view the order details, please log in to your seller dashboard.</p>
         <div class="button-container">
-            <a href="https://eazzy.site/seller/orders/${ordered._id}" target="_blank">View Order</a>
+            <a href="https://growo.store/seller/orders/${ordered._id}" target="_blank">View Order</a>
         </div>
         <p>If you have any questions, feel free to contact us at <a href="mailto:${process.env.OTP_EMAIL_ID}">email</a>.</p>
     </div>
