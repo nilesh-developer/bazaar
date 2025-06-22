@@ -15,7 +15,7 @@ const TermsAndConditions = () => {
       <section className="bg-white py-8 mx-3 lg:mx-28 rounded-lg">
         <div className="mb-8">
           <p className="text-gray-600 text-lg mb-5">
-            Welcome to Eazzy Store! By registering or using our services, you agree to the following terms:
+            Welcome to Growo Store! By registering or using our services, you agree to the following terms:
           </p>
           <ul className="text-gray-600 text-lg list-disc list-inside">
             <li><strong>Account:</strong> You must provide accurate information. You are responsible for all activities under your account.</li>

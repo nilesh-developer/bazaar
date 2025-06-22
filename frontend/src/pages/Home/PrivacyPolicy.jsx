@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
       <section className="bg-white py-8 mx-3 lg:mx-28 rounded-lg">
         <div className="mb-8">
           <p className="text-gray-600 text-lg mb-5">
-            We at Eazzy Store respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information.
+            We at Growo Store respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, and safeguard your information.
           </p>
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Information We Collect:</h2>
           <ul className="text-gray-600 text-lg list-disc list-inside">
@@ -51,7 +51,7 @@ const PrivacyPolicy = () => {
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Rights:</h2>
           <p className="text-gray-600 text-lg">
-            You may view, update, or delete your data through your account settings. For questions, contact us at mail.eazzystore@gmail.com.
+            You may view, update, or delete your data through your account settings. For questions, contact us at mail.Growostore@gmail.com.
           </p>
         </div>
 

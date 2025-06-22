@@ -15,7 +15,7 @@ const RefundPolicy = () => {
       <section className="bg-white py-8 mx-3 lg:mx-28 rounded-lg">
         <div className="mb-8">
           <p className="text-gray-600 text-lg mb-5">
-            At Eazzy Store, we aim for complete customer satisfaction. Here’s our refund and cancellation policy:
+            At Growo Store, we aim for complete customer satisfaction. Here’s our refund and cancellation policy:
           </p>
           <ul className="text-gray-600 text-lg list-disc list-inside">
             <li><strong>Cancellations:</strong> You can cancel your subscription anytime from your account dashboard. Your plan remains active until the end of the billing cycle.</li>
@@ -23,7 +23,7 @@ const RefundPolicy = () => {
             <li><strong>Processing Time:</strong> Approved refunds are processed within 5–7 working days.</li>
           </ul>
           <p className="text-gray-600 text-lg mt-4">
-            To request a refund, please contact us at mail.eazzystore@gmail.com.
+            To request a refund, please contact us at growostore@gmail.com.
           </p>
         </div>
 

@@ -19,7 +19,7 @@ const AboutUs = () => {
           <div className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h2>
             <p className="text-gray-600 text-lg">
-              At Eazzy Store, our mission is to empower influncers, creators and businesses of all sizes by providing an easy-to-use, robust e-commerce website builder. We strive to enable our users to create beautiful, functional, and successful online stores with minimal effort.
+              At Growo Store, our mission is to empower influncers, creators and businesses of all sizes by providing an easy-to-use, robust e-commerce website builder. We strive to enable our users to create beautiful, functional, and successful online stores with minimal effort.
             </p>
           </div>
           <div className="mb-8">

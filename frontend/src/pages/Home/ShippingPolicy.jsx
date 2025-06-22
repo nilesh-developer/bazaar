@@ -15,13 +15,13 @@ const ShippingPolicy = () => {
       <section className="bg-white py-8 mx-3 lg:mx-28 rounded-lg">
         <div className="text-gray-600 text-lg mb-8">
           <p className="mb-4">
-            Since Eazzy Store is a platform that allows users to create their own online stores, we do not directly ship any physical goods. However, individual stores hosted on our platform are responsible for their own shipping policies.
+            Since Growo Store is a platform that allows users to create their own online stores, we do not directly ship any physical goods. However, individual stores hosted on our platform are responsible for their own shipping policies.
           </p>
           <p className="mb-4">
             Store owners are advised to clearly communicate shipping methods, charges, timelines, and return policies on their individual websites.
           </p>
           <p>
-            Eazzy Store is not responsible for the shipping, delivery, or returns of any products sold through user-created stores.
+            Growo Store is not responsible for the shipping, delivery, or returns of any products sold through user-created stores.
           </p>
         </div>
 

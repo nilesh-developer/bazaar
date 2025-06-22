@@ -22,8 +22,8 @@ function Header() {
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <Link to="/" className="-m-1.5 p-1.5">
-                        <span className="sr-only">Eazzy</span>
-                        <img className="h-12 w-auto" src="/eazzy.png" alt="" />
+                        <span className="sr-only">Growo</span>
+                        <img className="h-12 w-auto" src="/growo.png" alt="Growo" />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">

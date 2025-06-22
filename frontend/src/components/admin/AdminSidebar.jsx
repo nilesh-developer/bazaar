@@ -8,7 +8,7 @@ function AdminSidebar() {
         <>
             <div className="divide-y divide-gray-300 bg-white">
                 <div className="flex items-center justify-center p-2 space-x-4">
-                    <img className='h-10' src="/eazzy.png" alt="eazzy" />
+                    <img className='h-9' src="/growo.png" alt="growo" />
                 </div>
                 <ul className="pt-2 pb-4 space-y-1 text-sm">
                     <li>

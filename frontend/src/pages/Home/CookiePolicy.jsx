@@ -15,7 +15,7 @@ const CookiePolicy = () => {
       <section className="bg-white py-8 mx-3 lg:mx-28 rounded-lg">
         <div className="text-gray-600 text-lg mb-8">
           <p className="mb-4">
-            Eazzy Store uses cookies to enhance your experience on our platform. By continuing to use our website, you consent to our use of cookies as described below:
+            Growo Store uses cookies to enhance your experience on our platform. By continuing to use our website, you consent to our use of cookies as described below:
           </p>
           <ul className="list-disc list-inside">
             <li><strong>Essential Cookies:</strong> Necessary for the platform to function (e.g., user authentication, preferences).</li>
