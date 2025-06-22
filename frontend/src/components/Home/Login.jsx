@@ -93,10 +93,7 @@ function Login() {
                             <input onChange={handleInput} value={user.password} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
                         </div>
                         <div className='mb-6 text-right mt-2'>
-                        <button onClick={(e) => {
-                            e.preventDefault;
-                            navigate("/forgot-password")
-                        }} className='text-green-700 font-semibold'>Forgot Password?</button>
+                        <Link to={"/forgot-password"} className='text-green-600 font-semibold'>Forgot Password?</Link>
                         </div>
                         <button type="submit"
                             className="bg-green-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-green-700 transition duration-200">{!loadingBtn ? "Login" : <span className="loading loading-spinner loading-md"></span>}</button>

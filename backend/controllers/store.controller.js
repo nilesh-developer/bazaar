@@ -154,9 +154,9 @@ const addCustomDomain = asyncHandler(async (req, res) => {
         })
 
         const receiver = {
-            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            from: `Growo <${process.env.OTP_EMAIL_ID}>`,
             to: process.env.ADMIN_EMAIL_ID,
-            subject: "New Custom Domain Registration Request on Eazzy",
+            subject: "New Custom Domain Registration Request on Growo",
             html: `<!DOCTYPE html>
 <html lang="en">
 <head>

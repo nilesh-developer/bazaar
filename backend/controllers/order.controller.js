@@ -1401,7 +1401,7 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
 
         <p>Thank you again for your purchase! We hope to see you again soon.</p>
 
-        <p>Best Regards,<br>Your Store Team</p>
+        <p>Best Regards,<br>Store Team</p>
         </div >
 
     </body >

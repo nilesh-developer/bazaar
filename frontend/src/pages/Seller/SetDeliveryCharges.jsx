@@ -5,7 +5,7 @@ import useStoreData from "../../Hooks/useStoreData";
 export default function SetDeliveryCharges() {
     const [tiers, setTiers] = useState([]);
     const { user } = useStoreData();
-    const [loadingData, setLoadingData] = useState(false);
+    const [loadingData, setLoadingData] = useState(true);
     const [form, setForm] = useState({
         min: "",
         max: "",

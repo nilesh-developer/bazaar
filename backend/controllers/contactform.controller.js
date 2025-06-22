@@ -28,7 +28,7 @@ const submitForm = asyncHandler(async (req, res) => {
         })
 
         const receiver = {
-            from: `Eazzy <${process.env.OTP_EMAIL_ID}>`,
+            from: `Growo <${process.env.OTP_EMAIL_ID}>`,
             to: process.env.ADMIN_EMAIL_ID,
             subject: "New Contact Form Submission",
             html: `<!DOCTYPE html>
@@ -133,8 +133,8 @@ const submitForm = asyncHandler(async (req, res) => {
         <!-- Email Footer -->
         <div class="footer">
             <p>Thank you,</p>
-            <p>Eazzy Team</p>
-            <p><a href="https://www.eazzy.store">www.eazzy.store</a></p>
+            <p>Growo Team</p>
+            <p><a href="https://www.growo.store">www.growo.store</a></p>
         </div>
     </div>
 </body>
