@@ -121,7 +121,7 @@ const Home = () => {
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 lg:mb-14">
                                 <Link to="/signup" className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 py-4 rounded-full text-base text-lg font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"><button >Create Store Now<ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" /></button></Link>
-                                <a href="https://youtu.be/JJ-WRmY9iJc?si=PMrf930XP3E9XgYv" className="group flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold border border-green-500/40 hover:border-green-400 backdrop-blur-sm hover:bg-green-500/5 transition-all text-black"><Play className="mr-2 group-hover:scale-110 transition-transform" size={20} /> Watch Demo</a>
+                                <a href="https://youtu.be/P3uvqfF1cRY?si=cPubx4YBNvPfGCCf" className="group flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold border border-green-500/40 hover:border-green-400 backdrop-blur-sm hover:bg-green-500/5 transition-all text-black"><Play className="mr-2 group-hover:scale-110 transition-transform" size={20} /> Watch Demo</a>
                             </div>
 
                             <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-xs sm:text-sm text-gray-700">
@@ -294,9 +294,9 @@ const Home = () => {
                             <button onClick={() => navigate("/signup")} className="bg-white text-green-700 px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
                                 Create Your Store
                             </button>
-                            <button onClick={() => navigate("/about-us")} className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-green-700 transition-all duration-300">
-                                Learn More
-                            </button>
+                            <a href='https://youtu.be/P3uvqfF1cRY?si=cPubx4YBNvPfGCCf' className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-green-700 transition-all duration-300">
+                                Watch Demo
+                            </a>
                         </div>
                     </div>
                 </div>
