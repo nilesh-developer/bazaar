@@ -389,7 +389,6 @@ const sendotp = asyncHandler(async (req, res) => {
     // </html>
     // `,
     //     }
-
     const otpToken = await jwt.sign({ otp: OTP }, process.env.OTP_TOKEN_SECRET, { expiresIn: process.env.OTP_TOKEN_EXPIRY })
 
     try {
