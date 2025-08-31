@@ -84,9 +84,16 @@ function AllSellers() {
                                             {/* <td className="p-3 text-base tracking-tight">
                                                 <p className=''>{seller?.owner?.email}</p>
                                             </td> */}
-                                            <td className="p-3 text-base tracking-tight">
-                                                <img className='h-7 w-7' src={seller?.logo} alt="" />
-                                            </td>
+                                            {seller.logo ?
+                                                <td className="p-3 text-base tracking-tight">
+                                                    <img className='h-7 w-7' src={seller?.logo} alt="" />
+                                                </td>
+                                                :
+                                                <td className="p-3 text-base tracking-tight">
+                                                    <img className='h-7 w-7' src="/no-image.png" alt="Store is not available" />
+                                                </td>
+
+                                            }
                                             <td className="p-3 text-base tracking-tight">
                                                 <p className=''>{seller?.name}</p>
                                             </td>
