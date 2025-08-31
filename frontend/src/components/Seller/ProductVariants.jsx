@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState } from 'react'
-
+import toast from 'react-hot-toast';
 
 const ProductVariants = ({variants, setVariants}) => {
   let [isOpen, setIsOpen] = useState(false)
@@ -50,6 +50,10 @@ const ProductVariants = ({variants, setVariants}) => {
   }
 
   const handleAddVariant = (e) => {
+    if(variantData.name === "" || variantData.originalPrice === "" || variantData.qty === "" || variantData.sku === "" || variantData.type === ""){
+      toast.error("Please fill all required fields")
+      return
+    }
     setVariants([
       ...variants,
       variantData

@@ -354,7 +354,7 @@ function Checkout() {
                     <p className="text-xl font-medium">Shipping Details</p>
                     <p className="text-zinc-400">Complete your order by providing your billing and shipping details.</p>
                     <div className="">
-                        <label htmlFor="email" className="mt-4 mb-2 block text-base font-medium">Email</label>
+                        <label htmlFor="email" className="mt-4 mb-2 block text-base font-medium">Email<span className='text-red-700'>*</span></label>
                         <div className="relative">
                             <input
                                 type="email"
@@ -366,7 +366,7 @@ function Checkout() {
                                 disabled
                             />
                         </div>
-                        <label htmlFor="card-holder" className="mt-4 mb-2 block text-base font-medium">Name</label>
+                        <label htmlFor="card-holder" className="mt-4 mb-2 block text-base font-medium">Name<span className='text-red-700'>*</span></label>
                         <div className="relative">
                             <input
                                 type="text"
@@ -380,7 +380,7 @@ function Checkout() {
                             />
                         </div>
 
-                        <label htmlFor="phoneNo" className="mt-4 mb-2 block text-base font-medium">Phone no.</label>
+                        <label htmlFor="phoneNo" className="mt-4 mb-2 block text-base font-medium">Phone no.<span className='text-red-700'>*</span></label>
                         <div className="relative">
                             <input
                                 type="number"
@@ -396,7 +396,7 @@ function Checkout() {
 
                         <div className="gap-2 flex flex-col lg:flex-row">
                             <div className='w-full'>
-                                <label htmlFor="address1" className="mt-4 mb-2 block text-base font-medium">Address 1</label>
+                                <label htmlFor="address1" className="mt-4 mb-2 block text-base font-medium">Address 1<span className='text-red-700'>*</span></label>
                                 <input
                                     type="text"
                                     name='address1'
@@ -409,7 +409,7 @@ function Checkout() {
                                 />
                             </div>
                             <div className='w-full'>
-                                <label htmlFor="address2" className="mt-4 mb-2 block text-base font-medium">Address 2</label>
+                                <label htmlFor="address2" className="mt-4 mb-2 block text-base font-medium">Address 2<span className='text-red-700'>*</span></label>
                                 <input type="text"
                                     name='address2'
                                     id='address2'
@@ -423,7 +423,7 @@ function Checkout() {
                         </div>
                         <div className="gap-2 flex flex-col lg:flex-row">
                             <div className='w-full'>
-                                <label htmlFor="state" className="mt-4 mb-2 block text-base font-medium">State</label>
+                                <label htmlFor="state" className="mt-4 mb-2 block text-base font-medium">State<span className='text-red-700'>*</span></label>
                                 <select
                                     name="state"
                                     id="state"
@@ -439,7 +439,7 @@ function Checkout() {
                                 </select>
                             </div>
                             <div className='w-full'>
-                                <label htmlFor="country" className="mt-4 mb-2 block text-base font-medium">Country</label>
+                                <label htmlFor="country" className="mt-4 mb-2 block text-base font-medium">Country<span className='text-red-700'>*</span></label>
                                 <select
                                     name="country"
                                     id="country"
@@ -453,7 +453,7 @@ function Checkout() {
                             </div>
                         </div>
                         <div>
-                            <label htmlFor="pinCode" className="mt-4 mb-2 block text-base font-medium">Pin code</label>
+                            <label htmlFor="pinCode" className="mt-4 mb-2 block text-base font-medium">Pin code<span className='text-red-700'>*</span></label>
                             <input
                                 type="number"
                                 name='pinCode'
