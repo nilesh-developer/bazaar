@@ -46,7 +46,7 @@ const StorePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="min-h-screen bg-white text-gray-800 pb-10">
       {/* Banner */}
       <div
         className="w-full h-[250px] md:h-[350px] bg-cover bg-center relative"

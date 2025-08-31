@@ -20,7 +20,7 @@ function AdminSidebar() {
                     <li>
                         <NavLink to="sellers" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-green-600 font-bold rounded-lg" : ""}`}>
                             <User className='w-5 h-5 text-[fill-current]' />
-                            <span>Sellers</span>
+                            <span>Stores</span>
                         </NavLink>
                     </li>
                     <li>

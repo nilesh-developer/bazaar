@@ -11,7 +11,7 @@ function AdminBottomNavBar() {
             </NavLink>
             <NavLink to="sellers" className={({ isActive }) => `${isActive ? "active text-green-600 font-bold" : ""}`}>
                 <User className='w-5 h-5 text-[fill-current]' />
-                <span className="btm-nav-label text-xs lg:text-sm">Sellers</span>
+                <span className="btm-nav-label text-xs lg:text-sm">Stores</span>
             </NavLink>
             <NavLink to="orders" className={({ isActive }) => `${isActive ? "active text-green-600 font-bold" : ""}`}>
                 <Box className='w-5 h-5 text-[fill-current]' />

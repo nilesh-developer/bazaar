@@ -23,7 +23,7 @@ function Header() {
                 <div className="flex lg:flex-1">
                     <Link to="/" className="-m-1.5 p-1.5">
                         <span className="sr-only">Growo</span>
-                        <img className="h-12 w-auto" src="/growo.png" alt="Growo" />
+                        <img className="h-9 w-auto" src="/growo.png" alt="Growo" />
                     </Link>
                 </div>
                 <div className="flex lg:hidden">
