@@ -82,7 +82,6 @@ import StorePage from './pages/admin/StorePage.jsx'
 import CustomerPage from './pages/admin/CustomerPage.jsx'
 import PayoutPage from './pages/admin/PayoutPage.jsx'
 import AdminChangePassword from './pages/admin/AdminChangePassword.jsx'
-import StoreBuilderLanding from './components/Home/StoreBuilderLanding.jsx'
 import AdminPayoutPage from './pages/admin/AdminPayoutPage.jsx'
 import NoSubscription from './pages/Home/NoSubscription.jsx'
 
@@ -91,7 +90,6 @@ const router = createBrowserRouter(
     <>
       <Route path='/' element={<ControlRoute><Layout /></ControlRoute>} >
         <Route path='' element={<Home />} />
-        {/* <Route path='' element={<StoreBuilderLanding />} /> */}
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
         <Route path='forgot-password' element={<ForgotPassword />} />
