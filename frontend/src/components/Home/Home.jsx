@@ -111,8 +111,11 @@ const Home = () => {
                                         Online Store
                                     </span>
                                 </h1>
-                                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+                                {/* <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
                                     Perfect for creators, influencers & small businesses. <span className="font-semibold text-green-700">No subscription fees.</span> Get your free subdomain and start selling in seconds.
+                                </p> */}
+                                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
+                                    Perfect for small businesses. <span className="font-semibold text-green-700">No subscription fees.</span> Get your free subdomain and start selling in seconds.
                                 </p>
                             </div>
                         </div>
