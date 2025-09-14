@@ -149,8 +149,8 @@ function PaymentMethod() {
                             </td>
                         </tr>
 
-                        {/* For temporary basis starts */}
-                        <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50">
+                        {/* For Cashfree Production */}
+                        {/* <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50">
                             <td className="p-3 text-base tracking-tight">
                                 <p>Online Payment</p>
                             </td>
@@ -174,32 +174,35 @@ function PaymentMethod() {
                                     </button>
                                 }
                             </td>
-                        </tr>
-                        {/* <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50 opacity-50 pointer-events-none">
+                        </tr> */}
+                        {/* For Cashfree Production ends */}    
+                        
+                        {/* For temporary basis */}
+                        <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50 opacity-50 pointer-events-none">
                             <td className="p-3 text-base tracking-tight">
-                                <p>Paytm payment gateway (Coming soon)</p>
+                                <p>Cashfree payment gateway (Coming soon)</p>
                             </td>
                             <td className="p-3 text-base tracking-tight">
-                                <p>Paytm</p>
+                                <p>Cashfree</p>
                             </td>
                             <td className="p-3 text-base tracking-tight">
-                                {false ?
+                                {store?.cashfree ?
                                     <p className='text-green-800 font-bold'>Active</p>
                                     :
                                     <p className='text-red-800 font-bold'>Inactive</p>
                                 }
                             </td>
                             <td className="p-3 text-base tracking-tight">
-                                {false ?
-                                    <button type='button' onClick={handleCodStatus} className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
+                                {store?.cashfree ?
+                                    <button type='button' onClick={handleCashfreeStatus} className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
                                         Deactivate
                                     </button>
-                                    : <button type='button' onClick={handleCodStatus} className="px-3 py-1 font-semibold rounded-md bg-green-700 text-gray-50">
+                                    : <button type='button' onClick={handleCashfreeStatus} className="px-3 py-1 font-semibold rounded-md bg-green-700 text-gray-50">
                                         Activate
                                     </button>
                                 }
                             </td>
-                        </tr> */}
+                        </tr>
                         {/* for temporary basis ends */}
 
                     </tbody>

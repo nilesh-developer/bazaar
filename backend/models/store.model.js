@@ -104,7 +104,7 @@ const StoreSchema = new mongoose.Schema({
     },
     cashfree: {
         type: Boolean,
-        default: true
+        default: false
     },
     subdomain: {
         type: String,

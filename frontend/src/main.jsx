@@ -84,6 +84,7 @@ import PayoutPage from './pages/admin/PayoutPage.jsx'
 import AdminChangePassword from './pages/admin/AdminChangePassword.jsx'
 import StoreBuilderLanding from './components/Home/StoreBuilderLanding.jsx'
 import AdminPayoutPage from './pages/admin/AdminPayoutPage.jsx'
+import NoSubscription from './pages/Home/NoSubscription.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -96,6 +97,7 @@ const router = createBrowserRouter(
         <Route path='forgot-password' element={<ForgotPassword />} />
         {/* <Route path='pricing' element={<Pricing />} /> */}
         <Route path='checkout' element={<Checkout />} />
+        <Route path='subscription-expired' element={<NoSubscription />} />
         <Route path='terms-and-conditions' element={<TermsAndConditions />} />
         <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='refund-policy' element={<RefundPolicy />} />
