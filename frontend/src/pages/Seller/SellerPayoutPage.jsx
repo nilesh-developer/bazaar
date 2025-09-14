@@ -75,7 +75,7 @@ const SellerPayoutPage = () => {
   return (
     <section data-theme="light" className='bg-white flex-grow h-full pb-14 lg:pb-8'>
       <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
-        <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Payouts</h2>
+        <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Payouts<span className='text-xs ml-2 font-semibold bg-gray-200 text-zinc-700 px-1'>For Online Payment Only</span></h2>
 
         {/* Payout Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 mt-8">
