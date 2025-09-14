@@ -6,6 +6,7 @@ import { stores } from "../models/store.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+const adminEmail = "growostore@gmail.com";
 
 const loginAdmin = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
@@ -44,7 +45,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
 })
 
 const addVisit = asyncHandler(async (req, res) => {
-    const admin = await admins.findOne({ email: "mail.eazzystore@gmail.com" })
+    const admin = await admins.findOne({ email: adminEmail })
     admin.visits = Number(admin.visits) + 1;
     admin.save()
 
@@ -170,7 +171,7 @@ const noOfAllData = asyncHandler(async (req, res) => {
 const changeAdminPassword = asyncHandler(async (req, res) => {
     const { oldPassword, newPassword } = req.body;
 
-    const admin = await admins.findOne({ email: "mail.eazzystore@gmail.com" })
+    const admin = await admins.findOne({ email: adminEmail })
     const result = await admin.isPasswordCorrect(oldPassword)
 
     if (!result) {
