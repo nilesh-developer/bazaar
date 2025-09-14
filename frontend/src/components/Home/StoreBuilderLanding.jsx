@@ -107,7 +107,7 @@ const StoreBuilderLanding = () => {
             <br />
             <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent animate-gradient">Online Store</span>
           </h1>
-          <p className="text-lg md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">Perfect for creators, influencers & small businesses. No subscription fees. Get your free subdomain and start selling in seconds.</p>
+          <p className="text-lg md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto">Perfect for small businesses. No subscription fees. Get your free subdomain and start selling in seconds.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link to="/signup" className="group bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-green-400 hover:to-green-500 transition-all transform hover:scale-105 shadow-md flex items-center justify-center"><button >Create Store Now<ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" /></button></Link>
             {/* <Link to="https://youtu.be/P3uvqfF1cRY?si=cPubx4YBNvPfGCCf" className="group flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold border border-green-500/40 hover:border-green-400 backdrop-blur-sm hover:bg-green-500/5 transition-all text-black"><Play className="mr-2 group-hover:scale-110 transition-transform" size={20} /> Watch Demo</Link> */}
