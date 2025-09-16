@@ -1,102 +1,134 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast';
+import toast from 'react-hot-toast'
 import { useAuth } from '../../store/auth'
-import { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet'
+import { Eye, EyeOff } from 'lucide-react' // for password toggle
 
 function Login() {
-
-    const [user, setUser] = useState({
-        email: "",
-        password: ""
-    })
-
-    const navigate = useNavigate()
+    const [user, setUser] = useState({ email: "", password: "" })
+    const [showPassword, setShowPassword] = useState(false)
     const [loadingBtn, setLoadingBtn] = useState(false)
-
+    const navigate = useNavigate()
     const { storeTokenInLS, setUserId } = useAuth()
 
-    const [error, setError] = useState("");
-
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0)
     }, [])
 
     const handleInput = (e) => {
-        let name = e.target.name;
-        let value = e.target.value;
-
-        setUser({
-            ...user,
-            [name]: value,
-        })
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        if(!user.email || !user.password){
-            toast.error("All feilds are required")
+        if (!user.email || !user.password) {
+            toast.error("All fields are required")
             return
         }
         setLoadingBtn(true)
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/login`, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(user)
             })
+            const data = await response.json()
 
-            setUser({
-                email: "",
-                password: ""
-            })
-
-            const responseData = await response.json()
             if (response.ok) {
-                setUserId(responseData.data.user._id)
-                storeTokenInLS(responseData.data.token)
-                // localStorage.setItem("token", responseData.data.token)
-                toast.success(responseData.message)
-                if (responseData.data.user.store) {
+                setUser({ email: "", password: "" })
+                setUserId(data.data.user._id)
+                storeTokenInLS(data.data.token)
+                toast.success(data.message)
+                if (data.data.user.store) {
                     navigate("/seller/dashboard")
                 } else {
                     navigate("/create-store")
                 }
             } else {
-                toast.error(responseData.message)
+                toast.error(data.message)
             }
-            setLoadingBtn(false)
         } catch (error) {
-            console.log(error)
+            console.error(error)
+            toast.error("Something went wrong")
+        } finally {
+            setLoadingBtn(false)
         }
     }
 
     return (
         <>
-            <Helmet>
-                <title>Login</title>
-            </Helmet>
-            <div className='flex flex-wrap justify-center items-center h-auto py-10 mt-10'>
-                <div className="w-96 mx-auto bg-white p-8 rounded-2xl shadow-none lg:shadow-md">
-                    <h1 className="text-3xl text-black font-bold mb-6 flex flex-wrap justify-center">Login</h1>
-                    <h3 className="text-gray-700">Not registered? <Link className='font-bold text-green-600' to="/signup">Register</Link></h3>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-input mt-5 mb-6">
-                            <label htmlFor="email">Email</label><br />
-                            <input onChange={handleInput} value={user.email} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="email" name='email' id="email" placeholder=" " />
+            <Helmet><title>Login</title></Helmet>
+
+            <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
+                <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+                    <h1 className="text-3xl font-bold text-center text-green-700 mb-2">Welcome Back</h1>
+                    <p className="text-center text-gray-500 mb-8 text-sm">
+                        Log in to continue managing your store.
+                    </p>
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                        {/* Email */}
+                        <div className="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                value={user.email}
+                                onChange={handleInput}
+                                required
+                                className="peer w-full rounded-md border border-gray-300 bg-gray-50 px-3 pt-5 pb-2 text-gray-900 placeholder-transparent focus:border-green-600 focus:ring-1 focus:ring-green-600 focus:outline-none"
+                                placeholder="Email"
+                            />
+                            <label className="absolute left-3 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                                Email
+                            </label>
                         </div>
-                        <div className="form-input">
-                            <label htmlFor="password">Password</label><br />
-                            <input onChange={handleInput} value={user.password} className='w-full bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-700 rounded-md px-3 py-3' type="password" name="password" id="password" placeholder=" " />
+
+                        {/* Password */}
+                        <div className="relative">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={user.password}
+                                onChange={handleInput}
+                                required
+                                className="peer w-full rounded-md border border-gray-300 bg-gray-50 px-3 pt-5 pb-2 text-gray-900 placeholder-transparent focus:border-green-600 focus:ring-1 focus:ring-green-600 focus:outline-none"
+                                placeholder="Password"
+                            />
+                            <label className="absolute left-3 top-2 text-sm text-gray-500 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-green-600">
+                                Password
+                            </label>
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="absolute right-3 top-3 text-gray-500"
+                            >
+                                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </button>
                         </div>
-                        <div className='mb-6 text-right mt-2'>
-                        <Link to={"/forgot-password"} className='text-green-600 font-semibold'>Forgot Password?</Link>
+
+                        <div className="text-right -mt-3">
+                            <Link
+                                to="/forgot-password"
+                                className="text-green-700 font-medium text-sm hover:underline"
+                            >
+                                Forgot Password?
+                            </Link>
                         </div>
-                        <button type="submit"
-                            className="bg-green-600 w-full text-xl font-bold text-white py-4 px-4 rounded-md hover:bg-green-700 transition duration-200">{!loadingBtn ? "Login" : <span className="loading loading-spinner loading-md"></span>}</button>
+
+                        <button
+                            type="submit"
+                            className="w-full py-3 rounded-md text-white font-semibold text-lg bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md"
+                        >
+                            {loadingBtn ? <span className="loading loading-spinner loading-md"></span> : "Login"}
+                        </button>
+
+                        <p className="text-center text-sm text-gray-500 mt-4">
+                            Not registered?{" "}
+                            <Link to="/signup" className="font-semibold text-green-700 hover:underline">
+                                Create an Account
+                            </Link>
+                        </p>
                     </form>
                 </div>
             </div>
