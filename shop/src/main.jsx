@@ -6,8 +6,8 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements
-} from 'react-router-dom'
-import StoreLayout from './pages/StoreLayout.jsx'
+} from 'react-router-dom';
+import StoreLayout from './pages/StoreLayout.jsx';
 import {
   AboutUs,
   Account,
@@ -26,19 +26,19 @@ import {
   ShippingPolicy,
   Shop,
   UpdatePassword
-} from './components/index.js'
-import Product from './pages/Product.jsx'
-import SubdomainExist from './PrivateRoute/SubdomainExist.jsx'
-import { CustomerAuthProvider } from './store/customerAuth.jsx'
-import CustomerLogout from './pages/CustomerLogout.jsx'
-import { CartProvider } from './store/CartContext.jsx'
-import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx'
+} from './components/index.js';
+import Product from './pages/Product.jsx';
+import SubdomainExist from './PrivateRoute/SubdomainExist.jsx';
+import { CustomerAuthProvider } from './store/customerAuth.jsx';
+import CustomerLogout from './pages/CustomerLogout.jsx';
+import { CartProvider } from './store/CartContext.jsx';
+import CustomerPrivateRoute from './PrivateRoute/CustomerPrivateRoute.jsx';
 import getSubdomain from './Hooks/getSubdomain.jsx'
 import { Toaster } from 'react-hot-toast';
-import Category from './pages/Category.jsx'
-import PaymentSuccess from './pages/PaymentSuccess.jsx'
-import PaymentFailed from './pages/PaymentFailed.jsx'
-import OrderSuccess from './pages/OrderSuccess.jsx'
+import Category from './pages/Category.jsx';
+import PaymentSuccess from './pages/PaymentSuccess.jsx';
+import PaymentFailed from './pages/PaymentFailed.jsx';
+import OrderSuccess from './pages/OrderSuccess.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LatestWithProvider from './pages/Latest.jsx';
 
