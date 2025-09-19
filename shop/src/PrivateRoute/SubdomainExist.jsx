@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import LazyLoadingPage from '../components/LazyLoadingPage'
+import DeactivatedStore from '../pages/DeactivatedStore';
 
 function SubdomainExist({ children }) {
     const [loading, setLoading] = useState(true)
     const [store, setStore] = useState("")
 
     const subdomain = window.location.hostname;
-    
+
     useEffect(() => {
         try {
             setLoading(true)
@@ -39,10 +40,11 @@ function SubdomainExist({ children }) {
     }
 
 
-    return store && loading === false ? children : 
-    <>
-    <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-    </>
+    return store ? children :
+        // <>
+        //     <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+        // </>
+        <DeactivatedStore />
 
 }
 

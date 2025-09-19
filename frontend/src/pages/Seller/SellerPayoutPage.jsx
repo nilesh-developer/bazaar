@@ -36,6 +36,10 @@ const SellerPayoutPage = () => {
   }
 
   const handleRequestPayout = () => {
+    if (!user.store.paymentDetails?.type) {
+      toast.error("First, setup payment method details")
+      navigate("/seller/add-payment-details")
+    }
     setIsModalOpen(true);
   };
 
@@ -211,7 +215,7 @@ const SellerPayoutPage = () => {
                         {payout?.status?.toUpperCase()}
                       </td>
                       <td colSpan="1" className="px-6 py-3 text-gray-800">
-                        <button onClick={() =>  navigate(`${payout._id}`)} className='bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md'>View Details</button>
+                        <button onClick={() => navigate(`${payout._id}`)} className='bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-md'>View Details</button>
                       </td>
                     </tr>
                   ))

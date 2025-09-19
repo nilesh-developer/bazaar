@@ -226,6 +226,10 @@ const AdminPayoutPage = () => {
         doc.save(`Payouts.pdf`);
     };
 
+    const handleInputTransactionDetails = (e) => {
+        setTransactionDetails({ ...transactionDetails, [e.target.name]: e.target.value })
+    }
+
     // Modal Components
     const ViewModal = ({ payout }) => (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -367,8 +371,9 @@ const AdminPayoutPage = () => {
                             <label className="block text-sm font-medium text-gray-700 mb-2">Transaction Number</label>
                             <input
                                 type="text"
+                                name='paymentTransactionNo'
                                 value={transactionDetails.paymentTransactionNo}
-                                onChange={(e) => setTransactionDetails(prev => ({ ...prev, paymentTransactionNo: e.target.value }))}
+                                onChange={handleInputTransactionDetails}
                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
                                 placeholder="Enter transaction number"
                             />
@@ -377,8 +382,9 @@ const AdminPayoutPage = () => {
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Notes (Optional)</label>
                             <textarea
+                                name='notes'
                                 value={transactionDetails.notes}
-                                onChange={(e) => setTransactionDetails(prev => ({ ...prev, notes: e.target.value }))}
+                                onChange={handleInputTransactionDetails}
                                 className="w-full border border-gray-300 rounded-md px-3 py-2"
                                 rows="3"
                                 placeholder="Add any notes..."
