@@ -64,7 +64,7 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
     const oneMonthLater = new Date(today);
     oneMonthLater.setMonth(oneMonthLater.getMonth() + 1);
 
-    const amountInRupees = amount % 100;
+    const amountInRupees = amount / 100;
 
     // Verify signature
     const generated_signature = crypto
