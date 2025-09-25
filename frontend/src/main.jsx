@@ -100,7 +100,7 @@ const router = createBrowserRouter(
         <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='refund-policy' element={<RefundPolicy />} />
         <Route path='cookie-policy' element={<CookiePolicy />} />
-        <Route path='shipping-policy' element={<ShippingPolicy />} />
+        <Route path='shipping-and-delivery' element={<ShippingPolicy />} />
         <Route path='privacy-policy' element={<PrivacyPolicy />} />
         <Route path='contact-us' element={<ContactForm />} />
         <Route path='about-us' element={<AboutUs />} />

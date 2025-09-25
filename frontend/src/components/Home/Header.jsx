@@ -98,7 +98,7 @@ function Header() {
                                 </li>
                                 <li>
                                     <NavLink
-                                        to="/shipping-policy"
+                                        to="/shipping-and-delivery"
                                         className={({ isActive }) =>
                                             `block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 ${isActive ? 'text-green-600' : 'text-zinc-900'
                                             }`
@@ -177,7 +177,7 @@ function Header() {
                                     <button onClick={() => setMobileMenuOpen(false)}>Terms & Conditions</button>
                                 </Link>
                                 <Link
-                                    to="shipping-policy"
+                                    to="shipping-and-delivery"
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-50"
                                 >
                                     <button onClick={() => setMobileMenuOpen(false)}>Shipping Policy</button>
