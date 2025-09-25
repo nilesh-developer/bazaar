@@ -6,9 +6,8 @@ import { useAuth } from "../../store/auth";
 
 const token = localStorage.getItem("token");
 
-const FreePlan = () => {
+const FreePlan = ({userData}) => {
     const navigate = useNavigate();
-    const { userData } = useAuth()
 
     return (
         <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border border-green-100 flex flex-col items-center w-full max-w-md mx-auto">
@@ -57,9 +56,8 @@ const FreePlan = () => {
     );
 };
 
-const PaidPlan = () => {
+const PaidPlan = ({userData}) => {
     const navigate = useNavigate();
-    const { userData } = useAuth()
     const [paymentIsProcessing, setPaymentIsProcessing] = useState(false)
 
     //razorpay start
@@ -191,6 +189,13 @@ const PaidPlan = () => {
 };
 
 export default function SubscriptionPage() {
+    
+    const { userData, isLoading } = useAuth()
+
+    if(isLoading) {
+        return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+    }
+
     return (
         <section id="pricing" className="relative z-10 py-12 sm:py-20 bg-gray-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -200,8 +205,9 @@ export default function SubscriptionPage() {
                     </span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <FreePlan />
-                    <PaidPlan />
+                    {userData ? <FreePlan userData={userData}/> : null}
+                    {userData ? 
+                    <PaidPlan userData={userData}/> : null}
                 </div>
             </div>
         </section>
