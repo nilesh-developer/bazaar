@@ -9,7 +9,7 @@ function Createstore() {
     const [storename, setStorename] = useState("")
     const [storeAvailable, setStoreAvailable] = useState(false)
     const navigate = useNavigate()
-    const { userId, userData } = useAuth()
+    const { userId, userData, isLoading } = useAuth()
 
     const domain = window.location.hostname
 
@@ -62,7 +62,7 @@ function Createstore() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ storename, owner: userId, name, subdomain: `${storename}.${domain}` })
+                body: JSON.stringify({ storename, owner: userData._id, name, subdomain: `${storename}.${domain}` })
             })
 
             const responseData = await response.json()
@@ -76,6 +76,10 @@ function Createstore() {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    if(isLoading) {
+        return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     }
 
     return (
