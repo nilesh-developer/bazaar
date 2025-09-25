@@ -1,41 +1,116 @@
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import nodeMailer from "nodemailer";
-import { subscriptions } from "../models/subscription.model.js"
+import Razorpay from "razorpay";
+import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import { razorpaypayments } from "../models/razorpay.model.js";
+import { users } from "../models/user.model.js";
 
-const createTransaction = asyncHandler(async (req, res) => {
-    const { userId, period, price } = req.body;
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
-    const created = await subscriptions.create({
-        userId,
-        period,
-        price
-    })
+//Razorpay Subscription
+const createOrderRazorpay = async (req, res) => {
+    try {
+        const { amount, userToken } = req.body;
 
-    const startDate = new Date(created.createdAt);
-    startDate.setMonth(startDate.getMonth() + created.period);
+        const tokenDetails = await jwt.verify(userToken, process.env.ACCESS_TOKEN_SECRET)
 
-    const updateDates = await subscriptions.findByIdAndUpdate(created._id, {
-        $set: {
-            expiresOn: startDate.toISOString()
+        if (!tokenDetails) {
+            return res.status(400)
+                .json({
+                    statusCode: 400,
+                    message: "Invalid token"
+                })
         }
-    })
 
-    return res.status(200)
-        .json(
-            new ApiResponse(200, created, "Transaction initaited")
-        )
-})
+        const amountInPaise = amount * 100;
+
+        const order = await razorpay.orders.create({
+            amount: amountInPaise,
+            currency: "INR",
+            receipt: "receipt_" + Math.random().toString(36).substring(7),
+        })
+
+        return res.status(200)
+            .json({
+                statusCode: 200,
+                order: order,
+                userData: {
+                    _id: tokenDetails._id,
+                    email: tokenDetails.email
+                },
+                message: "Order Created"
+            })
+    } catch (error) {
+        console.error("Error creating order: ", error)
+        return res.status(500)
+            .json({
+                statusCode: 500,
+                message: "Error creating order"
+            })
+    }
+}
+
+const verifyRazorpayPayment = asyncHandler(async (req, res) => {
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, userId, amount, currency, period } = req.body;
+
+    // Get today's date
+    const today = new Date();
+
+    // Calculate one month later
+    const oneMonthLater = new Date(today);
+    oneMonthLater.setMonth(oneMonthLater.getMonth() + 1);
+
+    const amountInRupees = amount % 100;
+
+    // Verify signature
+    const generated_signature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest("hex");
+
+    if (generated_signature === razorpay_signature) {
+        // Save subscription/payment in MongoDB
+        const subscription = new razorpaypayments({
+            userId,
+            planType: "pro",
+            razorpay_order_id,
+            razorpay_payment_id,
+            razorpay_signature,
+            amount: amountInRupees,
+            currency,
+            status: "success",
+            period: period,
+            expiresOn: oneMonthLater
+        });
+
+        await subscription.save();
+
+        const user = await users.findByIdAndUpdate(userId, {
+            transactionId: subscription._id,
+            subcription: true
+        })
+
+        res.status(200).json({ statusCode: 200, message: "Payment Verified & Saved", subscription });
+    } else {
+        res.status(400).json({ statusCode: 400, message: "Payment Verification Failed" });
+    }
+});
+
 const getUserTransaction = asyncHandler(async (req, res) => {
     const { userId } = req.params;
 
-    const transactions = await subscriptions.find({ userId }).sort({ _id: -1 });
+    const transactions = await razorpaypayments.find({ userId }).sort({ _id: -1 });
     return res.status(200).json(
         new ApiResponse(200, transactions, "Data retrieved Successfully")
     )
 })
 
 export {
-    createTransaction,
-    getUserTransaction
+    createOrderRazorpay,
+    verifyRazorpayPayment,
+    getUserTransaction,
 }

@@ -50,12 +50,10 @@ function Subscriptions() {
 
         const tableColumn = [
             'Plan Type',
-            'Transaction Id',
-            'UPI ID',
+            'Transaction ID',
+            'Payment ID',
             'Transaction Date',
-            'UPI Reference',
             'Expires on',
-            'From User',
             'Status',
             'Amount'
         ];
@@ -66,13 +64,11 @@ function Subscriptions() {
             const orderData = [
                 transaction.planType.toUpperCase(),
                 transaction._id,
-                transaction.upiId ? transaction.upiId : "-",
+                transaction?.razorpay_payment_id,
                 transaction.createdAt.split("T")[0],
-                transaction.upiReferenceNo,
                 transaction.expiresOn.split("T")[0],
-                transaction.failed ? "Failed" : "Success",
-                transaction.status ? "Received" : "In Review",
-                "Rs. "+transaction.price
+                transaction.status,
+                "Rs. "+transaction.amount
             ];
             tableRows.push(orderData);
         });
@@ -125,12 +121,10 @@ function Subscriptions() {
                                     <thead className="bg-gray-100">
                                         <tr className="text-left">
                                             <th className="p-3 text-base tracking-tighter">Plan Type</th>
-                                            <th className="p-3 text-base tracking-tighter">Transaction Id</th>
-                                            <th className="p-3 text-base tracking-tighter">UPI ID</th>
+                                            <th className="p-3 text-base tracking-tighter">Transaction ID</th>
+                                            <th className="p-3 text-base tracking-tighter">Payment ID</th>
                                             <th className="p-3 text-base tracking-tighter">Transaction Date</th>
-                                            <th className="p-3 text-base tracking-tighter">UPI Reference No</th>
                                             <th className="p-3 text-base tracking-tighter min-w-20">Expires on</th>
-                                            <th className="p-3 text-base tracking-tighter">From User</th>
                                             <th className="p-3 text-base tracking-tighter">Status</th>
                                             <th className="p-3 text-base tracking-tighter">Amount</th>
                                         </tr>
@@ -145,25 +139,19 @@ function Subscriptions() {
                                                     <p>{transaction?._id}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction?.upiId ? transaction?.upiId : "-"}</p>
+                                                    <p>{transaction?.razorpay_payment_id}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
                                                     <p>{transaction?.createdAt?.split("T")[0]}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction?.upiReferenceNo}</p>
-                                                </td>
-                                                <td className="p-3 text-base tracking-tight">
                                                     <p>{transaction?.expiresOn?.split("T")[0]}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction?.failed ? <span className='text-red-600 font-semibold'>Failed</span> : <span className='text-green-600 font-semibold'>Success</span>}</p>
+                                                    <p>{transaction?.status === "success" ? <span className='text-green-600 font-semibold'>Success</span> : <span className='text-red-500 font-semibold'>Failed</span>}</p>
                                                 </td>
                                                 <td className="p-3 text-base tracking-tight">
-                                                    <p>{transaction?.status ? <span className='text-green-600 font-semibold'>Received</span> : <span className='text-yellow-500 font-semibold'>In Review</span>}</p>
-                                                </td>
-                                                <td className="p-3 text-base tracking-tight">
-                                                    <p>Rs. {transaction?.price}</p>
+                                                    <p>Rs. {transaction?.amount}</p>
                                                 </td>
                                             </tr>
                                         )}

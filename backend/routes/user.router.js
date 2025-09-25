@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser, checkStorenameUnique, verifyCode, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, subscriptionPayment, resetPassword } from "../controllers/user.controller.js";
+import { registerUser, checkStorenameUnique, verifyCode, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, resetPassword } from "../controllers/user.controller.js";
 import { validate } from "../middlewares/validate.middleware.js";
 import { registerSchema, loginSchema } from "../schemas/signUpSchema.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
@@ -27,7 +27,5 @@ router.route("/delete").delete(verifyJwt,deleteAccount)
 router.route("/current-user").get(verifyJwt,getCurrentUser)
 
 router.route("/c/:userid").get(verifyJwt,getUserData)
-
-router.route("/subscription-payment").post(subscriptionPayment)
 
 export {router as userRouter}

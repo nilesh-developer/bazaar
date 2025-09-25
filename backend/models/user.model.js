@@ -23,11 +23,16 @@ const UserSchema = new mongoose.Schema({
     },
     transactionId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "subscriptions"
+        ref: "razorpaypayments" //subscriptions
     },
     subcription: {
         type: Boolean,
         default: false
+    },
+    subscription_plan_type: {
+        type: String,
+        required: true,
+        default: "free"
     },
     verifyCode: {
         type: String

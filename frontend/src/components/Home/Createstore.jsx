@@ -9,7 +9,7 @@ function Createstore() {
     const [storename, setStorename] = useState("")
     const [storeAvailable, setStoreAvailable] = useState(false)
     const navigate = useNavigate()
-    const { userId } = useAuth()
+    const { userId, userData } = useAuth()
 
     const domain = window.location.hostname
 
@@ -20,6 +20,14 @@ function Createstore() {
     const handleInput = async (e) => {
         setStorename(e.target.value)
     }
+
+    useEffect(() => {
+        if(userData._id){
+            if(userData.store){
+                navigate("/seller/dashboard")
+            }
+        }
+    }, [userData])
 
     const check = async () => {
         if (storename !== "") {

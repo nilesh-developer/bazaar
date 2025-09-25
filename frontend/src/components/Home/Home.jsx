@@ -125,7 +125,7 @@ const Home = () => {
                         <div className={`transform transition-all duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 lg:mb-14">
-                                <Link to="/signup" className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 py-4 rounded-full text-base text-lg font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"><button >Create Store Now<ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" /></button></Link>
+                                <Link to="/signup" className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"><button >Create Store Now<ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" /></button></Link>
                                 <a href="https://youtu.be/P3uvqfF1cRY?si=cPubx4YBNvPfGCCf" className="group flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold border border-green-500/40 hover:border-green-400 backdrop-blur-sm hover:bg-green-500/5 transition-all text-black"><Play className="mr-2 group-hover:scale-110 transition-transform" size={20} /> Watch Demo</a>
                             </div>
 

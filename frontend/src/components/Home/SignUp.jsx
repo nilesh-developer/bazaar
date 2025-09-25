@@ -101,7 +101,7 @@ function SignUp() {
                     setUserId(registerData.data.user._id)
                     storeTokenInLS(registerData.data.token)
                     toast.success(registerData.message)
-                    navigate("/create-store")
+                    navigate("/subscription-plan")
                 } else {
                     toast.error(registerData.message)
                 }
