@@ -91,7 +91,8 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
 
         const user = await users.findByIdAndUpdate(userId, {
             transactionId: subscription._id,
-            subcription: true
+            subcription: true,
+            subscription_plan_type: "pro"
         })
 
         res.status(200).json({ statusCode: 200, message: "Payment Verified & Saved", subscription });
