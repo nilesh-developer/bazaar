@@ -42,26 +42,26 @@ const Home = () => {
             title: "Custom Domain",
             description: "Get a free subdomain or connect your own custom domain"
         },
-        {
-            icon: <CreditCard className="w-8 h-8" />,
-            title: "Built-in Payments",
-            description: "Integrated payment gateway with weekly payouts"
-        },
-        {
-            icon: <Shield className="text-white" size={32} />,
-            title: "No Subscription Fees",
-            description: "Only 5% on successful online payments. No hidden costs or monthly fees"
-        },
+        // {
+        //     icon: <CreditCard className="w-8 h-8" />,
+        //     title: "Built-in Payments",
+        //     description: "Integrated payment gateway with weekly payouts"
+        // },
+        // {
+        //     icon: <Shield className="text-white" size={32} />,
+        //     title: "No Subscription Fees",
+        //     description: "Only 5% on successful online payments. No hidden costs or monthly fees"
+        // },
         {
             icon: <Smartphone className="text-white" size={32} />,
             title: "Social Media Ready",
             description: "Perfect for creators and influencers to monetize their audience"
         },
-        {
-            icon: <IndianRupee className="text-white" size={32} />,
-            title: "5% Fee Only (Online)",
-            description: "No hidden charges, 0% on Cash on Delivery(COD)"
-        }
+        // {
+        //     icon: <IndianRupee className="text-white" size={32} />,
+        //     title: "5% Fee Only (Online)",
+        //     description: "No hidden charges, 0% on Cash on Delivery(COD)"
+        // }
     ];
 
     const testimonials = [
@@ -112,7 +112,9 @@ const Home = () => {
                                     </span>
                                 </h1>
                                 <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
-                                    Perfect for creators, influencers & small businesses. <span className="font-semibold text-green-700">No subscription fees.</span> Get your free subdomain and start selling in seconds.
+                                    Perfect for creators, influencers & small businesses.
+                                    {/* <span className="font-semibold text-green-700">No subscription fees.</span>  */}
+                                    Get your free subdomain and start selling in seconds.
                                 </p>
                                 {/* <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
                                     Perfect for small businesses. <span className="font-semibold text-green-700">No subscription fees.</span> Get your free subdomain and start selling in seconds.
@@ -132,14 +134,14 @@ const Home = () => {
                                     <CheckCircle className="w-5 h-5 text-green-500" />
                                     <span>Free subdomain</span>
                                 </div>
-                                <div className="flex items-center space-x-2">
+                                {/* <div className="flex items-center space-x-2">
                                     <CheckCircle className="w-5 h-5 text-green-500" />
                                     <span>No monthly fees</span>
                                 </div>
                                 <div className="flex items-center space-x-2">
                                     <CheckCircle className="w-5 h-5 text-green-500" />
                                     <span>Weekly payouts</span>
-                                </div>
+                                </div> */}
                                 <div className="flex items-center space-x-2">
                                     <CheckCircle className="w-5 h-5 text-green-500" />
                                     <span>0% commission on COD</span>
@@ -192,22 +194,23 @@ const Home = () => {
                     <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto flex flex-col items-center">
                         <div className="text-5xl sm:text-6xl font-bold mb-2 sm:mb-4">
                             <span className="bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
-                                Free
+                                {/* Free */}
+                                ₹99/month
                             </span>
                         </div>
-                        <p className="text-lg sm:text-2xl text-gray-700 mb-4">to start, then just</p>
+                        {/* <p className="text-lg sm:text-2xl text-gray-700 mb-4">to start, then just</p>
                         <div className="text-2xl sm:text-4xl font-bold text-green-700 mb-2 sm:mb-4">5% per Online Transaction</div>
-                        <div className="text-base sm:text-lg text-green-700 mb-4">0% commission on Cash on Delivery (COD)</div>
+                        <div className="text-base sm:text-lg text-green-700 mb-4">0% commission on Cash on Delivery (COD)</div> */}
                         <ul className="space-y-2 sm:space-y-4 mb-6 sm:mb-8 w-full text-left max-w-md mx-auto">
                             {[
                                 "Free subdomain",
                                 "Connect your own domain",
-                                "Built-in UPI & card payments",
-                                "Weekly payouts",
+                                // "Built-in UPI & card payments",
+                                // "Weekly payouts",
                                 "Mobile-optimized storefront",
                                 "24/7 customer support",
                                 "No setup fees",
-                                "No monthly subscriptions"
+                                // "No monthly subscriptions"
                             ].map((feature, index) => (
                                 <li key={index} className="flex items-center space-x-2 sm:space-x-3">
                                     <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -239,10 +242,15 @@ const Home = () => {
                             <h3 className="text-xl font-semibold mb-2">Add Products & Share</h3>
                             <p className="text-gray-600">Upload your products and share your store link on social media</p>
                         </div>
-                        <div className="flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-8 transition-all hover:scale-105 border border-green-100">
+                        {/* <div className="flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-8 transition-all hover:scale-105 border border-green-100">
                             <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white text-2xl font-bold mb-4">3</div>
                             <h3 className="text-xl font-semibold mb-2">Get Paid Weekly</h3>
                             <p className="text-gray-600">Receive payments every week minus our 5% fee on successful online transactions</p>
+                        </div> */}
+                        <div className="flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-8 transition-all hover:scale-105 border border-green-100">
+                            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 text-white text-2xl font-bold mb-4">3</div>
+                            <h3 className="text-xl font-semibold mb-2">Start Getting Orders</h3>
+                            <p className="text-gray-600">Receive Orders from your audience</p>
                         </div>
                     </div>
                 </div>
