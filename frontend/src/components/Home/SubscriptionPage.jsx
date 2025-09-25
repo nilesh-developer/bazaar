@@ -70,7 +70,7 @@ const PaidPlan = () => {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/api/subscription/create-order-razorpay`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: 99, userToken: token }),
+                body: JSON.stringify({ amount: 1, userToken: token }),
             });
 
             const { order, userData, message } = await res.json();
@@ -117,9 +117,7 @@ const PaidPlan = () => {
                     }
                 },
                 prefill: {
-                    name: "Demo",
-                    email: "demo@example.com",
-                    contact: "9999999999",
+                    email: userData.email,
                 },
                 theme: { color: "#00873d" },
             };
