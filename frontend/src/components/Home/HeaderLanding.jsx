@@ -27,7 +27,7 @@ const HeaderLanding = () => {
             <ul className="absolute hidden group-hover:block mt-2 right-0 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-2 space-y-1">
               <li><Link to="/privacy-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Privacy Policy</Link></li>
               <li><Link to="/refund-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Refund Policy</Link></li>
-              <li><Link to="/shipping-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Shipping Policy</Link></li>
+              <li><Link to="/shipping-and-delivery" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Shipping Policy</Link></li>
               <li><Link to="/cookie-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Cookie Policy</Link></li>
             </ul>
           </div>
@@ -61,7 +61,7 @@ const HeaderLanding = () => {
                 <ul className="mt-2 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-2 space-y-1">
                   <li><Link to="/privacy-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Privacy Policy</Link></li>
                   <li><Link to="/refund-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Refund Policy</Link></li>
-                  <li><Link to="/shipping-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Shipping Policy</Link></li>
+                  <li><Link to="/shipping-and-delivery" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Shipping Policy</Link></li>
                   <li><Link to="/cookie-policy" className="block px-4 py-2 text-sm font-semibold rounded-md hover:bg-zinc-100 text-zinc-900 hover:text-green-600">Cookie Policy</Link></li>
                 </ul>
               )}
