@@ -294,6 +294,16 @@ function SellerOrderPage() {
                     {order?.paymentProcess?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.paymentProcess?.toUpperCase()}</p> : <p className='text-sm'>{order?.paymentProcess?.toUpperCase()}</p>}
                 </>
                 }
+                {order?.paymentMethod?.toUpperCase() === "RAZORPAY" && <>
+                    <p className='text-sm'>{"Online (via " + order?.paymentMethod?.toUpperCase() + " PG)"}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment Order ID</b>
+                    <p className='text-sm'>{order?.razorpayPaymentDetails?.razorpay_order_id}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment ID</b>
+                    <p className='text-sm'>{order?.razorpayPaymentDetails?.razorpay_payment_id}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment status</b>
+                    {order?.razorpayPaymentDetails?.status?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p>}
+                </>
+                }
             </div>
             <h3 className='lg:text-lg font-bold mt-4'>Shipping Address</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2 font-bold text-zinc-700'>

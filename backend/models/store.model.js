@@ -106,6 +106,10 @@ const StoreSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    razorpay: {
+        type: Boolean,
+        default: false
+    },
     subdomain: {
         type: String,
         required: true

@@ -82,10 +82,10 @@ function AdminOrderPage() {
                             <img className='h-full' src={odr?.images?.featuredImage} alt="product image" />
                         </div>
                         <div className='w-2/3 px-3'>
-                                <p className='font-semibold text-xs'><span className='text-gray-800 truncate'>Product Id:</span> {order?.product[0]?._id}</p>
-                                <h3 className='font-bold'>{odr?.name}</h3>
-                                <p className='font-semibold'>&#8377;{odr?.salePrice}</p>
-                                <p className='mt-2 font-semibold text-gray-500'>Qty: {odr?.quantity} {odr?.selectColor} {odr?.selectSize} {odr?.selectOther}</p>
+                            <p className='font-semibold text-xs'><span className='text-gray-800 truncate'>Product Id:</span> {order?.product[0]?._id}</p>
+                            <h3 className='font-bold'>{odr?.name}</h3>
+                            <p className='font-semibold'>&#8377;{odr?.salePrice}</p>
+                            <p className='mt-2 font-semibold text-gray-500'>Qty: {odr?.quantity} {odr?.selectColor} {odr?.selectSize} {odr?.selectOther}</p>
                         </div>
                     </div>
                 ))}
@@ -200,6 +200,16 @@ function AdminOrderPage() {
                     <p className='text-sm'>{order?.paymentOrderId}</p>
                     <b className='tracking-tighter text-slate-600 font-semibold'>Payment status</b>
                     {order?.paymentProcess?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.paymentProcess?.toUpperCase()}</p> : <p className='text-sm'>{order?.paymentProcess?.toUpperCase()}</p>}
+                </>
+                }
+                {order?.paymentMethod?.toUpperCase() === "RAZORPAY" && <>
+                    <p className='text-sm'>{"Online (via " + order?.paymentMethod?.toUpperCase() + " PG)"}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment Order ID</b>
+                    <p className='text-sm'>{order?.razorpayPaymentDetails?.razorpay_order_id}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment ID</b>
+                    <p className='text-sm'>{order?.razorpayPaymentDetails?.razorpay_payment_id}</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment status</b>
+                    {order?.razorpayPaymentDetails?.status?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p>}
                 </>
                 }
             </div>

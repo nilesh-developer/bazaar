@@ -10,6 +10,7 @@ function PaymentMethod() {
     const [loading, setLoading] = useState(true);
     const [codStatus, setCodStatus] = useState(true);
     const [cashfreeStatus, setCashfreeStatus] = useState(false)
+    const [razorpayStatus, setRazorpayStatus] = useState(false)
 
     const getStoreData = async () => {
         try {
@@ -72,6 +73,31 @@ function PaymentMethod() {
                 },
                 body: JSON.stringify({
                     status: !cashfreeStatus
+                })
+            })
+
+            const responseData = await response.json()
+            if (response.ok) {
+                toast.success(responseData.message)
+                await getStoreData()
+            } else {
+                toast.error(responseData.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const handleRazorpayStatus = async (e) => {
+        setRazorpayStatus(!razorpayStatus)
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/razorpay/change-status/${store._id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    status: !razorpayStatus
                 })
             })
 
@@ -175,7 +201,33 @@ function PaymentMethod() {
                                 }
                             </td>
                         </tr> */}
-                        {/* For Cashfree Production ends */}    
+                        {/* For Cashfree Production ends */}  
+
+                        <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50">
+                            <td className="p-3 text-base tracking-tight">
+                                <p>Online Payment</p>
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                <p>Razorpay</p>
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                {store?.razorpay ?
+                                    <p className='text-green-800 font-bold'>Active</p>
+                                    :
+                                    <p className='text-red-800 font-bold'>Inactive</p>
+                                }
+                            </td>
+                            <td className="p-3 text-base tracking-tight">
+                                {store?.razorpay ?
+                                    <button type='button' onClick={handleRazorpayStatus} className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
+                                        Deactivate
+                                    </button>
+                                    : <button type='button' onClick={handleRazorpayStatus} className="px-3 py-1 font-semibold rounded-md bg-green-700 text-gray-50">
+                                        Activate
+                                    </button>
+                                }
+                            </td>
+                        </tr>  
                         
                         {/* For temporary basis */}
                         <tr className="border-b border-opacity-20 border-gray-300 bg-gray-50 opacity-50 pointer-events-none">

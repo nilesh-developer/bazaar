@@ -42,26 +42,26 @@ const Home = () => {
             title: "Custom Domain",
             description: "Get a free subdomain or connect your own custom domain"
         },
-        // {
-        //     icon: <CreditCard className="w-8 h-8" />,
-        //     title: "Built-in Payments",
-        //     description: "Integrated payment gateway with weekly payouts"
-        // },
-        // {
-        //     icon: <Shield className="text-white" size={32} />,
-        //     title: "No Subscription Fees",
-        //     description: "Only 5% on successful online payments. No hidden costs or monthly fees"
-        // },
+        {
+            icon: <CreditCard className="w-8 h-8" />,
+            title: "Built-in Payments",
+            description: "Integrated payment gateway with weekly payouts"
+        },
+        {
+            icon: <Shield className="text-white" size={32} />,
+            title: "No Subscription Fees",
+            description: "Only 5% on successful online payments. No hidden costs or monthly fees"
+        },
         {
             icon: <Smartphone className="text-white" size={32} />,
             title: "Social Media Ready",
             description: "Perfect for creators and influencers to monetize their audience"
         },
-        // {
-        //     icon: <IndianRupee className="text-white" size={32} />,
-        //     title: "5% Fee Only (Online)",
-        //     description: "No hidden charges, 0% on Cash on Delivery(COD)"
-        // }
+        {
+            icon: <IndianRupee className="text-white" size={32} />,
+            title: "5% Fee Only (Online)",
+            description: "No hidden charges, 0% on Cash on Delivery(COD)"
+        }
     ];
 
     const testimonials = [
@@ -113,7 +113,7 @@ const Home = () => {
                                 </h1>
                                 <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
                                     Perfect for creators, influencers & small businesses.
-                                    {/* <span className="font-semibold text-green-700">No subscription fees.</span>  */}
+                                    <span className="font-semibold text-green-700">No subscription fees.</span> 
                                     Get your free subdomain and start selling in seconds.
                                 </p>
                                 {/* <p className="text-lg sm:text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed font-medium">
@@ -191,36 +191,71 @@ const Home = () => {
                             Simple, Fair Pricing for India
                         </span>
                     </h2>
-                    <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto flex flex-col items-center">
-                        <div className="text-5xl sm:text-6xl font-bold mb-2 sm:mb-4">
-                            <span className="bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
-                                {/* Free */}
-                                ₹99/month
-                            </span>
-                        </div>
-                        {/* <p className="text-lg sm:text-2xl text-gray-700 mb-4">to start, then just</p>
+                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto flex flex-col items-center">
+                            <div className="text-5xl sm:text-6xl font-bold mb-2 sm:mb-4">
+                                <span className="bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
+                                    Free
+                                </span>
+                            </div>
+                            {/* <p className="text-lg sm:text-2xl text-gray-700 mb-4">to start, then just</p>
                         <div className="text-2xl sm:text-4xl font-bold text-green-700 mb-2 sm:mb-4">5% per Online Transaction</div>
                         <div className="text-base sm:text-lg text-green-700 mb-4">0% commission on Cash on Delivery (COD)</div> */}
-                        <ul className="space-y-2 sm:space-y-4 mb-6 sm:mb-8 w-full text-left max-w-md mx-auto">
-                            {[
-                                "Free subdomain",
-                                "Connect your own domain",
-                                // "Built-in UPI & card payments",
-                                // "Weekly payouts",
-                                "Mobile-optimized storefront",
-                                "24/7 customer support",
-                                "No setup fees",
-                                // "No monthly subscriptions"
-                            ].map((feature, index) => (
-                                <li key={index} className="flex items-center space-x-2 sm:space-x-3">
-                                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                                    <span className="text-gray-700 text-xs sm:text-base">{feature}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <button onClick={() => navigate("/signup")} className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-xs">
-                            Start Your Store Now
-                        </button>
+                            <ul className="space-y-2 sm:space-y-4 mb-6 sm:mb-8 w-full text-left max-w-md mx-auto">
+                                {[
+                                    "Free subdomain",
+                                    "5% on Online Payment",
+                                    "0% on Cash on Delivery (COD)",
+                                    // "Built-in UPI & card payments",
+                                    // "Weekly payouts",
+                                    "Mobile-optimized storefront",
+                                    "24/7 customer support",
+                                    "No setup fees",
+                                    // "No monthly subscriptions"
+                                ].map((feature, index) => (
+                                    <li key={index} className="flex items-center space-x-2 sm:space-x-3">
+                                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                        <span className="text-gray-700 text-xs sm:text-base">{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button onClick={() => navigate("/signup")} className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-xs">
+                                Start Your Store Now
+                            </button>
+                        </div>
+                        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 sm:p-12 shadow-2xl border border-green-100 max-w-2xl mx-auto flex flex-col items-center">
+                            <div className="text-5xl sm:text-6xl font-bold mb-2 sm:mb-4">
+                                <span className="bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
+                                    {/* Free */}
+                                    ₹99/month
+                                </span>
+                            </div>
+                            {/* <p className="text-lg sm:text-2xl text-gray-700 mb-4">to start, then just</p>
+                        <div className="text-2xl sm:text-4xl font-bold text-green-700 mb-2 sm:mb-4">5% per Online Transaction</div>
+                        <div className="text-base sm:text-lg text-green-700 mb-4">0% commission on Cash on Delivery (COD)</div> */}
+                            <ul className="space-y-2 sm:space-y-4 mb-6 sm:mb-8 w-full text-left max-w-md mx-auto">
+                                {[
+                                    "Free subdomain",
+                                    "Connect your own domain",
+                                    "3% on Online Payment",
+                                    "0% on Cash on Delivery (COD)",
+                                    // "Built-in UPI & card payments",
+                                    // "Weekly payouts",
+                                    "Mobile-optimized storefront",
+                                    "24/7 customer support",
+                                    "No setup fees",
+                                    // "No monthly subscriptions"
+                                ].map((feature, index) => (
+                                    <li key={index} className="flex items-center space-x-2 sm:space-x-3">
+                                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                        <span className="text-gray-700 text-xs sm:text-base">{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <button onClick={() => navigate("/signup")} className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 sm:px-12 py-3 sm:py-4 rounded-full text-lg sm:text-xl font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 shadow-lg w-full max-w-xs">
+                                Start Your Store Now
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>

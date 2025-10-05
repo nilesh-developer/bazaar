@@ -23,7 +23,8 @@ import {
     setStorePaymentDetails,
     getNumbersOfThirtyDays,
     setDeliveryCharges,
-    getDeliveryCharges
+    getDeliveryCharges,
+    changeRazorpayStatus
 } from "../controllers/store.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -59,6 +60,8 @@ router.route("/subdomain/:subdomain").get(storeData)
 router.route("/cod/change-status/:storeId").patch(changeCodStatus)
 
 router.route("/cashfree/change-status/:storeId").patch(changeCashfreeStatus)
+
+router.route("/razorpay/change-status/:storeId").patch(changeRazorpayStatus)
 
 router.route("/upi/add/:storeId").patch(addUpi)
 

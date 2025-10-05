@@ -272,7 +272,7 @@ function Checkout() {
                 await redirectToPaymentPage(sessionId, orderId)
 
                 // const cashfree = await load({ mode: "production" }); // or "sandbox"
-                
+
                 // let checkoutOptions = {
                 //     paymentSessionId: sessionId,
                 //     redirectTarget: "_modal",
@@ -286,8 +286,88 @@ function Checkout() {
                 //         console.log(error);
                 //     });
             }
-
             //End CashFree PG
+
+            if (billingDetails.paymentMethod === "razorpay") {
+                try {
+                    let res = await axios.post(`${import.meta.env.VITE_API_URL}/api/order/initiate-razorpay-payment`, {
+                        orderData: {
+                            storeId,
+                            custId: customerData._id,
+                            ...billingDetails,
+                            cart: [...cart],
+                            isCouponApplied,
+                            coupon,
+                            discountValue,
+                            deliveryCharge: calculateTotal().deliveryCharge,
+                            productTotals: calculateTotal().productTotals,
+                            totalPrice: calculateTotal().finalTotal,
+                        }
+                    });
+
+                    if (res.data || res.data.razorpayOrder) {
+
+                        const options = {
+                            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                            amount: calculateTotal().finalTotal,
+                            currency: "INR",
+                            name: store.name,
+                            description: `Order Id: ${res.data.order._id}`,
+                            order_id: res.data.razorpayOrder.id,
+                            handler: async function (response) {
+                                //Verify payment on backend
+                                const verifyRes = await fetch(`${import.meta.env.VITE_API_URL}/api/order/verify-razorpay-payment`, {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify({
+                                        razorpay_order_id: response.razorpay_order_id,
+                                        razorpay_payment_id: response.razorpay_payment_id,
+                                        razorpay_signature: response.razorpay_signature,
+                                        customerId: customerData._id,
+                                        orderId: res.data.order._id,
+                                        amount: res.data.razorpayOrder.amount,
+                                        currency: response.currency
+                                    }),
+                                });
+                                const result = await verifyRes.json();
+                                if (verifyRes.ok) {
+                                    removeAllProductsFromCart()
+                                    toast.success(result.message)
+                                    setBillingDetails({
+                                        email: "",
+                                        name: "",
+                                        phoneNo: "",
+                                        address1: "",
+                                        address2: "",
+                                        state: "",
+                                        country: "India",
+                                        pinCode: "",
+                                        paymentMethod: ""
+                                    })
+                                    setDiscountValue(0)
+                                    navigate("/order-success")
+                                } else {
+                                    toast.error(result.message)
+                                    navigate("/payment-failed")
+                                }
+                            },
+                            prefill: {
+                                name: billingDetails.name,
+                                email: billingDetails.email,
+                                contact: billingDetails.phoneNo
+                            },
+                            theme: { color: "#00873d" },
+                        };
+
+                        // 3. Open Razorpay checkout
+                        const rzp1 = new window.Razorpay(options);
+                        rzp1.open();
+                    }
+                } catch (error) {
+                    console.error("Payment Error:", error);
+                    toast.error("Failed to process payment");
+                }
+            }
 
             if (billingDetails.paymentMethod === "COD") {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order-cod`, {
@@ -502,6 +582,28 @@ function Checkout() {
                                     <span className="peer-checked:border-zinc-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-zinc-300 bg-white"></span>
                                     <label className="peer-checked:border-2 peer-checked:border-zinc-700 peer-checked:bg-zinc-50 flex cursor-pointer select-none rounded-lg border border-zinc-300 p-4" htmlFor="radio_2">
                                         <img className="w-14 object-contain" src="./cashfree.png" alt="" />
+                                        <div className="ml-5">
+                                            <span className="mt-2 font-semibold">Online Payment</span>
+                                            <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                :
+                                <></>
+                            }
+                            {store?.razorpay ?
+                                <div className="relative">
+                                    <input
+                                        className="peer hidden"
+                                        id="radio_2"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="razorpay"
+                                        onChange={handleInput}
+                                    />
+                                    <span className="peer-checked:border-zinc-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-zinc-300 bg-white"></span>
+                                    <label className="peer-checked:border-2 peer-checked:border-zinc-700 peer-checked:bg-zinc-50 flex cursor-pointer select-none rounded-lg border border-zinc-300 p-4" htmlFor="radio_2">
+                                        <img className="w-14 object-contain" src="./razorpay.png" alt="" />
                                         <div className="ml-5">
                                             <span className="mt-2 font-semibold">Online Payment</span>
                                             <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>

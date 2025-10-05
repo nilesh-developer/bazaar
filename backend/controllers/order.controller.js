@@ -8,6 +8,7 @@ import crypto from "crypto";
 import { Cashfree } from "cashfree-pg";
 import { format } from "date-fns";
 import { payouts } from "../models/payout.model.js";
+import Razorpay from "razorpay";
 
 const options = {
     timeZone: 'Asia/Kolkata',
@@ -21,6 +22,12 @@ Cashfree.XClientSecret = process.env.CASHFREE_CLIENT_SECRET;
 Cashfree.XEnvironment = Cashfree.Environment.PRODUCTION;
 // Cashfree.XEnvironment = Cashfree.Environment.SANDBOX; // Use SANDBOX for testing
 
+const razorpay = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
+
+
 function generateOrderId() {
     const uniqueId = crypto.randomBytes(16).toString('hex');
 
@@ -32,6 +39,7 @@ function generateOrderId() {
     return orderId.substr(0, 12);
 }
 
+//cashfree start
 const initiatePayment = asyncHandler(async (req, res) => {
     const paymentOrderId = await generateOrderId();
     const { amount, phoneNo, customerId, customerName, customerEmail, orderData } = req.body;
@@ -543,6 +551,168 @@ const paymentDataByPaymentOrderId = asyncHandler(async (req, res) => {
 
     return res.status(200).json({ paymentProcess: dbOrderData.paymentProcess })
 })
+//cashfree end
+
+//razorpay start
+const initiateRazorpayPayment = asyncHandler(async (req, res) => {
+    const { orderData } = req.body;
+
+    if (orderData?.email === "" || orderData?.name === "" || orderData?.address1 === "" || orderData?.address2 === "" || orderData?.state === "" || orderData?.country === "" || orderData?.pinCode === "") {
+        return res.status(404).json(new ApiResponse(404, "", "All fields are required"));
+    }
+
+    if (orderData?.paymentMethod === "") {
+        return res.status(404).json(new ApiResponse(404, "", "Payment method is not selected"));
+    }
+
+    const store = await stores.findById(orderData?.storeId).populate("owner");
+    if (!store) {
+        return res.status(404).json(new ApiResponse(404, "", "Store not found"));
+    }
+
+    const customer = await customers.findById(orderData?.custId);
+    if (!customer) {
+        return res.status(404).json(new ApiResponse(404, "", "Customer not found"));
+    }
+
+    const createOrderDB = async (razorpayOrderId) => {
+        const ordered = await orders.create({
+            store: orderData?.storeId,
+            customerId: orderData?.custId,
+            email: orderData?.email,
+            name: orderData?.name,
+            phoneNo: orderData?.phoneNo,
+            address1: String(orderData?.address1),
+            address2: String(orderData?.address2),
+            state: orderData?.state,
+            country: orderData?.country,
+            pinCode: orderData?.pinCode,
+            paymentMethod: orderData?.paymentMethod,
+            deliveryCharge: orderData?.deliveryCharge,
+            productTotals: orderData?.productTotals,
+            totalPrice: orderData?.totalPrice,
+            isCouponApplied: orderData?.isCouponApplied,
+            discountValue: orderData?.discountValue,
+            coupon: orderData?.coupon,
+            product: orderData?.cart,
+            commission: Number(orderData?.totalPrice) * 5 / 100,
+            payoutAmount: Number(Number(orderData?.totalPrice) - (Number(orderData?.totalPrice) * 5 / 100)),
+            status: "pending",
+            razorpayPaymentDetails: {
+                razorpay_order_id: razorpayOrderId,
+                amount: orderData?.totalPrice,
+                currency: "INR",
+                status: "initiated"
+            }
+        });
+
+        store.orders.push(ordered._id);
+        customer.orders.push(ordered._id);
+
+        if (orderData?.isCouponApplied === true) {
+            customer.couponsUsed.push(orderData?.coupon?.toUpperCase())
+        }
+
+        await store.save();
+        await customer.save();
+
+        return ordered
+    }
+
+    const amountInPaise = orderData?.totalPrice * 100;
+
+    const razorpayOrder = await razorpay.orders.create({
+        amount: amountInPaise,
+        currency: "INR",
+        receipt: "receipt_" + Math.random().toString(36).substring(7),
+    })
+
+    if (razorpayOrder.status === "created") {
+        const order = await createOrderDB(razorpayOrder.id)
+
+        return res.status(200).json({
+            order: order,
+            razorpayOrder: razorpayOrder,
+            message: "Payment Initaited"
+        });
+    }
+
+    return res.status(500).json({
+        message: "Payment initiation failed"
+    })
+})
+
+const verifyRazorpayPayment = asyncHandler(async (req, res) => {
+    const { razorpay_order_id,
+        razorpay_payment_id,
+        razorpay_signature,
+        customerId,
+        orderId,
+        amount,
+        currency } = req.body;
+
+    const amountInRupees = Number(amount) / 100;
+
+    // Verify signature
+    const generated_signature = crypto
+        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .update(razorpay_order_id + "|" + razorpay_payment_id)
+        .digest("hex");
+
+    if (generated_signature === razorpay_signature) {
+        const dbOrderData = await orders.findByIdAndUpdate(
+            orderId,
+            {
+                razorpayPaymentDetails: {
+                    razorpay_order_id,
+                    razorpay_payment_id,
+                    razorpay_signature,
+                    amount: Number(amountInRupees),
+                    currency,
+                    status: "success"
+                }
+            }
+        );
+
+        if (!dbOrderData) {
+            console.log("Order Payment Status in DB is not Updated")
+        }
+
+        const store = await stores.findById(dbOrderData.store)
+        store.revenue = Number(store.revenue) + Number(dbOrderData.totalPrice)
+        store.pendingPayoutOfOrderNotDelivered.orders.push(dbOrderData._id)
+        store.pendingPayoutOfOrderNotDelivered.amount = Number(store?.pendingPayoutOfOrderNotDelivered?.amount) + Number(dbOrderData.payoutAmount)
+        await store.save()
+
+        return res.status(200).json({
+            message: "Transaction Successful"
+        });
+
+    } else {
+        const dbOrderData = await orders.findByIdAndUpdate(
+            orderId, {
+            razorpayPaymentDetails: {
+                razorpay_order_id,
+                razorpay_payment_id: razorpay_payment_id || "",
+                razorpay_signature: razorpay_signature || "",
+                currency: currency,
+                amount: amountInRupees,
+                status: "failed"
+            },
+            status: "canceled"
+        });
+
+        if (!dbOrderData) {
+            console.log("Order Payment Status is not updated")
+        }
+
+        res.status(400).json({
+            message: "Transaction Failed"
+        });
+    }
+
+})
+//razorpay end
 
 const orderPlaced = asyncHandler(async (req, res) => {
     const { storeId, custId, email, name, phoneNo, address1, address2, state, country, pinCode, paymentMethod, isCouponApplied, discountValue, coupon, totalPrice, cart } = req.body;
@@ -1311,6 +1481,14 @@ const getOrderData = asyncHandler(async (req, res) => {
 const updateStatus = asyncHandler(async (req, res) => {
     const { orderId } = req.params;
 
+    const orderStatus = await orders.findById(orderId)
+    if (orderStatus.status === "delivered"){
+        return res.status(400)
+            .json(
+                new ApiResponse(400, "", "Order is already delivered, status can't be updated")
+            )
+    }
+
     const updatedStatus = await orders.findOneAndUpdate({ _id: orderId }, {
         status: req.body.status
     }, {
@@ -1336,6 +1514,15 @@ const updateStatus = asyncHandler(async (req, res) => {
         })
 
         if (updatedStatus.paymentMethod === "cashfree" && updatedStatus.paymentProcess === "completed") {
+            const store = await stores.findById(orderData?.store?._id)
+            store.pendingPayoutOfOrderNotDelivered.orders.pull(updatedStatus._id)
+            store.pendingPayoutOfOrderNotDelivered.amount = Number(store?.pendingPayoutOfOrderNotDelivered?.amount) - Number(updatedStatus.payoutAmount)
+            store.pendingPayout.orders.push(updatedStatus._id)
+            store.pendingPayout.amount = Number(store?.pendingPayout?.amount) + Number(updatedStatus.payoutAmount)
+            await store.save()
+        }
+
+        if (updatedStatus.paymentMethod === "razorpay" && updatedStatus.razorpayPaymentDetails.status === "success") {
             const store = await stores.findById(orderData?.store?._id)
             store.pendingPayoutOfOrderNotDelivered.orders.pull(updatedStatus._id)
             store.pendingPayoutOfOrderNotDelivered.amount = Number(store?.pendingPayoutOfOrderNotDelivered?.amount) - Number(updatedStatus.payoutAmount)
@@ -1570,6 +1757,8 @@ export {
     cashfreePaymentDetails,
     paymentDataByPaymentOrderId,
     updateOrderPaymentStatus,
+    initiateRazorpayPayment,
+    verifyRazorpayPayment,
     orderPlaced,
     codOrderPlaced,
     getAllOrders,

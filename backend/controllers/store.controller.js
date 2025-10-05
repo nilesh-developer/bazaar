@@ -305,7 +305,7 @@ const storeData = asyncHandler(async (req, res) => {
             { subdomain: subdomain },
             { customDomain: subdomain }
         ]
-    }).select("-customers -address -businessName -businessCategory -phoneNo -updatedAt -orders -coupon -revenue -password -storename -razorpay -razorpayKeyId -razorpayKeySecret").populate("products categories")
+    }).select("-customers -address -businessName -businessCategory -phoneNo -updatedAt -orders -coupon -revenue -password -storename -razorpayKeyId -razorpayKeySecret").populate("products categories")
 
     return res.status(200)
         .json(
@@ -345,6 +345,31 @@ const changeCashfreeStatus = asyncHandler(async (req, res) => {
     const store = await stores.findByIdAndUpdate(storeId,
         {
             $set: { cashfree: status }
+        },
+        {
+            new: true
+        })
+
+    if (store.cashfree) {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Payment method Activated")
+            )
+    } else {
+        return res.status(200)
+            .json(
+                new ApiResponse(200, store, "Payment method deactivated"))
+    }
+
+})
+
+const changeRazorpayStatus = asyncHandler(async (req, res) => {
+    const { storeId } = req.params;
+    const { status } = req.body;
+
+    const store = await stores.findByIdAndUpdate(storeId,
+        {
+            $set: { razorpay: status }
         },
         {
             new: true
@@ -715,6 +740,7 @@ export {
     storeData,
     changeCodStatus,
     changeCashfreeStatus,
+    changeRazorpayStatus,
     addUpi,
     changeUpiStatus,
     deleteUpiId,

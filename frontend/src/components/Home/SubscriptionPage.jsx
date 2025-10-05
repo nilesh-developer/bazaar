@@ -30,7 +30,15 @@ const FreePlan = ({userData}) => {
                     </li>
                     <li className="flex items-center space-x-2 sm:space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm sm:text-base">Add upto 12 Products</span>
+                        <span className="text-gray-700 text-sm sm:text-base">Unlimited Products</span>
+                    </li>
+                    <li className="flex items-center space-x-2 sm:space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm sm:text-base">5% Commission on Online Payment</span>
+                    </li>
+                    <li className="flex items-center space-x-2 sm:space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm sm:text-base">0% on COD Orders</span>
                     </li>
                     <li className="flex items-center space-x-2 sm:space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -149,11 +157,23 @@ const PaidPlan = ({userData}) => {
                 <ul className="space-y-2 sm:space-y-4 mb-6 w-full text-left">
                     <li className="flex items-center space-x-2 sm:space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm sm:text-base">Free subdomain</span>
+                    </li>
+                    <li className="flex items-center space-x-2 sm:space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                         <span className="text-gray-700 text-sm sm:text-base">Connect your own domain</span>
                     </li>
                     <li className="flex items-center space-x-2 sm:space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
                         <span className="text-gray-700 text-sm sm:text-base">Unlimited Products</span>
+                    </li>
+                    <li className="flex items-center space-x-2 sm:space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm sm:text-base">3% Commission on Online Payment</span>
+                    </li>
+                    <li className="flex items-center space-x-2 sm:space-x-3">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm sm:text-base">0% on COD Orders</span>
                     </li>
                     <li className="flex items-center space-x-2 sm:space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -199,7 +219,7 @@ export default function SubscriptionPage() {
     return (
         <section id="pricing" className="relative z-10 py-12 sm:py-20 bg-gray-50">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 mt-10">
                     <span className="bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
                         Select one plan
                     </span>

@@ -53,6 +53,26 @@ const OrderSchema = new mongoose.Schema({
             type: String
         },
     },
+    razorpayPaymentDetails: {
+        razorpay_order_id: {
+            type: String
+        },
+        razorpay_payment_id: {
+            type: String
+        },
+        razorpay_signature: {
+            type: String
+        },
+        currency: {
+            type: String
+        },
+        amount: {
+            type: Number
+        },
+        status: {
+            type: String
+        }
+    },
     commission: {
         type: Number,
         default: 0
