@@ -188,7 +188,7 @@ const Home = () => {
                             </h3>
                             <ul className="space-y-4 text-left max-w-md mx-auto mb-8">
                                 {[
-                                    "Free subdomain (yourstore.growostore.com)",
+                                    "Free subdomain (yourstore.growo.store)",
                                     "5% on Online Payments",
                                     "0% on COD Orders",
                                     "Mobile-ready store",
