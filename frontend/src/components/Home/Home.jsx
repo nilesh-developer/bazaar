@@ -285,7 +285,7 @@ const Home = () => {
                                     </div>
                                 )}
                                 <div className="text-xs text-gray-500 mt-3">
-                                    Free forever • No credit card • Razorpay payments enabled
+                                    Free forever • No credit card • Easy to setup
                                 </div>
                             </div>
                         </div>
