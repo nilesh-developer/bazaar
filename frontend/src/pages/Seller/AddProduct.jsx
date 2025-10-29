@@ -101,11 +101,6 @@ function AddProduct() {
       formData.append("tags", JSON.stringify(tags));
       formData.append("variants", JSON.stringify(variants));
 
-      if(product.metaTitle === "" || product.metaDescription === ""){
-        formData.append("metaTitle", product.name);
-        formData.append("metaDescription", product.shortDescription);
-      }
-
       setUploading(true)
       try {
         const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/product/add-product`, formData, {
