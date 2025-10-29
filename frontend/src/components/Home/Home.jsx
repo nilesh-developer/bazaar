@@ -182,7 +182,7 @@ const Home = () => {
                             {/* Subheading */}
                             <p className="text-base sm:text-lg text-gray-700 mb-6 px-2">
                                 Built for creators, small businesses & D2C brands — start free, accept
-                                payments via Razorpay, and turn followers into customers.
+                                orders, and turn followers into customers.
                             </p>
 
                             {/* Trust Badges */}
