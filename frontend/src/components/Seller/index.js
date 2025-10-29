@@ -27,7 +27,8 @@ import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
 import SetDeliveryCharges from "../../pages/Seller/SetDeliveryCharges";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
-import RequestPayoutModal from "./RequestPayoutModel";
+import PaymentSettings from "../../pages/Seller/PaymentSettings";
+import SubscriptionStatus from "./SubscriptionStatus";
 import Subscriptions from "../../pages/Seller/Subscriptions";
 
 export {
@@ -43,12 +44,12 @@ export {
     Customer,
     DialogBox,
     UserProfile,
-    RequestPayoutModal,
     CustomizeStore,
     StoreBannerUpload,
     CustomizeFooter,
     DomainSettings,
     Subscriptions,
+    SubscriptionStatus,
     Analytics,
     Coupon,
     Category,
@@ -61,5 +62,6 @@ export {
     AddCategory,
     EditCategory,
     AddCoupon,
+    PaymentSettings,
     SellerOrderPage
 }

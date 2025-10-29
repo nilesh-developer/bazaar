@@ -44,6 +44,7 @@ import {
   DomainSettings,
   EditCategory,
   Orders,
+  PaymentSettings,
   Products,
   SellerOrderPage,
   SetDeliveryCharges,
@@ -118,7 +119,7 @@ const router = createBrowserRouter(
         <Route path='analytics' element={<Analytics />} />
         <Route path='categories' element={<Category />} />
         <Route path='customers' element={<Customer />} />
-        <Route path='payments' element={<PaymentMethod />} />
+        <Route path='payments' element={<PaymentSettings />} />
         <Route path='edit-store' element={<Store />} />
         <Route path='settings' element={<Settings />} />
         <Route path='customize-store' element={<CustomizeStore />} />

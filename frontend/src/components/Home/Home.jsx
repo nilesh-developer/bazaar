@@ -16,6 +16,8 @@ import {
     BadgeCheck,
     ShieldCheck,
     XCircle,
+    Check,
+    X,
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -175,7 +177,7 @@ const Home = () => {
                             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight text-gray-900 mb-4">
                                 Launch your Instagram Store
                                 <span className="block bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent">
-                                    in 2 minutes    
+                                    in 2 minutes
                                 </span>
                             </h1>
 
@@ -395,17 +397,16 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
-                            <button
-                                onClick={() => navigate('/signup')}
+                            <a href="https://youtu.be/P3uvqfF1cRY?si=cPubx4YBNvPfGCCf" target="_blank"
                                 className="bg-white text-green-700 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all"
                             >
                                 See How It Works →
-                            </button>
+                            </a>
                             <button
                                 onClick={() => navigate('/signup')}
                                 className="border-2 border-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-green-700 transition-all"
                             >
-                                Browse Creator Types →
+                                Create Your Store Now →
                             </button>
                         </div>
                         <p className="text-xs opacity-75">*Only payment gateway charges apply</p>
@@ -414,176 +415,161 @@ const Home = () => {
             </section>
 
             {/* PRICING — transparent and comparison-focused */}
-            <section className="relative z-10 py-16 bg-white/90">
+            <section className="relative z-10 py-8 bg-white/90 rounded-lg">
                 <div className="max-w-6xl mx-auto px-4 text-center">
                     <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
                         Choose the Right Plan to Grow Your Store
                     </h2>
                     <p className="text-gray-600 mb-10 text-sm sm:text-base">
-                        Start free, sell smarter, and upgrade when you’re ready to scale your business.
+                        Start free, sell smarter, and upgrade when you're ready to scale your business.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {/* Plan 1: Starter */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {/* Plan 1: Free */}
                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
                             <div>
-                                <h3 className="text-2xl font-bold mb-1">Starter</h3>
+                                <h3 className="text-2xl font-bold mb-1">Free</h3>
                                 <p className="text-gray-600 mb-4">Perfect for beginners</p>
                                 <div className="text-4xl font-extrabold text-green-700 mb-1">₹0</div>
                                 <div className="text-xs text-gray-500 mb-6">Forever free</div>
-                                <ul className="text-left space-y-2 mb-6">
-                                    {[
-                                        ["Subdomain store (.growo.store)", true],
-                                        ["Up to 5 products", true],
-                                        ["Razorpay checkout (UPI/cards)", true],
-                                        ["Email order alerts", true],
-                                        ["Basic analytics (7-day history)", true],
-                                        ["Discount codes", false],
-                                        ["Inventory tracking", false],
-                                        ["Custom domain", false],
-                                        ["Digital file delivery", false],
-                                    ].map(([label, available], i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                                            {available ? (
-                                                <CheckCircle className="w-5 h-5 text-emerald-600 mt-1" />
-                                            ) : (
-                                                <XCircle className="w-5 h-5 text-gray-400 mt-1" />
-                                            )}
-                                            <span
-                                                className={`text-sm ${!available ? "text-gray-400 line-through" : ""}`}
-                                            >
-                                                {label}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="text-left space-y-3 mb-6">
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Subdomain store (.growo.store)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Up to 5 products</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Razorpay checkout (UPI/cards)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Email order alerts</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Discount codes (1 active at a time)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Basic analytics (7-day history)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Share digital files via external links</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Inventory tracking</span>
+                                    </div>
+                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Custom domain</span>
+                                    </div>
+                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Digital file delivery</span>
+                                    </div>
+                                </div>
                             </div>
-                            <button
-                                onClick={() => navigate("/signup")}
-                                className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all"
-                            >
-                                Start Free
+                            <button onClick={() => navigate("/signup")} className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all">
+                                Create Your Free Store
                             </button>
                         </div>
 
-                        {/* Plan 2: Growth */}
+                        {/* Plan 2: Go */}
                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
                             <div>
-                                <h3 className="text-2xl font-bold mb-1">Growth</h3>
-                                <p className="text-gray-600 mb-4">For early-stage sellers</p>
-                                <div className="text-4xl font-extrabold text-green-700 mb-1">₹99</div>
-                                <div className="text-xs text-gray-500 mb-6">per month (₹990/year)</div>
-                                <ul className="text-left space-y-2 mb-6">
-                                    {[
-                                        ["Everything in Starter plan", true],
-                                        ["Up to 15 products", true],
-                                        ["Discount codes (3 active)", true],
-                                        ["Inventory tracking & alerts", true],
-                                        ["Refund initiation", true],
-                                        ["Secure digital downloads (500MB)", true],
-                                        ["Custom domain", false],
-                                        ["Product videos upload", false],
-                                    ].map(([label, available], i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                                            {available ? (
-                                                <CheckCircle className="w-5 h-5 text-emerald-600 mt-1" />
-                                            ) : (
-                                                <XCircle className="w-5 h-5 text-gray-400 mt-1" />
-                                            )}
-                                            <span
-                                                className={`text-sm ${!available ? "text-gray-400 line-through" : ""}`}
-                                            >
-                                                {label}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <h3 className="text-2xl font-bold mb-1">Go</h3>
+                                <p className="text-gray-600 mb-4">Grow with secure delivery</p>
+                                <div className="text-4xl font-extrabold text-green-700 mb-1">₹149</div>
+                                <div className="text-xs text-gray-500 mb-6">per month (₹1,490/year) <span className='text-green-800'>(3 months free)</span></div>
+                                <div className="space-y-3 mb-6 text-left">
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Everything in Free</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Up to 15 products</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Secure digital downloads (3 files, 500MB total)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Inventory tracking & low-stock alerts</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Discount codes (3 active at a time)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Refund initiation from dashboard</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Upload product videos (Plus plan feature)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Custom domain (brand.com)</span>
+                                    </div>
+                                </div>
                             </div>
-                            <button
-                                onClick={() => navigate("/signup")}
-                                className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all"
-                            >
-                                Upgrade to Growth
+                            <button onClick={() => navigate("/signup")} className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all">
+                                Upgrade to Go
                             </button>
                         </div>
 
-                        {/* Plan 3: Scale (Most Popular) */}
-                        <div className="relative bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-300 rounded-3xl shadow-xl p-8 flex flex-col justify-between transform scale-105">
+                        {/* Plan 3: Plus (Most Popular) */}
+                        <div className="relative bg-gradient-to-br from-emerald-50 to-green-50 border-2 border-emerald-300 rounded-3xl shadow-xl p-8 flex flex-col justify-between transform hover:shadow-2xl transition-all">
                             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
                                 Most Popular
                             </span>
                             <div>
-                                <h3 className="text-2xl font-bold mb-1">Scale</h3>
-                                <p className="text-gray-600 mb-4">Best for growing brands</p>
+                                <h3 className="text-2xl font-bold mb-1">Plus</h3>
+                                <p className="text-gray-600 mb-4">Premium with custom domain</p>
                                 <div className="text-4xl font-extrabold text-green-700 mb-1">₹299</div>
-                                <div className="text-xs text-gray-500 mb-6">per month (₹2,990/year)</div>
-                                <ul className="text-left space-y-2 mb-6">
-                                    {[
-                                        ["Everything in Growth plan", true],
-                                        ["Up to 50 products", true],
-                                        ["Custom domain with SSL", true],
-                                        ["Upload product videos", true],
-                                        ["Meta Pixel integration", true],
-                                        ["Advanced analytics", true],
-                                        ["Digital downloads (1GB total)", true],
-                                        ["Priority support", false],
-                                    ].map(([label, available], i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                                            {available ? (
-                                                <CheckCircle className="w-5 h-5 text-emerald-600 mt-1" />
-                                            ) : (
-                                                <XCircle className="w-5 h-5 text-gray-400 mt-1" />
-                                            )}
-                                            <span
-                                                className={`text-sm ${!available ? "text-gray-400 line-through" : ""}`}
-                                            >
-                                                {label}
-                                            </span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="text-xs text-gray-500 mb-6">per month (₹2,990/year) <span className='text-green-800'>(3 months free)</span></div>
+                                <div className="text-left space-y-3 mb-6">
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Everything in Go</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Up to 100 products</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Custom domain with SSL</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Secure digital downloads (5 files, 1GB total)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Upload product videos</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Run 25 active discount codes at once</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Improve your advertising with Meta Pixel event capture (view, cart, checkout, purchase)</span>
+                                    </div>
+                                </div>
                             </div>
-                            <button
-                                onClick={() => navigate("/signup")}
-                                className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all"
-                            >
-                                Choose Scale
-                            </button>
-                        </div>
-
-                        {/* Plan 4: Ultimate */}
-                        <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
-                            <div>
-                                <h3 className="text-2xl font-bold mb-1">Ultimate</h3>
-                                <p className="text-gray-600 mb-4">For high-volume sellers</p>
-                                <div className="text-4xl font-extrabold text-green-700 mb-1">₹499</div>
-                                <div className="text-xs text-gray-500 mb-6">per month (₹4,990/year)</div>
-                                <ul className="text-left space-y-2 mb-6">
-                                    {[
-                                        ["Everything in Scale plan", true],
-                                        ["Up to 500 products", true],
-                                        ["Unlimited discount codes", true],
-                                        ["Unlimited video hosting", true],
-                                        ["Advanced analytics dashboard", true],
-                                        ["Priority chat & onboarding", true],
-                                        ["Dedicated account manager", true],
-                                    ].map(([label, available], i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                                            {available ? (
-                                                <CheckCircle className="w-5 h-5 text-emerald-600 mt-1" />
-                                            ) : (
-                                                <XCircle className="w-5 h-5 text-gray-400 mt-1" />
-                                            )}
-                                            <span className="text-sm">{label}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <button
-                                onClick={() => navigate("/signup")}
-                                className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all"
-                            >
-                                Go Ultimate
+                            <button onClick={() => navigate("/signup")} className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all">
+                                Upgrade to Plus
                             </button>
                         </div>
                     </div>
@@ -593,7 +579,6 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-
 
             {/* TESTIMONIALS */}
             <section className="relative z-10 py-16 bg-gradient-to-br from-green-50 to-emerald-100">

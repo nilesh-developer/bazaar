@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../store/auth';
-import jsPDF from 'jspdf';
-import { autoTable } from 'jspdf-autotable'
+import { SubscriptionStatus } from '../../components/Seller';
 
 function Subscriptions() {
     const { token } = useAuth();
@@ -43,47 +42,6 @@ function Subscriptions() {
         getTransactionsData()
     }, [])
 
-    const generatePDF = () => {
-        const doc = new jsPDF();
-
-        doc.text('All Subscription List', 14, 15);
-
-        const tableColumn = [
-            'Plan Type',
-            'Transaction ID',
-            'Payment ID',
-            'Transaction Date',
-            'Expires on',
-            'Status',
-            'Amount'
-        ];
-
-        const tableRows = [];
-
-        transactions.forEach(transaction => {
-            const orderData = [
-                transaction.planType.toUpperCase(),
-                transaction._id,
-                transaction?.razorpay_payment_id,
-                transaction.createdAt.split("T")[0],
-                transaction.expiresOn.split("T")[0],
-                transaction.status,
-                "Rs. "+transaction.amount
-            ];
-            tableRows.push(orderData);
-        });
-
-        autoTable(doc, {
-            head: [tableColumn],
-            body: tableRows,
-            startY: 20,
-            styles: { fontSize: 7, cellWidth: 'wrap' },
-            headStyles: { fillColor: [22, 160, 133] }, // teal header
-        });
-
-        doc.save('subscription-list.pdf');
-    };
-
     if (isLoading) {
         return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     }
@@ -95,8 +53,9 @@ function Subscriptions() {
                     <div className="container p-2 mx-auto sm:p-4 text-gray-800">
                         <div className='flex justify-between lg:justify-start lg:gap-5'>
                             <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Subscriptions</h2>
-                            <button onClick={generatePDF} className="px-3 py-2 text-sm text-white font-bold rounded-lg bg-[#198c36]">Download PDF</button>
                         </div>
+
+                        <SubscriptionStatus />
 
                         {transactions?.length === 0 ?
 

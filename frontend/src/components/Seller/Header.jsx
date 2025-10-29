@@ -6,7 +6,7 @@ function Header() {
         <header className="py-2 px-3 lg:px-4 top-0 sticky text-slate-950 border-b border-zinc-200 bg-white lg:hidden h-[70px]">
             <div className="container flex justify-between h-full">
                 <Link to="/seller/dashboard" className="flex items-center p-2">
-                    <img className='h-9' src="/growo.png" alt="growo" />
+                    <img className='h-7 lg:h-9' src="/growo.png" alt="growo" />
                 </Link>
             </div>
         </header>

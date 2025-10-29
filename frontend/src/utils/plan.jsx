@@ -1,0 +1,55 @@
+export const PLANS = {
+  free: {
+    name: "Free",
+    price: 0,
+    features: {
+      subdomainStore: true,
+      upToProducts: 5,
+      razorpayCheckout: true,
+      emailAlerts: true,
+      discountCodes: 1,
+      analyticsDays: 7,
+      externalFileLinks: true,
+      inventoryTracking: false,
+      customDomain: false,
+      digitalDelivery: false,
+      uploadVideos: false,
+    },
+  },
+
+  go: {
+    name: "Go",
+    price: 149,
+    features: {
+      subdomainStore: true,
+      upToProducts: 25,
+      razorpayCheckout: true,
+      emailAlerts: true,
+      discountCodes: 3,
+      analyticsDays: 30,
+      externalFileLinks: true,
+      inventoryTracking: true,
+      customDomain: false,
+      digitalDelivery: true,
+      uploadVideos: false,
+    },
+  },
+
+  plus: {
+    name: "Plus",
+    price: 299,
+    features: {
+      subdomainStore: true,
+      upToProducts: 200,
+      razorpayCheckout: true,
+      emailAlerts: true,
+      discountCodes: 25,
+      analyticsDays: 90,
+      externalFileLinks: true,
+      inventoryTracking: true,
+      customDomain: true,
+      digitalDelivery: true,
+      uploadVideos: true,
+    },
+  },
+};

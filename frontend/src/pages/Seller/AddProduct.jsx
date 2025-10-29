@@ -88,7 +88,7 @@ function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (product.name !== "" && product.shortDescription !== "" && product.originalPrice !== "" && product.salePrice !== "" && product.category !== "" && product.returnDetails !== "" && product.deliveryDetails !== "" && product.metaTitle !== "" && product.metaDescription !== "") {
+    if (product.name !== "" && product.shortDescription !== "" && product.originalPrice !== "" && product.category !== "" && product.returnDetails !== "" && product.deliveryDetails !== "") {
 
       const formData = new FormData();
       Object.keys(product).forEach((key) => formData.append(key, product[key]));
@@ -100,6 +100,11 @@ function AddProduct() {
       formData.append("recommended", recommended);
       formData.append("tags", JSON.stringify(tags));
       formData.append("variants", JSON.stringify(variants));
+
+      if(product.metaTitle === "" || product.metaDescription === ""){
+        formData.append("metaTitle", product.name);
+        formData.append("metaDescription", product.shortDescription);
+      }
 
       setUploading(true)
       try {
@@ -154,12 +159,12 @@ function AddProduct() {
   return (
     <div className="bg-white p-4 lg:p-10 lg:min-h-screen h-full lg:mb-0 mb-20">
       <div className='flex justify-between'>
-        <h2 className="text-xl lg:text-3xl font-extrabold text-gray-900">Add New Product</h2>
+        <h2 className="text-2xl lg:text-3xl font-extrabold text-gray-900">Add New Product</h2>
         <div>
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+            className="w-full hidden lg:block px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
           >
             {uploading ? <span className="loading loading-spinner loading-md"></span> : "Publish"}
           </button>
@@ -423,6 +428,15 @@ function AddProduct() {
           </div>
         </div>
       </div>
+      <div>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="w-full lg:hidden px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none"
+          >
+            {uploading ? <span className="loading loading-spinner loading-md"></span> : "Publish"}
+          </button>
+        </div>
     </div>
   );
 }

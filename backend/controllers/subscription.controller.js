@@ -14,7 +14,7 @@ const razorpay = new Razorpay({
 //Razorpay Subscription
 const createOrderRazorpay = async (req, res) => {
     try {
-        const { amount, userToken } = req.body;
+        const { userToken, plan } = req.body;
 
         const tokenDetails = await jwt.verify(userToken, process.env.ACCESS_TOKEN_SECRET)
 
@@ -26,7 +26,7 @@ const createOrderRazorpay = async (req, res) => {
                 })
         }
 
-        const amountInPaise = amount * 100;
+        const amountInPaise = plan.amount * 100;
 
         const order = await razorpay.orders.create({
             amount: amountInPaise,
@@ -55,14 +55,14 @@ const createOrderRazorpay = async (req, res) => {
 }
 
 const verifyRazorpayPayment = asyncHandler(async (req, res) => {
-    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, userId, amount, currency, period } = req.body;
+    const { razorpay_order_id, razorpay_payment_id, razorpay_signature, userId, amount, currency, plan } = req.body;
 
     // Get today's date
     const today = new Date();
 
     // Calculate one month later
     const oneMonthLater = new Date(today);
-    oneMonthLater.setMonth(oneMonthLater.getMonth() + 1);
+    oneMonthLater.setMonth(oneMonthLater.getMonth() + plan.duration);
 
     const amountInRupees = amount / 100;
 
@@ -76,14 +76,14 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
         // Save subscription/payment in MongoDB
         const subscription = new razorpaypayments({
             userId,
-            planType: "pro",
+            planType: plan.name,
             razorpay_order_id,
             razorpay_payment_id,
             razorpay_signature,
             amount: amountInRupees,
             currency,
             status: "success",
-            period: period,
+            period: plan.duration,
             expiresOn: oneMonthLater
         });
 
@@ -92,7 +92,7 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
         const user = await users.findByIdAndUpdate(userId, {
             transactionId: subscription._id,
             subcription: true,
-            subscription_plan_type: "pro"
+            subscription_plan_type: plan.name,
         })
 
         res.status(200).json({ statusCode: 200, message: "Payment Verified & Saved", subscription });

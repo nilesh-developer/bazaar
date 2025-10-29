@@ -84,8 +84,8 @@ function Store() {
               <div className='flex'>
                  <Settings className='text-black h-8 w-8 mt-3'/>
                 <div className='ml-4'>
-                  <h3 className='font-bold text-gray-800 text-xl'>Settings</h3>
-                  <p className='text-sm text-gray-500'>Custom domain & Deactivate/Delete Store</p>
+                  <h3 className='font-bold text-gray-800 text-xl'>Domain Settings</h3>
+                  <p className='text-sm text-gray-500'>Add Custom domain to your store</p>
                 </div>
               </div>
             </div>

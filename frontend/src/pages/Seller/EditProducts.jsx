@@ -187,7 +187,7 @@ function EditProduct() {
                     <button
                         type="submit"
                         onClick={handleSubmit}
-                        className="w-full px-4 py-2 font-bold text-white bg-green-700 rounded-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        className="w-full hidden lg:block px-4 py-2 font-bold text-white bg-green-700 rounded-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
                         {updating ? <span className="loading loading-spinner loading-md"></span> : "Update"}
                     </button>
@@ -446,6 +446,15 @@ function EditProduct() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="w-full lg:hidden px-4 py-2 font-bold text-white bg-green-700 rounded-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                >
+                    {updating ? <span className="loading loading-spinner loading-md"></span> : "Update"}
+                </button>
             </div>
         </div>
     );

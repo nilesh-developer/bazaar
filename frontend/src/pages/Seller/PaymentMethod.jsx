@@ -92,7 +92,7 @@ function PaymentMethod() {
     return (
         <section className='bg-white flex-grow h-dvh min-w-80 lg:h-dvh lg:pb-0 pb-20'>
             <div className='lg:my-7 lg:mx-7 my-5 mx-3'>
-                <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Set payment method</h2>
+                <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold tracking-tight'>Setup payment method</h2>
             </div>
             <div className="overflow-x-auto mt-7 mx-4 lg:mx-7">
                 <table className="min-w-full text-xs">

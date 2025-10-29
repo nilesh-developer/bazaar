@@ -277,7 +277,7 @@ function DomainSettings() {
             )}
 
 
-            <h2 className='mt-12 lg:text-3xl tracking-tighter font-bold text-zinc-900 text-2xl'>Deactivate & Delete Store</h2>
+            {/* <h2 className='mt-12 lg:text-3xl tracking-tighter font-bold text-zinc-900 text-2xl'>Deactivate & Delete Store</h2>
             <div className='mt-6 w-[160px] grid grid-flow-row gap-3'>
               {store.status === true ?
                 <button onClick={changeStoreStatus} className="btn btn-error text-white">Deactivate Store</button>
@@ -286,7 +286,7 @@ function DomainSettings() {
               }
               <button type="button" onClick={openModal} className="btn btn-error text-white">Delete Store </button>
 
-              {/* Dialog Box */}
+              
               <Transition appear show={isOpen} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={closeModal}>
                   <Transition.Child
@@ -347,7 +347,7 @@ function DomainSettings() {
                   </div>
                 </Dialog>
               </Transition>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import isTokenExpired from "../Hooks/verifyJwtToken";
+import { PLANS } from "../utils/plan";
 
 export const AuthContext = createContext();
 
@@ -11,6 +12,8 @@ export const AuthProvider = ({ children }) => {
     const [userId, setUserId] = useState("")
 
     const [userData, setUserData] = useState({})
+
+    const [currentPlan, setCurrentPlan] = useState(PLANS.free); // default free or fetched
 
     const [token, setToken] = useState(localStorage.getItem("token"))
 
@@ -42,6 +45,7 @@ export const AuthProvider = ({ children }) => {
             if(response.ok){
                 const data = await response.json();
                 setUserData(data.data)
+                setCurrentPlan(PLANS[data.data.subscription_plan_type] || PLANS.free)
                 setIsLoading(false)
             } else {
                 setIsLoading(false)
@@ -61,7 +65,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ userData, setUserData, storeTokenInLS, token, setToken, userId, setUserId, isLoading, isLoggedIn, logoutUser }}>
+        <AuthContext.Provider value={{ userData, setUserData, userAuthentication, currentPlan, storeTokenInLS, token, setToken, userId, setUserId, isLoading, isLoggedIn, logoutUser }}>
             {children}
         </AuthContext.Provider>
     )

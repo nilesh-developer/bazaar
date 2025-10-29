@@ -71,15 +71,17 @@ function Dashboard() {
         <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
           <h2 className='lg:text-3xl text-2xl text-zinc-900 font-extrabold tracking-tight'>Dashboard</h2>
           {/* alert to verify email */}
-          <div role="alert" className="alert mt-3 hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span>Your email verification is pending. Verify to open your own store</span>
-            <div>
-              <button className="btn btn-sm btn-primary">Verify</button>
+          {!user?.isVerified &&
+            <div data-theme="light" role="alert" className="alert mt-3">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span>Your email verification is pending. Verify to open your own store</span>
+              <div>
+                <button className="btn btn-sm btn-primary">Verify</button>
+              </div>
             </div>
-          </div>
+          }          {/* alert to verify subscription payment */}
 
-          {user?.transactionId?.status && user?.subcription ? <></> :
+          {!user?.subcription &&
             <div data-theme="light" role="alert" className="alert mt-3">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-info shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
               <span>Your subscription payment verification is under review. It will take 1 to 4 hours to be verified.</span>

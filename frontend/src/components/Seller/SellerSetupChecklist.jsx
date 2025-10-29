@@ -1,49 +1,61 @@
 import React from "react";
-import { CheckCircle, Globe, FileText, CreditCard, Truck, Package, Settings } from "lucide-react";
+import { CheckCircle, Globe, FileText, CreditCard, Truck, Package, Settings, LayoutDashboard } from "lucide-react";
 
 const steps = [
   {
     id: 1,
-    title: "Add your first product",
-    icon: <Package className="w-5 h-5 text-emerald-600" />,
+    title: "Name your store",
+    icon: <CheckCircle className="w-5 h-5 text-emerald-600" />,
+    url: "/seller/customize-store",
     completed: true,
   },
   {
     id: 2,
-    title: "Name your store",
-    icon: <CheckCircle className="w-5 h-5 text-emerald-600" />,
+    title: "Add your first category",
+    icon: <LayoutDashboard className="w-5 h-5 text-emerald-600" />,
+    url: "/seller/add-category",
     completed: true,
   },
   {
     id: 3,
-    title: "Customize your online store",
-    icon: <Settings className="w-5 h-5 text-emerald-600" />,
+    title: "Add your first product",
+    icon: <Package className="w-5 h-5 text-emerald-600" />,
+    url: "/seller/add-product",
     completed: true,
   },
   {
     id: 4,
-    title: "Add a custom domain",
-    icon: <Globe className="w-5 h-5 text-gray-400" />,
-    completed: false,
+    title: "Customize your online store",
+    icon: <Settings className="w-5 h-5 text-emerald-600" />,
+    url: "/seller/customize-banner",
+    completed: true,
   },
   {
     id: 5,
     title: "Set up store policies",
-    subtitle: "Add refund, shipping, and cancellation policies",
     icon: <FileText className="w-5 h-5 text-gray-400" />,
+    url: "/seller/store-policies",
     completed: false,
   },
   {
     id: 6,
     title: "Set up Payments",
     icon: <CreditCard className="w-5 h-5 text-gray-400" />,
+    url: "/seller/payments",
     completed: false,
   },
   {
     id: 7,
     title: "Configure shipping settings",
-    subtitle: "Set up shipping rates and delivery times for physical products",
     icon: <Truck className="w-5 h-5 text-gray-400" />,
+    url: "/seller/set-delivery-charges",
+    completed: false,
+  },
+  {
+    id: 8,
+    title: "Add a custom domain",
+    icon: <Globe className="w-5 h-5 text-gray-400" />,
+    url: "/seller/domain-settings",
     completed: false,
   },
 ];
@@ -62,7 +74,7 @@ export default function SellerSetupChecklist() {
           </p>
         </div>
         <span className="text-sm font-medium text-purple-600 bg-purple-50 px-3 py-1 rounded-full">
-          {completedCount} / {steps.length} completed
+          {completedCount} / {steps.length} Completed
         </span>
       </div>
 
@@ -71,19 +83,17 @@ export default function SellerSetupChecklist() {
         {steps.map((step) => (
           <div
             key={step.id}
-            className={`flex items-center justify-between p-4 rounded-xl border transition shadow-sm hover:shadow-md ${
-              step.completed
+            className={`flex items-center justify-between p-4 rounded-xl border transition shadow-sm ${step.completed
                 ? "border-emerald-200 bg-emerald-50/40"
                 : "border-gray-100 bg-white"
-            }`}
+              }`}
           >
             <div className="flex items-start gap-3">
               <div>{step.icon}</div>
               <div>
                 <h3
-                  className={`text-base font-semibold ${
-                    step.completed ? "text-emerald-700" : "text-gray-800"
-                  }`}
+                  className={`text-base font-semibold ${step.completed ? "text-emerald-700" : "text-gray-800"
+                    }`}
                 >
                   {step.title}
                 </h3>
@@ -94,7 +104,7 @@ export default function SellerSetupChecklist() {
             </div>
 
             <a
-              href="#"
+              href={step.url}
               className="text-blue-600 text-sm font-medium hover:underline flex items-center gap-1"
             >
               Open{" "}
@@ -116,11 +126,6 @@ export default function SellerSetupChecklist() {
           </div>
         ))}
       </div>
-
-      {/* Floating Action Button */}
-      <button className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg">
-        +
-      </button>
     </section>
   );
 }
