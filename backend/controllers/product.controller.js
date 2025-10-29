@@ -47,7 +47,7 @@ const addProduct = asyncHandler(async (req, res) => {
         returnDetails,
         deliveryDetails,
         metaTitle: metaTitle ? metaTitle : name,
-        metaDescription: metaDescription ? metaDescription : description,
+        metaDescription: metaDescription ? metaDescription : shortDescription,
         stockQty,
         stockStatus,
         recommended,
