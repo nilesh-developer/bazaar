@@ -153,14 +153,14 @@ export default function SubscriptionStatus() {
             </div>
 
             {/* Secure Digital Downloads */}
-            {currentPlan === "free" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() === "free" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">SECURE DIGITAL DOWNLOADS</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Not included</div>
               <div className="text-sm text-gray-600">Unlock direct file delivery with Go</div>
             </div>
             }
 
-            {currentPlan !== "free" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() !== "free" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">SECURE DIGITAL DOWNLOADS</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">{Number(userData?.store?.coupon?.length) + " / " + Number(currentPlan?.features?.discountCodes)}</div>
               <div className="text-sm text-gray-600">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
@@ -172,14 +172,14 @@ export default function SubscriptionStatus() {
             }
 
             {/* Custom Domain */}
-            {currentPlan !== "plus" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() !== "plus" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">CUSTOM DOMAIN</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Not included</div>
               <div className="text-sm text-gray-600">Plus plan unlocks branded domains</div>
             </div>
             }
 
-            {currentPlan === "plus" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() === "plus" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">CUSTOM DOMAIN</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Included</div>
               <div className="text-sm text-gray-600">Add your custom domain</div>
