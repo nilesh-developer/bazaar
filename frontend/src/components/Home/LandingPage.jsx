@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {
-    ShoppingBag,
     Zap,
     Globe,
     CreditCard,
-    Users,
-    TrendingUp,
     CheckCircle,
     Star,
     ArrowRight,
     Play,
     Smartphone,
-    Monitor,
-    DollarSign,
     IndianRupee,
     Shield
 } from 'lucide-react';

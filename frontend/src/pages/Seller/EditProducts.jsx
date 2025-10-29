@@ -187,7 +187,7 @@ function EditProduct() {
                     <button
                         type="submit"
                         onClick={handleSubmit}
-                        className="w-full px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                        className="w-full px-4 py-2 font-bold text-white bg-green-700 rounded-md hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                     >
                         {updating ? <span className="loading loading-spinner loading-md"></span> : "Update"}
                     </button>
@@ -202,7 +202,7 @@ function EditProduct() {
                         </div>
                         <form className="space-y-4" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Product Name</label>
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Product Name<span className="text-red-500">*</span></label>
                                 <input
                                     id="name"
                                     name="name"
@@ -214,7 +214,7 @@ function EditProduct() {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="shortDescription" className="block text-sm font-medium text-gray-700">Short Description</label>
+                                <label htmlFor="shortDescription" className="block text-sm font-medium text-gray-700">Short Description<span className="text-red-500">*</span></label>
                                 <textarea
                                     id="shortDescription"
                                     name="shortDescription"
@@ -225,7 +225,7 @@ function EditProduct() {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description<span className="text-red-500">*</span></label>
                                 {/* Product Description Field (ReactQuill) */}
                                 <div className="form-group">
                                     <ReactQuill
@@ -261,7 +261,7 @@ function EditProduct() {
                             </div>
                             <div className='flex gap-3'>
                                 <div className='w-full'>
-                                    <label htmlFor="originalPrice" className="block text-sm font-medium text-gray-700">Price</label>
+                                    <label htmlFor="originalPrice" className="block text-sm font-medium text-gray-700">Price<span className="text-red-500">*</span></label>
                                     <input
                                         id="originalPrice"
                                         name="originalPrice"
@@ -287,7 +287,7 @@ function EditProduct() {
                             </div>
                             <p className='text-lg font-medium'>Final Price: <span className='text-green-700 font-bold'>&#8377;{product.salePrice}</span> <span className='line-through font-thin'>&#8377;{product.originalPrice}</span></p>
                             <div>
-                                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category</label>
+                                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Product Category<span className="text-red-500">*</span></label>
                                 <select
                                     onChange={handleChange}
                                     value={product.category}
@@ -301,7 +301,7 @@ function EditProduct() {
                                 </select>
                             </div>
                             <div>
-                                <label htmlFor="stockQty" className="block text-sm font-medium text-gray-700">Stock Quantity</label>
+                                <label htmlFor="stockQty" className="block text-sm font-medium text-gray-700">Stock Quantity<span className="text-red-500">*</span></label>
                                 <input
                                     id="stockQty"
                                     name="stockQty"
@@ -313,7 +313,7 @@ function EditProduct() {
                                 />
                             </div>
                             <div className="flex items-center">
-                                <label htmlFor="status" className="block text-sm font-medium text-gray-700 mr-3">Visibility Status</label>
+                                <label htmlFor="status" className="block text-sm font-medium text-gray-700 mr-3">Visibility Status<span className="text-red-500">*</span></label>
                                 <input
                                     data-theme='light'
                                     id='status'
@@ -325,7 +325,7 @@ function EditProduct() {
                                 />
                             </div>
                             <div className="flex items-center">
-                                <label htmlFor="recommended" className="block text-sm font-medium text-gray-700 mr-3">Recommended</label>
+                                <label htmlFor="recommended" className="block text-sm font-medium text-gray-700 mr-3">Featured<span className="text-red-500">*</span></label>
                                 <input
                                     data-theme='light'
                                     id='recommended'
@@ -338,7 +338,7 @@ function EditProduct() {
                             </div>
                         </form>
                         <div>
-                            <label htmlFor="returnDetails" className="block text-sm font-medium text-gray-700">Return Details</label>
+                            <label htmlFor="returnDetails" className="block text-sm font-medium text-gray-700">Return Details<span className="text-red-500">*</span></label>
                             <textarea
                                 id="returnDetails"
                                 name="returnDetails"
@@ -349,7 +349,7 @@ function EditProduct() {
                             />
                         </div>
                         <div>
-                            <label htmlFor="deliveryDetails" className="block text-sm font-medium text-gray-700">Delivery Details</label>
+                            <label htmlFor="deliveryDetails" className="block text-sm font-medium text-gray-700">Delivery Details<span className="text-red-500">*</span></label>
                             <textarea
                                 id="deliveryDetails"
                                 name="deliveryDetails"
@@ -366,7 +366,7 @@ function EditProduct() {
                 <div className="w-full h-auto mt-10 lg:mt-0 space-y-6 rounded-lg">
                     <div className="w-full h-auto mt-10 lg:mt-0 lg:p-8 space-y-6 bg-white rounded-lg">
                         <div className="text-center">
-                            <h2 className="text-xl text-left font-bold">Product Media</h2>
+                            <h2 className="text-xl text-left font-bold">Product Images<span className="text-red-500">*</span></h2>
                             <p className="text-gray-600 text-sm font-semibold mb-4 text-left">Upload images to make your product stand out. Up to 5 images allowed</p>
                             <div className="flex justify-center gap-6 mb-6">
                                 <div className="flex flex-col items-center cursor-pointer">

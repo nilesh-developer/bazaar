@@ -5,6 +5,7 @@ import useStoreData from '../../Hooks/useStoreData';
 import isTokenExpired from '../../Hooks/verifyJwtToken';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
+import SellerSetupChecklist from '../../components/Seller/SellerSetupChecklist';
 
 function Dashboard() {
 
@@ -117,6 +118,9 @@ function Dashboard() {
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.products?.length}</h2>
             </div>
           </div>
+
+          <SellerSetupChecklist />
+
           {/* <div className='grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-2 gap-5 mt-8'> */}
           <div className='mt-8 gap-4 lg:flex'>
             <div className='bg-white  border-gray-200 border lg:w-full h-fit p-5 rounded-xl'>

@@ -16,7 +16,6 @@ import {
   Home,
   Logout,
   AboutUs,
-  Pricing,
   TermsAndConditions,
   ContactForm,
   StorePolicy,
@@ -33,7 +32,6 @@ import SellerLayout from './pages/Seller/SellerLayout.jsx'
 import {
   AddCategory,
   AddCoupon,
-  AddPaymentDetails,
   AddProduct,
   Analytics,
   Category,
@@ -48,10 +46,8 @@ import {
   Orders,
   Products,
   SellerOrderPage,
-  SellerPayoutPage,
   SetDeliveryCharges,
   Settings,
-  SinglePayoutPage,
   Store,
   StoreAboutPage,
   StoreBannerUpload,
@@ -75,14 +71,11 @@ import AdminLayout from './pages/admin/AdminLayout.jsx'
 import AllOrders from './pages/admin/AllOrders.jsx'
 import AllSellers from './pages/admin/AllSellers.jsx'
 import AllCustomers from './pages/admin/AllCustomers.jsx'
-import AllPayouts from './pages/admin/AllPayouts.jsx'
 import AdminOrderPage from './pages/admin/AdminOrderPage.jsx'
 import AdminLogout from './pages/admin/AdminLogout.jsx'
 import StorePage from './pages/admin/StorePage.jsx'
 import CustomerPage from './pages/admin/CustomerPage.jsx'
-import PayoutPage from './pages/admin/PayoutPage.jsx'
 import AdminChangePassword from './pages/admin/AdminChangePassword.jsx'
-import AdminPayoutPage from './pages/admin/AdminPayoutPage.jsx'
 import NoSubscription from './pages/Home/NoSubscription.jsx'
 import SubscriptionPage from './components/Home/SubscriptionPage.jsx'
 
@@ -94,7 +87,6 @@ const router = createBrowserRouter(
         <Route path='signup' element={<SignUp />} />
         <Route path='login' element={<Login />} />
         <Route path='forgot-password' element={<ForgotPassword />} />
-        {/* <Route path='pricing' element={<Pricing />} /> */}
         <Route path='checkout' element={<Checkout />} />
         <Route path='subscription-plan' element={<SubscriptionPage />} />
         <Route path='subscription-expired' element={<NoSubscription />} />
@@ -145,9 +137,6 @@ const router = createBrowserRouter(
         <Route path='edit-product/:id' element={<EditProduct />} />
         <Route path='add-coupon' element={<AddCoupon />} />
         <Route path='edit-coupon/:id' element={<EditCoupon />} />
-        <Route path='add-payment-details' element={<AddPaymentDetails />} />
-        <Route path='payouts' element={<SellerPayoutPage />} />
-        <Route path='payouts/:id' element={<SinglePayoutPage />} />
         <Route path='orders/:id' element={<SellerOrderPage />} />
       </Route>
       <Route path='admin' element={<AdminLayout />}>
@@ -155,12 +144,9 @@ const router = createBrowserRouter(
         <Route path='orders' element={<AllOrders />} />
         <Route path='sellers' element={<AllSellers />} />
         <Route path='customers' element={<AllCustomers />} />
-        {/* <Route path='payouts' element={<AllPayouts />} /> */}
-        <Route path='payouts' element={<AdminPayoutPage />} />
         <Route path='orders/:id' element={<AdminOrderPage />} />
         <Route path='store/:id' element={<StorePage />} />
         <Route path='customers/:id' element={<CustomerPage />} />
-        <Route path='payouts/:id' element={<PayoutPage />} />
         <Route path='change-password' element={<AdminChangePassword />} />
         <Route path='logout' element={<AdminLogout />} />
       </Route>

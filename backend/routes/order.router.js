@@ -1,26 +1,12 @@
 import { Router } from "express";
-import { acceptOrder, cancelOrder, cashfreePaymentDetails, codOrderPlaced, getAllOrders, getOrderData, initiatePayment, initiateRazorpayPayment, orderPlaced, paymentDataByPaymentOrderId, storeOrders, updateOrderPaymentStatus, updateStatus, verifyPayment, verifyRazorpayPayment } from "../controllers/order.controller.js";
+import { acceptOrder, cancelOrder, codOrderPlaced, getAllOrders, getOrderData, initiateRazorpayPayment, storeOrders, updateStatus, verifyRazorpayPayment } from "../controllers/order.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 const router = Router()
-
-//cashfree
-router.route("/initiate-payment").post(initiatePayment)
-
-router.route("/verify-payment").post(verifyPayment)
-
-router.route("/update-cashfree-payment").post(cashfreePaymentDetails) //payment webhook. notify_url in cashfree
-
-router.route("/payment-status/:paymentOrderId").get(paymentDataByPaymentOrderId)
-
-router.route("/cron/update-payment-status").get(updateOrderPaymentStatus)
-//cashfree end
 
 //razorpay start
 router.route("/initiate-razorpay-payment").post(initiateRazorpayPayment)
 router.route("/verify-razorpay-payment").post(verifyRazorpayPayment)
 //razorpay end
-
-router.route("/place-order").post(orderPlaced)
 
 router.route("/place-order-cod").post(codOrderPlaced)
 

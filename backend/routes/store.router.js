@@ -1,15 +1,11 @@
 import { Router } from "express";
 import {
     addCustomDomain,
-    addUpi,
     businessdetails,
     changeCodStatus,
-    changeCashfreeStatus,
     changeStoreStatus,
-    changeUpiStatus,
     createStore,
     deleteStore,
-    deleteUpiId,
     getCurrentStoreData,
     getCustomerData,
     storeData,
@@ -18,9 +14,6 @@ import {
     updateSocial,
     updateStoreName,
     uploadStoreImage,
-    getStorePayout,
-    getCurrentWeekPayout,
-    setStorePaymentDetails,
     getNumbersOfThirtyDays,
     setDeliveryCharges,
     getDeliveryCharges,
@@ -38,8 +31,6 @@ router.route("/businessdetails").post(businessdetails)
 router.route("/data").post(getCurrentStoreData)
 
 router.route("/get-numbers-of-thirty-days/:storeId").get(getNumbersOfThirtyDays)
-
-router.route("/set-payment-details").post(setStorePaymentDetails)
 
 router.route("/add-domain/:id").patch(addCustomDomain)
 
@@ -59,15 +50,7 @@ router.route("/subdomain/:subdomain").get(storeData)
 
 router.route("/cod/change-status/:storeId").patch(changeCodStatus)
 
-router.route("/cashfree/change-status/:storeId").patch(changeCashfreeStatus)
-
 router.route("/razorpay/change-status/:storeId").patch(changeRazorpayStatus)
-
-router.route("/upi/add/:storeId").patch(addUpi)
-
-router.route("/upi/change-status/:storeId").patch(changeUpiStatus)
-
-router.route("/upi/delete/:storeId").delete(deleteUpiId)
 
 router.route("/upload/images").post(
     upload.fields([
@@ -98,9 +81,5 @@ router.route("/customer-data/:storeId").get(getCustomerData)
 router.route("/set-delivery-charges").post(setDeliveryCharges)
 
 router.route("/get-delivery-charges/:userId").get(getDeliveryCharges)
-
-router.route("/get-payouts/:storeId").get(getStorePayout)
-
-router.route("/get-current-week-payout/:storeId").get(getCurrentWeekPayout)
 
 export { router as storeRouter }

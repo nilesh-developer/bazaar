@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerUser, checkStorenameUnique, verifyCode, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, resetPassword } from "../controllers/user.controller.js";
+import { registerUser, checkStorenameUnique, loginUser, getCurrentUser, getUserData, updatePassword, deleteAccount, sendotp, verifyOtp, resetPassword } from "../controllers/user.controller.js";
 import { validate } from "../middlewares/validate.middleware.js";
 import { registerSchema, loginSchema } from "../schemas/signUpSchema.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
@@ -7,8 +7,6 @@ import { verifyJwt } from "../middlewares/auth.middleware.js";
 const router = Router()
 
 router.route("/check-storename").post(checkStorenameUnique)
-
-router.route("/verify-code").post(verifyCode)
 
 router.route("/sendotp").post(sendotp)
 

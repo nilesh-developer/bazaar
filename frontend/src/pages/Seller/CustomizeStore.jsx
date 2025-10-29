@@ -101,7 +101,7 @@ function CustomizeStore() {
   return (
     <div className='w-full h-screen'>
       <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
-        <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Title</h2>
+        <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Store</h2>
         <div className='mt-7'>
           <form onSubmit={handleSubmit} className='grid grid-flow-row'>
             <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="name">Store Name</label>

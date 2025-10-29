@@ -35,12 +35,6 @@ function AdminSidebar() {
                             <span>Customers</span>
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="payouts" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-green-600 font-bold rounded-lg" : ""}`}>
-                            <ArrowLeftRight className='w-5 h-5 text-[fill-current]' />
-                            <span>Payouts</span>
-                        </NavLink>
-                    </li>
                     {/* <li>
                         <NavLink to="subscriptions" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-orange-600 font-bold rounded-lg" : ""}`}>
                         <CalendarCheck className='h-5 w-5 text-[fill-current]'/>

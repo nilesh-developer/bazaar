@@ -10,7 +10,6 @@ import Ordermobile from "./Ordermobile";
 import Productmobile from "./Productmobile";
 import Customer from "../../pages/Seller/Customer";
 import Coupon from "../../pages/Seller/Coupon";
-import Payment from "../../pages/Seller/Payment";
 import Store from "../../pages/Seller/Store";
 import Analytics from "../../pages/Seller/Analytics";
 import CustomizeStore from "../../pages/Seller/CustomizeStore";
@@ -28,10 +27,7 @@ import StoreAboutPage from "../../pages/Seller/StoreAboutPage";
 import SetDeliveryCharges from "../../pages/Seller/SetDeliveryCharges";
 import AddCoupon from "../../pages/Seller/AddCoupon";
 import SellerOrderPage from "../../pages/Seller/SellerOrderPage";
-import AddPaymentDetails from "../../pages/Seller/AddPaymentDetails";
-import SellerPayoutPage from "../../pages/Seller/SellerPayoutPage";
 import RequestPayoutModal from "./RequestPayoutModel";
-import SinglePayoutPage from "../../pages/Seller/SinglePayoutPage";
 import Subscriptions from "../../pages/Seller/Subscriptions";
 
 export {
@@ -47,15 +43,12 @@ export {
     Customer,
     DialogBox,
     UserProfile,
-    SellerPayoutPage,
     RequestPayoutModal,
-    SinglePayoutPage,
     CustomizeStore,
     StoreBannerUpload,
     CustomizeFooter,
     DomainSettings,
     Subscriptions,
-    Payment,
     Analytics,
     Coupon,
     Category,
@@ -68,6 +61,5 @@ export {
     AddCategory,
     EditCategory,
     AddCoupon,
-    AddPaymentDetails,
     SellerOrderPage
 }

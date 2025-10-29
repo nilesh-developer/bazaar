@@ -30,29 +30,6 @@ const OrderSchema = new mongoose.Schema({
     totalPrice: {
         type: Number
     },
-    paymentOrderId: {
-        type: String
-    },
-    paymentProcess: {
-        type: String
-    },
-    paymentDetails: {
-        status: {
-            type: String
-        },
-        paymentProcess: {
-            type: String
-        },
-        paymentMode: {
-            type: String
-        },
-        paymentTime: {
-            type: String
-        },
-        paymentId: {
-            type: String
-        },
-    },
     razorpayPaymentDetails: {
         razorpay_order_id: {
             type: String
@@ -72,10 +49,6 @@ const OrderSchema = new mongoose.Schema({
         status: {
             type: String
         }
-    },
-    commission: {
-        type: Number,
-        default: 0
     },
     email: {
         type: String,
@@ -114,9 +87,6 @@ const OrderSchema = new mongoose.Schema({
         default: false
     },
     discountValue: {
-        type: Number
-    },
-    payoutAmount: {
         type: Number
     },
     coupon: {

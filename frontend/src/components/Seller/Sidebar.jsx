@@ -75,12 +75,6 @@ function Sidebar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="payouts" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-green-600 font-bold rounded-lg" : ""}`}>
-                        <ArrowLeftRight className='w-5 h-5 text-[fill-current]'/>
-                        <span>Payouts</span>
-                        </NavLink>
-                    </li>
-                    <li>
                         <NavLink to="payments" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-green-600 font-bold rounded-lg" : ""}`}>
                             <Landmark className='w-5 h-5 text-[fill-current]'/>
                             <span>Payments</span>

@@ -1,47 +1,40 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Briefcase, Download, Package } from 'lucide-react';
 
 const BusinessDetails = () => {
   const { storename } = useParams();
   const [formData, setFormData] = useState({
     businessName: '',
-    category: '',
     address: '',
     mobileNo: ''
   });
+  const [selectedType, setSelectedType] = useState("physical");
   const navigate = useNavigate()
-  const categories = [
-    "Electronics",
-    "Fashion",
-    "Home & Kitchen",
-    "Beauty & Health",
-    "Sports & Outdoors",
-    "Toys & Games",
-    "Automotive",
-    "Books",
-    "Groceries",
-    "Pet Supplies",
-    "Office Supplies",
-    "Baby Products",
-    "Jewelry & Watches",
-    "Music & Instruments",
-    "Movies & TV",
-    "Video Games",
-    "Garden & Outdoor",
-    "Tools & Hardware",
-    "Furniture",
-    "Art & Crafts",
-    "Stationery",
-    "Lighting",
-    "Health & Personal Care",
-    "Travel Accessories",
-    "Gift Cards",
-    "Industrial & Scientific",
-    "Software",
-    "Luggage & Travel Gear",
-    "Building Materials",
-    "Hobbies & Collectibles"
+
+  const productTypes = [
+    {
+      id: "physical",
+      icon: <Package className="w-6 h-6 text-green-600" />,
+      title: "Physical Product",
+      subtitle: "Items you ship to customers",
+      desc: "Clothing, accessories, handmade goods",
+    },
+    {
+      id: "digital",
+      icon: <Download className="w-6 h-6 text-green-600" />,
+      title: "Digital Product",
+      subtitle: "Files customers download",
+      desc: "PDFs, templates, courses, music",
+    },
+    {
+      id: "service",
+      icon: <Briefcase className="w-6 h-6 text-green-600" />,
+      title: "Service",
+      subtitle: "Time-based offerings you schedule with clients",
+      desc: "Consultations, classes, freelance work",
+    },
   ];
 
   const handleChange = (e) => {
@@ -55,24 +48,24 @@ const BusinessDetails = () => {
     e.preventDefault();
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/businessdetails`, {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ storename, ...formData })
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ storename, ...formData, category: selectedType })
       })
 
       const responseData = await response.json()
 
       if (response.ok) {
-          toast.success("Store created successfully")
-          navigate("/seller/dashboard")
+        toast.success("Store created successfully")
+        navigate("/seller/dashboard")
       } else {
-          toast.error("Something went wrong")
+        toast.error("Something went wrong")
       }
-  } catch (error) {
+    } catch (error) {
       console.log(error)
-  }
+    }
   };
 
   return (
@@ -83,7 +76,7 @@ const BusinessDetails = () => {
 
           {/* Business Name Field */}
           <div className="mb-4">
-            <label htmlFor="businessName" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="businessName" className="block text-sm font-semibold text-gray-900">
               Business Name:
             </label>
             <input
@@ -99,28 +92,32 @@ const BusinessDetails = () => {
           </div>
 
           {/* Category Dropdown */}
-          <div className="mb-4">
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700">
-              Category:
-            </label>
-            <select
-              id="category"
-              name="category"
-              value={formData.category}
-              onChange={handleChange}
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
-              required
-            >
-              <option value="" disabled>Select category</option>
-              {categories.map((category) => (
-                <option value={category}>{category}</option>
-              ))}
-            </select>
+          <h2 className="text-sm font-semibold text-gray-900 mb-2">Product Type</h2>
+
+          <div className="space-y-3 mb-5">
+            {productTypes.map((type) => (
+              <div
+                key={type.id}
+                onClick={() => setSelectedType(type.id)}
+                className={`flex items-start gap-3 p-4 border rounded-xl cursor-pointer transition-all
+              ${selectedType === type.id
+                    ? "border-green-500 bg-green-50 shadow-sm"
+                    : "border-gray-200 hover:border-green-300 hover:bg-green-50/40"
+                  }`}
+              >
+                <div className="mt-1">{type.icon}</div>
+                <div>
+                  <p className="font-semibold text-gray-900">{type.title}</p>
+                  <p className="text-green-600 text-sm">{type.subtitle}</p>
+                  <p className="text-gray-500 text-xs">{type.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Address Field */}
           <div className="mb-4">
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="address" className="block text-sm font-semibold text-gray-900">
               Address:
             </label>
             <input
@@ -137,7 +134,7 @@ const BusinessDetails = () => {
 
           {/* Mobile Number Field */}
           <div className="mb-4">
-            <label htmlFor="mobileNo" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="mobileNo" className="block text-sm font-semibold text-gray-900">
               Mobile Number:
             </label>
             <input

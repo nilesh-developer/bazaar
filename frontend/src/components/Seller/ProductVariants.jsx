@@ -79,6 +79,14 @@ const ProductVariants = ({variants, setVariants}) => {
     setVariants(newVariants);
   };
 
+  // ✅ Delete Variant
+  const handleDeleteVariant = (index) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this variant?");
+    if (!confirmDelete) return;
+    const newVariants = variants.filter((_, i) => i !== index);
+    setVariants(newVariants);
+    toast.success("Variant deleted successfully");
+  };
 
   return (
     <>
@@ -108,6 +116,7 @@ const ProductVariants = ({variants, setVariants}) => {
                   <th className="px-4 py-2 border">SKU ID</th>
                   <th className="px-4 py-2 border">Quantity</th>
                   <th className="px-4 py-2 border">Status</th>
+                  <th className="px-4 py-2 border">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -153,6 +162,14 @@ const ProductVariants = ({variants, setVariants}) => {
                         onChange={(e) => handleInputChange(index, 'status', !variant.status)}
                         checked={variant.status}
                       />
+                    </td>
+                      <td className="px-4 py-2 border text-center">
+                      <button
+                        onClick={() => handleDeleteVariant(index)}
+                        className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

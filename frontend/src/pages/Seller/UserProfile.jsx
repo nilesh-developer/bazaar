@@ -118,7 +118,7 @@ function UserProfile() {
                             type="businessCategory"
                             name='businessCategory'
                             id="businessCategory"
-                            value={userDetails.store.businessCategory}
+                            value={userDetails.store.businessCategory.toUpperCase()}
                             placeholder="Store Name"
                             className="input input-primary text-black disabled:bg-gray-200 disabled:text-gray-500 bg-transparent w-full max-w-xs"
                             readOnly

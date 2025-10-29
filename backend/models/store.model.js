@@ -89,22 +89,9 @@ const StoreSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "coupons"
     }],
-    upiId: {
-        type: String
-    },
-    upiReceiverName: {
-        type: String
-    },
-    upiStatus: {
-        type: Boolean
-    },
     cod: {
         type: Boolean,
         default: true
-    },
-    cashfree: {
-        type: Boolean,
-        default: false
     },
     razorpay: {
         type: Boolean,
@@ -120,30 +107,6 @@ const StoreSchema = new mongoose.Schema({
     revenue: {
         type: Number,
         default: 0
-    },
-    payouts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "payouts"
-    }],
-    pendingPayout: {
-        orders: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "orders"
-        }],
-        amount: {
-            type: Number,
-            default: 0
-        }
-    },
-    pendingPayoutOfOrderNotDelivered: {
-        orders: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "orders"
-        }],
-        amount: {
-            type: Number,
-            default: 0
-        }
     },
     deliveryChargesTiers: [
         {
@@ -172,27 +135,6 @@ const StoreSchema = new mongoose.Schema({
     },
     aboutContent: {
         type: String
-    },
-    paymentDetails: {
-        type: {
-            type: String,
-            enum: ['bankTransfer', 'upi']
-        },
-        bankName: {
-            type: String,
-        },
-        ifsc: {
-            type: String,
-        },
-        accountNo: {
-            type: String,
-        },
-        accountHolderName: {
-            type: String,
-        },
-        upiId: {
-            type: String
-        }
     },
     whatsApp: {
         type: Number

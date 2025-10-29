@@ -15,16 +15,7 @@ const StorenameQuerySchema = z.object({
 
 const checkStorenameUnique = async (req, res) => {
     try {
-        //validate with zod = StorenameQuerySchema.parseAsync(req.body.storename)
         const result = req.body
-        // if(!result.success){
-        //     const storenameErrors = result.error.format().storename?._errors || []
-        //     console.log(result.error)
-        //     return res.status(400)
-        //     .json(
-        //         new ApiResponse(400, "", storenameErrors)
-        //     )
-        // }
 
         const { storename } = result
 
@@ -47,51 +38,6 @@ const checkStorenameUnique = async (req, res) => {
         return res.status(500)
             .json(
                 new ApiResponse(500, "", "Error while checking store name")
-            )
-    }
-}
-
-const verifyCode = async (req, res) => {
-    try {
-        const { email, code } = req.body;
-
-        const user = await users.findOne({ email })
-
-        if (!user) {
-            return res.status(400)
-                .json(
-                    new ApiResponse(400, "", "User Not Found")
-                )
-        }
-
-        const isCodeValid = user.verifyCode === code
-        const isCodeNotExpiry = new Date(user.verifyCodeExpiry) > new Date()
-
-        if (isCodeValid && isCodeNotExpiry) {
-            user.isVerified = true
-            await user.save()
-
-            return res.status(200)
-                .json(
-                    new ApiResponse(200, "", "Account verified successfully")
-                )
-        } else if (!isCodeNotExpiry) {
-            return res.status(400)
-                .json(
-                    new ApiResponse(400, "", "Verification code has expired, please signup again")
-                )
-        } else {
-            return res.status(400)
-                .json(
-                    new ApiResponse(400, "", "Incorrect Verification code")
-                )
-        }
-
-    } catch (error) {
-        console.error("Error verifying user ", error)
-        return res.status(500)
-            .json(
-                new ApiResponse(500, "", "Error verifying user")
             )
     }
 }
@@ -594,11 +540,9 @@ const getUserData = asyncHandler(async (req, res) => {
         )
 })
 
-
 export {
     registerUser,
     checkStorenameUnique,
-    verifyCode,
     sendotp,
     verifyOtp,
     resetPassword,

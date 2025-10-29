@@ -14,7 +14,7 @@ function Store() {
               <div className='flex'>
                  <Paintbrush className='text-black h-8 w-8 mt-3'/>
                 <div className='ml-4'>
-                  <h3 className='font-bold text-gray-800 text-xl'>Customize Title</h3>
+                  <h3 className='font-bold text-gray-800 text-xl'>Customize Store</h3>
                   <p className='text-sm text-gray-500'>Personlise store title and color</p>
                 </div>
               </div>
@@ -25,7 +25,7 @@ function Store() {
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
                  <Columns3Cog className='text-black h-8 w-8 mt-3'/><div className='ml-4'>
-                  <h3 className='font-bold text-gray-800 text-xl'>Customize Store</h3>
+                  <h3 className='font-bold text-gray-800 text-xl'>Store Assets</h3>
                   <p className='text-sm text-gray-500'>Personlise logo, favicon, banner </p>
                 </div>
               </div>

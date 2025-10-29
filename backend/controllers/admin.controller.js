@@ -1,7 +1,6 @@
 import { admins } from "../models/admin.model.js";
 import { customers } from "../models/customer.model.js";
-import { orders } from "../models/order.model.js";
-import { payouts } from "../models/payout.model.js";
+import { orders } from "../models/order.model.js";;
 import { stores } from "../models/store.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -89,17 +88,6 @@ const allCustomers = asyncHandler(async (req, res) => {
         })
 })
 
-const allPayouts = asyncHandler(async (req, res) => {
-    const payout = await payouts.find().sort({ createdAt: -1 })
-
-    return res.status(200)
-        .json({
-            statusCode: 200,
-            data: payout,
-            message: "Data fetched"
-        })
-})
-
 const getStoreData = asyncHandler(async (req, res) => {
 
     const { id } = req.params
@@ -122,19 +110,6 @@ const getCustomerData = asyncHandler(async (req, res) => {
         .json({
             statusCode: 200,
             data: customer,
-            message: "Data fetched"
-        })
-})
-
-const getPayoutDetails = asyncHandler(async (req, res) => {
-
-    const { id } = req.params
-    const payout = await payouts.findById(id).populate("store")
-
-    return res.status(200)
-        .json({
-            statusCode: 200,
-            data: payout,
             message: "Data fetched"
         })
 })
@@ -196,9 +171,7 @@ export {
     allOrders,
     allStores,
     allCustomers,
-    allPayouts,
     getStoreData,
     getCustomerData,
-    getPayoutDetails,
     changeAdminPassword
 }

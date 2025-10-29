@@ -318,14 +318,14 @@ function SellerOrderPage() {
             <div className='border border-gray-400 rounded-lg p-4 flex mt-2'>
                 <div className='w-2/3'>
                     <p>Items:</p>
-                    <p>Delivery:</p>
                     <p>Coupon discount:</p>
+                    <p>Delivery:</p>
                     <b>Order Total:</b>
                 </div>
                 <div className='w-1/3'>
                     <p>Rs. {order?.productTotals?.toFixed(2)}</p>
-                    <p>Rs. {order?.deliveryCharge?.toFixed(2)}</p>
-                    <p>{Number(order?.discountValue) === 0 ? "Free" : `Rs. -${Number(order?.discountValue)}`}</p>
+                    <p>{Number(order?.discountValue) === 0 ? "Rs. 0.00" : `Rs. -${Number(order?.discountValue)}`}</p>
+                    <p>{Number(order?.deliveryCharge) === 0 ? "Free" : `Rs. ${Number(order?.deliveryCharge?.toFixed(2))}`}</p>
                     <b className='text-green-800'>Rs. {order?.totalPrice?.toFixed(2)}</b>
                 </div>
             </div>
