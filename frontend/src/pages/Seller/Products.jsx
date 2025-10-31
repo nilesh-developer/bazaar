@@ -174,11 +174,11 @@ function Products() {
                             }
                           </td>
                           <td className="p-3 text-base tracking-tight">
-                            {product?.type === "physical" && <Link to={"../edit-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
+                            {product?.type?.toLowerCase() === "physical" && <Link to={"../edit-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
                               <span>Edit</span>
                             </Link>
                             }
-                            {product?.type === "digital" && <Link to={"../edit-digital-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
+                            {product?.type?.toLowerCase() === "digital" && <Link to={"../edit-digital-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
                               <span>Edit</span>
                             </Link>}
                           </td>
