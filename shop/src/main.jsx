@@ -21,9 +21,7 @@ import {
   OrderPage,
   PaymentResponsePage,
   QuickCheckout,
-  ReturnPolicy,
   SearchPage,
-  ShippingPolicy,
   Shop,
   UpdatePassword
 } from './components/index.js';
@@ -41,6 +39,11 @@ import PaymentFailed from './pages/PaymentFailed.jsx';
 import OrderSuccess from './pages/OrderSuccess.jsx';
 import LandingPage from './pages/LandingPage.jsx';
 import LatestWithProvider from './pages/Latest.jsx';
+import Refunds from './pages/Refunds.jsx';
+import Privacy from './pages/Privacy.jsx';
+import Terms from './pages/Terms.jsx';
+import Shipping from './pages/Shipping.jsx';
+import ContactUs from './pages/ContactUs.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,9 +63,12 @@ const router = createBrowserRouter(
         <Route path="search" element={<SearchPage />} />
         <Route path='product/:id' element={<Product />} />
         <Route path='category/:id' element={<Category />} />
-        <Route path='return-policy' element={<ReturnPolicy />} />
-        <Route path='shipping-policy' element={<ShippingPolicy />} />
         <Route path='about' element={<AboutUs />} />
+        <Route path='terms' element={<Terms />} />
+        <Route path='privacy' element={<Privacy />} />
+        <Route path='shipping' element={<Shipping />} />
+        <Route path='refunds' element={<Refunds />} />
+        <Route path='contact' element={<ContactUs />} />
         <Route path='payment-success' element={<PaymentSuccess />} />
         <Route path='payment-failed' element={<PaymentFailed />} />
         <Route path='payment-response' element={

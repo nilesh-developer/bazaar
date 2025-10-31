@@ -121,7 +121,7 @@ function Dashboard() {
             </div>
           </div>
 
-          <SellerSetupChecklist />
+          {/* <SellerSetupChecklist /> */}
 
           {/* <div className='grid grid-rows-2 grid-cols-none lg:grid-rows-none lg:grid-cols-2 gap-5 mt-8'> */}
           <div className='mt-8 gap-4 lg:flex'>

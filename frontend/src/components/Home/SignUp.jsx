@@ -121,7 +121,7 @@ function SignUp() {
             <Helmet><title>Sign Up</title></Helmet>
             <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
                 <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-                    <h1 className="text-3xl font-bold text-center text-green-700 mb-2">Create an Account</h1>
+                    <h1 className="text-3xl font-bold text-center text-emerald-600 mb-2">Create an Account</h1>
                     <p className="text-center text-gray-500 mb-8 text-sm">
                         Sign up to get started with your new store.
                     </p>
@@ -215,7 +215,7 @@ function SignUp() {
                         {/* Submit */}
                         <button
                             onClick={otpsend ? verifyOtp : sendOTP}
-                            className="w-full py-3 rounded-md text-white font-semibold text-lg bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md"
+                            className="w-full py-3 rounded-md text-white font-semibold text-lg bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-md"
                         >
                             {loadingBtn ? <span className="loading loading-spinner loading-md"></span> : (otpsend ? "Verify" : "Send OTP")}
                         </button>

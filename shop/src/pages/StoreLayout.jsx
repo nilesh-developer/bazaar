@@ -5,6 +5,7 @@ import changeFavicon from '../Hooks/changeFavicon';
 import LazyLoadingPage from '../components/LazyLoadingPage';
 import { useCustomerAuth } from '../store/customerAuth';
 import { Search, X } from 'lucide-react';
+import ShopFooter from '../components/ShopFooter';
 
 export default function StoreLayout() {
   const [store, setStore] = useState({});
@@ -144,7 +145,8 @@ export default function StoreLayout() {
         openSearch={openSearch}
         setOpenSearch={setOpenSearch}
       />
-      <Footer store={store} color1={color1} color2={color2} />
+      {/* <Footer store={store} color1={color1} color2={color2} /> */}
+      <ShopFooter store={store} color1={color1} color2={color2} />
     </div>
   );
 }

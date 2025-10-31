@@ -79,6 +79,9 @@ import CustomerPage from './pages/admin/CustomerPage.jsx'
 import AdminChangePassword from './pages/admin/AdminChangePassword.jsx'
 import NoSubscription from './pages/Home/NoSubscription.jsx'
 import SubscriptionPage from './components/Home/SubscriptionPage.jsx'
+import AddDigitalProduct from './pages/Seller/AddDigitalProduct.jsx'
+import EditDigitalProduct from './pages/Seller/EditDigitalProduct.jsx'
+import PolicySettings from './pages/Seller/PolicySettings.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -124,7 +127,7 @@ const router = createBrowserRouter(
         <Route path='settings' element={<Settings />} />
         <Route path='customize-store' element={<CustomizeStore />} />
         <Route path='customize-banner' element={<StoreBannerUpload />} />
-        <Route path='store-policies' element={<StorePolicy />} />
+        <Route path='store-policies' element={<PolicySettings />} />
         <Route path='about-page' element={<StoreAboutPage />} />
         <Route path='customize-footer' element={<CustomizeFooter />} />
         <Route path='set-delivery-charges' element={<SetDeliveryCharges />} />
@@ -133,9 +136,11 @@ const router = createBrowserRouter(
         <Route path='dialogbox' element={<DialogBox />} />
         <Route path='subscriptions' element={<Subscriptions />} />
         <Route path='add-product' element={<AddProduct />} />
+        <Route path='add-digital' element={<AddDigitalProduct />} />
         <Route path='add-category' element={<AddCategory />} />
         <Route path='edit-category/:id' element={<EditCategory />} />
         <Route path='edit-product/:id' element={<EditProduct />} />
+        <Route path='edit-digital-product/:id' element={<EditDigitalProduct />} />
         <Route path='add-coupon' element={<AddCoupon />} />
         <Route path='edit-coupon/:id' element={<EditCoupon />} />
         <Route path='orders/:id' element={<SellerOrderPage />} />

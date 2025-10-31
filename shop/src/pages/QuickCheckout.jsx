@@ -24,7 +24,7 @@ export default function QuickCheckout() {
         state: "",
         country: "India",
         pinCode: "",
-        paymentMethod: "COD"
+        paymentMethod: ""
     })
 
     const subdomain = window.location.hostname;

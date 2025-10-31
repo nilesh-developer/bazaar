@@ -2,7 +2,12 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useCart } from "../store/CartContext";
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Dialog, Transition } from '@headlessui/react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import {
+  ChevronDown,
+  ChevronUp, Shield,
+  Truck,
+  CornerDownLeft,
+} from 'lucide-react';
 import { Helmet } from 'react-helmet';
 
 function Product() {
@@ -84,32 +89,33 @@ function Product() {
             id: 'description',
             title: 'Product Description',
             content: (
-              <p dangerouslySetInnerHTML={{ __html: responseData.data?.description }} />
+              <p className='text-sm' dangerouslySetInnerHTML={{ __html: responseData.data?.description }} />
             )
           },
           {
             id: 'delivery',
             title: 'Delivery',
             content: (
-              <p className='text-justify'>{responseData.data?.deliveryDetails}</p>
+              <p className='text-justify text-sm'>{responseData.data?.deliveryDetails}</p>
             )
           },
           {
             id: 'returns',
             title: 'Returns',
             content: (
-              <div className="space-y-4">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <p className=' text-green-800 text-justify'>{responseData.data?.returnDetails}</p>
-                </div>
+              <p className='text-justify text-sm'>{responseData.data?.returnDetails}</p>
+              // <div className="space-y-4">
+              //   <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              //     <p className=' text-green-800 text-justify'>{responseData.data?.returnDetails}</p>
+              //   </div>
 
-                <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-                  <p className="text-sm text-gray-700">
-                    <strong>Refund Processing:</strong> Refunds are processed within 5-7 business days
-                    after we receive your returned item.
-                  </p>
-                </div>
-              </div>
+              //   <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+              //     <p className="text-sm text-gray-700">
+              //       <strong>Refund Processing:</strong> Refunds are processed within 5-7 business days
+              //       after we receive your returned item.
+              //     </p>
+              //   </div>
+              // </div>
             )
           }
         ])
@@ -283,7 +289,7 @@ function Product() {
         <div className="text-sm ml-4 lg:ml-10 breadcrumbs py-5 text-gray-600">
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/products">product</Link></li>
+            <li><Link to="/shop">Shop</Link></li>
             <li className='truncate'>{product?.name.split(' ').join('-')}</li>
           </ul>
         </div>
@@ -297,17 +303,54 @@ function Product() {
 
           <div className='py-2 px-4 md:px-4 md:py-4 lg:pr-10'>
             <h2 className='text-xl font-semibold tracking-tighter'>{product?.name}</h2>
-            <h4 className='font-semibold text-gray-600 mt-1'>{product?.category?.name}</h4>
-            <div className="rating w-20">
+            {/* <h4 className='font-semibold text-gray-600 text-xs lg:text-base mt-1'>{product?.category?.name}</h4> */}
+            {/* <div className="rating w-20">
               {[...Array(5)].map((_, i) => (
                 <input key={i} type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
               ))}
-            </div>
-            <p>{product?.shortDescription}</p>
-            <h2 className='mt-4 text-2xl font-bold'>&#8377;{selectedPrice}&nbsp;
-              <span className='text-base line-through font-thin tracking-wider'>&#8377;{selectedOriginalPrice}</span></h2>
+            </div> */}
 
-            <div className="mt-10">
+            {/* Price */}
+            <div className="flex items-center space-x-3">
+              <p className="text-2xl font-bold text-gray-900">
+                ₹{product.salePrice || product.originalPrice}
+              </p>
+              {product.salePrice && (
+                <>
+                  <p className="text-lg text-gray-500 line-through">₹{product.originalPrice}</p>
+                  <span className="text-green-600 font-semibold">
+                    {Math.round(((product.originalPrice - product.salePrice) / product.originalPrice) * 100)}% OFF
+                  </span>
+                </>
+              )}
+            </div>
+
+            {/* Availability */}
+            <p className={`text-sm font-medium ${product.stockQty > 0 ? "text-green-600" : "text-red-600"}`}>
+              {product.stockQty > 0 ? "In Stock" : "Out of Stock"}
+            </p>
+
+            {/* Short Description */}
+            {product.shortDescription &&
+              <div className="mt-4 mb-2">
+                <h5 color={color1} className='font-semibold'>Description:</h5>
+                <p className="text-zinc-800 leading-relaxed text-sm">
+                  {product.shortDescription}
+                </p>
+              </div>
+            }
+
+            {/* Offers / EMI */}
+            {/* <div className="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm">
+              <p className="font-semibold text-yellow-800">Special Offers</p>
+              <ul className="list-disc ml-5 mt-2 space-y-1 text-gray-700">
+                <li>Bank Offer: 10% Instant Discount with HDFC Cards</li>
+                <li>No Cost EMI Available on Orders Above ₹5000</li>
+                <li>Free Delivery on Your First Order</li>
+              </ul>
+            </div> */}
+
+            <div className="lg:mt-10 mt-3">
               <div>
                 {typeSize ?
                   <>
@@ -438,7 +481,7 @@ function Product() {
                   </button> */}
                   <button
                     type="submit"
-                    className="mt-5 lg:flex w-full items-center justify-center shadow-sm rounded-md px-8 py-3 text-xl font-medium text-white"
+                    className="lg:mt-5 mt-2 lg:flex w-full items-center justify-center shadow-sm rounded-full px-8 py-3 text-xl font-medium text-white"
                     style={{ backgroundColor: color1, color: color2 }}
                     onClick={() => handleAddToCart()}
                   >
@@ -446,6 +489,27 @@ function Product() {
                   </button>
                 </div>
               }
+            </div>
+
+            {!store?.razorpay && <div className="mt-2 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm">
+              <p className="font-semibold text-yellow-800">Online payment is temporarily unavailable as the payment gateway has not yet been connected.</p>
+            </div>}
+
+            <div className="border-t border-gray-200 pt-4 flex justify-between space-y-4">
+              {/* Category */}
+              <p className="text-sm mt-4">
+                Category: <span color={color1} className='font-semibold'>{product?.category?.name?.toUpperCase()}</span>
+              </p>
+
+              {/* Product Type */}
+              {product?.type?.toLowerCase() === "digital" && <p className="text-sm mt-4">
+                Type: <span color={color1} className='font-semibold'>{product?.type?.toUpperCase()}</span>
+              </p>}
+
+              {/* Sold By */}
+              <p className="text-sm mt-4">
+                Sold by: <span color={color1} className='font-semibold'>{store?.name?.toUpperCase()}</span>
+              </p>
             </div>
 
             <div className="space-y-4 mt-5">
@@ -456,9 +520,9 @@ function Product() {
                 >
                   <button
                     onClick={() => toggleSection(section.id)}
-                    className="w-full px-6 py-4 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors duration-200 outline-none"
+                    className="w-full px-3 py-3 bg-gray-50 hover:bg-gray-100 flex justify-between items-center transition-colors duration-200 outline-none"
                   >
-                    <h3 className="text-lg font-semibold text-gray-900 text-left">
+                    <h3 className="lg:text-lg font-semibold text-gray-900 text-left">
                       {section.title}
                     </h3>
                     <div className="flex-shrink-0 ml-4">
@@ -476,14 +540,28 @@ function Product() {
                       : 'max-h-0 opacity-0'
                       }`}
                   >
-                    <div className="px-6 py-6 bg-white border-t border-gray-100">
+                    <div className="px-3 py-3 bg-white border-t border-gray-100">
                       {section.content}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-
+            {/* Security + Delivery Info */}
+            {/* <div className="flex items-center justify-between space-x-6 text-sm text-gray-600 mt-6">
+              <div className="flex items-center gap-2">
+                <Shield className="w-5 h-5 text-gray-600" />
+                <span>Secure Payment</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Truck className="w-5 h-5 text-gray-600" />
+                <span>Free Delivery</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CornerDownLeft className="w-5 h-5 text-gray-600" />
+                <span>Easy Returns</span>
+              </div>
+            </div> */}
           </div>
         </div>
 

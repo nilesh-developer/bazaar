@@ -15,12 +15,10 @@ import BottomNavbar from './BottomNavbar'
 import Shop from '../pages/Shop'
 import SearchPage from '../pages/SearchPage'
 import Error from '../pages/Error'
-import ShippingPolicy from './ShippingPolicy'
-import ReturnPolicy from './ReturnPolicy'
 import AboutUs from '../pages/AboutUs'
 import QuickCheckout from '../pages/QuickCheckout'
 import CartSidebar from './CartSidebar'
 import ProductCard from './ProductCard'
 import PaymentResponsePage from '../pages/PaymentResponsePage'
 
-export { Navbar, Footer, Banner, Shop, ProductCard, QuickCheckout, CartSidebar, PaymentResponsePage, BottomNavbar, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, ReturnPolicy, ShippingPolicy, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }
+export { Navbar, Footer, Banner, Shop, ProductCard, QuickCheckout, CartSidebar, PaymentResponsePage, BottomNavbar, SearchPage, CustomerSignUp, CustomerLogin, Error, Category, Cart, AboutUs, Order, OrderPage, AccountContent, UpdatePassword, Checkout, Account }

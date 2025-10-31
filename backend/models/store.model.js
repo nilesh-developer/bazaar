@@ -127,16 +127,92 @@ const StoreSchema = new mongoose.Schema({
     metaDescription: {
         type: String
     },
-    returnPolicy: {
-        type: String
-    },
-    shippingPolicy: {
-        type: String
+    policy: {
+        businessName: {
+            type: String,
+            default: ""
+        },
+        gstNumber: {
+            type: String,
+            default: ""
+        },
+        contactEmail: {
+            type: String,
+            default: ""
+        },
+        contactPhone: {
+            type: String,
+            default: ""
+        },
+        whatsapp: {
+            type: String,
+            default: ""
+        },
+        businessHours: {
+            type: String,
+            default: "Monday to Saturday, 10 AM to 7 PM IST"
+        },
+        streetAddress: {
+            type: String,
+            default: ""
+        },
+        city: {
+            type: String,
+            default: ""
+        },
+        state: {
+            type: String,
+            default: ""
+        },
+        pinCode: {
+            type: String,
+            default: ""
+        },
+        standardShipping: {
+            type: String,
+            default: "3-7 business days"
+        },
+        expressShipping: {
+            type: String,
+            default: "1-3 business days"
+        },
+        freeShippingAbove: {
+            type: String,
+            default: ""
+        },
+        returnPeriod: {
+            type: String,
+            default: "30 days"
+        },
+        refundProcessing: {
+            type: String,
+            default: "5-7 business days"
+        },
+        returnShippingBy: {
+            type: String,
+            default: "Customer"
+        },
+        cancellationAllowed: {
+            type: String,
+            default: "Before Shipping"
+        },
+        enabled: {
+            type: Boolean,
+            default: true
+        },
+        useDefaultTemplates: {
+            type: Boolean,
+            default: true
+        },
+        showPolicy: {
+            type: Boolean,
+            default: true
+        },
     },
     aboutContent: {
         type: String
     },
-    whatsApp: {
+    whatsapp: {
         type: Number
     },
     instagram: {

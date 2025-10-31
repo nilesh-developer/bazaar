@@ -62,7 +62,7 @@ function Login() {
 
             <div className="flex justify-center items-center min-h-screen bg-gray-50 px-4">
                 <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
-                    <h1 className="text-3xl font-bold text-center text-green-700 mb-2">Welcome Back</h1>
+                    <h1 className="text-3xl font-bold text-center text-emerald-700 mb-2">Welcome Back</h1>
                     <p className="text-center text-gray-500 mb-8 text-sm">
                         Log in to continue managing your store.
                     </p>
@@ -110,7 +110,7 @@ function Login() {
                         <div className="text-right -mt-3">
                             <Link
                                 to="/forgot-password"
-                                className="text-green-700 font-medium text-sm hover:underline"
+                                className="text-emerald-700 font-medium text-sm hover:underline"
                             >
                                 Forgot Password?
                             </Link>
@@ -118,7 +118,7 @@ function Login() {
 
                         <button
                             type="submit"
-                            className="w-full py-3 rounded-md text-white font-semibold text-lg bg-green-600 hover:bg-green-700 transition-all duration-200 shadow-md"
+                            className="w-full py-3 rounded-md text-white font-semibold text-lg bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 shadow-md"
                         >
                             {loadingBtn ? <span className="loading loading-spinner loading-md"></span> : "Login"}
                         </button>

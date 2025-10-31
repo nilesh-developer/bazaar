@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
+import { MessageCircle } from 'lucide-react';
 
 function CustomizeFooter() {
 
@@ -15,6 +16,7 @@ function CustomizeFooter() {
         facebook: "",
         twitter: "",
         youtube: "",
+        whatsapp: ""
     })
 
     const getStoreData = async () => {
@@ -37,7 +39,8 @@ function CustomizeFooter() {
                     instagram: responseData.data.store.instagram,
                     facebook: responseData.data.store.facebook,
                     twitter: responseData.data.store.twitter,
-                    youtube: responseData.data.store.youtube
+                    youtube: responseData.data.store.youtube,
+                    whatsapp: responseData.data.store.whatsapp
                 })
                 setLoading(false)
             }
@@ -162,7 +165,17 @@ function CustomizeFooter() {
                                 placeholder="Youtube Link"
                             />
                         </label>
-
+                        <label className="input input-bordered flex items-center bg-white gap-2 w-[250px] lg:w-[324px] mt-3">
+                            <MessageCircle className='h-5' />
+                            <input
+                                type="text"
+                                className="grow"
+                                name='whatsapp'
+                                onChange={handleInput}
+                                value={updateData.whatsapp}
+                                placeholder="+919876543210"
+                            />
+                        </label>
                         <button className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 text-lg mt-6 w-28 mb-12">Save</button>
                     </form>
                 </div>

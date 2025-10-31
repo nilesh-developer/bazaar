@@ -17,8 +17,6 @@ export default function SubscriptionStatus() {
     window.scrollTo(0, 0);
   }, [])
 
-  console.log(currentPlan);
-
   //razorpay start
   const handlePayment = async () => {
     const plan = {
@@ -133,7 +131,7 @@ export default function SubscriptionStatus() {
             {/* Products */}
             <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">PRODUCTS</h3>
-              <div className="text-2xl font-semibold text-gray-900 mb-1">{userData?.store?.products?.length} / {currentPlan?.features?.upToProducts}</div>
+              <div className="text-xl font-semibold text-gray-900 mb-1">{userData?.store?.products?.length} / {currentPlan?.features?.upToProducts}</div>
               <div className="text-sm text-gray-600 mb-2">{Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}% of limit</div>
               <div className="w-full bg-gray-200 rounded-full h-1.5">
                 <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}%` }}></div>
@@ -144,12 +142,12 @@ export default function SubscriptionStatus() {
             {/* Active Discount Codes */}
             <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">ACTIVE DISCOUNT CODES</h3>
-              <div className="text-2xl font-semibold text-gray-900 mb-1">{Number(userData?.store?.coupon?.length) + " / " + Number(currentPlan?.features?.discountCodes)}</div>
+              <div className="text-xl font-semibold text-gray-900 mb-1">{Number(userData?.store?.coupon?.length) + " / " + Number(currentPlan?.features?.discountCodes)}</div>
               <div className="text-sm text-gray-600">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
               <div className="w-full bg-gray-200 rounded-full h-1.5">
                 <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}%` }}></div>
               </div>
-              <div className="text-xs text-gray-500 mt-2">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}% of limit</div>
+              <div className="text-xs text-gray-500 mt-2">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
             </div>
 
             {/* Secure Digital Downloads */}
@@ -162,12 +160,8 @@ export default function SubscriptionStatus() {
 
             {currentPlan?.name?.toLowerCase() !== "free" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">SECURE DIGITAL DOWNLOADS</h3>
-              <div className="text-xl font-semibold text-gray-900 mb-1">{Number(userData?.store?.coupon?.length) + " / " + Number(currentPlan?.features?.discountCodes)}</div>
-              <div className="text-sm text-gray-600">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
-              <div className="w-full bg-gray-200 rounded-full h-1.5">
-                <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}%` }}></div>
-              </div>
-              <div className="text-xs text-gray-500 mt-2">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}% of limit</div>
+              <div className="text-xl font-semibold text-gray-900 mb-1">Included</div>
+              <div className="text-sm text-gray-600">Direct file delivery to customer</div>
             </div>
             }
 
@@ -182,7 +176,7 @@ export default function SubscriptionStatus() {
             {currentPlan?.name?.toLowerCase() === "plus" && <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">CUSTOM DOMAIN</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Included</div>
-              <div className="text-sm text-gray-600">Add your custom domain</div>
+              <div onClick={() => navigate("/seller/domain-settings")} className="text-sm text-green-600">Add your custom domain</div>
             </div>
             }
           </div>
@@ -236,8 +230,8 @@ export default function SubscriptionStatus() {
 
               {/* Features Box */}
               <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
-                <Feature label="Products: 5 → 25" />
-                <Feature label="Discount codes: 1 → 3" />
+                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 50`} />
+                <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → 3`} />
                 <Feature label="Adds secure digital downloads" />
               </div>
 
@@ -245,7 +239,7 @@ export default function SubscriptionStatus() {
               <FeatureList
                 items={[
                   "Everything in Free",
-                  "Up to 15 products",
+                  "Up to 50 products",
                   "Secure digital downloads (3 files, 500MB total)",
                   "Inventory tracking & low-stock alerts",
                   "Discount codes (3 active at a time)",
@@ -253,7 +247,7 @@ export default function SubscriptionStatus() {
                 ]}
                 unavailable={[
                   "Upload product videos (Plus plan feature)",
-                  "Custom domain (shop.brand.com)",
+                  "Custom domain (brand.com)",
                 ]}
               />
 
@@ -293,8 +287,8 @@ export default function SubscriptionStatus() {
 
               {/* Features Box */}
               <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
-                <Feature label="Products: 5 → 50" />
-                <Feature label="Discount codes: 0 → 25" />
+                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 200`} />
+                <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → Unlimited`} />
                 <Feature label="Adds secure digital downloads" />
               </div>
 
@@ -302,18 +296,23 @@ export default function SubscriptionStatus() {
               <FeatureList
                 items={[
                   "Everything in Go",
-                  "Up to 50 products",
+                  "Up to 200 products",
                   "Custom domain with SSL",
                   "Secure digital downloads (5 files, 1GB total)",
-                  "Upload product videos (MP4, MOV, AVI)",
-                  "Run 25 active discount codes at once",
-                  "Improve your advertising with Meta Pixel event capture (view, cart, checkout, purchase)",
+                  "Upload product videos",
+                  "Unlimited active discount codes at once",
+                  "Priority Support",
                 ]}
               />
 
-              <button onClick={() => setSelectedPlan("plus")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+              {currentPlan?.name?.toLowerCase() !== "plus" ? <button onClick={() => setSelectedPlan("plus")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
                 Upgrade to Plus
               </button>
+              :
+              <button className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg transition-colors">
+                Active
+              </button>
+              }
             </div>
           </div>
           {/* Confirm Modal */}

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
-import { addProduct, deleteProduct, getProductData, getProducts, getRecommendedProducts, searchProducts, updateProduct } from "../controllers/product.controller.js";
+import { addDigitalProduct, addProduct, deleteProduct, getProductData, getProducts, getRecommendedProducts, searchProducts, updateDigitalProduct, updateProduct } from "../controllers/product.controller.js";
 
 const router = Router()
 
@@ -32,6 +32,64 @@ router.route("/add-product").post(
         }
     ]),
     addProduct)
+
+router.route("/add-digital-product").post(
+    upload.fields([
+        {
+            name: "featuredImage",
+            maxCount: 1
+        },
+        {
+            name: "image1",
+            maxCount: 1
+        },
+        {
+            name: "image2",
+            maxCount: 1
+        },
+        {
+            name: "image3",
+            maxCount: 1
+        },
+        {
+            name: "image4",
+            maxCount: 1
+        },
+        {
+            name: "digitalFiles[]",
+            maxCount: 5
+        },
+    ]),
+    addDigitalProduct)
+
+router.route("/update-digital-product/:id").patch(
+    upload.fields([
+        {
+            name: "featuredImage",
+            maxCount: 1
+        },
+        {
+            name: "image1",
+            maxCount: 1
+        },
+        {
+            name: "image2",
+            maxCount: 1
+        },
+        {
+            name: "image3",
+            maxCount: 1
+        },
+        {
+            name: "image4",
+            maxCount: 1
+        },
+        {
+            name: "digitalFiles[]",
+            maxCount: 5
+        },
+    ]),
+    updateDigitalProduct)
 
 router.route("/data/:id").get(getProductData)
 

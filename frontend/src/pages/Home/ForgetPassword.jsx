@@ -138,7 +138,7 @@ export default function ForgotPassword() {
                             <label className="block mb-1 text-sm font-medium text-gray-700">Email</label>
                             <input
                                 type="email"
-                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-1 focus:ring-green-500"
+                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-1 focus:ring-emerald-500"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
@@ -146,7 +146,7 @@ export default function ForgotPassword() {
                         </div>
                         <button
                             onClick={sendOtp}
-                            className="w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition"
+                            className="w-full bg-emerald-700 text-white py-2 rounded-xl hover:bg-emerald-800 transition"
                         >
                             {!loadingBtn ? "Send OTP" : <span className="loading loading-spinner loading-md"></span>}
                         </button>
@@ -159,7 +159,7 @@ export default function ForgotPassword() {
                             <label className="block mb-1 text-sm font-medium text-gray-700">Enter OTP</label>
                             <input
                                 type="text"
-                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value)}
                                 placeholder="Enter OTP"
@@ -167,7 +167,7 @@ export default function ForgotPassword() {
                         </div>
                         <button
                             onClick={verifyOtp}
-                            className="w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition"
+                            className="w-full bg-emerald-600 text-white py-2 rounded-xl hover:bg-emerald-700 transition"
                         >
                             {!loadingBtn ? "Verify OTP" : <span className="loading loading-spinner loading-md"></span>}
                         </button>
@@ -180,7 +180,7 @@ export default function ForgotPassword() {
                             <label className="block mb-1 text-sm font-medium text-gray-700">New Password</label>
                             <input
                                 type="password"
-                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                                 value={newPassword}
                                 onChange={(e) => setNewPassword(e.target.value)}
                                 placeholder="Enter new password"
@@ -190,7 +190,7 @@ export default function ForgotPassword() {
                             <label className="block mb-1 text-sm font-medium text-gray-700">Confirm Password</label>
                             <input
                                 type="password"
-                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+                                className="w-full border border-gray-300 rounded-xl p-2 focus:outline-none focus:ring-2 focus:ring-emerald-400"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 placeholder="Confirm new password"
@@ -198,7 +198,7 @@ export default function ForgotPassword() {
                         </div>
                         <button
                             onClick={updatePassword}
-                            className="w-full bg-green-700 text-white py-2 rounded-xl hover:bg-green-800 transition"
+                            className="w-full bg-emerald-700 text-white py-2 rounded-xl hover:bg-emerald-800 transition"
                         >
                             {!loadingBtn ? "Update Password" : <span className="loading loading-spinner loading-md"></span>}
                         </button>

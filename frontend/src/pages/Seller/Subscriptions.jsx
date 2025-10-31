@@ -48,7 +48,7 @@ function Subscriptions() {
 
     return (
         <>
-            <section className='bg-white h-screen w-full lg:h-dvh lg:pb-0 pb-20'>
+            <section className='bg-white min-h-screen h-full w-full lg:h-dvh lg:pb-0 pb-20'>
                 <div className='lg:my-7 my-5 mx-3 lg:mx-5'>
                     <div className="container p-2 mx-auto sm:p-4 text-gray-800">
                         <div className='flex justify-between lg:justify-start lg:gap-5'>

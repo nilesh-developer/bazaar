@@ -6,6 +6,7 @@ import { users } from "../models/user.model.js";
 import { products } from "../models/product.model.js";
 import { categories } from "../models/category.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { PLANS } from "../utils/plan.js";
 
 function createSlug(name) {
     return name.toLowerCase().replace(/[^\w\s-]/g, '')
@@ -26,13 +27,22 @@ const addProduct = asyncHandler(async (req, res) => {
     // if(name ==
     const slug = createSlug(name)
 
-    const storeExist = await stores.findById(storeId)
+    const storeExist = await stores.findById(storeId).populate("owner")
 
     if (!storeExist) {
         return res.status(400)
             .json(
                 new ApiResponse(400, "", "Store not exist")
             )
+    }
+    const currectPlan = PLANS[storeExist.owner?.subscription_plan_type];
+
+    if (storeExist.products.length >= currectPlan.features.upToProducts) {
+        return res.status(400)
+            .json({
+                statusCode: 400,
+                message: "Limit is reached! Upgrade your plan to add more products."
+            })
     }
 
     // Create a new product
@@ -65,7 +75,8 @@ const addProduct = asyncHandler(async (req, res) => {
         sizeChartImage: images.sizeChartImage ? await uploadOnCloudinary(images.sizeChartImage[0].path) : null,
         affiliateProduct,
         affiliatePlatformName,
-        affiliateLink
+        affiliateLink,
+        type: "physical"
     };
 
 
@@ -83,6 +94,157 @@ const addProduct = asyncHandler(async (req, res) => {
     return res.status(200)
         .json(
             new ApiResponse(200, product, "Product added successfully")
+        )
+})
+
+const addDigitalProduct = asyncHandler(async (req, res) => {
+    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, returnDetails, deliveryDetails, recommended, tags, storeId, status, isDigital, deliveryMethod, externalLink, digitalFiles, downloadAccess, downloadLimit } = req.body;
+    const filesData = req.files;
+
+    // Process tags and variants
+    const parsedTags = JSON.parse(tags);
+
+    // if(name ==
+    const slug = createSlug(name)
+
+    const storeExist = await stores.findById(storeId).populate("owner")
+
+    if (!storeExist) {
+        return res.status(400)
+            .json(
+                new ApiResponse(400, "", "Store not exist")
+            )
+    }
+    const currectPlan = PLANS[storeExist.owner?.subscription_plan_type];
+
+    if (storeExist.products.length >= currectPlan.features.upToProducts) {
+        return res.status(400)
+            .json({
+                statusCode: 400,
+                message: "Limit is reached! Upgrade your plan to add more products."
+            })
+    }
+
+    // Create a new product
+    const newProduct = {
+        name,
+        slug,
+        shortDescription,
+        description,
+        originalPrice,
+        salePrice,
+        category,
+        stockQty: 1000000,
+        metaTitle: metaTitle ? metaTitle : name,
+        metaDescription: metaDescription ? metaDescription : shortDescription,
+        recommended,
+        tags: parsedTags,
+        store: storeId,
+        returnDetails,
+        deliveryDetails,
+        status,
+        images: {
+            featuredImage: filesData.featuredImage ? await uploadOnCloudinary(filesData.featuredImage[0].path) : null,
+            image1: filesData.image1 ? await uploadOnCloudinary(filesData.image1[0].path) : null,
+            image2: filesData.image2 ? await uploadOnCloudinary(filesData.image2[0].path) : null,
+            image3: filesData.image3 ? await uploadOnCloudinary(filesData.image3[0].path) : null,
+            image4: filesData.image4 ? await uploadOnCloudinary(filesData.image4[0].path) : null
+        },
+        type: "digital",
+        digital: {
+            deliveryMethod,
+            externalLink: deliveryMethod === "external" ? externalLink : "",
+            digitalFiles: filesData["digitalFiles[]"] ? await Promise.all(filesData["digitalFiles[]"].map(async (file) => await uploadOnCloudinary(file.path))) : [],
+            downloadAccess,
+            downloadLimit: downloadAccess === "limited" ? downloadLimit : -1
+        }
+    };
+
+    // Save the product to the database (assuming you're using Mongoose)
+    const product = await products.create(newProduct);
+
+    storeExist.products.push(product._id)
+    await storeExist.save()
+
+    const categoryData = await categories.findById(category)
+    categoryData.products.push(product._id)
+    await categoryData.save()
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, product, "Product added successfully")
+        )
+})
+
+const updateDigitalProduct = asyncHandler(async (req, res) => {
+    const { name, shortDescription, description, originalPrice, salePrice, category, metaTitle, metaDescription, returnDetails, deliveryDetails, recommended, tags, storeId, status, isDigital, deliveryMethod, externalLink, digitalFiles, downloadAccess, downloadLimit } = req.body;
+    const filesData = req.files;
+    const { id } = req.params;
+
+    // Process tags and variants
+    const parsedTags = JSON.parse(tags);
+
+    // if(name ==
+    const slug = createSlug(name)
+
+    const storeExist = await stores.findById(storeId).populate("owner")
+
+    if (!storeExist) {
+        return res.status(400)
+            .json(
+                new ApiResponse(400, "", "Store not exist")
+            )
+    }
+
+    // Fetch the existing product to retain existing images
+    const existingProduct = await products.findById(id);
+    if (!existingProduct) {
+        return res.status(404).json(new ApiResponse(404, "", "Product not found"));
+    }
+
+    // Create a new product
+    const newProduct = {
+        name,
+        slug,
+        shortDescription,
+        description,
+        originalPrice,
+        salePrice,
+        category,
+        metaTitle: metaTitle ? metaTitle : name,
+        metaDescription: metaDescription ? metaDescription : shortDescription,
+        recommended,
+        tags: parsedTags,
+        returnDetails,
+        deliveryDetails,
+        status,
+        images: {
+            featuredImage: await uploadOnCloudinary(filesData?.featuredImage?.[0]?.path) || existingProduct.images.featuredImage,
+            image1: await uploadOnCloudinary(filesData?.image1?.[0]?.path) || existingProduct.images.image1,
+            image2: await uploadOnCloudinary(filesData?.image2?.[0]?.path) || existingProduct.images.image2,
+            image3: await uploadOnCloudinary(filesData?.image3?.[0]?.path) || existingProduct.images.image3,
+            image4: await uploadOnCloudinary(filesData?.image4?.[0]?.path) || existingProduct.images.image4,
+        },
+        type: "digital",
+        digital: {
+            deliveryMethod,
+            externalLink: deliveryMethod === "external" ? externalLink : "",
+            digitalFiles: filesData["digitalFiles[]"] ? await Promise.all(filesData["digitalFiles[]"].map(async (file) => await uploadOnCloudinary(file.path))) : existingProduct?.digital?.digitalFiles,
+            downloadAccess,
+            downloadLimit: downloadAccess === "limited" ? downloadLimit : -1
+        }
+    };
+
+    // Save the product to the database (assuming you're using Mongoose)
+    const product = await products.findOneAndUpdate(
+        { _id: id },
+        newProduct,
+        { new: true }
+    );
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, product, "Product updated successfully")
         )
 })
 
@@ -117,7 +279,7 @@ const getRecommendedProducts = asyncHandler(async (req, res) => {
         store: storeId,
         recommended: true
     }).populate("category")
-    
+
     return res.status(200)
         .json(
             new ApiResponse(200, recommendedProduct, "Product data fetched")
@@ -217,6 +379,8 @@ const searchProducts = asyncHandler(async (req, res) => {
 
 export {
     addProduct,
+    addDigitalProduct,
+    updateDigitalProduct,
     getProducts,
     getProductData,
     getRecommendedProducts,

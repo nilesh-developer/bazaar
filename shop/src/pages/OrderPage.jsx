@@ -151,6 +151,31 @@ function OrderPage() {
                 </>
                 }
             </div>
+
+            {order?.product[0]?.type?.toLowerCase() === "digital" &&
+                <div>
+                    <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
+                    {order?.status?.toLowerCase() === "delivered" ? <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
+                        {order?.product[0]?.digital?.deliveryMethod === "upload" ?
+                            <>
+                                <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
+                                <a href={order?.product[0]?.digital?.digitalFiles[0]} className='text-sm font-semibold text-blue-800'>Click</a>
+                            </>
+                            :
+                            <>
+                                <b className='tracking-tighter text-slate-800 font-semibold'>External Download Link</b>
+                                <a href={order?.product[0]?.digital?.externalLink} className='text-sm font-semibold text-blue-800'>Click</a>
+                            </>
+                        }
+                    </div>
+                    :
+                    <div className='border border-gray-400 rounded-lg p-4 mt-2'>
+                        <p className='text-sm'>Digital asset will be available after order payment is confirmed.</p>
+                    </div>
+}
+                </div>
+            }
+
             <h3 className='lg:text-lg font-bold mt-4'>Shipping Address</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2 font-bold text-zinc-700'>
                 <p className='tracking-tight text-sm font'>{order?.name}</p>

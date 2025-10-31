@@ -1,17 +1,19 @@
-import React, { Fragment,useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { Productmobile } from '../../components/Seller';
 import { useAuth } from '../../store/auth';
+import QuickAddProductModal from '../../components/Seller/QuickAddProductModal';
 
 function Products() {
   let [isOpen, setIsOpen] = useState(false)
-  const { token } = useAuth()
+  const { token, currentPlan, userData } = useAuth()
   const [store, setStore] = useState({})
   const [storeProducts, setStoreProducts] = useState()
   const [deleteProductId, setDeleteProductId] = useState("")
   const [isLoading, setIsLoading] = useState(true)
+  const [showModal, setShowModal] = useState(false);
 
   async function getCategoryData() {
     try {
@@ -70,7 +72,7 @@ function Products() {
           "Content-Type": "application/json",
         }
       });
-      
+
       const responseData = await response.json()
       if (response.ok) {
         toast.success(responseData.message)
@@ -78,7 +80,7 @@ function Products() {
       } else {
         toast.error("Something went wrong");
         console.log(responseData);
-      } 
+      }
     } catch (error) {
       console.log(error)
     }
@@ -90,7 +92,7 @@ function Products() {
         <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
           <div className='flex justify-between lg:justify-start lg:gap-5'>
             <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold lg:ml-4 tracking-tight'>All Products</h2>
-            <Link to="../add-product"><h2 className='text-md font-semibold  bg-green-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</h2></Link>
+            <button onClick={() => setShowModal(true)} className='text-md font-semibold bg-green-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</button>
           </div>
 
           {store.products.length === 0 ?
@@ -120,11 +122,13 @@ function Products() {
                       <col />
                       <col />
                       <col />
+                      <col />
                     </colgroup>
                     <thead className="dark:bg-gray-300">
                       <tr className="text-left">
                         <th className="p-3 text-base tracking-tighter">Image</th>
                         <th className="p-3 text-base tracking-tighter w-56">Name</th>
+                        <th className="p-3 text-base tracking-tighter">Type</th>
                         <th className="p-3 text-base tracking-tighter">Price</th>
                         <th className="p-3 text-base tracking-tighter">Sale Price</th>
                         <th className="p-3 text-base tracking-tighter">Stock</th>
@@ -143,10 +147,13 @@ function Products() {
                             <p>{product?.name}</p>
                           </td>
                           <td className="p-3 text-base tracking-tight">
-                            <p>&#8377; {product?.originalPrice}</p>
+                            <p>{product?.type?.toUpperCase()}</p>
                           </td>
                           <td className="p-3 text-base tracking-tight">
-                            <p>&#8377; {product?.salePrice}</p>
+                            <p>&#8377;{product?.originalPrice}</p>
+                          </td>
+                          <td className="p-3 text-base tracking-tight">
+                            <p>&#8377;{product?.salePrice}</p>
                           </td>
                           <td className="p-3 text-base tracking-tight">
                             {product?.stockStatus ?
@@ -167,9 +174,13 @@ function Products() {
                             }
                           </td>
                           <td className="p-3 text-base tracking-tight">
-                            <Link to={"../edit-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-violet-600 text-gray-50">
+                            {product?.type === "physical" && <Link to={"../edit-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
                               <span>Edit</span>
                             </Link>
+                            }
+                            {product?.type === "digital" && <Link to={"../edit-digital-product/" + product?._id} className="cursor-pointer px-3 py-1 font-semibold rounded-md bg-emerald-600 text-gray-50">
+                              <span>Edit</span>
+                            </Link>}
                           </td>
                           <td className="p-3 text-base tracking-tight">
                             <button onClick={() => openModal(product?._id)} className="px-3 py-1 font-semibold rounded-md bg-red-600 text-gray-50">
@@ -188,6 +199,10 @@ function Products() {
           }
 
         </div>
+        {/* Conditionally render modal */}
+        {showModal && (
+          <QuickAddProductModal onClose={() => setShowModal(false)} currentPlan={currentPlan} userData={userData} />
+        )}
       </section>
 
       {/* Dialog Box */}

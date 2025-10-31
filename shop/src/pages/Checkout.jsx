@@ -68,74 +68,6 @@ function Checkout() {
     ];
     const [loadingBtn, setLoadingBtn] = useState(false)
 
-    //Start CashFree PG
-    const [orderId, setOrderId] = useState("")
-
-    const getSessionId = async () => {
-        try {
-            let res = await axios.post(`${import.meta.env.VITE_API_URL}/api/order/initiate-payment`, {
-                customerId: customerData._id,
-                customerName: billingDetails.name,
-                customerEmail: billingDetails.email,
-                amount: calculateTotal().finalTotal,
-                phoneNo: billingDetails.phoneNo,
-                orderData: {
-                    storeId,
-                    custId: customerData._id,
-                    ...billingDetails,
-                    cart: [...cart],
-                    isCouponApplied,
-                    coupon,
-                    discountValue,
-                    deliveryCharge: calculateTotal().deliveryCharge,
-                    productTotals: calculateTotal().productTotals,
-                    totalPrice: calculateTotal().finalTotal,
-                }
-            });
-
-            if (res.data && res.data.payment_session_id) {
-                setOrderId(res.data.order_id); // still update state if needed elsewhere
-                setDiscountValue(0)
-                return {
-                    sessionId: res.data.payment_session_id,
-                    orderId: res.data.order_id
-                };
-            } else {
-                toast.error("Something went wrong while placing order");
-                return null;
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const verifyPayment = async (id) => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/verify-payment`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    orderId: id
-                })
-            })
-
-            if (response.ok) {
-                const responseData = await response.json()
-                toast.success(responseData?.message)
-                navigate(`/payment-response?order_id=${id}`)
-            } else {
-                const responseData = await response.json()
-                toast.error(responseData?.message)
-                navigate(`/payment-response?order_id=${id}`)
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    // End Cashfree PG
-
     async function getStoreData() {
         const subdomain = window.location.hostname;
         try {
@@ -253,7 +185,7 @@ function Checkout() {
         e.preventDefault()
         try {
             setLoadingBtn(true)
-            //Start CashFree PG
+
             if (billingDetails.email === "" || billingDetails.name === "" || billingDetails.address1 === "" || billingDetails.address2 === "" || billingDetails.state === "" || billingDetails.country === "" || billingDetails.pinCode === "") {
                 toast.error("All feilds are required")
                 return
@@ -262,31 +194,6 @@ function Checkout() {
             if (billingDetails.paymentMethod === "") {
                 toast.error("Select atleast one payment method")
             }
-
-            if (billingDetails.paymentMethod === "cashfree") {
-                const sessionInfo = await getSessionId();
-                if (!sessionInfo) return;
-
-                const { sessionId, orderId } = sessionInfo;
-
-                await redirectToPaymentPage(sessionId, orderId)
-
-                // const cashfree = await load({ mode: "production" }); // or "sandbox"
-
-                // let checkoutOptions = {
-                //     paymentSessionId: sessionId,
-                //     redirectTarget: "_modal",
-                // }; // _self
-
-                // await cashfree.checkout(checkoutOptions)
-                //     .then(async (res) => {
-                //         await verifyPayment(orderId); // now using correct orderId
-                //     })
-                //     .catch((error) => {
-                //         console.log(error);
-                //     });
-            }
-            //End CashFree PG
 
             if (billingDetails.paymentMethod === "razorpay") {
                 try {
@@ -568,28 +475,6 @@ function Checkout() {
                                     </label>
                                 </div>
                                 : <></>
-                            }
-                            {store?.cashfree ?
-                                <div className="relative">
-                                    <input
-                                        className="peer hidden"
-                                        id="radio_2"
-                                        type="radio"
-                                        name="paymentMethod"
-                                        value="cashfree"
-                                        onChange={handleInput}
-                                    />
-                                    <span className="peer-checked:border-zinc-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-zinc-300 bg-white"></span>
-                                    <label className="peer-checked:border-2 peer-checked:border-zinc-700 peer-checked:bg-zinc-50 flex cursor-pointer select-none rounded-lg border border-zinc-300 p-4" htmlFor="radio_2">
-                                        <img className="w-14 object-contain" src="./cashfree.png" alt="" />
-                                        <div className="ml-5">
-                                            <span className="mt-2 font-semibold">Online Payment</span>
-                                            <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>
-                                        </div>
-                                    </label>
-                                </div>
-                                :
-                                <></>
                             }
                             {store?.razorpay ?
                                 <div className="relative">

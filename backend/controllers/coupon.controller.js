@@ -4,16 +4,17 @@ import { customers } from "../models/customer.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { stores } from "../models/store.model.js";
 import { coupons } from "../models/coupon.model.js";
+import { PLANS } from "../utils/plan.js";
 
 function countOccurrences(array, element) {
     let count = 0;
     for (let i = 0; i < array.length; i++) {
-      if (array[i] === element) {
-        count++;
-      }
+        if (array[i] === element) {
+            count++;
+        }
     }
     return count;
-  }
+}
 
 const createCoupon = asyncHandler(async (req, res) => {
     const {
@@ -33,10 +34,21 @@ const createCoupon = asyncHandler(async (req, res) => {
     } = req.body;
 
     // Check if store exists
-    const storeExist = await stores.findById(storeId);
+    const storeExist = await stores.findById(storeId).populate("owner");
     if (!storeExist) {
         return res.status(400).json(new ApiResponse(400, "", "Store does not exist"));
     }
+
+    const currectPlan = PLANS[storeExist.owner?.subscription_plan_type];
+
+    if (storeExist.coupon.length >= currectPlan.features.discountCodes) {
+        return res.status(400)
+            .json({
+                statusCode: 400,
+                message: "Limit is reached! Upgrade your plan to create more coupons."
+            })
+    }
+
 
     // Check if coupon with the same code already exists for the store
     const couponAlreadyExist = await coupons.findOne({ code: code.toUpperCase(), store: storeExist._id });
@@ -138,20 +150,20 @@ const deleteCoupon = asyncHandler(async (req, res) => {
 const checkCoupon = asyncHandler(async (req, res) => {
     const { coupon, storeId, customerId } = req.body;
 
-    const couponValid = await coupons.findOne({store: storeId, code: coupon.toUpperCase(), status: true})
+    const couponValid = await coupons.findOne({ store: storeId, code: coupon.toUpperCase(), status: true })
 
-    if(!couponValid){
+    if (!couponValid) {
         return res.status(400)
-        .json(
-            new ApiResponse(400,"","Invaild coupon code")
-        )
+            .json(
+                new ApiResponse(400, "", "Invaild coupon code")
+            )
     }
 
     const customerAlreadyUsedCoupon = await customers.findOne({ _id: customerId })
 
     const noOfTimesCouponUsed = countOccurrences(customerAlreadyUsedCoupon.couponsUsed, coupon.toUpperCase())
 
-    if(noOfTimesCouponUsed >= couponValid.perCustomer){
+    if (noOfTimesCouponUsed >= couponValid.perCustomer) {
         return res.status(400)
             .json(
                 new ApiResponse(400, "", `This coupon can be use ${couponValid.perCustomer} times by a customer`)

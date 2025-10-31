@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const ProductSchema = new mongoose.Schema({
     store: {
@@ -11,6 +12,11 @@ const ProductSchema = new mongoose.Schema({
     },
     slug: {
         type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        enum: ["physical", "digital", "service"],
         required: true
     },
     images: {
@@ -86,6 +92,25 @@ const ProductSchema = new mongoose.Schema({
     affiliateLink: {
         type: String
     },
+    digital: {
+        deliveryMethod: {
+            type: String,
+            enum: ["upload", "external"]
+        },
+        externalLink: {
+            type: String
+        },
+        digitalFiles: {
+            type: Array
+        },
+        downloadAccess: {
+            type: String,
+            enum: ["unlimited", "limited"]
+        },
+        downloadLimit: {
+            type: Number
+        }
+    }
 })
 
 export const products = mongoose.model("products", ProductSchema)

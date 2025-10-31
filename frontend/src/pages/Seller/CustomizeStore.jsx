@@ -101,10 +101,10 @@ function CustomizeStore() {
   return (
     <div className='w-full h-screen'>
       <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
-        <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Store</h2>
+        <h2 className='text-2xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Customize Store</h2>
         <div className='mt-7'>
           <form onSubmit={handleSubmit} className='grid grid-flow-row'>
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="name">Store Name</label>
+            <label className='font-semibold tracking-tight text-zinc-800 lg:text-lg' htmlFor="name">Store Name <span className='text-red-700'>*</span></label>
             <input
               type="text"
               name='name'
@@ -115,7 +115,16 @@ function CustomizeStore() {
               className="border outline-none rounded-lg px-3 py-3 text-black bg-transparent w-full max-w-xs"
               required
             />
-            <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-7' htmlFor="storeTitle">Color palette</label>
+            <label className='font-semibold tracking-tight text-zinc-800 lg:text-lg mt-3' htmlFor="name">Store Handle</label>
+            <input
+              type="text"
+              value={store?.storename}
+              className="border outline-none rounded-lg px-3 py-3 text-gray-800 bg-gray-200 w-full max-w-xs"
+              readOnly
+            />
+            <p className='text-sm text-gray-700'>Your store will be available at {store?.subdomain}</p>
+            <p className='text-sm text-gray-700'>Store handle is fixed after creation. Contact support if you need an exception.</p>
+            <label className='font-semibold tracking-tight text-zinc-800 lg:text-lg mt-7' htmlFor="storeTitle">Color palette</label>
             <div className='flex space-x-3 w-full'>
               {/* <input
                 className='p-1 h-10 w-14 block bg-gray-100 border cursor-pointer rounded-lg'
@@ -216,8 +225,8 @@ function CustomizeStore() {
               </div>
             
             </div>
-            <div className="form-control mt-6 w-44">
-              <label className="label cursor-pointer">
+            <div className="form-control mt-6 w-48">
+              <label className="label cursor-pointer gap-2">
                 <span className="label-text text-lg tracking-tight text-black font-semibold">Hide Categories</span>
                 <input
                   type="checkbox"
@@ -229,8 +238,8 @@ function CustomizeStore() {
             </div>
 
             <div className='mt-7 grid grid-flow-row'>
-              <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter my-4'>Your store metadata</h2>
-              <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="name">Meta title</label>
+              <h2 className='text-2xl lg:text-3xl text-zinc-900 font-bold tracking-tighter my-4'>Your store metadata</h2>
+              <label className='font-semibold tracking-tight text-zinc-800 lg:text-lg' htmlFor="name">Meta title</label>
               <input
                 type="text"
                 name='metaTitle'
@@ -242,7 +251,7 @@ function CustomizeStore() {
                 required
               />
 
-              <label className='font-semibold tracking-tight text-zinc-800 text-lg mt-4' htmlFor="name">Meta description</label>
+              <label className='font-semibold tracking-tight text-zinc-800 lg:text-lg mt-4' htmlFor="name">Meta description</label>
               <textarea
                 name='metaDescription'
                 id="metaDescription"
@@ -253,7 +262,7 @@ function CustomizeStore() {
               />
             </div>
 
-            <button className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 text-lg mt-6 mb-20 w-28">Save</button>
+            <button className="bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 lg:text-lg mt-6 mb-20 w-28">Save</button>
           </form>
         </div>
       </div>

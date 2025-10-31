@@ -3,6 +3,7 @@ import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
 import { Dialog, Transition } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom';
+import { CircleAlert, Globe } from 'lucide-react';
 
 function DomainSettings() {
   let [isOpen, setIsOpen] = useState(false)
@@ -14,7 +15,7 @@ function DomainSettings() {
   const [storeId, setStoreId] = useState("")
   const [updateStoreStatus, setUpdateStoreStatus] = useState(true)
   const [loading, setLoading] = useState(true)
-  const { token } = useAuth();
+  const { token, currentPlan, isLoading } = useAuth();
 
   const getStoreData = async () => {
     try {
@@ -45,7 +46,7 @@ function DomainSettings() {
     getStoreData();
   }, [updateStoreStatus]);
 
-  if (loading) {
+  if (loading || isLoading) {
     return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
   }
 
@@ -154,10 +155,10 @@ function DomainSettings() {
   return (
     <>
       <div className='flex-grow h-screen'>
-        <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
+        <div className='lg:my-4 lg:mx-10 my-3 mx-3'>
           <h2 className='text-2xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Domain Settings</h2>
           <div className='mt-8'>
-            <h2 className='font-semibold text-xl tracking-tight text-gray-700'>Your store is live at</h2>
+            <h2 className='font-semibold text-lg tracking-tight text-gray-700'>Your store is live at</h2>
             {store.customDomain ?
               <div className='mt-4 flex'>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6" viewBox="0 0 512 511.999"><path d="M476.335 35.664v.001c47.554 47.552 47.552 125.365.002 172.918l-101.729 101.73c-60.027 60.025-162.073 42.413-194.762-32.45 35.888-31.191 53.387-21.102 87.58-6.638 20.128 8.512 43.74 3.955 60.08-12.387l99.375-99.371c21.49-21.493 21.492-56.662 0-78.155-21.489-21.488-56.677-21.472-78.151 0l-71.278 71.28c-23.583-11.337-50.118-14.697-75.453-10.07a121.476 121.476 0 0118.767-24.207l82.651-82.65c47.554-47.551 125.365-47.555 172.918-.001zM35.664 476.334l.001.001c47.554 47.552 125.365 47.552 172.917 0l85.682-85.682a121.496 121.496 0 0019.325-25.157c-27.876 6.951-57.764 4.015-83.932-8.805l-70.192 70.19c-21.472 21.471-56.658 21.492-78.149 0-21.492-21.491-21.493-56.658 0-78.149l99.375-99.376c20.363-20.363 61.002-26.435 91.717 1.688 29.729-3.133 41.275-8.812 59.742-26.493-39.398-69.476-137.607-80.013-194.757-22.863L35.664 303.417c-47.552 47.553-47.552 125.364 0 172.917z" /></svg>
@@ -169,12 +170,31 @@ function DomainSettings() {
               <a className='ml-2 font-bold underline text-xl' href={`https://${store.subdomain}`}>{store.subdomain}</a>
             </div>
 
-            <button
-              className="bg-green-600 text-white px-4 py-2 rounded mt-10"
-              onClick={togglePopup}
-            >
-              ADD CUSTOM DOMAIN
-            </button>
+            <div className='mt-10'>
+              {currentPlan?.name !== "plus" && <div className='flex items-center p-4 gap-2 bg-emerald-100 border-emerald-700 border-2 rounded-lg'>
+                <CircleAlert className='h-5 text-emerald-800' />
+                <p>Plus plan is required to access this feature. Upgrade your plan to connect or manage a custom domain from your dashboard</p>
+              </div>
+              }
+              <div className='flex gap-2 items-center mt-3'>
+                <Globe className='h-6' />
+                <h3 className='font-bold text-2xl'>Custom Domain</h3>
+              </div>
+              <p className='text-gray-600 mt-2'>Connect your own domain to your Growo store</p>
+              {currentPlan?.name === "plus" ? <button
+                className="bg-emerald-600 text-white px-4 py-2 rounded-lg mt-4"
+                onClick={togglePopup}
+              >
+                ADD CUSTOM DOMAIN
+              </button>
+                :
+                <button
+                  className="bg-gray-600 text-white px-4 py-2 rounded-lg mt-4"
+                >
+                  ADD CUSTOM DOMAIN
+                </button>
+              }
+            </div>
 
             {/* Popup Modal */}
             {showPopup && (
