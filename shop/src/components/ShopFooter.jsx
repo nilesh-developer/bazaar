@@ -53,10 +53,10 @@ export default function ShopFooter({ store, color1, color2 }) {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={`https://wa.me/91${store?.whatsapp}?text=Hello%20${store?.name}`} className="text-gray-600 hover:text-gray-900 flex items-center gap-2 transition-colors">
+                                <a href={`https://api.whatsapp.com/send?phone=${store?.whatsapp}&text=Hello%20${store?.name}`} target="_blank" className="text-gray-600 hover:text-gray-900 flex items-center gap-2 transition-colors">
                                     <MessageCircle className="w-4 h-4" />
                                     WhatsApp Support
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </div>

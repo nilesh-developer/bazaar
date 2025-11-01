@@ -60,7 +60,7 @@ const businessdetails = asyncHandler(async (req, res) => {
         businessName,
         businessCategory: category,
         address,
-        phoneNo: mobileNo
+        phoneNo: mobileNo,
     })
 
     if (!store) {
@@ -209,7 +209,55 @@ const updateSocial = asyncHandler(async (req, res) => {
 
     return res.status(200)
         .json(
-            new ApiResponse(200, store, "Store data updated successfully")
+            new ApiResponse(200, {}, "Store data updated successfully")
+        )
+})
+
+const updateWhatsAppNumber = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const { whatsapp } = req.body;
+
+    const store = await stores.findByIdAndUpdate(id,
+        {
+            $set: {
+                whatsapp
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, store, "WhatsApp Number Saved successfully")
+        )
+})
+
+const updateWhatsAppPayStatus = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const {
+        whatsappPayStatus,
+        whatsappPayInstructions
+    } = req.body;
+
+    const store = await stores.findByIdAndUpdate(id,
+        {
+            $set: {
+                whatsappPay: {
+                    status: whatsappPayStatus,
+                    instructions: whatsappPayInstructions
+                }
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    return res.status(200)
+        .json(
+            new ApiResponse(200, {}, "Changes Saved Successfully")
         )
 })
 
@@ -431,7 +479,7 @@ const getCustomerData = asyncHandler(async (req, res) => {
 const setDeliveryCharges = asyncHandler(async (req, res) => {
     const { tiers, userId } = req.body;
     console.log(tiers)
-    const saveDeliveryTiers = await stores.findOneAndUpdate({owner: userId},{
+    const saveDeliveryTiers = await stores.findOneAndUpdate({ owner: userId }, {
         deliveryChargesTiers: tiers
     }, { new: true })
 
@@ -450,7 +498,7 @@ const setDeliveryCharges = asyncHandler(async (req, res) => {
 
 const getDeliveryCharges = asyncHandler(async (req, res) => {
     const { userId } = req.params;
-    const store = await stores.findOne({owner: userId});
+    const store = await stores.findOne({ owner: userId });
     if (!store) {
         return res.status(404).json({
             statusCode: 404,
@@ -512,6 +560,8 @@ export {
     addCustomDomain,
     updateStoreName,
     updateSocial,
+    updateWhatsAppNumber,
+    updateWhatsAppPayStatus,
     updatePolicies,
     updateAboutPage,
     setDeliveryCharges,

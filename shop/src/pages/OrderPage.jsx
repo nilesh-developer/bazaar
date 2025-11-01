@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useOutletContext } from 'react-router-dom'
 import dateFormat from "dateformat";
+import { MessageCircle } from "lucide-react"
 
 function OrderPage() {
     const { id } = useParams()
     const [order, setOrder] = useState({})
     const [loading, setLoading] = useState(true)
+    const { store } = useOutletContext();
 
     const getOrderData = async () => {
         try {
@@ -150,12 +152,27 @@ function OrderPage() {
                     {order?.razorpayPaymentDetails?.status?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p>}
                 </>
                 }
+                {order?.paymentMethod?.toUpperCase() === "WHATSAPPPAY" && <>
+                    <p className='text-sm flex items-center font-semibold mb-3'>WhatsApp Pay / Pay Later</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment status</b>
+                    {order?.whatsappPay?.status?.toUpperCase() === "PENDING" ? <p className='text-sm font-semibold text-red-700 mb-4'>{order?.whatsappPay?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.whatsappPay?.status?.toUpperCase()}</p>}
+                    <a
+                        href={`https://api.whatsapp.com/send?phone=${store?.whatsapp}&text=Hello%20${store?.name},%20Order%20ID:%20${order?._id}`}
+                        target="_blank"
+                        className='flex gap-2 w-fit bg-black text-white mt-2 px-3 py-2 rounded-lg font-semibold'
+                    >
+                        <img src="/whatsapp.svg" alt="WhatsApp"
+                        className='h-6'
+                        />Chat with Seller
+                    </a>
+                </>
+                }
             </div>
 
             {order?.product[0]?.type?.toLowerCase() === "digital" &&
                 <div>
                     <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
-                    {order?.status?.toLowerCase() === "delivered" ? <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
+                    {order?.whatsappPay?.status?.toLowerCase() === "paid" ? <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
                         {order?.product[0]?.digital?.deliveryMethod === "upload" ?
                             <>
                                 <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
@@ -168,11 +185,11 @@ function OrderPage() {
                             </>
                         }
                     </div>
-                    :
-                    <div className='border border-gray-400 rounded-lg p-4 mt-2'>
-                        <p className='text-sm'>Digital asset will be available after order payment is confirmed.</p>
-                    </div>
-}
+                        :
+                        <div className='border border-gray-400 rounded-lg p-4 mt-2'>
+                            <p className='text-sm'>Digital asset will be available after order payment is confirmed.</p>
+                        </div>
+                    }
                 </div>
             }
 

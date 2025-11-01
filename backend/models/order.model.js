@@ -50,6 +50,10 @@ const OrderSchema = new mongoose.Schema({
             type: String
         }
     },
+    whatsappPay: {
+        status: String,
+        number: String
+    },
     email: {
         type: String,
         required: true

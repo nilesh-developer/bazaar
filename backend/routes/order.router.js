@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { acceptOrder, cancelOrder, codOrderPlaced, getAllOrders, getOrderData, initiateRazorpayPayment, storeOrders, updateStatus, verifyRazorpayPayment } from "../controllers/order.controller.js";
+import { acceptOrder, cancelOrder, codOrderPlaced, getAllOrders, getOrderData, initiateRazorpayPayment, storeOrders, updateStatus, updateWhatsappStatus, verifyRazorpayPayment, whatsappPayOrderPlaced } from "../controllers/order.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 const router = Router()
 
@@ -10,6 +10,8 @@ router.route("/verify-razorpay-payment").post(verifyRazorpayPayment)
 
 router.route("/place-order-cod").post(codOrderPlaced)
 
+router.route("/place-order-whatsapp-pay").post(whatsappPayOrderPlaced)
+
 router.route("/all-orders/:custId").get(getAllOrders)
 
 router.route("/get-orders/:storeId").get(storeOrders)
@@ -17,6 +19,8 @@ router.route("/get-orders/:storeId").get(storeOrders)
 router.route("/get-data/:id").get(getOrderData)
 
 router.route("/update-status/:orderId").patch(verifyJwt,updateStatus)
+
+router.route("/update-whatsapp-pay-status/:orderId").patch(verifyJwt,updateWhatsappStatus)
 
 router.route("/accept/:orderId").patch(verifyJwt,acceptOrder)
 

@@ -17,7 +17,9 @@ import {
     getNumbersOfThirtyDays,
     setDeliveryCharges,
     getDeliveryCharges,
-    changeRazorpayStatus
+    changeRazorpayStatus,
+    updateWhatsAppNumber,
+    updateWhatsAppPayStatus
 } from "../controllers/store.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -37,6 +39,10 @@ router.route("/add-domain/:id").patch(addCustomDomain)
 router.route("/update/basic/:id").patch(verifyJwt, updateStoreName)
 
 router.route("/update/social/:id").patch(verifyJwt, updateSocial)
+
+router.route("/update/whatsapp-number/:id").patch(verifyJwt, updateWhatsAppNumber)
+
+router.route("/update/whatsapp-pay-status/:id").patch(verifyJwt, updateWhatsAppPayStatus)
 
 router.route("/update/policy/:id").patch(verifyJwt, updatePolicies)
 

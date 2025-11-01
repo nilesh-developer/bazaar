@@ -1,4 +1,4 @@
-import { ChevronUp, Clock, CreditCard, ExternalLink, Shield, ShieldCheck, Wallet, Zap } from 'lucide-react'
+import { AlertCircle, ChevronUp, Clock, CreditCard, ExternalLink, Shield, ShieldCheck, Wallet, Zap } from 'lucide-react'
 import React, { useState } from 'react'
 
 function RazorpayEnable() {
@@ -9,15 +9,16 @@ function RazorpayEnable() {
         <div data-theme="light" className="mx-auto pb-6 bg-gray-50 h-full">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200">
                 {/* Header */}
-                <div className="p-6">
+                <div onClick={() => setIsExpanded(!isExpanded)} className="p-6">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-3">
-                                <Wallet className="w-6 h-6 text-emerald-600" />
+                                <CreditCard className="w-6 h-6 text-emerald-600" />
                                 <h2 className="text-xl font-semibold text-gray-900">Razorpay</h2>
                             </div>
-                            <span className="px-3 py-1 bg-orange-50 text-orange-700 text-sm font-medium rounded-full">
-                                2% FEE
+                            <span className="flex gap-2 px-1 py-1 bg-gray-50 text-gray-700 text-sm font-medium rounded-full">
+                                <AlertCircle className='h-4'/>
+                                Coming Soon
                             </span>
                         </div>
                         <button

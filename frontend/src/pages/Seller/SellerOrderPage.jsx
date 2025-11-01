@@ -13,6 +13,7 @@ function SellerOrderPage() {
     let [openAccept, setOpenAccept] = useState(false);
     const [order, setOrder] = useState({})
     const [status, setStatus] = useState("")
+    const [whatsappPayStatus, setWhatsappPayStatus] = useState("")
     const [orderStatusId, setOrderStatusId] = useState('');
     const [selectedOption, setSelectedOption] = useState(false);
     const [tracking, setTracking] = useState({
@@ -30,6 +31,7 @@ function SellerOrderPage() {
                 const responseData = await response.json()
                 setOrder(responseData.data)
                 setStatus(responseData.data.status)
+                setWhatsappPayStatus(responseData.data?.whatsappPay?.status)
             }
             setLoading(false)
         } catch (error) {
@@ -56,6 +58,29 @@ function SellerOrderPage() {
             const responseData = await response.json()
             if (response.ok) {
                 toast.success(responseData.message)
+            } else {
+                toast.error(responseData.message)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const changeWhatsappPayStatus = async (e) => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/update-whatsapp-pay-status/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ whatsappPayStatus })
+            })
+
+            const responseData = await response.json()
+            if (response.ok) {
+                toast.success(responseData.message)
+                getOrderData()
             } else {
                 toast.error(responseData.message)
             }
@@ -253,7 +278,7 @@ function SellerOrderPage() {
                                             id="status"
                                             onChange={(e) => setStatus(e.target.value)}
                                             value={status}
-                                            className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-baseoutline-none"
+                                            className="w-full rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-base outline-none"
                                         >
                                             <option value="" disabled>Pending</option>
                                             <option value="processed">Processed</option>
@@ -304,6 +329,34 @@ function SellerOrderPage() {
                     {order?.razorpayPaymentDetails?.status?.toUpperCase() === "FAILED" ? <p className='text-sm text-red-700'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.razorpayPaymentDetails?.status?.toUpperCase()}</p>}
                 </>
                 }
+                {order?.paymentMethod?.toUpperCase() === "WHATSAPPPAY" && <>
+                    <p className='text-sm flex items-center font-semibold mb-3'>WhatsApp Pay / Pay Later</p>
+                    <b className='tracking-tighter text-slate-600 font-semibold'>Payment status</b>
+                    {order?.whatsappPay?.status?.toUpperCase() === "PENDING" ? <p className='text-sm font-semibold text-red-700 mb-4'>{order?.whatsappPay?.status?.toUpperCase()}</p> : <p className='text-sm'>{order?.whatsappPay?.status?.toUpperCase()}</p>}
+                    <div className='mb-5 lg:flex lg:gap-2 lg:w-1/2'>
+                        <select
+                            name="whatsappPayStatus"
+                            id="whatsappPayStatus"
+                            onChange={(e) => setWhatsappPayStatus(e.target.value)}
+                            value={whatsappPayStatus}
+                            className="w-full mt-2 rounded-md bg-gray-100 border border-gray-400 px-4 py-3 text-base outline-none"
+                        >
+                            <option value="pending" disabled>Pending</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                        <button onClick={changeWhatsappPayStatus} type='button' className='px-3 py-2 w-full bg-green-600 text-white rounded-md mt-2'>Update Payment Status</button>
+                    </div>
+                    <a
+                        href={`https://api.whatsapp.com/send?phone=${order?.whatsappPay?.number}&text=Hello%20${order?.name},%20Order%20ID:%20${order?._id}`}
+                        target="_blank"
+                        className='flex gap-2 w-fit bg-black text-white px-3 py-2 rounded-lg font-semibold'
+                    >
+                        <img src="/whatsapp.svg" alt="WhatsApp"
+                            className='h-6'
+                        />Chat with Customer
+                    </a>
+                </>
+                }
             </div>
 
             <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
@@ -320,7 +373,7 @@ function SellerOrderPage() {
                     </>
                 }
             </div>
-            
+
             <h3 className='lg:text-lg font-bold mt-4'>Shipping Address</h3>
             <div className='border border-gray-400 rounded-lg p-4 mt-2 font-bold text-zinc-700'>
                 <p className='tracking-tight text-sm'>{order?.name}</p>
@@ -438,7 +491,7 @@ function SellerOrderPage() {
                                     >
                                         Mark the item as accepted
                                     </Dialog.Title>
-                                    <div className="mt-3">
+                                    <div data-theme="light" className="mt-3">
 
                                         <label className="flex items-center space-x-3">
                                             <input

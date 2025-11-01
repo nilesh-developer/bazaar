@@ -91,11 +91,20 @@ const StoreSchema = new mongoose.Schema({
     }],
     cod: {
         type: Boolean,
-        default: true
+        default: false
     },
     razorpay: {
         type: Boolean,
         default: false
+    },
+    whatsappPay: {
+        status: {
+            type: Boolean,
+            default: false
+        },
+        instructions: {
+            type: String
+        }
     },
     subdomain: {
         type: String,

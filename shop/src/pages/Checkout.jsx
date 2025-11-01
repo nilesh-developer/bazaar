@@ -6,7 +6,6 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import axios from "axios"
-import { load } from '@cashfreepayments/cashfree-js'
 
 function Checkout() {
     const { storeId, customerData } = useCustomerAuth()
@@ -27,6 +26,7 @@ function Checkout() {
         pinCode: "",
         paymentMethod: ""
     })
+    const [whatsappPayNumber, setWhatsAppPayNumber] = useState("")
     const [loading, setLoading] = useState(false)
     const statesOfIndia = [
         "Andhra Pradesh",
@@ -116,6 +116,10 @@ function Checkout() {
     }
 
     const checkCoupon = async (e) => {
+        if(coupon.trim() === ""){
+            toast.error("Please enter a coupon code")
+            return
+        }
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/coupon/check`, {
                 method: "POST",
@@ -170,24 +174,13 @@ function Checkout() {
         }
     }
 
-    const redirectToPaymentPage = async (sessionId, orderId) => {
-        try {
-            window.location.replace(`https://checkout.eazzy.store/?storename=${store.subdomain}&sessionid=${sessionId}&orderid=${orderId}`);
-        } catch (error) {
-            console.log(error)
-            toast.error("Failed to redirect to payment page");
-            setLoadingBtn(false);
-            return false
-        }
-    }
-
     const handleCheckout = async (e) => {
         e.preventDefault()
         try {
             setLoadingBtn(true)
 
             if (billingDetails.email === "" || billingDetails.name === "" || billingDetails.address1 === "" || billingDetails.address2 === "" || billingDetails.state === "" || billingDetails.country === "" || billingDetails.pinCode === "") {
-                toast.error("All feilds are required")
+                toast.error("All fields are required")
                 return
             }
 
@@ -273,6 +266,56 @@ function Checkout() {
                 } catch (error) {
                     console.error("Payment Error:", error);
                     toast.error("Failed to process payment");
+                }
+            }
+
+            if (billingDetails.paymentMethod === "whatsappPay") {
+                if(whatsappPayNumber.trim() === ""){
+                    toast.error("WhatsApp Number is required for WhatsApp Pay")
+                    setLoadingBtn(false)
+                    return
+                }
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/order/place-order-whatsapp-pay`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        storeId,
+                        custId: customerData._id,
+                        ...billingDetails,
+                        whatsappPayNumber,
+                        cart: [...cart],
+                        isCouponApplied,
+                        coupon,
+                        discountValue,
+                        deliveryCharge: calculateTotal().deliveryCharge,
+                        productTotals: calculateTotal().productTotals,
+                        totalPrice: calculateTotal().finalTotal,
+                    })
+                })
+
+                const responseData = await response.json()
+
+                if (response.ok) {
+                    removeAllProductsFromCart()
+                    toast.success(responseData.message)
+                    setBillingDetails({
+                        email: "",
+                        name: "",
+                        phoneNo: "",
+                        address1: "",
+                        address2: "",
+                        state: "",
+                        country: "India",
+                        pinCode: "",
+                        paymentMethod: ""
+                    })
+                    setDiscountValue(0)
+                    navigate("/order-success")
+                    
+                } else {
+                    toast.error(responseData.message)
                 }
             }
 
@@ -452,6 +495,21 @@ function Checkout() {
                                 className="w-full rounded-md border border-zinc-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                             />
                         </div>
+                        {billingDetails?.paymentMethod === "whatsappPay" &&
+                        <div>
+                            <label htmlFor="whatsappPayNumber" className="mt-4 mb-2 block text-base font-medium">WhatsApp Number<span className='text-red-700'>*</span></label>
+                            <input
+                                type="tel"
+                                name='whatsappPayNumber'
+                                id='whatsappPayNumber'
+                                onChange={(e) => setWhatsAppPayNumber(e.target.value)}
+                                value={whatsappPayNumber}
+                                placeholder='+91XXXXXXXXXX'
+                                required
+                                className="w-full rounded-md border border-zinc-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                            />
+                        </div>
+}
 
                         <p className="mt-8 text-lg font-medium">Payment Methods</p>
                         <form className="mt-5 grid gap-6 mb-10">
@@ -476,6 +534,30 @@ function Checkout() {
                                 </div>
                                 : <></>
                             }
+
+                            {store?.whatsappPay?.status ?
+                                <div className="relative">
+                                    <input
+                                        className="peer hidden"
+                                        id="radio_3"
+                                        type="radio"
+                                        name="paymentMethod"
+                                        value="whatsappPay"
+                                        onChange={handleInput}
+                                    />
+                                    <span className="peer-checked:border-zinc-700 absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-zinc-300 bg-white"></span>
+                                    <label className="peer-checked:border-2 peer-checked:border-zinc-700 peer-checked:bg-zinc-50 flex cursor-pointer select-none rounded-lg border border-zinc-300 p-4" htmlFor="radio_3">
+                                        <img className="w-14 object-contain" src="./whatsapp.svg" alt="" />
+                                        <div className="ml-5">
+                                            <span className="mt-2 font-semibold">Pay on WhatsApp/Pay Later</span>
+                                            <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                :
+                                <></>
+                            }
+
                             {store?.razorpay ?
                                 <div className="relative">
                                     <input
