@@ -37,15 +37,6 @@ const storage = multer.diskStorage({
     // let folder = "./public/tmp";
     let folder = "/tmp";
 
-    // Choose folder based on file type
-    if (file.fieldname.startsWith("image") || file.fieldname === "featuredImage") {
-      // folder = "./public/uploads/product-images";
-      folder = "/tmp/uploads/product-images";
-    } else if (file.fieldname === "digitalFiles[]" || file.fieldname === "digitalFiles") {
-      // folder = "./public/uploads/digital-files";
-      folder = "/tmp/uploads/digital-files";
-    }
-
     // ensureDir(folder);
     cb(null, folder);
   },

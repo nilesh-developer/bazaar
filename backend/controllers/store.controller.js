@@ -56,11 +56,13 @@ const createStore = asyncHandler(async (req, res) => {
 
 const businessdetails = asyncHandler(async (req, res) => {
     const { storename, businessName, category, address, mobileNo } = req.body;
+    
     const store = await stores.findOneAndUpdate({ storename }, {
         businessName,
         businessCategory: category,
         address,
         phoneNo: mobileNo,
+        logo: req.files.logo ? await uploadOnCloudinary(req.files.logo[0].path) : ""
     })
 
     if (!store) {

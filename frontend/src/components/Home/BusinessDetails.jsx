@@ -5,6 +5,7 @@ import { Briefcase, Download, Package } from 'lucide-react';
 
 const BusinessDetails = () => {
   const { storename } = useParams();
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const [formData, setFormData] = useState({
     businessName: '',
     address: '',
@@ -61,6 +62,7 @@ const BusinessDetails = () => {
   const handleSubmit = async (e) => {
   e.preventDefault();
   try {
+    setLoadingBtn(true);
     // Create FormData object for file + text data
     const data = new FormData();
     data.append("storename", storename);
@@ -88,6 +90,8 @@ const BusinessDetails = () => {
   } catch (error) {
     console.log(error);
     toast.error("An error occurred");
+  } finally {
+    setLoadingBtn(false);
   }
 };
 
@@ -191,7 +195,7 @@ const BusinessDetails = () => {
               type="submit"
               className="w-full bg-green-500 text-lg font-bold text-white py-4 px-4 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
             >
-              Submit
+              {loadingBtn ? <span className="loading loading-spinner loading-md"></span> : "Submit"}
             </button>
           </div>
         </form>

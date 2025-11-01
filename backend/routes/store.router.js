@@ -28,7 +28,12 @@ const router = Router()
 
 router.route("/create-store").post(createStore)
 
-router.route("/businessdetails").post(businessdetails)
+router.route("/businessdetails").post(upload.fields([
+    {
+        name: "logo",
+        maxCount: 1
+    },
+]), businessdetails)
 
 router.route("/data").post(getCurrentStoreData)
 
