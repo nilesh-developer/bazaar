@@ -35,19 +35,19 @@ export default function Home() {
             <div className="relative h-64 sm:h-[400px] bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 overflow-hidden">
                 {/* Background Image */}
                 <div className="hidden lg:block absolute inset-0">
-                    <img
+                    {store?.desktopBanner && <img
                         src={store?.desktopBanner}
                         alt="Banner background"
                         className="w-full h-full object-cover"
-                    />
+                    />}
                 </div>
 
                 <div className="block lg:hidden absolute inset-0">
-                    <img
+                    {store?.mobileBanner && <img
                         src={store?.mobileBanner}
                         alt="Banner background"
                         className="w-full h-full object-cover"
-                    />
+                    />}
                 </div>
 
                 {/* Content Overlay */}
@@ -80,7 +80,7 @@ export default function Home() {
             <div className="max-w-7xl mx-auto lg:px-8">
                 <div className="relative -mt-12 sm:-mt-16">
                     {/* Logo */}
-                    <div className="mb-6 ml-4 lg:ml-0">
+                    <div className="mb-4 ml-3 lg:ml-3">
                         {store?.logo ?
                             <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl shadow-lg flex items-center justify-center">
                                 <img className='bg-white rounded-2xl' src={store?.logo} alt={store?.name} srcset="" />
@@ -97,10 +97,10 @@ export default function Home() {
                     {/* Info Card */}
                     <div className="bg-white rounded-lg p-4">
                         {/* Header with Share Button */}
-                        <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-start justify-between mb-2">
                             <div>
                                 <h1 className="text-2xl sm:text-3xl font-bold mb-1" style={{ color: color1 }}>{store?.name}</h1>
-                                <p className="text-sm sm:text-base text-gray-500">Audio devices, Electronics</p>
+                                {/* <p className="text-sm sm:text-base text-gray-500">Audio devices, Electronics</p> */}
                             </div>
                             <button onClick={handleShare} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                                 <Share2 className="w-5 h-5 text-gray-600" />
@@ -124,22 +124,22 @@ export default function Home() {
 
                         <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-3 mt-3">
                             {store?.whatsapp && <a href={`https://api.whatsapp.com/send?phone=${store?.whatsapp}&text=Hello%20${store?.name}`} target="_blank"
-                                className="w-full h-10 text-emerald-700 gap-1 bg-white border border-emerald-700 rounded-full flex items-center justify-center hover:bg-emerald-100 transition-colors">
+                                className="w-full h-10 text-xs lg:text-base text-emerald-700 gap-1 bg-white border border-emerald-700 rounded-full flex items-center justify-center hover:bg-emerald-100 transition-colors">
                                 <MessageCircle className="w-5 h-5" /> WhatsApp
                             </a>}
-                            {store?.instagram && <Link to={store?.instagram} className="w-full h-10 text-pink-700 gap-1 bg-white border border-pink-700 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors">
+                            {store?.instagram && <Link to={store?.instagram} className="w-full h-10 text-xs lg:text-base text-pink-700 gap-1 bg-white border border-pink-700 rounded-full flex items-center justify-center hover:bg-pink-100 transition-colors">
                                 <Instagram className="w-5 h-5" /> Instagram
                             </Link>}
-                            {store?.facebook && <Link to={store?.facebook} className="w-full h-10 text-blue-700 gap-1 bg-white border border-blue-700 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
+                            {store?.facebook && <Link to={store?.facebook} className="w-full h-10 text-xs lg:text-base text-blue-700 gap-1 bg-white border border-blue-700 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors">
                                 <Facebook className="w-5 h-5" /> Facebook
                             </Link>}
-                            {store?.twitter && <Link to={store?.twitter} className="w-full h-10 text-gray-900 gap-1 bg-white border border-gray-900 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors">
+                            {store?.twitter && <Link to={store?.twitter} className="w-full h-10 text-xs lg:text-base text-gray-900 gap-1 bg-white border border-gray-900 rounded-full flex items-center justify-center hover:bg-zinc-100 transition-colors">
                                 <Twitter className="w-5 h-5" /> Twitter
                             </Link>}
-                            {store?.youtube && <Link to={store?.youtube} className="w-full h-10 text-red-700 gap-1 bg-white border border-red-700 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors">
+                            {store?.youtube && <Link to={store?.youtube} className="w-full h-10 text-xs lg:text-base text-red-700 gap-1 bg-white border border-red-700 rounded-full flex items-center justify-center hover:bg-red-100 transition-colors">
                                 <Youtube className="w-5 h-5" /> YouTube
                             </Link>}
-                            {store?.website && <Link to={store?.youtube} className="w-full h-10 text-yellow-700 gap-1 bg-white border border-yellow-700 rounded-full flex items-center justify-center hover:bg-yellow-100 transition-colors">
+                            {store?.website && <Link to={store?.youtube} className="w-full h-10 text-xs lg:text-base text-yellow-700 gap-1 bg-white border border-yellow-700 rounded-full flex items-center justify-center hover:bg-yellow-100 transition-colors">
                                 <Globe className="w-5 h-5" /> Website
                             </Link>}
                         </div>
@@ -148,7 +148,45 @@ export default function Home() {
             </div>
 
             <div>
-                {store.hideCategory ? <></> : <Category categories={store?.categories} color1={color1} color2={color2} />}
+
+                {store.hideCategory ? null :
+                    <div className='max-w-7xl mx-auto px-3 md:px-8 pt-5'>
+                        <h2 className='text-2xl lg:text-4xl font-bold tracking-tight lg:text-center' style={{ color: color1 }}>Categories</h2>
+                        {/* Scrollable row on mobile */}
+                        <div className="flex overflow-x-auto space-x-5 scrollbar-hide pb-3 mt-3">
+                            {store?.categories?.map((category, index) => {
+                                const [imageLoaded, setImageLoaded] = useState(false);
+                                return (
+                                    <div
+                                        key={index}
+                                        className="flex-shrink-0 group relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+                                    >
+                                        <Link to={`/category/${category._id}`}>
+                                            <div className="flex flex-col items-center justify-center p-4 w-28 sm:w-40 lg:w-56">
+
+                                                {/* Image */}
+                                                <div className="w-24 h-24 sm:w-36 sm:h-36 lg:w-52 lg:h-52 rounded-full overflow-hidden border border-gray-200 bg-gray-100 group-hover:scale-105 transition-transform duration-300">
+                                                    <img
+                                                        src={category?.image}
+                                                        alt={category?.name}
+                                                        className="h-full w-full object-cover"
+                                                        onLoad={() => setImageLoaded(true)}
+                                                    />
+                                                    {!imageLoaded && <div className="w-full h-full object-cover skeleton" />}
+                                                </div>
+
+                                                {/* Category Name */}
+                                                <h3 className="mt-3 text-sm sm:text-base font-semibold text-center" style={{ color: color1 }}>
+                                                    {category?.name}
+                                                </h3>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                }
 
                 {recommendedProducts.length !== 0 &&
                     <section id="products" className="pb-8 lg:py-8 bg-white">
