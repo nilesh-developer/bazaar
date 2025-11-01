@@ -10,6 +10,7 @@ const BusinessDetails = () => {
     address: '',
     mobileNo: ''
   });
+  const [logo, setLogo] = useState('')
   const [selectedType, setSelectedType] = useState("physical");
   const navigate = useNavigate()
 
@@ -37,6 +38,19 @@ const BusinessDetails = () => {
     },
   ];
 
+  const getImageUrl = (image) => {
+    if (!image) {
+      return "/image.svg";
+    }
+    if (image instanceof File) {
+      return URL.createObjectURL(image);
+    }
+    if (typeof image === 'string') {
+      return image;
+    }
+    return "/image.svg";
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -45,28 +59,38 @@ const BusinessDetails = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/businessdetails`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ storename, ...formData, category: selectedType })
-      })
-
-      const responseData = await response.json()
-
-      if (response.ok) {
-        toast.success("Store created successfully")
-        navigate("/seller/dashboard")
-      } else {
-        toast.error("Something went wrong")
-      }
-    } catch (error) {
-      console.log(error)
+  e.preventDefault();
+  try {
+    // Create FormData object for file + text data
+    const data = new FormData();
+    data.append("storename", storename);
+    data.append("businessName", formData.businessName);
+    data.append("address", formData.address);
+    data.append("mobileNo", formData.mobileNo);
+    data.append("category", selectedType);
+    if (logo) {
+      data.append("logo", logo); // append logo file
     }
-  };
+
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/businessdetails`, {
+      method: "POST",
+      body: data, // no headers for FormData
+    });
+
+    const responseData = await response.json();
+
+    if (response.ok) {
+      toast.success("Store created successfully");
+      navigate("/seller/dashboard");
+    } else {
+      toast.error(responseData.message || "Something went wrong");
+    }
+  } catch (error) {
+    console.log(error);
+    toast.error("An error occurred");
+  }
+};
+
 
   return (
     <div className="flex lg:items-center justify-center h-full bg-white mt-10">
@@ -75,6 +99,17 @@ const BusinessDetails = () => {
         <form onSubmit={handleSubmit}>
 
           {/* Business Name Field */}
+          <div className="mb-4">
+            <label className='font-semibold tracking-tight text-zinc-800 text-lg' htmlFor="logo">Logo:</label>
+            <div className="w-32 cursor-pointer">
+              <input onChange={e => setLogo(e.target.files[0])} type="file" id="logo" name="logo" accept="image/*" hidden />
+              <label htmlFor="logo">
+                <div className="border border-gray-300 rounded-xl flex justify-center items-center mb-2">
+                  <img src={getImageUrl(logo)} alt="Upload images" className="w-28 p-2" />
+                </div>
+              </label>
+            </div>
+          </div>
           <div className="mb-4">
             <label htmlFor="businessName" className="block text-sm font-semibold text-gray-900">
               Business Name:

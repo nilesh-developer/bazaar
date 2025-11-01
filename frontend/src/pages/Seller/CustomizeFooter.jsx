@@ -96,10 +96,10 @@ function CustomizeFooter() {
     return (
         <div className='flex-grow h-screen'>
             <div className='lg:my-7 lg:mx-10 my-3 mx-3'>
-                <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>About Store & Social Links</h2>
+                <h2 className='text-xl lg:text-3xl text-zinc-900 font-bold tracking-tighter'>Store Bio & Social Links</h2>
                 <div className='mt-8 pb-6'>
                     <form onSubmit={handleSubmit} className='grid grid-flow-row'>
-                        <label className='font-semibold tracking-tight text-zinc-700 text-lg' htmlFor="bio">Write something about your store</label>
+                        <label className='font-semibold tracking-tight text-zinc-900 text-lg' htmlFor="bio">Bio <span className='text-xs font-normal'>(Write something about your store)</span></label>
                         <textarea
                             className="textarea textarea-bordered resize-none bg-white mt-1 h-[200px] w-[250px] lg:w-[380px]"
                             name='bio'
@@ -109,7 +109,7 @@ function CustomizeFooter() {
                             placeholder="Store Bio">
                             {updateData.bio}
                         </textarea>
-                        <label className='font-semibold tracking-tight text-zinc-700 text-lg mt-7' htmlFor="email">Email</label>
+                        <label className='font-semibold tracking-tight text-zinc-900 text-lg mt-7' htmlFor="email">Email</label>
                         <input
                             type="email"
                             name='email'

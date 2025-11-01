@@ -48,6 +48,10 @@ const StoreSchema = new mongoose.Schema({
     mobileBanner: {
         type: String
     },
+    template: {
+        type: String,
+        default: "theme1"
+    },
     themeColorOne: {
         type: String,
         default: "#000000"

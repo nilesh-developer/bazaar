@@ -1,9 +1,14 @@
 import React from "react";
 import { Link, useOutletContext } from 'react-router-dom';
 import {Mail, Phone, Clock, MapPin} from "lucide-react"
+import { useEffect } from "react";
 
 const ContactUs = () => {
     const { store } = useOutletContext();
+     useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
   return (
     <div className="max-w-3xl mx-auto px-6 py-10 bg-white shadow-md rounded-lg mt-10 mb-20 text-gray-800 leading-relaxed">
       <h1 className="text-3xl font-bold text-center text-black mb-2">

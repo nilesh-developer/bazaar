@@ -44,6 +44,10 @@ import Privacy from './pages/Privacy.jsx';
 import Terms from './pages/Terms.jsx';
 import Shipping from './pages/Shipping.jsx';
 import ContactUs from './pages/ContactUs.jsx';
+import Home from './pages/Home.jsx';
+import MiniLayout from './pages/MiniLayout.jsx';
+import ThemeProvider from './PrivateRoute/ThemeProvide.jsx';
+import HomePageSelector from './PrivateRoute/HomePageSelector.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,11 +55,11 @@ const router = createBrowserRouter(
       <Route path="/" element={
         <SubdomainExist>
           <CartProvider>
-            <StoreLayout />
+            <ThemeProvider />
           </CartProvider>
         </SubdomainExist>
       } >
-        <Route path='' element={<LandingPage />} />
+        <Route path='' element={<HomePageSelector />} />
         {/* <Route path='test' element={<LatestWithProvider />} /> */}
         <Route path='signup' element={<CustomerSignUp />} />
         <Route path='login' element={<CustomerLogin />} />

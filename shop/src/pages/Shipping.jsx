@@ -1,8 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 import { Link, useOutletContext } from 'react-router-dom';
 
 const Shipping = () => {
     const { store } = useOutletContext();
+     useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
     return (
         <div className="max-w-4xl mx-auto px-6 py-10 text-gray-800 leading-relaxed bg-white shadow-md rounded-lg mt-10 mb-20">
             <h1 className="text-3xl font-bold text-center text-black mb-2">
