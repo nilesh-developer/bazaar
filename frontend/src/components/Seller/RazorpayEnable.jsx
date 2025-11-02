@@ -16,8 +16,8 @@ function RazorpayEnable() {
                                 <CreditCard className="w-6 h-6 text-emerald-600" />
                                 <h2 className="text-xl font-semibold text-gray-900">Razorpay</h2>
                             </div>
-                            <span className="flex gap-2 px-1 py-1 bg-gray-50 text-gray-700 text-sm font-medium rounded-full">
-                                <AlertCircle className='h-4'/>
+                            <span className="hidden lg:flex gap-2 px-1 py-1 bg-gray-50 text-gray-700 text-sm font-medium rounded-full">
+                                <AlertCircle className='h-4' />
                                 Coming Soon
                             </span>
                         </div>
@@ -32,6 +32,13 @@ function RazorpayEnable() {
                         </button>
                     </div>
 
+                    <div className='lg:hidden mt-2 flex gap-2'>
+                        <span className="flex gap-2 px-1 py-1 bg-gray-50 text-gray-700 text-sm font-medium rounded-full">
+                            <AlertCircle className='h-4' />
+                            Coming Soon
+                        </span>
+                    </div>
+
                     {/* Features - Show when collapsed */}
 
                     <div className="mt-4 space-y-3">
@@ -41,7 +48,7 @@ function RazorpayEnable() {
                         </div>
                         <div className="flex items-center gap-3 text-gray-700">
                             <Clock className="w-5 h-5 text-emerald-600" />
-                            <span>T+1 settlement cycle</span>
+                            <span>T+2 settlement cycle</span>
                         </div>
                         <div className="flex items-center gap-3 text-gray-700">
                             <Clock className="w-5 h-5 text-orange-600" />

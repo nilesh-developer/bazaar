@@ -171,7 +171,7 @@ function DomainSettings() {
             </div>
 
             <div className='mt-10'>
-              {currentPlan?.name !== "plus" && <div className='flex items-center p-4 gap-2 bg-emerald-100 border-emerald-700 border-2 rounded-lg'>
+              {currentPlan?.name !== "plus" || "max" && <div className='flex items-center p-4 gap-2 bg-emerald-100 border-emerald-700 border-2 rounded-lg'>
                 <CircleAlert className='h-5 text-emerald-800' />
                 <p>Plus plan is required to access this feature. Upgrade your plan to connect or manage a custom domain from your dashboard</p>
               </div>
@@ -181,7 +181,7 @@ function DomainSettings() {
                 <h3 className='font-bold text-2xl'>Custom Domain</h3>
               </div>
               <p className='text-gray-600 mt-2'>Connect your own domain to your Growo store</p>
-              {currentPlan?.name === "plus" ? <button
+              {currentPlan?.name === "plus" || "max" ? <button
                 className="bg-emerald-600 text-white px-4 py-2 rounded-lg mt-4"
                 onClick={togglePopup}
               >

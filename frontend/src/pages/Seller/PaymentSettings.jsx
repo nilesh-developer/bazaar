@@ -88,22 +88,22 @@ export default function PaymentSettings() {
 
                 {/* COD Settings Card */}
                 {store?.businessCategory?.toLowerCase() === "physical" ?
-                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mt-6">
+                    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
                         <div className="flex items-start justify-between">
                             <div className="flex items-start gap-4">
                                 <div className="bg-green-100 p-3 rounded-lg">
-                                    <Banknote className="w-6 h-6 text-green-600" />
+                                    <Banknote className="w-4 h-4 lg:w-6 lg:h-6 text-green-600" />
                                 </div>
                                 <div>
-                                    <h2 className="text-xl font-semibold text-gray-900 mb-2">Cash on Delivery (COD)</h2>
-                                    <p className="text-gray-600">Allow customers to pay with cash when they receive their order</p>
+                                    <h2 className="text-lg lg:text-xl font-semibold text-gray-900 mb-2">Cash on Delivery (COD)</h2>
+                                    <p className="text-gray-600 lg:text-base text-sm">Allow customers to pay with cash when they receive their order</p>
                                 </div>
                             </div>
 
                             {/* Toggle Switch */}
                             <button
                                 onClick={handleCodStatus}
-                                className={`relative inline-flex h-7 w-20 lg:w-12 items-center rounded-full transition-colors ${codStatus ? 'bg-blue-600' : 'bg-gray-300'
+                                className={`relative inline-flex h-7 w-20 sm:w-12 lg:w-12 items-center rounded-full transition-colors ${codStatus ? 'bg-blue-600' : 'bg-gray-300'
                                     }`}
                             >
                                 <span
@@ -115,7 +115,7 @@ export default function PaymentSettings() {
 
                         {/* Status Message */}
                         <div className="mt-4 ml-16">
-                            <p className="text-sm text-gray-600">
+                            <p className="text-xs lg:text-sm text-gray-600">
                                 COD is currently <span className={`font-semibold ${codStatus ? 'text-green-600' : 'text-gray-900'}`}>
                                     {codStatus ? 'Active' : 'Inactive'}
                                 </span>

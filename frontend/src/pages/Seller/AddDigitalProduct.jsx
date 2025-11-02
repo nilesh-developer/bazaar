@@ -457,7 +457,13 @@ export default function AddDigitalProduct() {
                             <div className="w-full">
                                 <button
                                     type="button"
-                                    onClick={() => setDeliveryMethod("upload")}
+                                    onClick={() => {
+                                        if(currentPlan?.name?.toLowerCase() === "free") {
+                                            toast.error("Upgrade to Go Plan to upload digital files");
+                                            return;
+                                        }
+                                        setDeliveryMethod("upload")
+                                    }}
                                     className={`flex justify-center items-center py-3 px-4 w-full rounded-lg border text-sm text-left ${deliveryMethod === "upload" ? "bg-emerald-100 border-emerald-600 shadow-sm text-emerald-900 font-semibold" : "bg-white border-gray-200"
                                         }`}
                                     disabled={currentPlan?.name?.toLowerCase() === "free" ? true : false}
@@ -480,9 +486,14 @@ export default function AddDigitalProduct() {
                         {/* Plan / usage notice */}
                         <div className="mt-4 p-3 rounded-md bg-emerald-50 border border-emerald-100 text-sm text-emerald-700">
                             <div className="font-medium">{currentPlan?.name} Plan</div>
-                            <div className="mt-2 bg-emerald-100 p-2 rounded text-xs text-emerald-700">
-                                In current plan — <strong>Upto {currentPlan?.features?.digitalDeliveryLimit} digital files can be uploaded (Total).</strong>
-                            </div>
+                            {currentPlan?.name?.toLowerCase() === "free" ?
+                                <div className="mt-2 bg-emerald-100 p-2 rounded text-xs text-emerald-700">
+                                    Upgrade to <strong>Go Plan</strong> to upload digital files.
+                                </div>
+                                :
+                                <div className="mt-2 bg-emerald-100 p-2 rounded text-xs text-emerald-700">
+                                    In current plan — <strong>Upto {currentPlan?.features?.digitalDeliveryLimit} digital files can be uploaded (Total).</strong>
+                                </div>}
 
                             {/* usage progress */}
                             <div className="mt-3">

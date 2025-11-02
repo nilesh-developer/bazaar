@@ -94,10 +94,10 @@ export default function WhatsAppPayLater() {
                 <Wallet className="w-6 h-6 text-emerald-600" />
                 <h2 className="text-xl font-semibold text-gray-900">WhatsApp Pay Later</h2>
               </div>
-              <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-sm font-medium rounded-full">
+              <span className="hidden lg:block px-3 py-1 bg-emerald-50 text-emerald-700 text-sm font-medium rounded-full">
                 0% FEE
               </span>
-              <span className="px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-full">
+              <span className="hidden lg:block px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-full">
                 Go & Plus & Max Plans
               </span>
             </div>
@@ -110,6 +110,15 @@ export default function WhatsAppPayLater() {
                   }`}
               />
             </button>
+          </div>
+
+          <div className='lg:hidden mt-2 flex gap-2'>
+            <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-sm font-medium rounded-full">
+              0% FEE
+            </span>
+            <span className="px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-full">
+              Go & Plus & Max Plans
+            </span>
           </div>
 
           {/* Features - Show when collapsed */}
