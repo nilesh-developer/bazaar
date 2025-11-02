@@ -18,6 +18,7 @@ function CustomizeStore() {
   const [showPicker2, setShowPicker2] = useState(false)
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [selectedTemplate, setSelectedTemplate] = useState("");
   const { token } = useAuth();
 
   const getStoreData = async () => {
@@ -41,6 +42,7 @@ function CustomizeStore() {
           color1: responseData.data.store.themeColorOne,
           color2: responseData.data.store.themeColorTwo,
         });
+        setSelectedTemplate(responseData.data.store.template);
         setIsChecked(responseData.data.store.hideCategory);
       }
 
@@ -83,6 +85,7 @@ function CustomizeStore() {
         body: JSON.stringify({
           ...updateData,
           hideCategory: isChecked,
+          template: selectedTemplate
         }),
       });
 
@@ -223,8 +226,50 @@ function CustomizeStore() {
                   </div>
                 )}
               </div>
-            
+
             </div>
+
+            <div>
+              <h3 className="text-gray-800 font-semibold mb-3 mt-6">Template</h3>
+              <div className="grid grid-cols-2 gap-4 lg:max-w-lg">
+                {/* Theme1 */}
+                <div
+                  onClick={() => setSelectedTemplate("theme1")}
+                  className={`border rounded-xl p-4 text-left transition ${selectedTemplate === "theme1"
+                    ? "border-emerald-500 bg-emerald-50"
+                    : "border-gray-200 hover:border-gray-300"
+                    }`}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-semibold text-gray-800 text-sm">Instagram Special</span>
+                  </div>
+                  <div>
+                    <img className='h-full' src="/Theme1.jpg" alt="Theme1" />
+                  </div>
+                </div>
+
+                {/* Theme2 */}
+                <div
+                  onClick={() => setSelectedTemplate("theme2")}
+                  className={`border rounded-xl p-4 text-left transition ${selectedTemplate === "theme2"
+                    ? "border-emerald-500 bg-emerald-50"
+                    : "border-gray-200 hover:border-gray-300"
+                    }`}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="font-semibold text-gray-800 text-sm">Professional Special</span>
+                  </div>
+                  {/* <p className="text-xs text-gray-500">Files customers download</p>
+                  <p className="text-[11px] text-gray-400 mt-1">
+                    PDFs, templates, courses, music
+                  </p> */}
+                  <div>
+                    <img className='h-full' src="/Theme2.jpg" alt="Theme2" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="form-control mt-6 w-48">
               <label className="label cursor-pointer gap-2">
                 <span className="label-text text-lg tracking-tight text-black font-semibold">Hide Categories</span>

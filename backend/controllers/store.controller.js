@@ -110,7 +110,7 @@ const getCurrentStoreData = asyncHandler(async (req, res) => {
 
 const updateStoreName = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { name, metaTitle, metaDescription, color1, color2, hideCategory } = req.body;
+    const { name, metaTitle, metaDescription, color1, color2, hideCategory, template } = req.body;
 
     const store = await stores.findByIdAndUpdate(id,
         {
@@ -120,7 +120,8 @@ const updateStoreName = asyncHandler(async (req, res) => {
                 metaDescription,
                 themeColorOne: color1,
                 themeColorTwo: color2,
-                hideCategory
+                hideCategory,
+                template: template
             }
         },
         {

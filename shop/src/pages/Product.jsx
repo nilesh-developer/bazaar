@@ -216,7 +216,7 @@ function Product() {
         {/* Desktop */}
         <div className="hidden md:block w-full">
           <div className="w-full flex justify-center">
-            <img className="md:h-[500px] lg:h-[600px] w-full object-cover rounded-xl" src={defaultImage || images[0]} alt={product?.name} />
+            <img className="h-auto max-h-[500px] max-w-[500px] object-cover rounded-xl" src={defaultImage || images[0]} alt={product?.name} />
           </div>
           <div className="flex mt-5 justify-center gap-2">
             {images.map((img, idx) => (
@@ -287,10 +287,10 @@ function Product() {
       </Helmet>
       <div className='lg:mx-14 flex flex-wrap justify-between items-center h-full mb-10'>
         <div className="text-sm ml-4 lg:ml-10 breadcrumbs py-5 text-gray-600">
-          <ul>
+          <ul className='text-xs'>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/shop">Shop</Link></li>
-            <li className='truncate'>{product?.name.split(' ').join('-')}</li>
+            <li className='truncate w-full'>{product?.name.split(' ').join('-')}</li>
           </ul>
         </div>
         <div className='grid grid-flow-row lg:grid-cols-2 h-full w-full'>
@@ -481,7 +481,7 @@ function Product() {
                   </button> */}
                   <button
                     type="submit"
-                    className="lg:mt-5 mt-2 lg:flex w-full items-center justify-center shadow-sm rounded-full px-8 py-3 text-xl font-medium text-white"
+                    className="lg:mt-5 mt-2 lg:flex w-full items-center justify-center shadow-sm rounded-full px-8 py-3 text-sm lg:text-xl font-medium text-white"
                     style={{ backgroundColor: color1, color: color2 }}
                     onClick={() => handleAddToCart()}
                   >
