@@ -34,8 +34,8 @@ const ensureDir = (dir) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    let folder = "./public/tmp";
-    // let folder = "/tmp";
+    // let folder = "./public/tmp";
+    let folder = "/tmp";
 
     // ensureDir(folder);
     cb(null, folder);

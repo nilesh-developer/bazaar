@@ -9,7 +9,7 @@ export default function DeactivatedStore() {
         const timer = setTimeout(() => {
             setLoading(false);
             navigate("/");
-        }, 3000);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, [navigate]);
@@ -60,7 +60,7 @@ export default function DeactivatedStore() {
 
                     <div className="flex justify-center">
                         <button
-                            onClick={() => navigate("/")}
+                            onClick={() => window.location.reload()}
                             className="px-8 py-3 rounded-2xl bg-green-700 text-white font-medium shadow-md hover:brightness-95 focus:outline-none"
                         >
                             Retry
