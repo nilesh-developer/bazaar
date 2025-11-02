@@ -460,7 +460,7 @@ export default function AddDigitalProduct() {
                                     onClick={() => setDeliveryMethod("upload")}
                                     className={`flex justify-center items-center py-3 px-4 w-full rounded-lg border text-sm text-left ${deliveryMethod === "upload" ? "bg-emerald-100 border-emerald-600 shadow-sm text-emerald-900 font-semibold" : "bg-white border-gray-200"
                                         }`}
-                                    disabled={currentPlan?.name === "free" ? true : false}
+                                    disabled={currentPlan?.name?.toLowerCase() === "free" ? true : false}
                                 >
                                     <Upload className="h-4" /> Upload Files
                                 </button>
@@ -478,15 +478,10 @@ export default function AddDigitalProduct() {
                         </div>
 
                         {/* Plan / usage notice */}
-                        {currentPlan?.name?.toLowerCase() === "free" && <div className="mt-4 p-3 rounded-md bg-emerald-50 border border-emerald-100 text-sm text-emerald-700">
+                        <div className="mt-4 p-3 rounded-md bg-emerald-50 border border-emerald-100 text-sm text-emerald-700">
                             <div className="font-medium">{currentPlan?.name} Plan</div>
-                            <div className="mt-1">
-                                Upgrade to Go to upload files with expiring download links (3 files per product, 500MB per product),
-                                or continue sharing external URLs on the Free plan.
-                            </div>
-
                             <div className="mt-2 bg-emerald-100 p-2 rounded text-xs text-emerald-700">
-                                <strong>Secure file delivery starts with Go</strong> — upgrade to unlock expiring links (3 files per product, 500MB per product).
+                                In current plan — <strong>Upto {currentPlan?.features?.digitalDeliveryLimit} digital files can be uploaded (Total).</strong>
                             </div>
 
                             {/* usage progress */}
@@ -503,9 +498,8 @@ export default function AddDigitalProduct() {
                                 <div className="text-xs text-gray-500 mt-1">Usage {Math.min(100, Number(Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100))}%</div>
                             </div>
                         </div>
-                        }
 
-                        {currentPlan?.name?.toLowerCase() === "go" && <div className="mt-4 p-3 rounded-md bg-emerald-50 border border-emerald-100 text-sm text-emerald-700">
+                        {/* {currentPlan?.name?.toLowerCase() === "go" && <div className="mt-4 p-3 rounded-md bg-emerald-50 border border-emerald-100 text-sm text-emerald-700">
                             <div className="font-medium">{currentPlan?.name} Plan</div>
                             <div className="mt-1">
                                 Upgrade to Plus to upload files with expiring download links (5 files per product, 1GB per product),
@@ -516,7 +510,6 @@ export default function AddDigitalProduct() {
                                 <strong>Secure file delivery starts with Plus</strong> — upgrade to unlock expiring links (5 files per product, 1GB per product).
                             </div>
 
-                            {/* usage progress */}
                             <div className="mt-3">
                                 <div className="text-xs text-gray-600 mb-1">
                                     You're using <strong>{store?.products?.length}</strong> of <strong>{currentPlan?.features?.upToProducts}</strong> active product slots.
@@ -530,7 +523,7 @@ export default function AddDigitalProduct() {
                                 <div className="text-xs text-gray-500 mt-1">Usage {Math.min(100, Number(Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100))}%</div>
                             </div>
                         </div>
-                        }
+                        } */}
                     </div>
 
                     {/* Upload Files or External Link */}

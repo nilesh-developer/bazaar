@@ -24,7 +24,11 @@ export default function SubscriptionStatus() {
       duration: billingCycle === "monthly" ? 1 : Number(12 + Number(extraMonths)),
       amount: selectedPlan === "go"
         ? (billingCycle === "monthly" ? 149 : 1490)
-        : (billingCycle === "monthly" ? 299 : 2990)
+        : selectedPlan === "plus"
+        ? (billingCycle === "monthly" ? 299 : 2990)
+        : selectedPlan === "max"
+        ? (billingCycle === "monthly" ? 599 : 5990)
+        : 0,
     }
     try {
       setPaymentIsProcessing(true)
@@ -150,18 +154,19 @@ export default function SubscriptionStatus() {
               <div className="text-xs text-gray-500 mt-2">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
             </div>
 
-            {/* Secure Digital Downloads */}
+            {/* WHATSAPP PAYMENT CHECKOUT */}
             {currentPlan?.name?.toLowerCase() === "free" && <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">SECURE DIGITAL DOWNLOADS</h3>
+              <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">WHATSAPP PAYMENT CHECKOUT</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Not included</div>
               <div className="text-sm text-gray-600">Unlock direct file delivery with Go</div>
             </div>
             }
 
             {currentPlan?.name?.toLowerCase() !== "free" && <div className="bg-gray-50 rounded-lg p-4">
-              <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">SECURE DIGITAL DOWNLOADS</h3>
+              <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">WHATSAPP PAYMENT CHECKOUT</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Included</div>
-              <div className="text-sm text-gray-600">Direct file delivery to customer</div>
+              <div className="text-sm text-gray-600 mb-3">Pay on WhatsApp / Pay Later</div>
+              <button onClick={() => navigate("/seller/payments")} className="text-sm font-semibold text-emerald-600">Configure Now →</button>
             </div>
             }
 
@@ -206,12 +211,12 @@ export default function SubscriptionStatus() {
           </div>
 
           {/* Pricing Plans */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl">
             {/* Go Plan */}
             <div className="bg-white rounded-lg border border-gray-200 p-6">
               <h3 className="text-2xl font-semibold text-gray-900 mb-3">Go</h3>
               <p className="text-gray-600 text-sm mb-6">
-                Grow with secure digital delivery and inventory tools
+                Grow your store with more products and digital downloads
               </p>
 
               <div className="mb-6">
@@ -230,7 +235,7 @@ export default function SubscriptionStatus() {
 
               {/* Features Box */}
               <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
-                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 50`} />
+                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 15`} />
                 <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → 3`} />
                 <Feature label="Adds secure digital downloads" />
               </div>
@@ -239,14 +244,16 @@ export default function SubscriptionStatus() {
               <FeatureList
                 items={[
                   "Everything in Free",
-                  "Up to 50 products",
-                  "Secure digital downloads (3 files, 500MB total)",
+                  "Up to 15 products",
+                  "WhatsApp Payment Checkout",
+                  "Upload Digital Files (Upto 5 files)",
                   "Inventory tracking & low-stock alerts",
                   "Discount codes (3 active at a time)",
-                  "Refund initiation from dashboard",
+                  "Analytics dashboard (30-day history)",
+                  "Storage & bandwidth (500MB secure delivery)"
                 ]}
                 unavailable={[
-                  "Upload product videos (Plus plan feature)",
+                  "Professional Special Template (Max plan feature)",
                   "Custom domain (brand.com)",
                 ]}
               />
@@ -287,33 +294,94 @@ export default function SubscriptionStatus() {
 
               {/* Features Box */}
               <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
-                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 200`} />
-                <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → Unlimited`} />
-                <Feature label="Adds secure digital downloads" />
+                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 50`} />
+                <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → 25`} />
+                <Feature label="Custom domain + SSL" />
               </div>
 
               {/* Feature List */}
               <FeatureList
                 items={[
                   "Everything in Go",
-                  "Up to 200 products",
-                  "Custom domain with SSL",
-                  "Secure digital downloads (5 files, 1GB total)",
-                  "Upload product videos",
+                  "Up to 50 products",
+                  "Custom domain + SSL",
+                  "Upload Digital Files (Upto 10 files)",
+                  "Analytics dashboard (90-day history)",
+                  "Discount codes (25 active at a time)",
+                  "Storage & bandwidth (1GB secure delivery)",
+                  "Email Support",
+                ]}  
+                unavailable={[
+                  "Professional Special Template",
+                  "Unlimited active discount codes",
+                  
+                ]}
+              />
+
+              {currentPlan?.name?.toLowerCase() === "plus" || currentPlan?.name?.toLowerCase() === "max" ? 
+              <button className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg transition-colors">
+                Active
+              </button>
+              :
+              <button onClick={() => setSelectedPlan("plus")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+                Upgrade to Plus
+              </button>
+              }
+            </div>
+
+            {/* Max Plan*/}
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <h3 className="text-2xl font-semibold text-gray-900 mb-3">Max</h3>
+              <p className="text-gray-600 text-sm mb-6">
+                Ideal for Scaling brands with advanced features and priority support
+              </p>
+
+              <div className="mb-6">
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className="text-4xl font-bold text-gray-900">
+                    {billingCycle === "monthly" ? "₹599" : "₹5,990"}
+                  </span>
+                  <span className="text-gray-600">
+                    {billingCycle === "monthly" ? "/month" : "/year"}
+                  </span>
+                </div>
+                {billingCycle === "yearly" && (
+                  <p className="text-green-600 text-sm">(3 months free)</p>
+                )}
+              </div>
+
+              {/* Features Box */}
+              <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
+                <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 500`} />
+                <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → Unlimited`} />
+                <Feature label="Profession Special Template" />
+              </div>
+
+              {/* Feature List */}
+              <FeatureList
+                items={[
+                  "Everything in Plus",
+                  "Up to 500 products",
+                  "Custom domain + SSL",
                   "Unlimited active discount codes at once",
+                  "Upload Digital Files (Upto 20 files)",
+                  "Analytics dashboard (365-day history)",
+                  "Professional Special Template",
+                  "Storage & bandwidth (2 GB secure delivery)",
                   "Priority Support",
                 ]}
               />
 
-              {currentPlan?.name?.toLowerCase() !== "plus" ? <button onClick={() => setSelectedPlan("plus")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
-                Upgrade to Plus
+              {currentPlan?.name?.toLowerCase() === "max" ? <button className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg transition-colors">
+                Active
               </button>
               :
-              <button className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg transition-colors">
-                Active
+              <button onClick={() => setSelectedPlan("max")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+                Upgrade to Max
               </button>
               }
             </div>
+
           </div>
           {/* Confirm Modal */}
           {selectedPlan && (

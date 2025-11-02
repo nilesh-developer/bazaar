@@ -98,7 +98,7 @@ export default function WhatsAppPayLater() {
                 0% FEE
               </span>
               <span className="px-3 py-1 border border-gray-300 text-gray-700 text-sm font-medium rounded-full">
-                Plus
+                Go & Plus & Max Plans
               </span>
             </div>
             <button

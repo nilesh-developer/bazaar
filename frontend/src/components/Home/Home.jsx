@@ -424,7 +424,7 @@ const Home = () => {
                         Start free, sell smarter, and upgrade when you're ready to scale your business.
                     </p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {/* Plan 1: Free */}
                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
                             <div>
@@ -461,6 +461,10 @@ const Home = () => {
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                         <span>Share digital files via external links</span>
                                     </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Automated SEO optimization</span>
+                                    </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Inventory tracking</span>
@@ -484,7 +488,7 @@ const Home = () => {
                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
                             <div>
                                 <h3 className="text-2xl font-bold mb-1">Go</h3>
-                                <p className="text-gray-600 mb-4">Grow with secure delivery</p>
+                                <p className="text-gray-600 mb-4">Ideal for Growing digital sellers</p>
                                 <div className="text-4xl font-extrabold text-green-700 mb-1">₹149</div>
                                 <div className="text-xs text-gray-500 mb-6">per month (₹1,490/year) <span className='text-green-800'>(3 months free)</span></div>
                                 <div className="space-y-3 mb-6 text-left">
@@ -498,7 +502,11 @@ const Home = () => {
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Secure digital downloads (3 files, 500MB total)</span>
+                                        <span>WhatsApp Payment Checkout</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Upload Digital Files (Upto 5 files)</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -510,11 +518,16 @@ const Home = () => {
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Refund initiation from dashboard</span>
+                                        <span>Analytics dashboard (30-day history)</span>
                                     </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Storage & bandwidth (500MB secure delivery)</span>
+                                    </div>
+                                    
                                     <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
-                                        <span>Upload product videos (Plus plan feature)</span>
+                                        <span>Professional Special Template</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
@@ -534,7 +547,7 @@ const Home = () => {
                             </span>
                             <div>
                                 <h3 className="text-2xl font-bold mb-1">Plus</h3>
-                                <p className="text-gray-600 mb-4">Premium with custom domain</p>
+                                <p className="text-gray-600 mb-4">Ideal for Scaling brands</p>
                                 <div className="text-4xl font-extrabold text-green-700 mb-1">₹299</div>
                                 <div className="text-xs text-gray-500 mb-6">per month (₹2,990/year) <span className='text-green-800'>(3 months free)</span></div>
                                 <div className="text-left space-y-3 mb-6">
@@ -548,19 +561,82 @@ const Home = () => {
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Custom domain with SSL</span>
+                                        <span>Custom domain + SSL</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Secure digital downloads (5 files, 1GB total)</span>
+                                        <span>Upload Digital Files (Upto 10 files)</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Upload product videos</span>
+                                        <span>Analytics dashboard (90-day history)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Discount codes (25 active at a time)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Storage & bandwidth (1GB secure delivery)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Email Support</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Professional Special Template</span>
+                                    </div>
+                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                        <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
+                                        <span>Unlimited active discount codes</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onClick={() => navigate("/signup")} className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all">
+                                Upgrade to Plus
+                            </button>
+                        </div>
+
+                        {/* Plan 4: Max */}
+                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
+                            <div>
+                                <h3 className="text-2xl font-bold mb-1">Max</h3>
+                                <p className="text-gray-600 mb-4">Scale your catalog with our highest limits</p>
+                                <div className="text-4xl font-extrabold text-green-700 mb-1">₹599</div>
+                                <div className="text-xs text-gray-500 mb-6">per month (₹5,990/year) <span className='text-green-800'>(3 months free)</span></div>
+                                <div className="text-left space-y-3 mb-6">
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Everything in Plus</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Up to 500 products</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Custom domain + SSL</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                         <span>Unlimited active discount codes at once</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Upload Digital Files (Upto 20 files)</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Analytics dashboard (365-day history)</span>
+                                    </div>
+                                     <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Professional Special Template</span>
+                                    </div>
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
+                                        <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                                        <span>Storage & bandwidth (2 GB secure delivery)</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
@@ -569,7 +645,7 @@ const Home = () => {
                                 </div>
                             </div>
                             <button onClick={() => navigate("/signup")} className="bg-emerald-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-emerald-700 transition-all">
-                                Upgrade to Plus
+                                Upgrade to Max
                             </button>
                         </div>
                     </div>
