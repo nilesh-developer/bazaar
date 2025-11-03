@@ -26,6 +26,7 @@ function BottomNavBar() {
                      <Menu className='w-5 h-5 text-[fill-current]'/>
                <span className="btm-nav-label text-xs lg:text-sm">More</span></div>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <li><Link to="analytics" className='text-md'>Analytics</Link></li>
                     <li><Link to="coupon" className='text-md'>Coupon</Link></li>
                     <li><Link to="payments" className='text-md'>Payment</Link></li>
                     <li><Link to="customers" className='text-md'>Customers</Link></li>

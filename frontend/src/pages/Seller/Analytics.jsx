@@ -16,6 +16,7 @@ import {
   RefreshCcw,
   Download,
   AlertCircle,
+  IndianRupee,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useAuth } from "../../store/auth";
@@ -118,7 +119,21 @@ export default function AnalyticsDashboard() {
         {["7", "30", "90", "365"].map((d) => (
           <button
             key={d}
-            onClick={() => setRange(d)}
+            onClick={() => {
+              if (Number(currentPlan?.features?.analyticsDays) >= Number(d)) {
+                setRange(d)
+              } else {
+                if(Number(d) === 30){
+                  toast.error("This feature is available in Go Plan")
+                } else if(Number(d) === 90){
+                  toast.error("This feature is available in Plus Plan")
+                } else if(Number(d) === 365){
+                  toast.error("This feature is available in Max Plan")
+                } else {
+                  toast.error("Limit is reached")
+                }
+              }
+            }}
             className={`px-4 py-2 text-sm rounded-full border ${range === d
               ? "bg-emerald-600 text-white border-emerald-600"
               : "bg-white text-gray-700 border-gray-200 hover:bg-gray-100"
@@ -144,7 +159,7 @@ export default function AnalyticsDashboard() {
           trend="+12%"
         />
         <SummaryCard
-          icon={<DollarSign />}
+          icon={<IndianRupee />}
           title="Revenue"
           value={`₹${analytics.summary.revenue.toLocaleString()}`}
           trend="+6%"
@@ -250,7 +265,7 @@ export default function AnalyticsDashboard() {
         <h3 className="text-lg font-semibold text-gray-800 mb-4">
           Top Products
         </h3>
-        {analytics.products?.length === 0 ?
+        {analytics.products?.length !== 0 ?
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
