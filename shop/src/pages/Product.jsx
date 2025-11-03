@@ -135,7 +135,7 @@ function Product() {
 
   
   useEffect(() => {
-    if (window.Growo && product) {
+    if (window.Growo && product._id) {
       window.Growo.productView({ id: product._id, name: product.name });
     }
   }, [product]);
