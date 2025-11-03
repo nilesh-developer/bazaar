@@ -32,14 +32,14 @@ function InitialAnalysis({ children }) {
             productView: (p) => sendEvent("product_view", p),
             addToCart: (p) => sendEvent("add_to_cart", p),
             checkout: () => sendEvent("checkout"),
-            orderComplete: (o) =>
+            orderComplete: (p) =>
                 fetch(`${import.meta.env.VITE_API_URL}/api/event/order`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         storename,
                         visitorId,
-                        payload: {orderId: o._id},
+                        payload: p,
                         url: window.location.href,
                         timestamp: new Date().toISOString(),
                     }),

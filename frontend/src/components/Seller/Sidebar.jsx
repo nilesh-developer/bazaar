@@ -62,12 +62,12 @@ function Sidebar() {
                             <span>Customers</span>
                         </NavLink>
                     </li>
-                    {/* <li>
+                    <li>
                         <NavLink to="analytics" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-gray-900 rounded-lg" : ""}`}>
                             <ChartColumn className='w-5 h-5 text-[fill-current]'/>
                             <span>Analytics</span>
                         </NavLink>
-                    </li> */}
+                    </li>
                     <li>
                         <NavLink to="coupon" className={({ isActive }) => `flex items-center p-2 space-x-3 rounded-md ${isActive ? "bg-gray-100 text-emerald-600 font-bold rounded-lg" : ""}`}>
                             <Ticket className='w-5 h-5 text-[fill-current]'/>

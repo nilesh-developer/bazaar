@@ -5,6 +5,7 @@ import useStoreData from '../../Hooks/useStoreData';
 import isTokenExpired from '../../Hooks/verifyJwtToken';
 import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
+import { DollarSign, ShoppingBag, Users, Package, IndianRupee } from "lucide-react";
 import SellerSetupChecklist from '../../components/Seller/SellerSetupChecklist';
 
 function Dashboard() {
@@ -15,6 +16,7 @@ function Dashboard() {
   const [revenueBasedDays, setRevenueBasedOnDays] = useState(0)
   const navigate = useNavigate();
   const [loadingData, setLoadingData] = useState(true)
+  const analyticsDays = currentPlan?.features?.analyticsDays || 30;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -83,6 +85,33 @@ function Dashboard() {
     }
   }, [user])
 
+  const cards = [
+    {
+      title: "Total Revenue",
+      value: `₹${revenueBasedDays}`,
+      subtitle: `Last ${analyticsDays} days`,
+      icon: <IndianRupee className="text-emerald-600" size={28} />,
+    },
+    {
+      title: "Total Orders",
+      value: noOfOrders,
+      subtitle: `Last ${analyticsDays} days`,
+      icon: <ShoppingBag className="text-blue-600" size={28} />,
+    },
+    {
+      title: "Total Customers",
+      value: user?.store?.customers?.length || 0,
+      subtitle: "All time",
+      icon: <Users className="text-purple-600" size={28} />,
+    },
+    {
+      title: "Total Products",
+      value: user?.store?.products?.length || 0,
+      subtitle: "All time",
+      icon: <Package className="text-orange-500" size={28} />,
+    },
+  ];
+
 
   if (loading || loadingData) {
     return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
@@ -113,35 +142,26 @@ function Dashboard() {
               </Link>
             </div>
           }
-          <div className='grid grid-cols-2 mt-4 lg:mt-7 gap-5 lg:grid-cols-4 '>
-            <div className='bg-white border-gray-200 border w-auto rounded-xl p-4'>
-              <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
+          <div className="grid grid-cols-2 mt-4 lg:mt-7 gap-5 lg:grid-cols-4">
+            {cards.map((card, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-sm transition-all"
+              >
+                <div className="flex justify-between items-center">
+                  <h3 className="lg:text-lg text-base font-semibold tracking-tight text-gray-800">
+                    {card.title}
+                  </h3>
+                  <div className="bg-gray-50 p-2 rounded-lg">{card.icon}</div>
+                </div>
+                <p className="text-sm text-gray-500 mt-1 tracking-tight">
+                  {card.subtitle}
+                </p>
+                <h2 className="text-2xl lg:text-4xl font-extrabold mt-4 text-gray-900 overflow-hidden">
+                  {card.value}
+                </h2>
               </div>
-              <p className='text-sm text-gray-500 tracking-tighter'>Last {currentPlan?.features?.analyticsDays} days</p>
-              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{revenueBasedDays}</h2>
-            </div>
-            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
-              <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
-              </div>
-              <p className='text-sm text-gray-500 tracking-tighter'>Last {currentPlan?.features?.analyticsDays} days</p>
-              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{noOfOrders}</h2>
-            </div>
-            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
-              <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Customer</h3>
-              </div>
-              {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.customers?.length}</h2>
-            </div>
-            <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
-              <div className='flex justify-between'>
-                <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Products</h3>
-              </div>
-              {/* <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p> */}
-              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{user?.store?.products?.length}</h2>
-            </div>
+            ))}
           </div>
 
           {/* <SellerSetupChecklist /> */}

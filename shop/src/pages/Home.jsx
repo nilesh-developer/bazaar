@@ -4,6 +4,7 @@ import { useOutletContext, Link } from 'react-router-dom'
 import { Category, ProductCard } from '../components';
 import ShuffledProducts from '../components/ShuffledProducts';
 import { MessageCircle, Instagram, Youtube, Facebook, Twitter, Globe } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 
 export default function Home() {
     const { store, color1, color2, products, recommendedProducts } = useOutletContext()
@@ -31,6 +32,14 @@ export default function Home() {
 
     return (
         <div className='bg-white'>
+            <Helmet>
+                <title>{store.metaTitle}</title>
+                <meta name="description" content={store.metaDescription} />
+                <meta property="og:title" content={store.metaTitle} />
+                <meta property="og:description" content={store.metaDescription} />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={window.location.hostname} />
+            </Helmet>
             {/* Hero Banner Section */}
             <div className="relative h-64 sm:h-[400px] bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 overflow-hidden">
                 {/* Background Image */}

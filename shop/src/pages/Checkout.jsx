@@ -317,7 +317,8 @@ function Checkout() {
                     })
                     setDiscountValue(0)
                     window.Growo.orderComplete({
-                        orderId: responseData.data.orderId
+                        orderId: responseData.data.orderId,
+                        products: cart
                     });
                     navigate("/order-success")
                 } else {
