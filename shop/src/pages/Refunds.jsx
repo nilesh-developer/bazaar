@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link, useOutletContext } from 'react-router-dom';
+import dateFormat from "dateformat";
 
 const Refunds = () => {
 
@@ -10,11 +11,9 @@ const Refunds = () => {
     }, [])
 
     return (
-        <div className="max-w-4xl mx-auto px-6 py-12 text-gray-800">
-            <h1 className="text-sm text-center text-gray-600">{store?.name}</h1>
-
+        <div className="max-w-4xl mx-auto px-6 py-3 lg:py-6 mt-7 text-gray-800">
             <h2 className="text-3xl lg:text-4xl text-center font-bold">Cancellation & Refund Policy</h2>
-            <p className="text-sm text-center text-gray-500 mb-6">Last updated: 31 October 2025</p>
+            <p className="text-sm text-center text-gray-500 mb-6">Last updated: {dateFormat(store?.policy?.lastUpdated,"dd mmmm yyyy")}</p>
 
             <section className="mb-8">
                 <h3 className="text-xl font-semibold mb-2">Order Cancellation</h3>

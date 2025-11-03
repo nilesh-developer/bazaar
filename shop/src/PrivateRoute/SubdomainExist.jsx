@@ -23,8 +23,6 @@ function SubdomainExist({ children }) {
                     if (responseData.data.store.status === true) {
                         setStore(responseData.data.store)
                     }
-
-
                 })()
 
             setLoading(false)

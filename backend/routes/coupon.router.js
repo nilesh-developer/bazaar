@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { checkCoupon, createCoupon, deleteCoupon, editCoupon, getCouponData, getSingleCouponData } from "../controllers/coupon.controller.js";
 const router = Router()
 
@@ -8,7 +9,7 @@ router.route("/data/:id").get(getSingleCouponData)
 
 router.route("/get-data/:storeid").get(getCouponData)
 
-router.route("/edit/:id").patch(editCoupon)
+router.route("/edit/:id").patch(verifyJwt, editCoupon)
 
 router.route("/delete/:id").delete(deleteCoupon)
 

@@ -51,6 +51,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     setCart([...cart, product]);
     toast.success("Product added in cart")
+    window.Growo.addToCart({ id: product._id, name: product.name, price: product.price });
   };
 
   const removeFromCart = (productId) => {

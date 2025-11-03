@@ -19,7 +19,8 @@ import {
     getDeliveryCharges,
     changeRazorpayStatus,
     updateWhatsAppNumber,
-    updateWhatsAppPayStatus
+    updateWhatsAppPayStatus,
+    getDataDayWise
 } from "../controllers/store.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -38,6 +39,7 @@ router.route("/businessdetails").post(upload.fields([
 router.route("/data").post(getCurrentStoreData)
 
 router.route("/get-numbers-of-thirty-days/:storeId").get(getNumbersOfThirtyDays)
+router.route("/get-day-wise").get(getDataDayWise)
 
 router.route("/add-domain/:id").patch(addCustomDomain)
 

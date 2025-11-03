@@ -48,16 +48,19 @@ import Home from './pages/Home.jsx';
 import MiniLayout from './pages/MiniLayout.jsx';
 import ThemeProvider from './PrivateRoute/ThemeProvide.jsx';
 import HomePageSelector from './PrivateRoute/HomePageSelector.jsx';
+import InitialAnalysis from './utils/InitialAnalysis.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={
-        <SubdomainExist>
-          <CartProvider>
-            <ThemeProvider />
-          </CartProvider>
-        </SubdomainExist>
+        <InitialAnalysis>
+          <SubdomainExist>
+            <CartProvider>
+              <ThemeProvider />
+            </CartProvider>
+          </SubdomainExist>
+        </InitialAnalysis>
       } >
         <Route path='' element={<HomePageSelector />} />
         {/* <Route path='test' element={<LatestWithProvider />} /> */}
@@ -114,6 +117,7 @@ const router = createBrowserRouter(
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+
   <CustomerAuthProvider>
     <React.StrictMode>
       <RouterProvider router={router} />

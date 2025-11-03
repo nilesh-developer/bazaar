@@ -133,9 +133,18 @@ function Product() {
     getProductData();
   }, []);
 
+  
+  useEffect(() => {
+    if (window.Growo && product) {
+      window.Growo.productView({ id: product._id, name: product.name });
+    }
+  }, [product]);
+
+
   useEffect(() => {
     updatePrice();
   }, [selectSize, selectColor, selectOther]);
+
   const updatePrice = () => {
     let variantPrice = product?.salePrice;
 

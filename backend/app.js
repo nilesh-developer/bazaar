@@ -43,6 +43,7 @@ import { orderRouter } from "./routes/order.router.js";
 import { contactFormRouter } from "./routes/contactform.router.js";
 import { subscriptionRouter } from "./routes/subscription.router.js";
 import { adminRouter } from "./routes/admin.router.js";
+import { eventRouter } from "./routes/event.router.js";
 
 app.use("/api/user", userRouter)
 
@@ -63,5 +64,7 @@ app.use("/api/order", orderRouter)
 app.use("/api/subscription", subscriptionRouter)
 
 app.use("/api/admin", adminRouter)
+
+app.use("/api/event", eventRouter)
 
 export default app;

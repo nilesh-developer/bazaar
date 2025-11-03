@@ -267,11 +267,14 @@ const updateWhatsAppPayStatus = asyncHandler(async (req, res) => {
 const updatePolicies = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const formData = req.body;
-
+    
     const store = await stores.findByIdAndUpdate(id,
         {
             $set: {
-                policy: formData
+                policy: {
+                    ...formData,
+                    lastUpdated: new Date()
+                }
             }
         },
         {
@@ -556,6 +559,47 @@ const getNumbersOfThirtyDays = asyncHandler(async (req, res) => {
     }
 })
 
+const getDataDayWise = asyncHandler(async (req, res) => {
+    const { storeId, days } = req.query;
+
+    const daysAgo = new Date();
+    daysAgo.setDate(daysAgo.getDate() - Number(days));
+
+    try {
+        const noOfOrders = await orders.countDocuments({
+            store: storeId,
+            createdAt: { $gte: daysAgo }
+        });
+
+        const totalRevenue = await orders.aggregate([
+            {
+                $match: {
+                    store: new ObjectId(storeId),
+                    status: "delivered",
+                    createdAt: { $gte: daysAgo }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalRevenueBasedOnDays: { $sum: "$totalPrice" }
+                }
+            }
+        ]);
+
+        return res.status(200).json({
+            statusCode: 200,
+            data: {
+                noOfOrders,
+                totalRevenueBasedOnDays: totalRevenue[0]?.totalRevenueBasedOnDays || 0
+            },
+            message: "Data Fetched"
+        })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 export {
     createStore,
     businessdetails,
@@ -576,5 +620,6 @@ export {
     changeRazorpayStatus,
     uploadStoreImage,
     getCustomerData,
-    getNumbersOfThirtyDays
+    getNumbersOfThirtyDays,
+    getDataDayWise
 }

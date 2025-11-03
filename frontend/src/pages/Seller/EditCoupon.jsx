@@ -4,10 +4,12 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import useStoreData from '../../Hooks/useStoreData';
+import { useAuth } from '../../store/auth';
 
 const EditCoupon = () => {
     const { id } = useParams()
-    const {user, loading} = useStoreData()
+    const { user, loading } = useStoreData()
+    const { token } = useAuth()
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
     const [type, setType] = useState("percentage")
@@ -31,7 +33,7 @@ const EditCoupon = () => {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/coupon/data/${id}`, {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
                 }
             })
 
@@ -87,16 +89,17 @@ const EditCoupon = () => {
         formData.append("storeId", user.store._id);
         formData.append("status", status);
         formData.append("type", type);
+        formData.append("storeId", user?.store?._id)
         try {
             const response = await axios.patch(`${import.meta.env.VITE_API_URL}/api/coupon/edit/${id}`, formData, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
                 }
             });
             toast.success(response.data.message);
             navigate("../coupon")
         } catch (error) {
-            console.log(error);
             toast.error(error.response.data.message)
         }
     }

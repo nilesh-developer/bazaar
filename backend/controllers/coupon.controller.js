@@ -5,6 +5,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { stores } from "../models/store.model.js";
 import { coupons } from "../models/coupon.model.js";
 import { PLANS } from "../utils/plan.js";
+import { users } from "../models/user.model.js"
 
 function countOccurrences(array, element) {
     let count = 0;
@@ -17,7 +18,7 @@ function countOccurrences(array, element) {
 }
 
 const createCoupon = asyncHandler(async (req, res) => {
-    const {
+    let {
         storeId,
         code,
         type,
@@ -41,14 +42,22 @@ const createCoupon = asyncHandler(async (req, res) => {
 
     const currectPlan = PLANS[storeExist.owner?.subscription_plan_type];
 
-    if (storeExist.coupon.length >= currectPlan.features.discountCodes) {
-        return res.status(400)
-            .json({
-                statusCode: 400,
-                message: "Limit is reached! Upgrade your plan to create more coupons."
-            })
-    }
+    // if (storeExist.coupon.length >= currectPlan.features.discountCodes) {
+    //     return res.status(400)
+    //         .json({
+    //             statusCode: 400,
+    //             message: "Limit is reached! Upgrade your plan to create more coupons."
+    //         })
+    // }
 
+    const noOfCouponActive = await coupons.find({
+        store: storeId,
+        status: true
+    })
+
+    if (noOfCouponActive.length >= currectPlan?.features?.discountCodes) {
+        status = false
+    }
 
     // Check if coupon with the same code already exists for the store
     const couponAlreadyExist = await coupons.findOne({ code: code.toUpperCase(), store: storeExist._id });
@@ -107,7 +116,28 @@ const getSingleCouponData = asyncHandler(async (req, res) => {
 
 const editCoupon = asyncHandler(async (req, res) => {
     const { id } = req.params;
-    const { code, type, perCustomer, discountPercent, flatDiscount, minimumOrder, maximumDiscount, validFromDate, validFromTime, validTillDate, validTillTime, status } = req.body;
+    const { storeId, code, type, perCustomer, discountPercent, flatDiscount, minimumOrder, maximumDiscount, validFromDate, validFromTime, validTillDate, validTillTime, status } = req.body;
+
+    const checkNoOfCouponActive = await coupons.find({
+        store: storeId,
+        status: true
+    })
+
+    const user = await users.findById(req.user._id)
+
+    const currectPlan = PLANS[user?.subscription_plan_type]
+
+    const couponData = await coupons.findById(id)
+
+    if (Boolean(status) === true && couponData.status === false) {
+        if (checkNoOfCouponActive.length >= currectPlan?.features?.discountCodes) {
+            return res.status(400)
+                .json({
+                    statusCode: 400,
+                    message: "Active coupon limit is reached"
+                })
+        }
+    }
 
     // Combine date and time fields
     const validFrom = new Date(`${validFromDate}T${validFromTime}`);

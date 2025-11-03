@@ -15,7 +15,7 @@ function Shop() {
   
   return (
     <div className="bg-white">
-      <div className="mx-auto px-4 py-5 sm:px-6 sm:py-10 lg:max-w-7xl lg:px-4">
+      <div className="mx-auto px-4 py-5 sm:px-6 sm:py-7 lg:max-w-7xl lg:px-4">
         <h2 className="text-2xl lg:text-4xl font-bold tracking-tight text-center text-gray-900">Shop</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {products.map(product => {

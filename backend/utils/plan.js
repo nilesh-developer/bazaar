@@ -69,7 +69,7 @@ export const PLANS = {
       upToProducts: 500,
       razorpayCheckout: true,
       emailAlerts: true,
-      discountCodes: 25,
+      discountCodes: 10000,
       analyticsDays: 365,
       externalFileLinks: true,
       inventoryTracking: true,

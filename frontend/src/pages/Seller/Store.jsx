@@ -1,10 +1,13 @@
 import { Columns3Cog, FileStack, FileText, Grid2X2, Info, Paintbrush, Settings, Truck } from 'lucide-react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Store() {
-  return (
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
+  return (
     <section className='bg-white flex-grow h-full min-h-dvh lg:h-dvh lg:pb-8 pb-20'>
       <div className='lg:my-10 my-5 mx-3 lg:mx-5'>
         <h2 className='text-3xl text-zinc-900 font-extrabold tracking-tightr'>Store Settings</h2>
@@ -12,7 +15,7 @@ function Store() {
           <Link to="/seller/customize-store">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-                 <Paintbrush className='text-black h-8 w-8 mt-3'/>
+                <Paintbrush className='text-black h-8 w-8 mt-3' />
                 <div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Customize Store</h3>
                   <p className='text-sm text-gray-500'>Personlise store title and color</p>
@@ -24,7 +27,7 @@ function Store() {
           <Link to="/seller/customize-banner">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-                 <Columns3Cog className='text-black h-8 w-8 mt-3'/><div className='ml-4'>
+                <Columns3Cog className='text-black h-8 w-8 mt-3' /><div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Store Assets</h3>
                   <p className='text-sm text-gray-500'>Personlise logo, favicon, banner </p>
                 </div>
@@ -35,7 +38,7 @@ function Store() {
           <Link to="/seller/store-policies">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-              <FileText className='text-black h-8 w-8 mt-3'/><div className='ml-4'>
+                <FileText className='text-black h-8 w-8 mt-3' /><div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Add Store Policies</h3>
                   <p className='text-sm text-gray-500'>Write about store shipping and return policy</p>
                 </div>
@@ -46,7 +49,7 @@ function Store() {
           <Link to="/seller/about-page">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-               <FileStack className='text-black h-8 w-8 mt-3'/>
+                <FileStack className='text-black h-8 w-8 mt-3' />
                 <div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Add Store About Page</h3>
                   <p className='text-sm text-gray-500'>Write about you and your store</p>
@@ -58,7 +61,7 @@ function Store() {
           <Link to="/seller/set-delivery-charges">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-                 <Truck className='text-black h-8 w-8 mt-3'/>
+                <Truck className='text-black h-8 w-8 mt-3' />
                 <div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Set Delivery Charges</h3>
                   <p className='text-sm text-gray-500'>Set standard delivery charges based on cart size</p>
@@ -70,9 +73,9 @@ function Store() {
           <Link to="/seller/customize-footer">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-                 <Info className='text-black h-8 w-8 mt-3'/>
+                <Info className='text-black h-8 w-8 mt-3' />
                 <div className='ml-4'>
-                  <h3 className='font-bold text-gray-800 text-xl'>About Store & Social Links</h3>
+                  <h3 className='font-bold text-gray-800 text-xl'>Store Bio & Social Links</h3>
                   <p className='text-sm text-gray-500'>Write about store and social media links</p>
                 </div>
               </div>
@@ -82,7 +85,7 @@ function Store() {
           <Link to="/seller/domain-settings">
             <div className='bg-gray-50 p-5'>
               <div className='flex'>
-                 <Settings className='text-black h-8 w-8 mt-3'/>
+                <Settings className='text-black h-8 w-8 mt-3' />
                 <div className='ml-4'>
                   <h3 className='font-bold text-gray-800 text-xl'>Domain Settings</h3>
                   <p className='text-sm text-gray-500'>Add Custom domain to your store</p>

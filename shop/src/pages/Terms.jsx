@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { Link, useOutletContext } from 'react-router-dom';
+import dateFormat from "dateformat";
 
 const Terms = () => {
     const { store } = useOutletContext();
@@ -9,12 +10,12 @@ const Terms = () => {
   }, [])
 
     return (
-        <div className="max-w-4xl mx-auto px-6 py-10 text-gray-800 leading-relaxed bg-white shadow-md rounded-lg mt-10 mb-20">
+        <div className="max-w-4xl mx-auto px-6 py-3 lg:py-6 text-gray-800 leading-relaxed bg-white shadow-md rounded-lg lg:mt-10 mb-20">
             <h1 className="text-3xl font-bold text-center text-black mb-2">
                 Terms & Conditions
             </h1>
             <p className="text-sm text-gray-500 text-center mb-8">
-                Last updated: 31 October 2025
+                Last updated: {dateFormat(store?.policy?.lastUpdated,"dd mmmm yyyy")}
             </p>
 
             <section className="space-y-6">

@@ -3,6 +3,7 @@ import { useAuth } from '../../store/auth';
 import toast from 'react-hot-toast';
 import { HexColorPicker } from 'react-colorful';
 import { SketchPicker } from 'react-color';
+import {AlertCircle} from "lucide-react"
 
 function CustomizeStore() {
   const [store, setStore] = useState({});
@@ -19,7 +20,7 @@ function CustomizeStore() {
   const [isChecked, setIsChecked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedTemplate, setSelectedTemplate] = useState("");
-  const { token } = useAuth();
+  const { token, currentPlan } = useAuth();
 
   const getStoreData = async () => {
     try {
@@ -249,7 +250,7 @@ function CustomizeStore() {
                 </div>
 
                 {/* Theme2 */}
-                <div
+                {!currentPlan?.features?.professionalTemplate ? <div
                   onClick={() => setSelectedTemplate("theme2")}
                   className={`border rounded-xl p-4 text-left transition ${selectedTemplate === "theme2"
                     ? "border-emerald-500 bg-emerald-50"
@@ -267,6 +268,23 @@ function CustomizeStore() {
                     <img className='h-full' src="/Theme2.jpg" alt="Theme2" />
                   </div>
                 </div>
+                  :
+                  <div
+                    onClick={() => {}}
+                    className={`border rounded-xl p-4 text-left bg-gray-100 transition ${selectedTemplate === "theme2"
+                      ? "border-emerald-500 bg-emerald-50"
+                      : "border-gray-200 hover:border-gray-300"
+                      }`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="font-semibold text-gray-800 text-sm">Professional Special</span>
+                    </div>
+                    <p className="flex gap-1 items-center mb-2 text-xs text-yellow-700 bg-yellow-100 px-1 py-2 rounded-lg"><AlertCircle className='h-3'/>Upgrade to Max Plan</p>
+                    <div>
+                      <img className='h-full' src="/Theme2.jpg" alt="Theme2" />
+                    </div>
+                  </div>
+                }
               </div>
             </div>
 

@@ -88,6 +88,7 @@ function Checkout() {
         window.scrollTo(0, 0);
         setCartOpen(false)
         getStoreData()
+        window.Growo.checkout();
     }, [])
 
     useEffect(() => {
@@ -116,7 +117,7 @@ function Checkout() {
     }
 
     const checkCoupon = async (e) => {
-        if(coupon.trim() === ""){
+        if (coupon.trim() === "") {
             toast.error("Please enter a coupon code")
             return
         }
@@ -245,6 +246,9 @@ function Checkout() {
                                         paymentMethod: ""
                                     })
                                     setDiscountValue(0)
+                                    window.Growo.orderComplete({
+                                        orderId: result.data.orderId
+                                    });
                                     navigate("/order-success")
                                 } else {
                                     toast.error(result.message)
@@ -270,7 +274,7 @@ function Checkout() {
             }
 
             if (billingDetails.paymentMethod === "whatsappPay") {
-                if(whatsappPayNumber.trim() === ""){
+                if (whatsappPayNumber.trim() === "") {
                     toast.error("WhatsApp Number is required for WhatsApp Pay")
                     setLoadingBtn(false)
                     return
@@ -312,8 +316,10 @@ function Checkout() {
                         paymentMethod: ""
                     })
                     setDiscountValue(0)
+                    window.Growo.orderComplete({
+                        orderId: responseData.data.orderId
+                    });
                     navigate("/order-success")
-                    
                 } else {
                     toast.error(responseData.message)
                 }
@@ -356,6 +362,10 @@ function Checkout() {
                         paymentMethod: ""
                     })
                     setDiscountValue(0)
+                    window.Growo.orderComplete({
+                        orderId: responseData.data.orderId
+                    });
+
                     navigate("/order-success")
                 } else {
                     toast.error(responseData.message)
@@ -496,20 +506,20 @@ function Checkout() {
                             />
                         </div>
                         {billingDetails?.paymentMethod === "whatsappPay" &&
-                        <div>
-                            <label htmlFor="whatsappPayNumber" className="mt-4 mb-2 block text-base font-medium">WhatsApp Number<span className='text-red-700'>*</span></label>
-                            <input
-                                type="tel"
-                                name='whatsappPayNumber'
-                                id='whatsappPayNumber'
-                                onChange={(e) => setWhatsAppPayNumber(e.target.value)}
-                                value={whatsappPayNumber}
-                                placeholder='+91XXXXXXXXXX'
-                                required
-                                className="w-full rounded-md border border-zinc-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                            />
-                        </div>
-}
+                            <div>
+                                <label htmlFor="whatsappPayNumber" className="mt-4 mb-2 block text-base font-medium">WhatsApp Number<span className='text-red-700'>*</span></label>
+                                <input
+                                    type="tel"
+                                    name='whatsappPayNumber'
+                                    id='whatsappPayNumber'
+                                    onChange={(e) => setWhatsAppPayNumber(e.target.value)}
+                                    value={whatsappPayNumber}
+                                    placeholder='+91XXXXXXXXXX'
+                                    required
+                                    className="w-full rounded-md border border-zinc-200 px-4 py-3 text-base shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                                />
+                            </div>
+                        }
 
                         <p className="mt-8 text-lg font-medium">Payment Methods</p>
                         <form className="mt-5 grid gap-6 mb-10">

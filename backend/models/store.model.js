@@ -221,6 +221,9 @@ const StoreSchema = new mongoose.Schema({
             type: Boolean,
             default: true
         },
+        lastUpdated: {
+            type: Date
+        }
     },
     aboutContent: {
         type: String

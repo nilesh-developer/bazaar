@@ -160,6 +160,7 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
         await store.save()
 
         return res.status(200).json({
+            data: { orderId: dbOrderData._id },
             message: "Transaction Successful"
         });
 
@@ -548,7 +549,7 @@ const codOrderPlaced = asyncHandler(async (req, res) => {
     await customer.save();
 
     return res.status(200).json(
-        new ApiResponse(200, "", "Order Placed Successfully")
+        new ApiResponse(200, { orderId: ordered._id }, "Order Placed Successfully")
     );
 });
 
@@ -915,7 +916,7 @@ const whatsappPayOrderPlaced = asyncHandler(async (req, res) => {
     await customer.save();
 
     return res.status(200).json(
-        new ApiResponse(200, "", "Order Placed Successfully")
+        new ApiResponse(200, { orderId: ordered._id }, "Order Placed Successfully")
     );
 });
 

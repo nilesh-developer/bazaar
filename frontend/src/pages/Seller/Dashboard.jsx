@@ -10,9 +10,9 @@ import SellerSetupChecklist from '../../components/Seller/SellerSetupChecklist';
 function Dashboard() {
 
   const { user, loading } = useStoreData();
-  const { setToken } = useAuth();
+  const { setToken, currentPlan } = useAuth();
   const [noOfOrders, setNoOfOrders] = useState(0);
-  const [revenueOfLastThirtyDays, setRevenueOfLastThirtyDays] = useState(0)
+  const [revenueBasedDays, setRevenueBasedOnDays] = useState(0)
   const navigate = useNavigate();
   const [loadingData, setLoadingData] = useState(true)
 
@@ -31,10 +31,33 @@ function Dashboard() {
     }
   }, []);
 
-  const getNumbersOfThirtyDays = async () => {
+  // const getNumbersOfThirtyDays = async () => {
+  //   try {
+  //     setLoadingData(true)
+  //     const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/get-numbers-of-thirty-days/${user?.store?._id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     })
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       setNoOfOrders(data.data.noOfOrders)
+  //       setRevenueOfLastThirtyDays(data.data.totalRevenueOfLastThirtyDays)
+  //     } else {
+  //       toast.error("Something went wrong")
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally {
+  //     setLoadingData(false)
+  //   }
+  // }
+
+  const getDataDqayWise = async () => {
     try {
       setLoadingData(true)
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/get-numbers-of-thirty-days/${user?.store?._id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/get-day-wise?storeId=${user?.store?._id}&days=${currentPlan?.features?.analyticsDays}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"
@@ -43,7 +66,7 @@ function Dashboard() {
       if (response.ok) {
         const data = await response.json();
         setNoOfOrders(data.data.noOfOrders)
-        setRevenueOfLastThirtyDays(data.data.totalRevenueOfLastThirtyDays)
+        setRevenueBasedOnDays(data.data.totalRevenueBasedOnDays)
       } else {
         toast.error("Something went wrong")
       }
@@ -56,7 +79,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (user?.store?._id) {
-      getNumbersOfThirtyDays()
+      getDataDqayWise()
     }
   }, [user])
 
@@ -95,14 +118,14 @@ function Dashboard() {
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Revenue</h3>
               </div>
-              <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p>
-              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{revenueOfLastThirtyDays}</h2>
+              <p className='text-sm text-gray-500 tracking-tighter'>Last {currentPlan?.features?.analyticsDays} days</p>
+              <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>&#8377;{revenueBasedDays}</h2>
             </div>
             <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
               <div className='flex justify-between'>
                 <h3 className='lg:text-xl text-base font-bold overflow-hidden tracking-tighter'>Total Orders</h3>
               </div>
-              <p className='text-sm text-gray-500 tracking-tighter'>Last 30 days</p>
+              <p className='text-sm text-gray-500 tracking-tighter'>Last {currentPlan?.features?.analyticsDays} days</p>
               <h2 className='overflow-hidden text-2xl mt-4 lg:text-4xl font-extrabold'>{noOfOrders}</h2>
             </div>
             <div className='bg-white  border-gray-200 border w-auto rounded-xl p-4'>
