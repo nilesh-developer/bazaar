@@ -28,7 +28,6 @@ export default function AnalyticsDashboard() {
   const [analytics, setAnalytics] = useState(null);
   const [range, setRange] = useState("7");
   const [loading, setLoading] = useState(false);
-  const [mockData, setMockData] = useState({})
 
   const fetchAnalytics = async (days) => {
     try {
@@ -81,9 +80,7 @@ export default function AnalyticsDashboard() {
 
   if (loading || !analytics) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading analytics...
-      </div>
+      <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     );
   }
 
@@ -123,11 +120,11 @@ export default function AnalyticsDashboard() {
               if (Number(currentPlan?.features?.analyticsDays) >= Number(d)) {
                 setRange(d)
               } else {
-                if(Number(d) === 30){
+                if (Number(d) === 30) {
                   toast.error("This feature is available in Go Plan")
-                } else if(Number(d) === 90){
+                } else if (Number(d) === 90) {
                   toast.error("This feature is available in Plus Plan")
-                } else if(Number(d) === 365){
+                } else if (Number(d) === 365) {
                   toast.error("This feature is available in Max Plan")
                 } else {
                   toast.error("Limit is reached")
@@ -148,7 +145,7 @@ export default function AnalyticsDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
         <SummaryCard
           icon={<Users />}
-          title="Visitors"
+          title="Visits"
           value={analytics.summary.visits.toLocaleString()}
           trend="+8%"
         />
@@ -180,7 +177,7 @@ export default function AnalyticsDashboard() {
 
         <div className="grid md:grid-cols-5 gap-4 text-center">
           {[
-            { title: "Visitors", value: analytics.funnel.visits, percent: "100.0%", drop: "100.0% drop-off⚠️" },
+            { title: "Visits", value: analytics.funnel.visits, percent: "100.0%", drop: "100.0% drop-off⚠️" },
             { title: "Product Views", value: analytics.funnel.productViews, percent: "0.0%", drop: "0.0% drop-off" },
             { title: "Added to Cart", value: analytics.funnel.addToCart, percent: "0.0%", drop: "0.0% drop-off" },
             { title: "Checkout", value: analytics.funnel.checkout, percent: "0.0%", drop: "0.0% drop-off" },
@@ -253,9 +250,26 @@ export default function AnalyticsDashboard() {
               </p>
             </div>
           </div>
-          <div className="mt-6 text-sm text-gray-500 border-t pt-3">
+          <div className="mt-3 text-sm text-gray-500">
             Compared to previous period:{" "}
             <span className="text-emerald-600 font-medium">+6.5%</span>
+          </div>
+          <div className="space-y-4 border-t pt-3 mt-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              Visitors Overview
+            </h3>
+            <div className="flex justify-between">
+              <p className="text-gray-600">Unique Visitors</p>
+              <p className="font-semibold text-gray-800">
+                {analytics.visitors.unique}
+              </p>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-gray-600">Returning Visitors</p>
+              <p className="font-semibold text-gray-800">
+                {analytics.visitors.returning}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -313,7 +327,7 @@ function SummaryCard({ icon, title, value, trend }) {
       <div>
         <p className="text-gray-500 text-sm">{title}</p>
         <h3 className="text-xl font-semibold text-gray-900 mt-1">{value}</h3>
-        <p className="text-xs text-emerald-600 font-medium">{trend}</p>
+        {/* <p className="text-xs text-emerald-600 font-medium">{trend}</p> */}
       </div>
       <div className="text-emerald-600">{icon}</div>
     </div>

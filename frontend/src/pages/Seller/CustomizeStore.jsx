@@ -250,7 +250,7 @@ function CustomizeStore() {
                 </div>
 
                 {/* Theme2 */}
-                {!currentPlan?.features?.professionalTemplate ? <div
+                {currentPlan?.features?.professionalTemplate ? <div
                   onClick={() => setSelectedTemplate("theme2")}
                   className={`border rounded-xl p-4 text-left transition ${selectedTemplate === "theme2"
                     ? "border-emerald-500 bg-emerald-50"

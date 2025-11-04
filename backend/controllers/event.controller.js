@@ -190,11 +190,9 @@ const getAnalysisData = async (req, res) => {
         const finalProducts =
             topProducts.length > 0
                 ? topProducts
-                : [
-                    // { name: "Ebook: Instagram Growth", views: 0, sales: 0 },
-                    // { name: "Digital Art Pack", views: 0, sales: 0 },
-                    // { name: "Notion Template", views: 0, sales: 0 },
-                ];
+                : [];
+
+        
 
         // Visitors breakdown
         const uniqueVisitors = await events.distinct("visitorId", {
