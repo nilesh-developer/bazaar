@@ -216,6 +216,18 @@ const Home = () => {
                                     />
                                     <div className="px-2 sm:px-3 flex items-center text-xs sm:text-sm text-gray-600 whitespace-nowrap">
                                         .growo.store
+                                        {storeAvailable !== null && (
+                                            <div
+                                                className={`text-sm font-medium text-green-600
+                                                    }`}
+                                            >
+                                                {storeAvailable
+                                                    ? <div className='ml-2 text-emerald-800'>
+                                                        <Check className='h-4' />
+                                                    </div>
+                                                    : null}
+                                            </div>
+                                        )}
                                     </div>
                                     <button
                                         onClick={async () => {
@@ -270,7 +282,7 @@ const Home = () => {
                                                 Checking...
                                             </div>
                                         ) : (
-                                            "Claim"
+                                            "Check"
                                         )}
                                     </button>
                                 </div>
@@ -282,7 +294,7 @@ const Home = () => {
                                             }`}
                                     >
                                         {storeAvailable
-                                            ? "✅ Store name is available!"
+                                            ? <div className='flex items-center justify-center'><Check className='h-4' /> Store name is available! <button onClick={() => navigate("/signup")} className='ml-1 font-bold text-black'>Signup now <span aria-hidden="true">&rarr;</span></button></div>
                                             : "❌ This store name is already taken."}
                                     </div>
                                 )}
@@ -469,11 +481,11 @@ const Home = () => {
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Inventory tracking</span>
                                     </div>
-                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Custom domain</span>
                                     </div>
-                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Digital file delivery</span>
                                     </div>
@@ -524,7 +536,7 @@ const Home = () => {
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                         <span>Storage & bandwidth (500MB secure delivery)</span>
                                     </div>
-                                    
+
                                     <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Professional Special Template</span>
@@ -587,7 +599,7 @@ const Home = () => {
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Professional Special Template</span>
                                     </div>
-                                     <div className="flex items-start gap-2 text-sm text-gray-400">
+                                    <div className="flex items-start gap-2 text-sm text-gray-400">
                                         <X className="w-5 h-5 text-gray-300 flex-shrink-0 mt-0.5" />
                                         <span>Unlimited active discount codes</span>
                                     </div>
@@ -599,7 +611,7 @@ const Home = () => {
                         </div>
 
                         {/* Plan 4: Max */}
-                         <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
+                        <div className="bg-white border border-emerald-100 rounded-3xl shadow-md p-8 flex flex-col justify-between hover:shadow-lg transition-all">
                             <div>
                                 <h3 className="text-2xl font-bold mb-1">Max</h3>
                                 <p className="text-gray-600 mb-4">Scale your catalog with our highest limits</p>
@@ -630,7 +642,7 @@ const Home = () => {
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                         <span>Analytics dashboard (365-day history)</span>
                                     </div>
-                                     <div className="flex items-start gap-2 text-sm text-gray-700">
+                                    <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                                         <span>Professional Special Template</span>
                                     </div>

@@ -16,7 +16,7 @@ function Dashboard() {
   const [revenueBasedDays, setRevenueBasedOnDays] = useState(0)
   const navigate = useNavigate();
   const [loadingData, setLoadingData] = useState(true)
-  const analyticsDays = currentPlan?.features?.analyticsDays || 30;
+  const analyticsDays =  7;
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,7 +59,7 @@ function Dashboard() {
   const getDataDqayWise = async () => {
     try {
       setLoadingData(true)
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/get-day-wise?storeId=${user?.store?._id}&days=${currentPlan?.features?.analyticsDays}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/store/get-day-wise?storeId=${user?.store?._id}&days=${analyticsDays}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json"

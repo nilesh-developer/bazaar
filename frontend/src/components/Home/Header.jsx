@@ -148,7 +148,7 @@ function Header() {
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-10 w-auto"
-                                src="/eazzy.png"
+                                src="/growo.png"
                                 alt=""
                             />
                         </Link>
