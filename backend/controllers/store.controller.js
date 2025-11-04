@@ -55,9 +55,10 @@ const createStore = asyncHandler(async (req, res) => {
 })
 
 const businessdetails = asyncHandler(async (req, res) => {
-    const { storename, businessName, category, address, mobileNo } = req.body;
-    
+    const { storename, bio, businessName, category, address, mobileNo } = req.body;
+
     const store = await stores.findOneAndUpdate({ storename }, {
+        bio,
         businessName,
         businessCategory: category,
         address,
@@ -267,7 +268,7 @@ const updateWhatsAppPayStatus = asyncHandler(async (req, res) => {
 const updatePolicies = asyncHandler(async (req, res) => {
     const { id } = req.params;
     const formData = req.body;
-    
+
     const store = await stores.findByIdAndUpdate(id,
         {
             $set: {

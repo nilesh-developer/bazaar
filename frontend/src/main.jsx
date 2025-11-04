@@ -82,6 +82,7 @@ import SubscriptionPage from './components/Home/SubscriptionPage.jsx'
 import AddDigitalProduct from './pages/Seller/AddDigitalProduct.jsx'
 import EditDigitalProduct from './pages/Seller/EditDigitalProduct.jsx'
 import PolicySettings from './pages/Seller/PolicySettings.jsx'
+import CongratulationsPage from './components/Home/CongratulationsPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -104,6 +105,7 @@ const router = createBrowserRouter(
         <Route path='about-us' element={<AboutUs />} />
         <Route path='create-store' element={<Createstore />} />
         <Route path='business-details/:storename' element={<BusinessDetails />} />
+        <Route path='congratulation' element={<CongratulationsPage />} />
         <Route path='logout' element={<Logout />} />
       </Route>
       <Route path='seller' element={

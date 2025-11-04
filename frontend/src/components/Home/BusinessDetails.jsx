@@ -7,6 +7,7 @@ const BusinessDetails = () => {
   const { storename } = useParams();
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [formData, setFormData] = useState({
+    bio: '',
     businessName: '',
     address: '',
     mobileNo: ''
@@ -66,6 +67,7 @@ const BusinessDetails = () => {
     // Create FormData object for file + text data
     const data = new FormData();
     data.append("storename", storename);
+    data.append("bio", formData.bio);
     data.append("businessName", formData.businessName);
     data.append("address", formData.address);
     data.append("mobileNo", formData.mobileNo);
@@ -83,7 +85,7 @@ const BusinessDetails = () => {
 
     if (response.ok) {
       toast.success("Store created successfully");
-      navigate("/seller/dashboard");
+      navigate(`/congratulation?storename=${storename}`);
     } else {
       toast.error(responseData.message || "Something went wrong");
     }
@@ -99,7 +101,7 @@ const BusinessDetails = () => {
   return (
     <div className="flex lg:items-center justify-center h-full bg-white mt-10">
       <div data-theme="light" className="bg-white px-5 py-8 mt-4 lg:mt-0 rounded-lg w-full max-w-xl">
-        <h2 className="text-4xl font-bold text-black text-center mb-8">Business Details</h2>
+        <h2 className="text-4xl font-bold text-black text-center mb-8">Store Details</h2>
         <form onSubmit={handleSubmit}>
 
           {/* Business Name Field */}
@@ -113,6 +115,18 @@ const BusinessDetails = () => {
                 </div>
               </label>
             </div>
+
+            <label className='font-semibold tracking-tight text-zinc-800' htmlFor="bio">Bio:</label>
+            <input
+              type="text"
+              id="bio"
+              name="bio"
+              value={formData.bio}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+              placeholder="Describe your business in a few words"
+              required
+            />
           </div>
           <div className="mb-4">
             <label htmlFor="businessName" className="block text-sm font-semibold text-gray-900">

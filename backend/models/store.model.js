@@ -27,7 +27,7 @@ const StoreSchema = new mongoose.Schema({
     },
     bio: {
         type: String,
-        default: "Welcome to [Your Store Name], your ultimate online destination for a wide range of high-quality products at great prices. Whether you're shopping for trendy fashion, the latest tech gadgets, stylish home decor, or beauty essentials, we offer an easy, secure, and enjoyable shopping experience. With a curated selection of top brands, fast shipping, and excellent customer service, we make sure every order exceeds your expectations. Browse our collections today and discover the perfect items to enhance your lifestyle—all from the comfort of your home!"
+        default: "Welcome to my online shop! Handpicked products, made with love & passion. Powered by Growo — your Insta store in minutes."
     },
     status: {
         type: Boolean,

@@ -92,7 +92,7 @@ function Products() {
         <div className='lg:my-10 my-5 lg:mx-4 mx-3'>
           <div className='flex justify-between lg:justify-start lg:gap-5'>
             <h2 className='text-xl lg:text-3xl text-zinc-900 font-extrabold lg:ml-4 tracking-tight'>All Products</h2>
-            <button onClick={() => setShowModal(true)} className='text-md font-semibold bg-green-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</button>
+            <button onClick={() => setShowModal(true)} className='text-md font-semibold bg-emerald-600 text-white rounded-xl px-3 py-2 tracking-tighter'>Add Product</button>
           </div>
 
           {store.products.length === 0 ?
@@ -157,7 +157,7 @@ function Products() {
                           </td>
                           <td className="p-3 text-base tracking-tight">
                             {product?.stockStatus ?
-                              <span className="bg-green-200 px-2 text-green-500 font-bold tracking-tighter py-1">
+                              <span className="bg-emerald-200 px-2 text-emerald-500 font-bold tracking-tighter py-1">
                                 <span>In Stock</span>
                               </span>
                               :
@@ -168,7 +168,7 @@ function Products() {
                           </td>
                           <td className="p-3 text-base tracking-tight">
                             {product?.status ?
-                              <p className='text-green-600 font-bold tracking-tighter'>Visible</p>
+                              <p className='text-emerald-600 font-bold tracking-tighter'>Visible</p>
                               :
                               <p className='text-red-600 font-bold tracking-tighter'>Invisible</p>
                             }

@@ -121,7 +121,7 @@ export default function SubscriptionStatus() {
               <p className="text-gray-600 mb-6">Activate a plan to unlock Growo premium features.</p>
             </>
             :
-            <h1 className="text-2xl font-semibold text-green-800 mb-2">Active</h1>
+            <h1 className="text-2xl font-semibold text-emerald-800 mb-2">Active</h1>
           }
 
           {/* Plan Badge */}
@@ -138,7 +138,7 @@ export default function SubscriptionStatus() {
               <div className="text-xl font-semibold text-gray-900 mb-1">{userData?.store?.products?.length} / {currentPlan?.features?.upToProducts}</div>
               <div className="text-sm text-gray-600 mb-2">{Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}% of limit</div>
               <div className="w-full bg-gray-200 rounded-full h-1.5">
-                <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}%` }}></div>
+                <div className="bg-emerald-600 h-1.5 rounded-full" style={{ width: `${Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}%` }}></div>
               </div>
               <div className="text-xs text-gray-500 mt-2">{Number(userData?.store?.products?.length) / Number(currentPlan?.features?.upToProducts) * 100}% of limit</div>
             </div>
@@ -149,7 +149,7 @@ export default function SubscriptionStatus() {
               <div className="text-xl font-semibold text-gray-900 mb-1">{Number(userData?.store?.coupon?.length) + " / " + Number(currentPlan?.features?.discountCodes)}</div>
               <div className="text-sm text-gray-600">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
               <div className="w-full bg-gray-200 rounded-full h-1.5">
-                <div className="bg-green-600 h-1.5 rounded-full" style={{ width: `${Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}%` }}></div>
+                <div className="bg-emerald-600 h-1.5 rounded-full" style={{ width: `${Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100)}%` }}></div>
               </div>
               <div className="text-xs text-gray-500 mt-2">{Number(Number(userData?.store?.coupon?.length) / Number(currentPlan?.features?.discountCodes) * 100).toFixed(2)}% of limit</div>
             </div>
@@ -193,7 +193,7 @@ export default function SubscriptionStatus() {
             <button
               onClick={() => setBillingCycle("monthly")}
               className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${billingCycle === "monthly"
-                ? "bg-green-600 text-white"
+                ? "bg-emerald-600 text-white"
                 : "text-gray-700 hover:text-gray-900"
                 }`}
             >
@@ -202,7 +202,7 @@ export default function SubscriptionStatus() {
             <button
               onClick={() => setBillingCycle("yearly")}
               className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${billingCycle === "yearly"
-                ? "bg-green-600 text-white"
+                ? "bg-emerald-600 text-white"
                 : "text-gray-700 hover:text-gray-900"
                 }`}
             >
@@ -229,12 +229,12 @@ export default function SubscriptionStatus() {
                   </span>
                 </div>
                 {billingCycle === "yearly" && (
-                  <p className="text-green-600 text-sm">(3 months free)</p>
+                  <p className="text-emerald-600 text-sm">(3 months free)</p>
                 )}
               </div>
 
               {/* Features Box */}
-              <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
+              <div className="bg-emerald-50 rounded-lg p-4 mb-6 space-y-2">
                 <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 15`} />
                 <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → 3`} />
                 <Feature label="Adds secure digital downloads" />
@@ -258,7 +258,7 @@ export default function SubscriptionStatus() {
                 ]}
               />
 
-              {currentPlan?.name?.toLowerCase() === "free" ? <button onClick={() => setSelectedPlan("go")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+              {currentPlan?.name?.toLowerCase() === "free" ? <button onClick={() => setSelectedPlan("go")} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-lg transition-colors">
                 Unlock Go
               </button> : <button className="w-full bg-gray-600 text-white font-medium py-3 rounded-lg transition-colors">
                 Active
@@ -266,9 +266,9 @@ export default function SubscriptionStatus() {
             </div>
 
             {/* Plus Plan */}
-            <div className="bg-white rounded-lg border-2 border-green-500 p-6 relative">
+            <div className="bg-white rounded-lg border-2 border-emerald-500 p-6 relative">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <span className="bg-green-100 text-green-700 text-xs font-semibold px-3 py-1 rounded-full">
+                <span className="bg-emerald-100 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full">
                   MOST POPULAR
                 </span>
               </div>
@@ -288,12 +288,12 @@ export default function SubscriptionStatus() {
                   </span>
                 </div>
                 {billingCycle === "yearly" && (
-                  <p className="text-green-600 text-sm">(3 months free)</p>
+                  <p className="text-emerald-600 text-sm">(3 months free)</p>
                 )}
               </div>
 
               {/* Features Box */}
-              <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
+              <div className="bg-emerald-50 rounded-lg p-4 mb-6 space-y-2">
                 <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 50`} />
                 <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → 25`} />
                 <Feature label="Custom domain + SSL" />
@@ -323,7 +323,7 @@ export default function SubscriptionStatus() {
                 Active
               </button>
               :
-              <button onClick={() => setSelectedPlan("plus")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+              <button onClick={() => setSelectedPlan("plus")} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-lg transition-colors">
                 Upgrade to Plus
               </button>
               }
@@ -346,12 +346,12 @@ export default function SubscriptionStatus() {
                   </span>
                 </div>
                 {billingCycle === "yearly" && (
-                  <p className="text-green-600 text-sm">(3 months free)</p>
+                  <p className="text-emerald-600 text-sm">(3 months free)</p>
                 )}
               </div>
 
               {/* Features Box */}
-              <div className="bg-green-50 rounded-lg p-4 mb-6 space-y-2">
+              <div className="bg-emerald-50 rounded-lg p-4 mb-6 space-y-2">
                 <Feature label={`Products: ${currentPlan?.features?.upToProducts} → 500`} />
                 <Feature label={`Discount codes: ${currentPlan?.features?.discountCodes} → Unlimited`} />
                 <Feature label="Profession Special Template" />
@@ -376,7 +376,7 @@ export default function SubscriptionStatus() {
                 Active
               </button>
               :
-              <button onClick={() => setSelectedPlan("max")} className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 rounded-lg transition-colors">
+              <button onClick={() => setSelectedPlan("max")} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-lg transition-colors">
                 Upgrade to Max
               </button>
               }
@@ -418,7 +418,7 @@ export default function SubscriptionStatus() {
                   </button>
                   <button
                     onClick={handlePayment}
-                    className="px-4 py-2 rounded-md bg-green-600 hover:bg-green-700 text-white text-sm font-medium"
+                    className="px-4 py-2 rounded-md bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium"
                   >
                     {paymentIsProcessing ? "Processing..." : "Confirm & Continue"}
                   </button>
@@ -436,7 +436,7 @@ export default function SubscriptionStatus() {
 function Feature({ label }) {
   return (
     <div className="flex items-center gap-2 text-sm text-gray-700">
-      <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+      <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" />
       <span>{label}</span>
     </div>
   );
@@ -447,7 +447,7 @@ function FeatureList({ items, unavailable = [] }) {
     <div className="space-y-3 mb-6">
       {items.map((item, i) => (
         <div key={i} className="flex items-start gap-2 text-sm text-gray-700">
-          <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+          <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
           <span>{item}</span>
         </div>
       ))}

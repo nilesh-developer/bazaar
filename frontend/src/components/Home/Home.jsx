@@ -451,7 +451,7 @@ const Home = () => {
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                                        <span>Up to 10 products</span>
+                                        <span>Up to 5 products</span>
                                     </div>
                                     <div className="flex items-start gap-2 text-sm text-gray-700">
                                         <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
