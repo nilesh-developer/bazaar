@@ -63,19 +63,19 @@ export default function CongratulationsPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="mt-8 flex flex-col sm:flex-row gap-4"
+        className="mt-8 flex flex-col w-full lg:w-auto sm:flex-row gap-4"
       >
         <a
           href={storeUrl}
           target="_blank"
           rel="noreferrer"
-          className="px-6 py-3 rounded-lg bg-emerald-700 text-white font-medium shadow hover:bg-emerald-800 transition"
+          className="px-6 py-3 text-center rounded-lg bg-emerald-700 text-white font-medium shadow hover:bg-emerald-800 transition"
         >
           Visit Store
         </a>
         <a
           href="/seller/dashboard"
-          className="px-6 py-3 rounded-lg border border-emerald-700 text-emerald-700 font-medium hover:bg-emerald-50 transition"
+          className="px-6 py-3 text-center rounded-lg border border-emerald-700 text-emerald-700 font-medium hover:bg-emerald-50 transition"
         >
           Go to Dashboard
         </a>
@@ -85,7 +85,7 @@ export default function CongratulationsPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1 }}
-        className="mt-12 text-sm text-emerald-600"
+        className="mt-12 text-sm text-center text-emerald-600"
       >
         Share your store link: <a href={storeUrl} className="underline">{storeUrl}</a>
       </motion.div>
