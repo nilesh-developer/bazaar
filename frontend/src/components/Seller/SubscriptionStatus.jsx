@@ -171,18 +171,19 @@ export default function SubscriptionStatus() {
             }
 
             {/* Custom Domain */}
-            {currentPlan?.name?.toLowerCase() !== "plus" || "max" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() !== "plus" || currentPlan?.name?.toLowerCase() !== "max" ? <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">CUSTOM DOMAIN</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Not included</div>
               <div className="text-sm text-gray-600">Plus plan unlocks branded domains</div>
-            </div>
+            </div> : null
             }
 
-            {currentPlan?.name?.toLowerCase() === "plus" || "max" && <div className="bg-gray-50 rounded-lg p-4">
+            {currentPlan?.name?.toLowerCase() === "plus" || currentPlan?.name?.toLowerCase() === "max" ? <div className="bg-gray-50 rounded-lg p-4">
               <h3 className="text-xs font-medium text-gray-600 uppercase mb-3">CUSTOM DOMAIN</h3>
               <div className="text-xl font-semibold text-gray-900 mb-1">Included</div>
               <button onClick={() => navigate("/seller/domain-settings")} className="text-sm text-emerald-600 font-semibold">Add your custom domain</button>
             </div>
+            : null
             }
           </div>
         </div>
