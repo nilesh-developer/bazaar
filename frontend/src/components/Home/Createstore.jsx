@@ -9,9 +9,11 @@ function Createstore() {
   const [storeAvailable, setStoreAvailable] = useState(null);
   const [isChecking, setIsChecking] = useState(false);
   const navigate = useNavigate();
-  const { userData, isLoading } = useAuth();
+  const [userData, setUserData] = useState({});
+  const [isLoading, setIsLoading] = useState(true)
 
   const domain = window.location.hostname;
+  const token = localStorage.getItem("token")
 
   const handleStore = (e) => {
     setName(e.target.value);
@@ -22,11 +24,41 @@ function Createstore() {
     setStoreAvailable(null);
   };
 
+  const userAuthentication = async () => {
+    try {
+      setIsLoading(true)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/user/current-user`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data.data)
+        setIsLoading(false)
+      } else {
+        setIsLoading(false)
+      }
+    } catch (error) {
+      console.log("Error while fetching user data")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (token) {
+      userAuthentication()
+    }
+  }, [token])
+
   useEffect(() => {
     if (userData?._id && userData.store) {
       navigate("/seller/dashboard");
     }
-  }, [userData, navigate]);
+  }, [userData]);
 
   // ✅ API to check store name availability
   const check = async () => {
@@ -87,9 +119,9 @@ function Createstore() {
   };
 
   // ✅ Loading state when user data or auth is still loading
-   if(isLoading) {
-        return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
-    }
+  if (isLoading) {
+    return <div className='flex h-[calc(100vh-100px)] lg:h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
+  }
 
   return (
     <>
@@ -148,11 +180,10 @@ function Createstore() {
                     type="button"
                     onClick={check}
                     disabled={isChecking || !storename}
-                    className={`${
-                      isChecking
-                        ? "bg-gray-300 cursor-not-allowed"
-                        : "bg-emerald-600 hover:bg-emerald-700"
-                    } text-white px-4 py-2 rounded-md font-semibold text-sm transition`}
+                    className={`${isChecking
+                      ? "bg-gray-300 cursor-not-allowed"
+                      : "bg-emerald-600 hover:bg-emerald-700"
+                      } text-white px-4 py-2 rounded-md font-semibold text-sm transition`}
                   >
                     {isChecking ? "Checking..." : "Check"}
                   </button>
@@ -162,9 +193,8 @@ function Createstore() {
               {/* Availability Message */}
               {storeAvailable !== null && (
                 <p
-                  className={`mt-2 font-semibold ${
-                    storeAvailable ? "text-green-600" : "text-red-600"
-                  }`}
+                  className={`mt-2 font-semibold ${storeAvailable ? "text-green-600" : "text-red-600"
+                    }`}
                 >
                   {storeAvailable
                     ? "✅ Store name is available"
@@ -185,11 +215,10 @@ function Createstore() {
             <button
               type="submit"
               disabled={!storeAvailable}
-              className={`w-full text-xl font-bold py-4 px-4 rounded-md transition duration-200 ${
-                storeAvailable
-                  ? "bg-black text-white hover:bg-zinc-900"
-                  : "bg-gray-300 text-gray-500 cursor-not-allowed"
-              }`}
+              className={`w-full text-xl font-bold py-4 px-4 rounded-md transition duration-200 ${storeAvailable
+                ? "bg-black text-white hover:bg-zinc-900"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                }`}
             >
               Create
             </button>
