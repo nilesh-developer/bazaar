@@ -29,6 +29,29 @@ function OrderPage() {
         getOrderData()
     }, [])
 
+    const handleDownload = async (fileUrl, filename = "downloaded-file") => {
+        try {
+            const response = await fetch(fileUrl);
+            const blob = await response.blob();
+
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = filename; // e.g., "file.pdf" or "image.png"
+
+            document.body.appendChild(link);
+            link.click();
+
+            // Cleanup
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Download failed:", error);
+        }
+    };
+
+
     if (loading) {
         return <div className='flex h-screen w-full justify-center items-center'><span className="loading loading-spinner loading-lg"></span></div>
     }
@@ -162,7 +185,7 @@ function OrderPage() {
                         className='flex gap-2 w-fit bg-black text-white mt-2 px-3 py-2 rounded-lg font-semibold'
                     >
                         <img src="/whatsapp.svg" alt="WhatsApp"
-                        className='h-6'
+                            className='h-6'
                         />Chat with Seller
                     </a>
                 </>
@@ -174,10 +197,16 @@ function OrderPage() {
                     <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
                     {order?.whatsappPay?.status?.toLowerCase() === "paid" ? <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
                         {order?.product[0]?.digital?.deliveryMethod === "upload" ?
-                            <>
-                                <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
-                                <a href={order?.product[0]?.digital?.digitalFiles[0]} className='text-sm font-semibold text-blue-800'>Click</a>
-                            </>
+                            <div className='flex flex-col gap-2 w-full'>
+                                <div className='flex justify-between items-center'>
+                                    <b className='tracking-tighter text-slate-800 font-semibold'>View</b>
+                                    <a href={order?.product[0]?.digital?.digitalFiles[0]} target="_blank" className='text-sm font-semibold text-blue-800'>Click</a>
+                                </div>
+                                <div className='flex justify-between items-center'>
+                                    <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
+                                    <button onClick={() => handleDownload(order?.product[0]?.digital?.digitalFiles[0])} className='text-sm font-semibold text-blue-800'>Click</button>
+                                </div>
+                            </div>
                             :
                             <>
                                 <b className='tracking-tighter text-slate-800 font-semibold'>External Download Link</b>

@@ -63,20 +63,9 @@ const uploadOnCloudinary = async (localFilePath) => {
     fs.unlinkSync(localFilePath);
 
     // For images → normal secure_url
-    if (isImage) {
-      console.log("✅ Image uploaded:", uploadResult.secure_url);
-      return uploadResult.secure_url;
-    }
 
-    // For files (PDFs, ZIPs, etc.) → direct download link
-    const downloadUrl = cloudinary.url(uploadResult.public_id, {
-      resource_type: "raw",
-      attachment: true,
-      format: fileExt.replace(".", ""),
-    });
-
-    console.log("✅ File uploaded:", downloadUrl);
-    return downloadUrl;
+    console.log("✅ Uploaded:", uploadResult.secure_url);
+    return uploadResult.secure_url;
 
   } catch (error) {
     console.error("❌ Cloudinary upload failed:", error);
