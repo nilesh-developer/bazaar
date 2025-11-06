@@ -399,8 +399,8 @@ export default function SubscriptionStatus() {
                   <div className="font-medium text-gray-900 capitalize">{selectedPlan}</div>
                   <div className="text-sm text-gray-600 capitalize">
                     {billingCycle === "monthly"
-                      ? `₹${selectedPlan === "go" ? "149" : "299"} billed monthly`
-                      : `₹${selectedPlan === "go" ? "1,490" : "2,990"} billed yearly`}
+                      ? `₹${selectedPlan === "go" ? "149" : selectedPlan === "plus" ? "299" :"599"} billed monthly`
+                      : `₹${selectedPlan === "go" ? "1,490" : selectedPlan === "plus" ? "2,990" : "5,990"} billed yearly`}
                     {" · "}
                     Current plan: {userData?.subscription_plan_type}
                   </div>
