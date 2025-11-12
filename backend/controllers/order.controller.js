@@ -7,6 +7,7 @@ import nodeMailer from "nodemailer";
 import crypto from "crypto";
 import { format } from "date-fns";
 import Razorpay from "razorpay";
+import { decrypt } from "../utils/encryption.js";
 
 const options = {
     timeZone: 'Asia/Kolkata',
@@ -15,10 +16,10 @@ const options = {
     day: 'numeric'
 };
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+// const razorpay = new Razorpay({
+//     key_id: process.env.RAZORPAY_KEY_ID,
+//     key_secret: process.env.RAZORPAY_KEY_SECRET,
+// });
 
 
 function generateOrderId() {
@@ -98,6 +99,11 @@ const initiateRazorpayPayment = asyncHandler(async (req, res) => {
 
     const amountInPaise = orderData?.totalPrice * 100;
 
+    const razorpay = new Razorpay({
+        key_id: decrypt(store.razorpayKeyId),
+        key_secret: decrypt(store.razorpayKeySecret),
+    });
+
     const razorpayOrder = await razorpay.orders.create({
         amount: amountInPaise,
         currency: "INR",
@@ -109,6 +115,7 @@ const initiateRazorpayPayment = asyncHandler(async (req, res) => {
 
         return res.status(200).json({
             order: order,
+            keyId: decrypt(store.razorpayKeyId),
             razorpayOrder: razorpayOrder,
             message: "Payment Initaited"
         });
@@ -123,16 +130,19 @@ const verifyRazorpayPayment = asyncHandler(async (req, res) => {
     const { razorpay_order_id,
         razorpay_payment_id,
         razorpay_signature,
+        storeId,
         customerId,
         orderId,
         amount,
         currency } = req.body;
 
+    const storeData = await stores.findById(storeId);
+
     const amountInRupees = Number(amount) / 100;
 
     // Verify signature
     const generated_signature = crypto
-        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
+        .createHmac("sha256", decrypt(storeData.razorpayKeySecret))
         .update(razorpay_order_id + "|" + razorpay_payment_id)
         .digest("hex");
 

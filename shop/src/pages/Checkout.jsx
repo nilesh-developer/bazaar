@@ -179,6 +179,11 @@ function Checkout() {
         e.preventDefault()
         try {
             setLoadingBtn(true)
+            if(cart.length === 0){
+                toast.error("Your cart is empty")
+                setLoadingBtn(false)
+                return
+            }
 
             if (billingDetails.email === "" || billingDetails.name === "" || billingDetails.address1 === "" || billingDetails.address2 === "" || billingDetails.state === "" || billingDetails.country === "" || billingDetails.pinCode === "") {
                 toast.error("All fields are required")
@@ -209,7 +214,7 @@ function Checkout() {
                     if (res.data || res.data.razorpayOrder) {
 
                         const options = {
-                            key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+                            key: res.data.keyId, // Enter the Key ID generated from the Dashboard
                             amount: calculateTotal().finalTotal,
                             currency: "INR",
                             name: store.name,
@@ -224,6 +229,7 @@ function Checkout() {
                                         razorpay_order_id: response.razorpay_order_id,
                                         razorpay_payment_id: response.razorpay_payment_id,
                                         razorpay_signature: response.razorpay_signature,
+                                        storeId,
                                         customerId: customerData._id,
                                         orderId: res.data.order._id,
                                         amount: res.data.razorpayOrder.amount,
@@ -561,7 +567,7 @@ function Checkout() {
                                         <img className="w-14 object-contain" src="./whatsapp.svg" alt="" />
                                         <div className="ml-5">
                                             <span className="mt-2 font-semibold">Pay on WhatsApp/Pay Later</span>
-                                            <p className="text-slate-500 text-base leading-6">UPI/Debit Card/Credit Card/Net Banking</p>
+                                            <p className="text-slate-500 text-base leading-6">Pay Manually on WhatsApp Chat</p>
                                         </div>
                                     </label>
                                 </div>

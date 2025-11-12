@@ -101,6 +101,12 @@ const StoreSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    razorpayKeyId: {
+        type: String,
+    },
+    razorpayKeySecret: {
+        type: String,
+    },
     whatsappPay: {
         status: {
             type: Boolean,

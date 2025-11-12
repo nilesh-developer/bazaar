@@ -20,7 +20,9 @@ import {
     changeRazorpayStatus,
     updateWhatsAppNumber,
     updateWhatsAppPayStatus,
-    getDataDayWise
+    getDataDayWise,
+    connectRazorpay,
+    razorpayStatus
 } from "../controllers/store.controller.js";
 import { verifyJwt } from "../middlewares/auth.middleware.js";
 import { upload } from "../middlewares/multer.middleware.js";
@@ -51,6 +53,10 @@ router.route("/update/whatsapp-number/:id").patch(verifyJwt, updateWhatsAppNumbe
 
 router.route("/update/whatsapp-pay-status/:id").patch(verifyJwt, updateWhatsAppPayStatus)
 
+router.route("/update/razorpay").post(verifyJwt, connectRazorpay)
+
+router.route("/razorpay-status").get(verifyJwt, razorpayStatus)
+
 router.route("/update/policy/:id").patch(verifyJwt, updatePolicies)
 
 router.route("/update/aboutpage/:id").patch(verifyJwt, updateAboutPage)
@@ -63,7 +69,7 @@ router.route("/subdomain/:subdomain").get(storeData)
 
 router.route("/cod/change-status/:storeId").patch(changeCodStatus)
 
-router.route("/razorpay/change-status/:storeId").patch(changeRazorpayStatus)
+router.route("/razorpay/change-status").patch(verifyJwt, changeRazorpayStatus)
 
 router.route("/upload/images").post(
     upload.fields([

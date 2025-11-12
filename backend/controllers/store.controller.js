@@ -7,6 +7,7 @@ import { users } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { orders } from "../models/order.model.js";
 import mongoose from "mongoose";
+import { decrypt, encrypt } from "../utils/encryption.js";
 
 const { ObjectId } = mongoose.Types;
 
@@ -393,10 +394,9 @@ const changeCodStatus = asyncHandler(async (req, res) => {
 })
 
 const changeRazorpayStatus = asyncHandler(async (req, res) => {
-    const { storeId } = req.params;
     const { status } = req.body;
 
-    const store = await stores.findByIdAndUpdate(storeId,
+    const store = await stores.findOneAndUpdate({owner: req.user._id},
         {
             $set: { razorpay: status }
         },
@@ -404,17 +404,56 @@ const changeRazorpayStatus = asyncHandler(async (req, res) => {
             new: true
         })
 
-    if (store.cashfree) {
+    if (store.razorpay) {
         return res.status(200)
             .json(
-                new ApiResponse(200, store, "Payment method Activated")
+                new ApiResponse(200, {}, "Razorpay Activated")
             )
     } else {
         return res.status(200)
             .json(
-                new ApiResponse(200, store, "Payment method deactivated"))
+                new ApiResponse(200, {}, "Razorpay deactivated"))
     }
 
+})
+
+const connectRazorpay = asyncHandler(async (req, res) => {
+    try {
+        const { key_id, key_secret } = req.body;
+        if (!key_id || !key_secret)
+            return res.status(400).json({ error: "Missing Razorpay keys" });
+
+        // Encrypt keys before storing
+        const encryptedKeyId = encrypt(key_id);
+        const encryptedKeySecret = encrypt(key_secret);
+
+        await stores.updateOne(
+            { owner: req.user._id },
+            { razorpayKeyId: encryptedKeyId, razorpayKeySecret: encryptedKeySecret }
+        );
+
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Server error" });
+    }
+})
+
+const razorpayStatus = asyncHandler(async (req, res) => {
+    try {
+        const store = await stores.findOne({ owner: req.user._id });
+        if (!store)
+            return res.status(404).json({ error: "Store not found" });
+        return res.status(200).json({
+            razorpayConnected: !!(store.razorpayKeyId && store.razorpayKeySecret),
+            active: store.razorpay,
+            keyId: store.razorpayKeyId ? decrypt(store.razorpayKeyId) : null,
+            keySecret: store.razorpayKeySecret ? decrypt(store.razorpayKeySecret) : null
+        });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Server error" });
+    }
 })
 
 const uploadStoreImage = asyncHandler(async (req, res) => {
@@ -619,6 +658,8 @@ export {
     storeData,
     changeCodStatus,
     changeRazorpayStatus,
+    connectRazorpay,
+    razorpayStatus,
     uploadStoreImage,
     getCustomerData,
     getNumbersOfThirtyDays,
