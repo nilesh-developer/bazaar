@@ -57,7 +57,7 @@ router.route("/add-digital-product").post(
         },
         {
             name: "digitalFiles[]",
-            maxCount: 5
+            maxCount: 20
         },
     ]),
     addDigitalProduct)

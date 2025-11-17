@@ -393,7 +393,7 @@ export default function EditDigitalProduct() {
                                     <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                                         Product Category <span className="text-red-500">*</span>
                                     </label>
-                                    <Link className="text-sm font-semibold text-emerald-500" to="../add-category">
+                                    <Link className="text-sm font-semibold text-emerald-700" to="../add-category">
                                         Add new category
                                     </Link>
                                 </div>
@@ -640,7 +640,14 @@ export default function EditDigitalProduct() {
                                     Secure downloads are available on paid plans. Max 3 files per product, 500MB total on Go.
                                 </p>
                                 }
-                                {availableDigitalFiles.length > 0 && <p className="text-sm text-emerald-800 font-semibold"><a href={availableDigitalFiles[0]}>View File</a></p>}
+                                {availableDigitalFiles.length > 0 &&
+                                    <div className="flex flex-col gap-2">
+                                        <h4 className="font-semibold mt-4">Existing Uploaded Files:</h4>
+                                        {availableDigitalFiles.map((file, idx) => (
+                                            <p key={idx} className="text-sm text-emerald-800 font-semibold"><a href={file}>View File {idx + 1}</a></p>
+                                        ))}
+                                    </div>
+                                }
                             </>
                         )}
                     </div>

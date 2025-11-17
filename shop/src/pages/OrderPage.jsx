@@ -197,16 +197,20 @@ function OrderPage() {
                     <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
                     {order?.whatsappPay?.status?.toLowerCase() === "paid" ? <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
                         {order?.product[0]?.digital?.deliveryMethod === "upload" ?
-                            <div className='flex flex-col gap-2 w-full'>
-                                <div className='flex justify-between items-center'>
-                                    <b className='tracking-tighter text-slate-800 font-semibold'>View</b>
-                                    <a href={order?.product[0]?.digital?.digitalFiles[0]} target="_blank" className='text-sm font-semibold text-blue-800'>Click</a>
-                                </div>
-                                <div className='flex justify-between items-center'>
-                                    <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
-                                    <button onClick={() => handleDownload(order?.product[0]?.digital?.digitalFiles[0])} className='text-sm font-semibold text-blue-800'>Click</button>
-                                </div>
-                            </div>
+                            <>
+                                {order?.product[0]?.digital?.digitalFiles.map((file, idx) => (
+                                    <div key={idx} className='flex flex-col gap-2 w-full'>
+                                        <div className='flex justify-between items-center'>
+                                            <b className='tracking-tighter text-slate-800 font-semibold'>View</b>
+                                            <a href={file} target="_blank" className='text-sm font-semibold text-blue-800'>Click</a>
+                                        </div>
+                                        <div className='flex justify-between items-center'>
+                                            <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
+                                            <button onClick={() => handleDownload(file)} className='text-sm font-semibold text-blue-800'>Click</button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </>
                             :
                             <>
                                 <b className='tracking-tighter text-slate-800 font-semibold'>External Download Link</b>

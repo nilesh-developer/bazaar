@@ -250,10 +250,10 @@ export default function AnalyticsDashboard() {
               </p>
             </div>
           </div>
-          <div className="mt-3 text-sm text-gray-500">
+          {/* <div className="mt-3 text-sm text-gray-500">
             Compared to previous period:{" "}
             <span className="text-emerald-600 font-medium">+6.5%</span>
-          </div>
+          </div> */}
           <div className="space-y-4 border-t pt-3 mt-6">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               Visitors Overview
