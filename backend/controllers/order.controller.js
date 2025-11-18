@@ -3,11 +3,13 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { stores } from "../models/store.model.js";
 import { orders } from "../models/order.model.js";
 import { customers } from "../models/customer.model.js";
+import { products } from "../models/product.model.js";
 import nodeMailer from "nodemailer";
 import crypto from "crypto";
 import { format } from "date-fns";
 import Razorpay from "razorpay";
 import { decrypt } from "../utils/encryption.js";
+import axios from "axios";
 
 const options = {
     timeZone: 'Asia/Kolkata',
@@ -1268,6 +1270,83 @@ const cancelOrder = asyncHandler((async (req, res) => {
         )
 }))
 
+const downloadOrderFiles = asyncHandler(async (req, res) => {
+    const { orderId, productId, fileIndex } = req.params;
+
+    // 1. Find order
+    const order = await orders.findById(orderId);
+    if (!order) {
+        return res.status(404).json(new ApiResponse(404, "", "Order not found"));
+    }
+
+    // 2. Ensure product is inside order
+    const productInOrder = order.product.find(prod => prod._id.toString() === productId);
+   
+    if (!productInOrder) {
+        return res.status(404).json(new ApiResponse(404, "", "Product not found in order"));
+    }
+
+    // 3. Load actual product data
+    const product = await products.findById(productId);
+    if (!product) {
+        return res.status(404).json(new ApiResponse(404, "", "Product not found"));
+    }
+
+    // 4. Get digital files array
+    const files = product?.digital?.digitalFiles;
+    if (!files || files.length === 0) {
+        return res.status(404).json(new ApiResponse(404, "", "No digital files found"));
+    }
+
+    // Specific file based on fileIndex
+    const fileUrl = files[fileIndex];
+    if (!fileUrl) {
+        return res.status(404).json(new ApiResponse(404, "", "Invalid file index"));
+    }
+
+    // ---------- DOWNLOAD LIMIT LOGIC ----------
+
+    // Unlimited access? Skip limits
+    if (product?.digital?.downloadAccess?.toLowerCase() !== "unlimited") {
+
+        // Ensure this product has its own counter inside order
+        if (!order.downloadCount) {
+            order.downloadCount = 0;
+        }
+
+        // Check limit
+        if (order.downloadCount >= product?.digital?.downloadLimit) {
+            return res.status(403).send("Download limit reached");
+        }
+
+        // Increment counter
+        order.downloadCount += 1;
+        await order.save();
+    }
+
+    // ---------- STREAM FILE FROM CLOUDINARY ----------
+
+    const response = await axios.get(fileUrl, {
+        responseType: "stream"
+    });
+
+    // Extract filename from Cloudinary URL (optional but nice)
+    const originalName = fileUrl.split("/").pop();  // e.g. "photo.jpg"
+
+    res.setHeader(
+        "Content-Disposition",
+        `attachment; filename="${originalName}"`
+    );
+
+    // Pass the Content-Type from Cloudinary to the user
+    if (response.headers["content-type"]) {
+        res.setHeader("Content-Type", response.headers["content-type"]);
+    }
+
+    response.data.pipe(res);
+});
+
+
 export {
     initiateRazorpayPayment,
     verifyRazorpayPayment,
@@ -1279,5 +1358,6 @@ export {
     getOrderData,
     updateStatus,
     acceptOrder,
-    cancelOrder
+    cancelOrder,
+    downloadOrderFiles
 }

@@ -170,26 +170,31 @@ function SellerOrderPage() {
         }
     }, [userData])
 
-    const handleDownload = async (fileUrl, filename = "downloaded-file") => {
-        try {
-            const response = await fetch(fileUrl);
-            const blob = await response.blob();
+    // const handleDownload = async (fileUrl, filename = "downloaded-file") => {
+    //     try {
+    //         const response = await fetch(fileUrl);
+    //         const blob = await response.blob();
 
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement("a");
+    //         const url = window.URL.createObjectURL(blob);
+    //         const link = document.createElement("a");
 
-            link.href = url;
-            link.download = filename; // e.g., "file.pdf" or "image.png"
+    //         link.href = url;
+    //         link.download = filename; // e.g., "file.pdf" or "image.png"
 
-            document.body.appendChild(link);
-            link.click();
+    //         document.body.appendChild(link);
+    //         link.click();
 
-            // Cleanup
-            link.remove();
-            window.URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error("Download failed:", error);
-        }
+    //         // Cleanup
+    //         link.remove();
+    //         window.URL.revokeObjectURL(url);
+    //     } catch (error) {
+    //         console.error("Download failed:", error);
+    //     }
+    // };
+
+    const handleDownload = (productId, index) => {
+        window.location.href =
+            `${import.meta.env.VITE_API_URL}/api/order/download/${order._id}/${productId}/${index}`;
     };
 
     if (loading) {
@@ -220,7 +225,7 @@ function SellerOrderPage() {
                         </div>
                         <div className='w-2/3 px-3'>
                             <Link to={`https://${store?.subdomain}/product/${odr?._id}`}>
-                                <p className='font-semibold text-xs'><span className='text-gray-800 truncate'>Product Id:</span> {order?.product[0]?._id}</p>
+                                <p className='font-semibold text-xs truncate'><span className='text-gray-800 truncate'>Product Id:</span> {order?.product[0]?._id}</p>
                                 <h3 className='font-bold'>{odr?.name}</h3>
                                 <p className='font-semibold'>&#8377;{odr?.salePrice}</p>
                                 <p className='mt-2 font-semibold text-gray-500'>Qty: {odr?.quantity} {odr?.selectColor} {odr?.selectSize} {odr?.selectOther}</p>
@@ -382,28 +387,28 @@ function SellerOrderPage() {
             </div>
 
             <h3 className='lg:text-lg font-bold mt-4'>Digital Asset</h3>
-            <div className='border border-gray-400 rounded-lg p-4 mt-2 flex justify-between items-center gap-2'>
-                {order?.product[0]?.digital?.deliveryMethod === "upload" ?
+            <div className='border border-gray-400 rounded-lg p-4 mt-2 flex flex-col justify-between items-center gap-2'>
+                {order?.product.map((pdt) => (
                     <>
-                        {order?.product[0]?.digital?.digitalFiles.map((file, idx) => (
-                            <div key={idx} className='flex flex-col gap-2 w-full'>
-                                <div className='flex justify-between items-center'>
-                                    <b className='tracking-tighter text-slate-800 font-semibold'>View</b>
-                                    <a href={file} target="_blank" className='text-sm font-semibold text-blue-800'>Click</a>
-                                </div>
-                                <div className='flex justify-between items-center'>
-                                    <b className='tracking-tighter text-slate-800 font-semibold'>Download Link</b>
-                                    <button onClick={() => handleDownload(file)} className='text-sm font-semibold text-blue-800'>Click</button>
-                                </div>
-                            </div>
-                        ))}
+                        {pdt?.digital?.deliveryMethod === "upload" ?
+                            <>
+                                {pdt?.digital?.digitalFiles.map((file, idx) => (
+                                    <div key={idx} className='flex flex-col gap-2 w-full'>
+                                        <div className='flex justify-between items-center'>
+                                            <b className='tracking-tighter text-slate-800 font-semibold'>File {idx + 1}</b>
+                                            <button onClick={() => handleDownload(pdt._id, idx)} className='text-sm font-semibold text-blue-800'>Click</button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </>
+                            :
+                            <>
+                                <b className='tracking-tighter text-slate-800 font-semibold'>External Download Link</b>
+                                <a href={pdt?.digital?.externalLink} className='text-sm font-semibold text-blue-800'>Click</a>
+                            </>
+                        }
                     </>
-                    :
-                    <>
-                        <b className='tracking-tighter text-slate-800 font-semibold'>External Download Link</b>
-                        <a href={order?.product[0]?.digital?.externalLink} className='text-sm font-semibold text-blue-800'>Click</a>
-                    </>
-                }
+                ))}
             </div>
 
             <h3 className='lg:text-lg font-bold mt-4'>Shipping Address</h3>

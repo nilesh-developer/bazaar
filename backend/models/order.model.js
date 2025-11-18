@@ -99,6 +99,10 @@ const OrderSchema = new mongoose.Schema({
     deliverDate: {
         type: Date
     },
+    downloadCount: {
+        type: Number,
+        default: 0
+    },
     isTrackingDetailsProvided: {
         type: Boolean,
         default: false
