@@ -68,7 +68,7 @@ export default function Footer() {
             </div>
           </div>
           <div className="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row md:items-center md:justify-between">
-            <p>© 2025 Growo. All rights reserved.</p>
+            <p>© 2026 Growo. All rights reserved.</p>
             <div className="mt-4 md:mt-0 flex space-x-6">
               <a href="https://www.youtube.com/@growo-store/" className="text-gray-400 hover:text-white">
                 <span className="sr-only">Youtube</span>
